@@ -1,0 +1,4 @@
+step1-BASE.lp
+step1-skeptical.lp
+theory.lp
+output.lp

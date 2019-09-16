@@ -1,0 +1,4 @@
+step1-BASE.lp
+step1-sake-of-concern.lp
+theory.lp
+output.lp
