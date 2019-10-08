@@ -4,3 +4,5 @@
 /.settings
 /*.springBeans
 /bin/
+/bin/*
+/tmpDir/
