@@ -109,7 +109,7 @@ class QExecActionListener implements ActionListener {
 	class Task extends SwingWorker<Void, Void> {
 		@Override
 		public Void doInBackground() {
-			//System.out.println("Do it here");
+			// System.out.println("Do it here");
 			try {
 
 				tmpDir = "./tmpDir";
@@ -255,7 +255,8 @@ public class QueryPicker {
 
 	public JButton createQueryButton(String l, String sparqlFile, String baseDir, String exDir, String aspFile,
 			JProgressBar progressBar, int solver, JTextArea taRes) {
-		//System.out.println("\n" + l + "--" + sparqlFile + "--" + baseDir + "--" + exDir + "--" + aspFile);
+		// System.out.println("\n" + l + "--" + sparqlFile + "--" + baseDir + "--" +
+		// exDir + "--" + aspFile);
 		JButton btn = new JButton(l);
 		btn.addActionListener(new QExecActionListener(sparqlFile, baseDir, exDir, aspFile, progressBar, solver, taRes));
 		return (btn);
@@ -263,7 +264,7 @@ public class QueryPicker {
 
 	public void loadContent(JPanel taQs, JProgressBar progressBar, JTextArea taRes)
 			throws FileNotFoundException, IOException {
-		//System.out.println("---ThanhNH : " + contentFile);
+		// System.out.println("---ThanhNH : " + contentFile);
 		String[] content = Utils.readFile(contentFile).split("\\r?\\n");
 		for (int l = 0; l < content.length; l++) {
 			String line = content[l];
