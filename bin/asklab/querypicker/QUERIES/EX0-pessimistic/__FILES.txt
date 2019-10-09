@@ -1,4 +1,0 @@
-step1-BASE.lp
-step1-pessimistic.lp
-theory.lp
-output.lp

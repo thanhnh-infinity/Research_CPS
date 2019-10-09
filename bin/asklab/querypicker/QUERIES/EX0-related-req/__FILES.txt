@@ -1,4 +1,0 @@
-step1-BASE.lp
-step1-related-req.lp
-theory.lp
-output.lp
