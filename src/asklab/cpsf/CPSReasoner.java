@@ -86,7 +86,7 @@ public class CPSReasoner {
 
 			// System.out.println("---ThanhNH : " + out);
 
-			/* conver output to one-literal-per-line */
+			/* convert output to one-literal-per-line */
 			cmd = mkatomsCmd();
 			lines = runCmdRaw(cmd, out);
 
