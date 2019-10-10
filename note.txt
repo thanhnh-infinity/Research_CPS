@@ -206,7 +206,87 @@ event_descr(recipient_rejects,"recording thrown out of court").
 action_descr(patch(sam),"patch the sam").
 
 % System description
+% Input device 1 can operate one of slow-mode or fast-mode.
+% The SAM determines the mode of operation of input device 1.
+% Normally, input device 1 reads inputs with a consistent frequency.
+% If the basic type of input device 1 is configured to use encrypted memory and fast-mode, the the device will be unable to maintain a consistent frequency of reading.
+
+% CONFIGURATIOn
+% The SAM and input device 1 are configured to use encrypted memory and secure-boot.
+% The basic type of input device 1 is used
+% The SAM is configured to set input device 1 to slow-mode.
+
+% Questions:
+%   1. Is the functionality concern satisfied?
+%   2. Is the functional aspect satisfied?
+%   3. Are all aspects satisfied?
 % 
+% Answers:
+%   1. Yes
+%   2. Yes (because all concerns and sub-concerns of functional aspect are satisfied)
+%   3. Yes (because all aspects are satisfied)
+
+% Enable skeptical inference on concern satisfaction
+
+inference(concerns,pessimistic).
+
+% Ouput predicate chi luu cac thang UN-SATISFIABLE
+output(D,property,"-",S) :- last_step(S), -holds(sat(A),S), atomic_statement(P,A), descr(P,D). 
+output(C,concern,F,S) :- last_step(S), -holds(sat(C,F),S), concern(C), not aspect(C), C!=all.
+output(C,aspect,F,S) ;- last_step(S), -holds(sat(C,F),S), aspect(C).
+output("concern-tree",tree,F,S) :- last_step(S), -holds(sat(all,F),S).
+
+output(C,"concern/aspect (unk)",F,S) :-
+	inference(concerns,skeptical),
+	last_step(S), concern(C), relevantToFunc(C,F),
+	not holds(sat(C,F),S).
+	
+output_heading("unsatisfied concern/aspect/property","type","function","step").
+
+% STEP 2:
+% A cyberattack occurs and hacks the SAM to switch input device 1 to fast-mode
+
+% outcome: CPS no longer satisfied the integrity concern because its properties say that the basic camera cannot record at 30+fps
+
+% Questions:
+%   1. Is the functionality concern satisfied?
+%   2. Is the functional aspect satisfied?
+%   3. Are all aspects satisfied?
+%   4. What happens in the environment?
+
+% Answers:
+%   1. No (functionality is violated if the basic type of input
+%          device 1 is operating in fast-mode with encrypted memory)
+%   2. No (because functionality is violated)
+%   3. No (because functional aspect is violated)
+%   4. The recording is thrown out of court (because functional aspect
+%      was violated)
+
+
+% Knowledge of cyberattacks, effects, and ramifications
+% This is outside of the scope of the CPS Model
+
+step(1).
+
+occurs(cyberattack,0).
+fluent(affected(sam)).
+obs(affected(sam),false).
+
+holds(affected(sam),S2) :- 
+	step(S), S2=S+1, step(S2),
+	occurs(cyberattack,S).
+
+-holds(sat("slow_mode_input1",S) :-
+	step(S), holds(affected(sam),S).
+	
+% if input device 1 does not function properly the recording thrown out of court
+event(recipient_rejects,S) :- last_step(S), -holds(sat("cpfs:Functional","cpfs:bc1",S).
+
+% ------- Output Interface ---------
+
+output(D,event,"-",S) :- event(E,S), event_descr(E,D).
+
+
 	
 	
 
