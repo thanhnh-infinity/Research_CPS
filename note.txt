@@ -287,6 +287,154 @@ event(recipient_rejects,S) :- last_step(S), -holds(sat("cpfs:Functional","cpfs:b
 output(D,event,"-",S) :- event(E,S), event_descr(E,D).
 
 
+% ======= CONTINUE LEARNING ================ %
+
+% Step1.lp --> describe about the system and scenario - check functionality aspect is satisfied or NOT
+
+% inference(concerns,pessimistic).
+
+% Output.lp --> design output/4   and output_heading/4 to this scenario
+
+% theory-maxint.lp ---> Nothing to talk about theory-maxint.lp
+
+% step1-BASE.lp ---> design the Initial State of CPS system => Which involved the first part in tempFileASP.lp file. === Current configuration of CPS system AND the impact fluence (neg, pos) of the current configuration for a concern or property
+
+% Step2.lp ---> Design the scenario when action cyberattack appears => which component is affected and obs the neg or pos effects --> Design the effects of action by rules (can be neg or pos) --> Design output/4 for the event.
+
+% Step3.lp ---> Extent the action/chanages in Step2.lp ===> design action theory when an action like cyberattack occurs. Answer some questions about an aspect is satisfied or NOT. 
+
+step(2).
+
+%%% Design action enable/1 and its description
+action(enable(C)) :- config_feature(C).
+action_descr(enable(C),enable(D)) :- config_feature(C), descr(C,D).
+
+%%% Design action disable/1 and its description
+action(disable(C)) :- config_feature(C).
+action_descr(disable(C),disable(D)) :- config_feature(C), descr(C,D).
+
+%%% At time S, A is occur OR not occur (not both same time --> inconsistent )
+%%% Constraint makes sure that at time S, only ONE action can be occurred
+1{do(A,S);-do(A,S)}1 :- step(S), action(A), not last_step(S).
+:- step(S), do(A1,S), do(A2,S), A1!=A2.
+
+%%% Minimize the number of actions --- clingo 4
+:~ do(A,S), action(A), step(S).
+
+%%% Clingo 5
+number_of_action(N) :- N = #count{A,S : do(A,S)}, action(A), step(S).
+#minimize{N: number_of_action(N)}.
+
+%%% Contraint makes sure that DO NOT execute actions BEFORE the cyberattack ;;; do === occurs, ocuurs === happen
+:- step(S1), step(S2), S1 <= S2, do(A,S1), occurs(cyberattack,S2).
+
+%%% Effects of an action
+holds(sat(F),S2) :- 
+        step(S), step(S2), S2=S+1,
+        do(enable(F),S), fluent(sat(F)).
+:- step(S), fluent(sat(F)), do(enable(F),S), holds(sat(F),S). 
+
+-holds(sat(F),S2) :- 
+        step(S), step(S2), S2=S+1,
+        do(disable(F),S), fluent(sat(F)).
+:- step(S), do(disable(F),S), -holds(sat(F),S), fluent(sat(F)).
+
+%%% The entire last concern tree of every function must be satisfied
+:- last_step(S), functionClass(F,FC), -holds(sat(all,F),S).
+
+%%% Produce output of CPS system
+output(D,action,"-",S) :- step(S), action(A), do(A,S), action_descr(A,D). 
+output("probability of success",P,"-",S) :- step(S), holds(prob_of_state(P),S).
+
+% Step3-ext.lp ---> Extent step3.lp ==> Design different actions -> patch(sam) ===> not enable/ disable/
+
+%%% Define action patch(sam), probabilistic of success for patch(sam), description of this action
+action(patch(sam)).
+prob_success(patch(sam),80).
+action_descr(patch(sam),"patch the sam").
+
+%%% Effects of the action
+-holds(affected(sam),S2) :-
+    step(S), step(S2), S2=S+1,
+    do(patch(sam),S).
+holds(sat("slow_mode_input1"),S2) :-
+    step(S), step(S2), S2=S+1,
+    do(patch(sam),S).
+:- step(S), do(patch(sam),S), -holds(affected(sam),S).
+
+
+% Step3-ext-prob.lp --> Design the probability of success when execute action patch(sam).
+prob_success(patch(sam),80).
+
+% theory.lp ==> Most of file is explored before.  ==== Con phai nghien cuu nhieu
+
+% theory-prob.lp 
+
+%%%% Calculation the degree of satisfaction of positively-impacting requirements 
+%%%% degree_impacted_pos(C,F,S,N) : at step S, N is percentage of {number of rules} -- [which are addressed at Function F, addresses for concern C, make positive and body of rule is satisfied] over{number of rules} -- [which are addressed at function F, for concern C, make positive].
+
+degree_impacted_pos(C,F,S,N) :- 
+        step(S), relevantToFunc(C,F),
+        N1 = #count{ Rule:rule(Rule), 
+                          addressesAtFunc(Rule,F),
+                          addressesConcern(Rule,C),
+                          addressesPolarity(Rule,pos),
+                          body_satisfied(Rule,S)
+                   },
+        N2 = #count{ Rule:rule(Rule),
+                          addressesAtFunc(Rule,F),
+                          addressesConcern(Rule,C),
+                          addressesPolarity(Rule,pos) 
+                   },
+        N2 != 0,
+        N = N1*100/N2.
+
+degree_impacted_pos(C,F,S,100) :-
+        step(S), relevantToFunc(C,F),
+        N2 = #count{ Rule: rule(Rule),
+                           addressesAtFunc(Rule,F),
+                           addressConcern(Rule,C),
+                           addressPolarity(Rule,pos)
+                   },
+        N2 = 0.
+
+%%%% Order Sibling Concern
+order(SC,F,N) :- 
+     subconcern(C,SC), relevantToFunc(SC,F),
+     N = {SC < SCp : subconcern(C,SCp), relevantToFunc(SCp,F)}.
+
+likelihood_sat(C,F,S,N) :- 
+     step(S), concern(C), relevantToFunc(C,F),
+     likelihood_sat_sub(C,F,S,N1),
+     degree_impacted_pos(C,F,S,N2),
+     N=N1*N2/100.
+
+likelihood_sat_sub_aux(C,F,0,S,X) :-
+     step(S), relevantToFunc(C,F), 
+     subconcern(C,SC), order(SC,F,0),
+     likelihood_sat(SC,F,S,X).
+likelihood_sat_sub_aux(C,F,N,S,X*Y/100) :-
+     step(S), relevantToFunc(C,F),
+     subconcern(C,SC), order(SC,F,N),
+     likelihood_sat(SC,F,S,Y),
+     likelihood_sat_sub_aux(C,F,N-1,S,X).
+
+has_subconcern(C) :- subconcern(C,_).
+-has_subconcern(C) :- not has_subconcern(C), concern(C).
+
+likelihood_sat_sub(C,F,S,100) :-
+     step(S), concern(C), relevantToFunc(C,F),
+     -has_subconcern(C).
+likelihood_sat_sub(C,F,S,X) :-
+     step(S), concern(C), relevantToFunc(C,F),
+     has_subconcern(C), 
+     likelihood_sat_sub_aux(C,F,N,S,X),
+     not likelihood_sat_sub_aux(C,F,N+1,S,_).
+
+
+
+
+
 	
 	
 
