@@ -431,11 +431,51 @@ likelihood_sat_sub(C,F,S,X) :-
      likelihood_sat_sub_aux(C,F,N,S,X),
      not likelihood_sat_sub_aux(C,F,N+1,S,_).
 
+%=============================================
+% Probability of Success of Actions
+%=============================================
 
+% Designer provides probability *prob* of success of an action a:
 
+prob_success(a,prob).
+action(a).
 
+% Propagated by the model to the successor state; modeled by functional fluent.
 
-	
+prob_of_state(prob).
+
+% That is: holds(prob_of_state(prob),S). means "the probability that at step S of the evolution the system will be in the state desribed by the fluents in prob."
+
+Ad-hoc encoding:
+
+holds(prob_of_state(100),0).
+
+holds(prob_of_state(P2),S2) :-
+    step(S), step(S2), S2=S+1,
+    holds(prob_of_state(P),S),
+    do(A,S), action(A),
+    prob_success(A,PSucc),
+    P2a=P*PSucc, P2=P2a/100.
+
+-unk_prob_success(S) :-
+    step(S), do(A,S), prob_success(A,P).
+
+unk_prob_success(S) :- 
+    step(S), not -unk_prob_success(S).
+
+holds(prob_of_state(P),S2) :-
+    step(S), step(S2), S2=S+1,
+    holds(prob_of_state(P),S),
+    unk_prob_success(S).
+
+%=============================================
+% Likelihood of Concern Satisfaction
+% The likelihood that a concern is satisfied is calculated from:
+%=============================================
+1. Percentage of properties/requirements with POSITIVE impact that ARE SATISFIED.
+   vs
+   Total number of properties/requirements with POSITIVE impact
+2. Recursively aggregaring the likelihood that its subconcerns are satisfied
 	
 
 
