@@ -64,8 +64,8 @@ count_relations(P,N) :- N= #count{C : addrForConcern(P,C)},
 
 % Reasoning follow step of CPS system
 holds(P,0) :- obs(P,true), property(P).
-componentHoldProperty(Com,P,0) :- relation(Com,P), holds(P,0), 
-								  component(Com), property(P).
+componentHoldProperty(Com,P,S) :- relation(Com,P), holds(P,S), 
+								  component(Com), property(P), step(S).
 truthworthiness_comp(Comp,TWvalue,S) :- component(Comp), step(S),
 									    TWvalue= #sum{N,P : count_relations(P,N), property(P), componentHoldProperty(Comp,P,S)}.
 higher_TW(C1,C2,S) :- truthworthiness_comp(C1,TW1,S), 
