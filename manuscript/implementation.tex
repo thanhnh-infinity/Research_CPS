@@ -1,0 +1,93 @@
+\section{Implementation}
+%
+\subsection{Query 1: Is the Truthworthiness aspect satisfied?}
+%
+\begin{lstlisting}[language=clingo,caption=Reasoning for the satsifaction of aspect, label=lst:q_1_reasoning_satisfaction, mathescape=true,xleftmargin=.01\textwidth, breaklines=true]
+-holds(sat(C),T):-addressedBy(C,$\pi$),not holds($\pi$,T).
+-holds(sat(C),T) :-addressedBy(C,$\pi$),-holds($\pi$,T).
+-holds(sat($C_1$),T) :-subconcern($C_1$,$C_2$),not holds(sat($C_2$),T).
+-holds(sat($C_1$),T) :-subconcern($C_1$,$C_2$),-holds(sat($C_2$),T).
+holds(X,T) :- defaults(X,true), not -holds(X,T).
+\end{lstlisting}
+In this listing, $T$ denotes a discrete step in the evolution of the CPS. The inclusion of a step argument makes it possible to analyze the evolution of CPS over time in response to possible events. Lines 1-2 states that a concern $C$ is not satisfied if any of the properties that address it does not hold. This ensures that the lack of satisfaction of a property $\pi$ is propagated to the concern(s) that are addressed by $\pi$ according to the {\tt addressedBy/2} statements. Line 3-4 encodes that the lack of the satisfaction is then propagated up the concern tree according to the concern-concern relation specified by the {\tt subconcern/2} statements. The specification of the notion of satisfaction is completed by {\tt defaults} statements saying that all properties and concerns are satisfied by default (Line 5), which embodies the semantics of the {\tt defaults} statement in Table~\ref{tab:constraints}.
+%
+
+The probabilistic component was added to the model, supporting calculation of ({\bf 1}) \emph{probability of success of mitigation strategies} and ({\bf 2}) \emph{likelihood that concerns are satisfied} .
+
+In probability of success of mitigation strategies, the fluent {\tt \small prob\_ of\_state(prob)} models the propagation by the model to the successor state and the statement {\tt holds(prob\_of\_state(prob) ,S)} means that  at step $S$ of the evolution the system, the probability in the current state described by the fluent is {\tt prob}. The statement {\tt do(a,S)} denotes that an action $a$ is executed at step $S$ of CPS evolution. The fluent {\tt prob\_success(a,$prob_a$)} denotes that an action $a$ has probability $prob_a$ of success.
+%
+\begin{lstlisting}[language=clingo,caption=Probability of success of mitigation strategies, label=lst:q_1_probabilistic, mathescape=true,xleftmargin=.01\textwidth, breaklines=true]
+holds(prob_of_state(100),0).
+holds(prob_of_state(P2),S2) :- step(S),step(S2), S2=S+1, holds(prob_of_state(P),S),do(A,S), prob_success(A,PSucc),P2a=P*PSucc,P2=P2a/100.
+known_prob_success(S) :- step(S),do(A,S), prob_success(A,PSucc).
+unknown_prob_success(S) :- step(S),not known_prob_success(S).
+holds(prob_of_state(P),S2) :- step(S), step(S2), S2=S+1, holds(prob_of_state(P),S), unknown_prob_success(S).
+\end{lstlisting}
+Listing~\ref{lst:q_1_probabilistic} provides set of rules to generate the probability of success of actions. Line 1 denotes that the probability of CPS system state at step 0 is 100. Line 2 provides the probability calculation of CPS state at step $S_2$ based on the probability of system at previous step $S$ and the probability of success of action $A$ that is executed in step $S$. This calculation has been formalized in definition~\ref{def:probability_of_success}. Line 3-4 provides the availability information of the probability of success for action $a$ executed at step $S$. Based on them, line 5 encodes the calculation for the probability of CPS state at step $S_2$ in the case that there is no action $a$ or the probability of success of action $a$ is unknown in previous step $S$.
+The ASP encoding in listing~\ref{lst:q_1_probabilistic} is able to calculate the probabilities of success of mitigation strategies based on multiple solution actions which attached with probabilities of success. Based on this result, we can select the best mitigation strategy with highest probability of success.
+%
+\begin{lstlisting}[language=clingo,caption=Likelihood of Concern Satisifaction, label=lst:q_1_likelihood, mathescape=true,xleftmargin=.01\textwidth, breaklines=true]
+
+\end{lstlisting}
+%
+\begin{lstlisting}[language=clingo,caption=Output of Query 1, label=lst:q_1_output, mathescape=true,xleftmargin=.01\textwidth, breaklines=true]
+last_step(S) :- step(S),S2=S+1,not step(S2).
+output(C,concern,F,S) :- last_step(S), -holds(sat(C,F),S),concern(C),not aspect(C), C!=all.
+output(C,aspect,F,S) :- last_step(S), -holds(sat(C,F),S),aspect(C).
+output(D,property,"-",S) :- last_step(S), -holds(sat(A),S), atomic_statement(P,A), descr(P,D).
+output("concern-tree",tree,F,S) :- last_step(S), -holds(sat(all,F),S).
+output(D,action,"-",S) :- step(S), action(A), do(A,S), action_descr(A,D).
+output("probability of success",P,"-",S) :- step(S), holds(prob_of_state(P),S).
+\end{lstlisting}
+%
+The listing~\ref{lst:q_1_output} provides ASP encoding to generate the answers (output) for CPS questions such as \emph{Is the }
+%
+\begin{lstlisting}[language=clingo,caption=Optimization to select the best mitigation strategy, label=lst:q_1_optimization, mathescape=true,xleftmargin=.01\textwidth, breaklines=true]
+#maximize{P : holds(prob_of_state(P),S)}.
+\end{lstlisting}
+%
+\subsection{Query 2: What is the most vulnerability in the system?}
+%
+%\begin{lstlisting}[language=clingo,caption=Reasoning for Truthworthiness aspect, label=lst:q_2_most_vulner, mathescape=true,xleftmargin=.01\textwidth, breaklines=true]
+%count_relations(P,N) :- N = #count{C : addressedBy(C,P)}, property(P).
+%higher_vulner(P1,P2) :- count_relations(P1,N1), count_relations(P2,N2), N1 > N2.
+%not_highest_vulner(P) :- property(P), property(P2), higher_vulner(P2,P).
+%highest_vulner(P) :- property(P), not not_highest_vulner(P).
+%\end{lstlisting}
+\begin{lstlisting}[language=clingo,caption=Reasoning for Truthworthiness aspect, label=lst:q_2_truthworthiness_cal, mathescape=true,xleftmargin=.01\textwidth, breaklines=true]
+% --- Configuration ---
+sol(addr).
+%sol(all).
+% --- State of CPS System ---
+step(0).
+% -Step 1: Generate from Ontology and physical CPS system to define component and component -> a set of property
+property(P):-input(P,"rdf:type","cpsf:Property").
+component(Comp) :- input(Comp,"rdf:type","cpsf:Component").
+holds(P,0) :- obs(P,true), property(P).
+componentHoldProperty(Com,P,S) :- relation(Com,P), component(Com), property(P), holds(P,S).
+% -Step 2 - S1 sol(addr): Compute for number of relations based on the number of addresses between property and concern ONLY
+count_relations(P,N) :- N = #count{C : addressedBy(C,P)}, property(P), sol(addr).
+% Step 3: Compute Truthworthiness value of a component in CPS system based on total number of relations of its property.
+truthworthiness_comp(Comp,TW,S) :- component(Comp), step(S), TW = #sum{N,P : count_relations(P,N), property(P), componentHoldProperty(Comp,P,S)}.
+% Step 4: Generate the component in S which has the highest TWvalue
+higher_TW(C1,C2,S) :- truthworthiness_comp(C1,TW1,S), truthworthiness_comp(C2,TW2,S), step(S), TW1 > TW2.
+not_highest_TW(C2,S) :- component(C1),component(C2) , higher_TW(C1,C2,S), step(S).
+highest_TW(C,S) :- not not_highest_TW(C,S), step(S).
+
+%===MORE===
+% Step 2 - S2 sol(all): Compute for number of relations based on the number of addresses + relations between property and concern AND addressed concern with parent concerns and go up higher in concern tree.
+addrForConcern(P,C) :- property(P), addressedBy(C,P), sol(all).
+addrForConcern(P,C) :- addrForConcern(P,C1), subconcern(C,C1), sol(all).
+count_relations(P,N) :- N= #count{C : addrForConcern(P,C)}, property(P), sol(all).
+
+%===SHOUD BE UPDATED with STEP(S)====
+\end{lstlisting}
+%
+  
+%
+\subsection{Query 3: If there exists the vulnerability, how to fix it?}
+%
+\begin{lstlisting}[language=clingo,caption=Reasoning for Truthworthiness aspect, label=list8, mathescape=true,xleftmargin=.01\textwidth, breaklines=true]
+
+\end{lstlisting}
+%

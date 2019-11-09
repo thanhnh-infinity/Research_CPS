@@ -1,0 +1,72 @@
+\section{Introduction}
+
+\begin{list}{$\bullet$}{\itemsep=0pt \parsep=1pt \topsep=1pt \leftmargin=12pt} 
+\item Cyber-physical systems (CPS) combine cyber capabilities (computation and/or communication) with physical capabilities (motion or other physical processes).
+ 
+\item Cars, aircraft,
+and robots are prime examples, because they move physically in space in a way that is determined by discrete computerized control algorithms
+
+\item CPS framework provides the taxonomy and methodology for designing, building, and assuring cyber-physical systems that meet the expectations and concerns of system stakeholders.
+\end{list}
+
+\section{Background}
+%
+\subsection{A CPS Framework Ontology}
+\label{CPS_ontology}
+%
+An ontology is a formal, logic based representation that supports reasoning by means of logical inference. In this paper, we adopt a rather broad view of this term: by ontology, we mean a collection of statements in a logical language that represent a given domain in terms of \emph{classes} (i.e., sets) of objects, \emph{individuals} (i.e., specific objects), relationships between objects and/or classes, and logical statements over these relationships. In the context of the trustworthiness of CPS, for instance, an ontology might define the high level concept of ``Concern'' with its refinement of ``Aspect'.' All of these will be formalized as classes and, for Aspect, subclasses. Specific concerns will be represented as individuals: \emph{Trustworthiness} as an individual of class Aspect, \emph{Security} and \emph{Cybersecurity} of class Concern. Additionally, a relation {\tt has-subconcern} might be used to associate a concern with its sub-concerns. Thus, Aspect {\tt has-subconcern} Security, which in turn {\tt has-subconcern} Cybersecurity. By introducing a property {\tt satisfied}, one could also indicate which concerns are satisfied.
+
+Inference can then be applied to propagate  {\tt satisfied} and other relevant properties and relations throughout the ontology. For example, given a concern that is not  {\tt satisfied}, one can leverage relation {\tt has-subconcern} to identify the concerns that are not satisfied, either directly or indirectly, because of it.
+In practice, it is often convenient to distinguish between the factual part, $\Omega$, of the ontology (later, simply called ``ontology''), which encodes the factual information (e.g., Trustworthiness {\tt has-subconcern} Security), and the axioms, $\Delta$, expressing deeper, often causal, links between relations (e.g., a concern is not satisfied if any of its sub-concerns is not satisfied). Further, when discussing reasoning tasks, we will also indicate, separately, the set Q of axioms encoding a specific reasoning task or query.
+%
+\subsection{A Use Case}
+\label{use_case}
+%
+For sake of illustration, in a lane keeping/assist (LKAS) use case centered around an advanced car that uses a camera ({\tt CAM}) and a situational awareness module ({\tt SAM}). The SAM processes the video stream from the camera and controls, through a physical output, the automated navigation system. The camera and the SAM may use encrypted memory and secure boot. Safety mechanisms in the navigation system cause it to shut down if issues are detected in the input received from the SAM. This use case is chosen because it encompasses major component types of a CPS, and lends itself to various non-trivial investigations. Through this use case, we will highlight the interplay among trustworthiness concerns, as well as their ramifications on other CPS aspects, such as the functional aspect.
+
+Assuming that the camera is capable of two recording modes, one at 25 fps (frames per second) and the other at 50 fps. The selection of the recording mode is made by SAM, by acting on a flag of the camera's configuration. It is assumed that two camera models exist, a basic one and an advanced one. Either type of camera can be used when realizing the CPS. Due to assumed technical limitations, the basic camera is likely to drop frames if it attempts to record at 50 fps while using encrypted memory.
+%
+
+
+\section{Formalization}
+
+\subsection{A Physical CPS System}
+\begin{definition}
+\label{def1} 
+A physical CPS system $S$ is a tuple ($C, A, F, R$) where:
+%
+\begin{list}{$\bullet$}{\itemsep=0pt \parsep=1pt \topsep=1pt \leftmargin=12pt} 
+\item $C$ is a set of physical components.
+\item $A$ is a finite set of actions that can be execute over CPS system.
+\item $F$ is a finite set of fluent literals.
+\item $R$ is a set of relations that map each physical component $c \in C$ with a set of physical component properties that are defined in CPS Ontology.  \\
+For any $r \in R$, $r : C \longrightarrow 2^{P_{C}}$. In which, we have $2^{P_{C}}$ is power set of $P_{C}$, $P_{C}$ is set of properties which related to physical components, $P$ is set of all properties that are defined in CPS ontology ~\ref{CPS_ontology} and $P_{C} \subset P$. 
+\end{list}
+%
+\end{definition}
+%
+Intuitively, the CPS problem related the example in use case ~\ref{use_case} can be specified by $S_{auto} = $ ($C_{auto}, A_{auto}, F_{auto}, R_{auto}$) where:
+\begin{list}{$\bullet$}{\itemsep=0pt \parsep=1pt \topsep=1pt \leftmargin=12pt} 
+\item $C_{auto} = \{{\tt SAM}, {\tt CAM}\}$ .
+\item $A_{auto}$ is set of finite actions which consists of:
+\begin{list}{$\bullet$}{\itemsep=0pt \parsep=1pt \topsep=1pt \leftmargin=12pt} 
+\item {\tt \small switMem(X,encrypted),switMem(X,unencrypted)}: denote actions to switch component $X$ using encrypted or unencrypted memory respectively. 
+\item {\tt \small switReMod(X,50fps),switReMod(X,25fps)}: denote actions to switch component $X$ using 50 fps and 25 fps recording modes respectively. 
+\item {\tt \small switModel(X,basic),switReMod(X,advanced)}: denote actions to switch component $X$ using basic and advanced models respectively. 
+\item etc. (should be more)
+\end{list}
+\item $F_{auto}$ is a finite set of fluent literals which consists of:
+\begin{list}{$\bullet$}{\itemsep=0pt \parsep=1pt \topsep=1pt \leftmargin=12pt} 
+\item {\tt \small useMem(X,encrypted),useMem(X,unencrypted)}: denote that component $X$ is using encrypted or unencrypted memory respectively. 
+\item {\tt \small recordMode(X,50fps),recordMode(X,25fps)}: denote that component $X$ is recording video with 50 fps and 25 fps modes respectively. 
+\item {\tt \small useModel(X,basic),useModel(X,advanced)}: denote that component $X$ is working on basic and advanced models respectively. 
+\item etc. (should be more)
+\end{list}
+\item $R_{auto} =\{${\tt CAM} $\mapsto \{{\tt reMode\_50fps, model\_basic,...}\}$, {\tt SAM} $\mapsto \{{\tt mem\_encrypted, boot\_sec,...}\}$  $\}$ \\
+In which, {\tt \small reMode\_50fps, reMode\_25fps, model\_basic, mem\_encrypted, boot\_sec, etc.}  are defined in CPS Ontology properties ~\ref{CPS_ontology}. 
+\end{list}
+
+\subsection{Display Equations}
+
+
+\section{Conclusions}

@@ -1,0 +1,218 @@
+%%
+%% sample document for AAMAS'19 conference
+%%
+%% modified from sample-sigconf.tex
+%%
+%% see ACM instructions acmguide.pdf
+%%
+%% AAMAS-specific questions? F.A.Oliehoek@tudelft.nl
+%%
+
+\documentclass[sigconf]{aamas}  % do not change this line!
+
+%% your usepackages here, for example:
+\usepackage{booktabs}
+\usepackage{amsfonts, amsmath, amssymb, mathrsfs}
+\usepackage{times, helvet, courier}
+\usepackage{graphicx, epsfig, epstopdf}
+\usepackage{wrapfig, caption, multirow, url}
+\usepackage{mathptmx}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{picinpar}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage{csquotes}
+\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{todonotes}
+
+%% do not change the following lines
+%\usepackage{flushend}
+\setcopyright{ifaamas}  % do not change this line!
+\acmDOI{doi}  % do not change this line!
+\acmISBN{}  % do not change this line!
+\acmConference[AAMAS'20]{Proc.\@ of the 19th International Conference on Autonomous Agents and Multiagent Systems (AAMAS 2020), B.~An, N.~Yorke-Smith, A.~El~Fallah~Seghrouchni, G.~Sukthankar (eds.)}{May 2020}{Auckland, New Zealand}  % do not change this line!
+\acmYear{2020}  % do not change this line!
+\copyrightyear{2020}  % do not change this line!
+\acmPrice{}  % do not change this line!
+
+%% the rest of your preamble here
+\newcommand{\specialcell}[2][c]{%
+	\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+\renewcommand{\P}{{\mathcal P}}
+\newcommand{\tbeg}{\langle}
+\newcommand{\tend}{\rangle}
+\newcommand{\entails}{\vDash}
+\newcommand{\proves}{\vdash}
+\newcommand{\union}{\cup}
+\newcommand{\intersect}{\cap}
+\newcommand{\compl}{\overline}
+\newcommand{\lpnot}{\mbox{not}\;\,}
+\newcommand{\lpor}{\;\,\mbox{\textsc{or}}\;\,}
+\newcommand{\dlvif}{:\sim}
+\newcommand{\sif}{\stackrel{\,\,\sim}{\leftarrow}}
+\newcommand{\hif}{\leftarrow}
+\newcommand{\dif}{\stackrel{\,\,-}{\leftarrow}}
+\newcommand{\rif}{\stackrel{\,\,+}{\leftarrow}}
+\newcommand{\impactsneg}{\ \mbox{impacts}_{\mbox{neg}}\ }
+\newcommand{\impactspos}{\ \mbox{impacts}_{\mbox{pos}}\ }
+\newcommand{\causes}{\mbox{ causes }}
+\newcommand{\lawif}{\mbox{ if }}
+\newcommand{\caused}{\mbox{ caused }}
+\newcommand{\impossibleif}{\mbox{ impossible\_if }}
+\newcommand{\triggers}{\mbox{ triggers }}
+\newcommand{\defaults}{{\mathsf{defaults}}}%{\mbox{ defaults }}
+
+\makeatletter
+\DeclareRobustCommand*\cal{\@fontswitch\relax\mathcal}
+%\def\@textbottom{\vskip \z@ \@plus 1pt}
+%\let\@texttop\relax
+\makeatother
+
+\usepackage{listings}
+\lstdefinelanguage{clingo}{
+  keywordstyle=[1]\usefont{OT1}{cmtt}{m}{n},%
+  keywordstyle=[2]\textbf,%
+  keywordstyle=[3]\usefont{OT1}{cmtt}{m}{n},%\textit
+  alsoletter={\#,\&},%
+  keywords=[1]{not,from,import,exists,if,else,return,while,
+  break,and,or,for,in,del,and,class,subClass,relevantToFunc,
+  concern,aspect,subconcern,property,rdf,cpsf,addressedBy,component,higher_TW,componentHoldProperty,count_addresses,count_relations,truthworthiness_comp,highest_TW,input,addrForConcern,relation,holds,obs},%
+  keywords=[2]{\#const,\#show,\#minimize,\#base,\#theory,\#count,\#external,\#program,\#script,\#end,\#heuristic,\#edge,\#project,\#show,\#sum},%
+  keywords=[3]{&,&dom,&sum,&diff,&show,&minimize},%
+  morecomment=[l]{\#\ },%
+  morecomment=[l]{\%\ },%
+  commentstyle={\color{darkgray}}%
+}
+\lstset{numbers=left,numberblanklines=false,basicstyle=\ttfamily\small,language=clingo}
+\lstset{escapeinside={*@}{@*}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\title{Cyber-Physical System}  % put your title here!
+%\titlenote{Produces the permission block, and copyright information}
+
+% AAMAS: as appropriate, uncomment one subtitle line; check the CFP
+%\subtitle{Extended Abstract}
+%\subtitle{Blue Sky Ideas Track}
+%\subtitle{JAAMAS Track}
+%\subtitle{Demonstration}
+%\subtitle{Doctoral Consortium}
+
+% AAMAS: submissions are anonymous for most tracks
+\author{Paper \#XXX}  % put your paper number here!
+
+%% example of author block for camera ready version of accepted papers: don't use for anonymous submissions
+%
+%\author{Ben Trovato}
+%\authornote{Dr.~Trovato insisted his name be first.}
+%\orcid{1234-5678-9012}
+%\affiliation{%
+%  \institution{Institute for Clarity in Documentation}
+%  \streetaddress{P.O. Box 1212}
+%  \city{Dublin} 
+%  \state{Ohio} 
+%  \postcode{43017-6221}
+%}
+%\email{trovato@corporation.com}
+%
+%\author{G.K.M. Tobin}
+%\authornote{The secretary disavows any knowledge of this author's actions.}
+%\affiliation{%
+%  \institution{Institute for Clarity in Documentation}
+%  \streetaddress{P.O. Box 1212}
+%  \city{Dublin} 
+%  \state{Ohio} 
+%  \postcode{43017-6221}
+%}
+%\email{webmaster@marysville-ohio.com}
+%
+%\author{Lars Th{\o}rv{\"a}ld}
+%\authornote{This author is the
+%  one who did all the really hard work.}
+%\affiliation{%
+%  \institution{The Th{\o}rv{\"a}ld Group}
+%  \streetaddress{1 Th{\o}rv{\"a}ld Circle}
+%  \city{Hekla} 
+%  \country{Iceland}}
+%\email{larst@affiliation.org}
+%
+%\author{Valerie B\'eranger}
+%\affiliation{%
+%  \institution{Inria Paris-Rocquencourt}
+%  \city{Rocquencourt}
+%  \country{France}
+%}
+%\author{Aparna Patel} 
+%\affiliation{%
+% \institution{Rajiv Gandhi University}
+% \streetaddress{Rono-Hills}
+% \city{Doimukh} 
+% \state{Arunachal Pradesh}
+% \country{India}}
+%\author{Huifen Chan}
+%\affiliation{%
+%  \institution{Tsinghua University}
+%  \streetaddress{30 Shuangqing Rd}
+%  \city{Haidian Qu} 
+%  \state{Beijing Shi}
+%  \country{China}
+%}
+%
+%\author{Charles Palmer}
+%\affiliation{%
+%  \institution{Palmer Research Laboratories}
+%  \streetaddress{8600 Datapoint Drive}
+%  \city{San Antonio}
+%  \state{Texas} 
+%  \postcode{78229}}
+%\email{cpalmer@prl.com}
+%
+%\author{John Smith}
+%\affiliation{\institution{The Th{\o}rv{\"a}ld Group}}
+%\email{jsmith@affiliation.org}
+%
+%\author{Julius P.~Kumquat}
+%\affiliation{\institution{The Kumquat Consortium}}
+%\email{jpkumquat@consortium.net}
+%
+%% The example's default list of authors is too long for headers
+%\renewcommand{\shortauthors}{B. Trovato et al.}
+
+
+\begin{abstract}  % put your abstract here!
+
+\end{abstract}
+
+
+\keywords{CPS; Action and Changes; ASP}  % put your semicolon-separated keywords here!
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% start of main body of paper
+
+\input{introduction}
+
+\input{background}
+
+\input{formalization}
+
+\input{implementation}
+
+\input{experiment}
+
+\input{conclusion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% bibliography: see CFP for number of permitted pages
+
+\bibliographystyle{ACM-Reference-Format}  % do not change this line!
+\bibliography{../../bibtex/enrico,../../bibtex/bibfile,../../bibtex/bib2010,../../bibtex/tnguyen2018}  % put name of your .bib file here
+
+\end{document}

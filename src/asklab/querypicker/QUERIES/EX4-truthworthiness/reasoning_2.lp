@@ -27,7 +27,7 @@ addressedBy(a2,t).
 
 property(x).
 property(y).
-%property(z).
+property(z).
 property(t).
 
 % ======Physical CPS System
