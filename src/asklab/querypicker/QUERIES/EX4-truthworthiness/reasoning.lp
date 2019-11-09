@@ -1,6 +1,6 @@
 
-%sol(addr).
-sol(all).
+sol(addr).
+%sol(all).
 
 % Ontology
 subconcern(b1,a1).
