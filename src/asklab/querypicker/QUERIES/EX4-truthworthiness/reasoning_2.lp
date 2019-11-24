@@ -8,8 +8,22 @@ sol(all).
 step(0).
 
 % =====Ontology
+relevantToFunc(a1,f).
+relevantToFunc(b1,f).
+relevantToFunc(b0,f).
+relevantToFunc(c1,f).
+relevantToFunc(c2,f).
+
+% Order sibling concerns
+%order(SC,F,N):-
+%    subconcern(C,SC), relevantToFunc(SC,F),
+%    N = { SC < SCp : subconcern(C,SCp), relevantToFunc(SCp,F) }.
+
 subconcern(b1,a1).
 subconcern(b0,b1).
+%subconcern(b0,c1).
+%subconcern(b1,c1).
+%subconcern(b1,c2).
 
 addressedBy(a1,x).
 addressedBy(a2,x).
@@ -29,6 +43,7 @@ property(x).
 property(y).
 property(z).
 property(t).
+
 
 % ======Physical CPS System
 component(c1).
@@ -77,10 +92,10 @@ highest_TW(C,S) :- component(C), not not_highest_TW(C,S), step(S).
 
 % Action and changes
 
-#show count_relations/2.
-#show componentHoldProperty/3.
-#show truthworthiness_comp/3.
-#show highest_TW/2.
-#show addrForConcern/2.
-
+%#show count_relations/2.
+%#show componentHoldProperty/3.
+%#show truthworthiness_comp/3.
+%#show highest_TW/2.
+%#show addrForConcern/2.
+#show order/3.
 
