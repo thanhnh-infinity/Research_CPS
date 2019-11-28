@@ -74,7 +74,7 @@ count_relations(P,N) :- N=#count{C : addressedBy(C,P)},
 addrForConcern(P,C) :- property(P), addressedBy(C,P), sol(all).
 addrForConcern(P,C) :- addrForConcern(P,C1), 
                        subconcern(C,C1), sol(all).
-count_relations(P,N) :- N= #count{C : addrForConcern(P,C)}, 
+count_relations(P,N) :- N=#count{C : addrForConcern(P,C)}, 
                         property(P), sol(all).
 
 % Reasoning follow step of CPS system
@@ -92,10 +92,10 @@ highest_TW(C,S) :- component(C), not not_highest_TW(C,S), step(S).
 
 % Action and changes
 
-%#show count_relations/2.
-%#show componentHoldProperty/3.
-%#show truthworthiness_comp/3.
-%#show highest_TW/2.
-%#show addrForConcern/2.
+#show count_relations/2.
+#show componentHoldProperty/3.
+#show truthworthiness_comp/3.
+#show highest_TW/2.
+#show addrForConcern/2.
 #show order/3.
 
