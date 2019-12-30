@@ -39,14 +39,17 @@ tw_property(P,N) :- N=#count{C : addrForConcern(P,C)},
 
 % -- Step 6: Compute the good trustworthiness value of component C
 tw_good_comp(Comp,TWvalue,S) :- component(Comp), step(S),
-								TWvalue= #sum{N,P : tw_property(P,N), property(P), compGoodProp(Comp,P,S)}.
+								TWvalue = #sum{N,P : tw_property(P,N), property(P), compGoodProp(Comp,P,S)}.
 
 % -- Step 7: Compute the bad trustworthiness value of component C
-tw_bad_comp(Comp,TWvalue,S) :- component(Comp), step(S),
-                               TWvalue= #sum{N,P : tw_property(P,N), property(P), compBadProp(Comp,P,S)}.
+tw_bad_comp(Comp,TWvalue,S)  :- component(Comp), step(S),
+                                TWvalue = #sum{N,P : tw_property(P,N), property(P), compBadProp(Comp,P,S)}.
 
-% -- Step 7-1 : Middle layer: Representat bad tw if not exists
-tw_bad_comp(Comp,0,S) :- not tw_bad_comp(Comp,_,S), component(Comp), step(S).
+% -- Step 7-1 : Middle layer: Representation good/bad tw if not exists
+tw_good_comp(Comp,0,S)  :- not tw_good_comp(Comp,_,S), 
+                           component(Comp), step(S).
+tw_bad_comp(Comp,0,S)   :- not tw_bad_comp(Comp,_,S), 
+                           component(Comp), step(S).
 
 % -- Step 8: Compare and result
 
@@ -126,7 +129,7 @@ equal_TW(C2,C1,S) :- equal_TW(C1,C2,S), component(C1), component(C2), step(S).
 
 not_highest_TW(C2,S) :- component(C1),component(C2),
                         higher_TW(C1,C2,S), step(S).
-highest_TW(C,S) :- component(C), not not_highest_TW(C,S), step(S).
+highest_TW_comp(C,S) :- component(C), not not_highest_TW(C,S), step(S).
 
 % Action and changes
 
@@ -137,7 +140,7 @@ highest_TW(C,S) :- component(C), not not_highest_TW(C,S), step(S).
 #show compBadProp/3.
 #show tw_good_comp/3.
 #show tw_bad_comp/3.
-#show highest_TW/2.
+#show highest_TW_comp/2.
 %#show addrForConcern/2.
 %#show order/3.
 
