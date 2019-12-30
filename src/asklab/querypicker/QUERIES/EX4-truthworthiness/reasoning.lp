@@ -131,7 +131,9 @@ not_highest_TW(C2,S) :- component(C1),component(C2),
                         higher_TW(C1,C2,S), step(S).
 highest_TW_comp(C,S) :- component(C), not not_highest_TW(C,S), step(S).
 
-% Action and changes
+%----------------------------------------------
+%=====ACTIONS and CHANGES======
+%----------------------------------------------
 
 % ====== SHOW ========
 
