@@ -122,7 +122,7 @@ equal_TW(C1,C2,S)   :- tw_good_comp(C1,TW1_good,S),
 
 equal_TW(C2,C1,S) :- equal_TW(C1,C2,S), component(C1), component(C2), step(S). 
 
-% Step 9: Find the highest TW value
+% -- Step 9: Find the highest TW value
 
 not_highest_TW(C2,S) :- component(C1),component(C2),
                         higher_TW(C1,C2,S), step(S).
