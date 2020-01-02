@@ -26,10 +26,10 @@ addrForConcern(P,C) :- addrForConcern(P,C1),
                        sol(all).
                        
 % -- Step 4 [1,2]: Reasoning a component C has good/bad property P at step S.
-compGoodProp(Com,P,S) :- relation(Com,P), holds(P,S), 
+compGoodProp(Com,P,S) :- relation(Com,P,D), holds(P,S), 
 						 component(Com), property(P), step(S).
 compBadProp(Com,P,S)  :- component(Com), property(P), step(S),
-                         relation(Com,P), -holds(P,S).
+                         relation(Com,P,D), -holds(P,S).
 
 % -- Step 5: Compute the tw_property: total number of links to the concerns that are addressed by and related to property P
 tw_property(P,N) :- N=#count{C : addressedBy(C,P)}, 
@@ -125,11 +125,15 @@ equal_TW(C1,C2,S)   :- tw_good_comp(C1,TW1_good,S),
 
 equal_TW(C2,C1,S) :- equal_TW(C1,C2,S), component(C1), component(C2), step(S). 
 
-% -- Step 9: Find the highest TW value
+% -- Step 9: Find the highest/lowest TW value
 
 not_highest_TW(C2,S) :- component(C1),component(C2),
                         higher_TW(C1,C2,S), step(S).
 highest_TW_comp(C,S) :- component(C), not not_highest_TW(C,S), step(S).
+
+not_lowest_TW(C1,S) :-  component(C1),component(C2),
+                        higher_TW(C1,C2,S), step(S).
+lowest_TW_comp(C,S) :-  component(C), not not_lowest_TW(C,S), step(S).
 
 %----------------------------------------------
 %=====ACTIONS and CHANGES======
@@ -143,6 +147,7 @@ highest_TW_comp(C,S) :- component(C), not not_highest_TW(C,S), step(S).
 #show tw_good_comp/3.
 #show tw_bad_comp/3.
 #show highest_TW_comp/2.
+#show lowest_TW_comp/2.
 %#show addrForConcern/2.
 %#show order/3.
 

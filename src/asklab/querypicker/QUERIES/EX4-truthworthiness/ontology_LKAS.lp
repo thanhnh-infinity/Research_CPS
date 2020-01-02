@@ -37,7 +37,6 @@ concern(authorization).
 concern(roles).
 concern(privileges).
 
-
 % subconcern.
 subconcern(trustworthiness,safety).
 subconcern(trustworthiness,reliability).
@@ -103,7 +102,6 @@ property(oAuth).
 property(two_factors_auth).
 property(finger_printing_auth).
 property(single_auth).
-
 
 % Addressed : Relation Properties-Concerns
 addressedBy(encryption,data_encrypted).

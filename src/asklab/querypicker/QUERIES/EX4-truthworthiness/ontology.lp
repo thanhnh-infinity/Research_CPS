@@ -40,13 +40,13 @@ property(t).
 component(c1).
 component(c2).
 component(c3).
-relation(c1,x).
-relation(c1,y).
-relation(c2,y).
-relation(c2,x).
-relation(c2,z).
-relation(c3,z).
-relation(c3,t).
+relation(c1,x,"c1 works x").
+relation(c1,y,"c1 works y").
+relation(c2,y,"c2 works y").
+relation(c2,x,"c2 works x").
+relation(c2,z,"c1 works z").
+relation(c3,z,"c3 works z").
+relation(c3,t,"c1 works t").
 
 % ======Observation for Initial State
 obs(x,true).
