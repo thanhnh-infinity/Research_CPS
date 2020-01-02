@@ -103,6 +103,12 @@ property(two_factors_auth).
 property(finger_printing_auth).
 property(single_auth).
 
+property(secure_boot).
+
+property(record_video_25fps).
+property(record_video_50fps).
+
+
 % Addressed : Relation Properties-Concerns
 addressedBy(encryption,data_encrypted).
 addressedBy(encryption,connection_encrypted).
@@ -124,20 +130,38 @@ addressedBy(authorization,single_auth).
 addressedBy(authorization,two_factors_auth).
 addressedBy(authorization,finger_printing_auth).
 
+addressedBy(secure_boot,integrity).
+
+addressedBy(basic_mode,integrity).
+addressedBy(advanced_mode,integrity).
+
+addressedBy(record_video_25fps,frequency).
+addressedBy(record_video_50fps,frequency).
+
+
 % Component and Relation
 component(sam).
 component(cam).
 
 relation(cam,data_encrypted,"CAM access to encrypted data").
+relation(cam,secure_boot,"CAM use Secure Bot").
 relation(cam,devices_checked,"CAM has been checked").
+relation(cam,record_video_50fps,"CAM has been recorded 50FPS").
+relation(cam,advanced_mode,"CAM used Advanced mode").
 
 relation(sam,data_encrypted,"SAM access to encrypted data").
+relation(sam,secure_boot,"SAM use Secure Bot").
 relation(sam,software_licensed,"SAM used licensed software").
-
-relation(sam,two_factors_auth,"ABC").
+relation(sam,two_factors_auth,"Access to SAM required 2-factors authentication").
+relation(sam,firewall_setup,"Firewall protected SAM").
 
 % ======Observation for Initial State
 obs(data_encrypted,true).
 obs(devices_checked,true).
 obs(software_licensed,true).
-obs(two_factors_auth,false).
+obs(two_factors_auth,false). % Change here to test
+obs(secure_boot,true).
+obs(record_video_50fps,true).
+obs(advanced_mode,true).
+obs(firewall_setup,false). % Change here to test
+
