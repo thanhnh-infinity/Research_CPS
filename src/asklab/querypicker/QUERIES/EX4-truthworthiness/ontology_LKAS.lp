@@ -73,7 +73,7 @@ subconcern(predictability,innovation).
 subconcern(confidentiality,encryption).
 subconcern(confidentiality,privacy_policy).
 subconcern(confidentiality,protection).
-subconcern(confidentiality,method).
+subconcern(confidentiality,encrypt_method).
 
 subconcern(availability,software_patches).
 subconcern(availability,hardware_patches).
@@ -105,7 +105,7 @@ property(finger_printing_auth).
 property(single_auth).
 
 
-% Addressed
+% Addressed : Relation Properties-Concerns
 addressedBy(encryption,data_encrypted).
 addressedBy(encryption,connection_encrypted).
 addressedBy(encryption,protocol_encrypted).
@@ -117,6 +117,15 @@ addressedBy(protection,devices_checked).
 addressedBy(privacy_policy,software_licensed).
 addressedBy(privacy_policy,privacy_standard).
 
-addressedBy(method,algo_AES_encryption).
-addressedBy(method,algo_RSA_encryption).
-addressedBy(method,algo_DES_encryption).
+addressedBy(encrypt_method,algo_AES_encryption).
+addressedBy(encrypt_method,algo_RSA_encryption).
+addressedBy(encrypt_method,algo_DES_encryption).
+
+addressedBy(authorization,oAuth).
+addressedBy(authorization,single_auth).
+addressedBy(authorization,two_factors_auth).
+addressedBy(authorization,finger_printing_auth).
+
+% Component and Relation
+component(sam).
+component(cam).
