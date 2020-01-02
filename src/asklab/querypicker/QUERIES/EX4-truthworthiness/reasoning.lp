@@ -150,5 +150,6 @@ lowest_TW_comp(C,S) :-  component(C), not not_lowest_TW(C,S), step(S).
 #show highest_TW_comp/2.
 #show lowest_TW_comp/2.
 %#show addrForConcern/2.
+%#show addressedBy/2.
 %#show order/3.
 

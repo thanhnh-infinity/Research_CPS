@@ -61,8 +61,8 @@ subconcern(cyber_security,confidentiality).
 subconcern(cyber_security,integrity).
 subconcern(cyber_security,availability).
 
-subconcern(physical_security,integrity).
-subconcern(physical_security,availability).
+%subconcern(physical_security,integrity).
+%subconcern(physical_security,availability).
 subconcern(physical_security,ultility).
 
 subconcern(predictability,controls).
@@ -108,6 +108,11 @@ property(secure_boot).
 property(record_video_25fps).
 property(record_video_50fps).
 
+property(basic_mode).
+property(advanced_mode).
+
+property(devices_accessible_permission).
+property(data_accessible_permission).
 
 % Addressed : Relation Properties-Concerns
 addressedBy(encryption,data_encrypted).
@@ -130,14 +135,16 @@ addressedBy(authorization,single_auth).
 addressedBy(authorization,two_factors_auth).
 addressedBy(authorization,finger_printing_auth).
 
-addressedBy(secure_boot,integrity).
+addressedBy(integrity,secure_boot).
 
-addressedBy(basic_mode,integrity).
-addressedBy(advanced_mode,integrity).
+addressedBy(integrity,basic_mode).
+addressedBy(integrity,advanced_mode).
 
-addressedBy(record_video_25fps,frequency).
-addressedBy(record_video_50fps,frequency).
+addressedBy(frequency,record_video_25fps).
+addressedBy(frequency,record_video_50fps).
 
+addressedBy(manageability,devices_accessible_permission).
+addressedBy(manageability,data_accessible_permission).
 
 % Component and Relation
 component(sam).
@@ -148,12 +155,14 @@ relation(cam,secure_boot,"CAM use Secure Bot").
 relation(cam,devices_checked,"CAM has been checked").
 relation(cam,record_video_50fps,"CAM has been recorded 50FPS").
 relation(cam,advanced_mode,"CAM used Advanced mode").
+relation(cam,devices_accessible_permission,"Have to have permission to access CAM").
 
 relation(sam,data_encrypted,"SAM access to encrypted data").
 relation(sam,secure_boot,"SAM use Secure Bot").
 relation(sam,software_licensed,"SAM used licensed software").
 relation(sam,two_factors_auth,"Access to SAM required 2-factors authentication").
 relation(sam,firewall_setup,"Firewall protected SAM").
+relation(sam,data_accessible_permission,"Have to have permission to access CAM").
 
 % ======Observation for Initial State
 obs(data_encrypted,true).
@@ -164,4 +173,6 @@ obs(secure_boot,true).
 obs(record_video_50fps,true).
 obs(advanced_mode,true).
 obs(firewall_setup,false). % Change here to test
+obs(devices_accessible_permission,true).
+obs(data_accessible_permission,true).
 
