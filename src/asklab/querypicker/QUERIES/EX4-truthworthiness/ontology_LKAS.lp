@@ -127,3 +127,17 @@ addressedBy(authorization,finger_printing_auth).
 % Component and Relation
 component(sam).
 component(cam).
+
+relation(cam,data_encrypted,"CAM access to encrypted data").
+relation(cam,devices_checked,"CAM has been checked").
+
+relation(sam,data_encrypted,"SAM access to encrypted data").
+relation(sam,software_licensed,"SAM used licensed software").
+
+relation(sam,two_factors_auth,"ABC").
+
+% ======Observation for Initial State
+obs(data_encrypted,true).
+obs(devices_checked,true).
+obs(software_licensed,true).
+obs(two_factors_auth,false).

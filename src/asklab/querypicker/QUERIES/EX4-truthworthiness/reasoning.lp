@@ -1,4 +1,5 @@
-#include "./ontology.lp".
+%#include "./ontology.lp".
+#include "./ontology_LKAS.lp".
 
 %=====REASONING TRUTHWORTHINESS with STEP======
 
@@ -143,7 +144,7 @@ lowest_TW_comp(C,S) :-  component(C), not not_lowest_TW(C,S), step(S).
 
 #show tw_property/2.
 %#show compGoodProp/3.
-#show compBadProp/3.
+%#show compBadProp/3.
 #show tw_good_comp/3.
 #show tw_bad_comp/3.
 #show highest_TW_comp/2.
