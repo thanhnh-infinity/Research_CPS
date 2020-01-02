@@ -84,7 +84,7 @@ subconcern(controls,privileges).
 
 % Property --- Requirements
 property(data_encrypted).
-property(connection_encrypted).
+property(conn_encrypted).
 property(protocol_encrypted).
 
 property(firewall_setup).
@@ -94,9 +94,9 @@ property(devices_checked).
 property(software_licensed).
 property(privacy_standard).
 
-property(algo_AES_encryption).
-property(algo_RSA_encryption).
-property(algo_DES_encryption).
+property(algo_AES).
+property(algo_RSA).
+property(algo_DES).
 
 property(oAuth).
 property(two_factors_auth).
@@ -116,7 +116,7 @@ property(data_accessible_permission).
 
 % Addressed : Relation Properties-Concerns
 addressedBy(encryption,data_encrypted).
-addressedBy(encryption,connection_encrypted).
+addressedBy(encryption,conn_encrypted).
 addressedBy(encryption,protocol_encrypted).
 
 addressedBy(protection,firewall_setup).
@@ -126,9 +126,9 @@ addressedBy(protection,devices_checked).
 addressedBy(privacy_policy,software_licensed).
 addressedBy(privacy_policy,privacy_standard).
 
-addressedBy(encrypt_method,algo_AES_encryption).
-addressedBy(encrypt_method,algo_RSA_encryption).
-addressedBy(encrypt_method,algo_DES_encryption).
+addressedBy(encrypt_method,algo_AES).
+addressedBy(encrypt_method,algo_RSA).
+addressedBy(encrypt_method,algo_DES).
 
 addressedBy(authorization,oAuth).
 addressedBy(authorization,single_auth).
