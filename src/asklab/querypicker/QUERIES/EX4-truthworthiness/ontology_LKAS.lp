@@ -143,8 +143,8 @@ addressedBy(integrity,advanced_mode).
 addressedBy(frequency,record_video_25fps).
 addressedBy(frequency,record_video_50fps).
 
-addressedBy(manageability,devices_accessible_permission).
-addressedBy(manageability,data_accessible_permission).
+addressedBy(privileges,devices_accessible_permission).
+addressedBy(privileges,data_accessible_permission).
 
 % Component and Relation
 component(sam).
