@@ -1,5 +1,6 @@
 %#include "./ontology.lp".
-#include "./ontology_LKAS.lp".
+%#include "./ontology_LKAS.lp".
+#include "./ontology_LKAS_2.lp".
 
 %=====REASONING TRUTHWORTHINESS with STEP======
 
