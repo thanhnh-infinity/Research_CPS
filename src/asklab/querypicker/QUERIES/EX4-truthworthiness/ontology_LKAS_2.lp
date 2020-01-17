@@ -34,6 +34,7 @@ concern(software_patches).
 concern(hardware_patches).
 concern(license).
 concern(authorization).
+concern(authentication).
 concern(roles).
 concern(privileges).
 concern(permissions).
@@ -62,8 +63,6 @@ subconcern(cyber_security,confidentiality).
 subconcern(cyber_security,integrity).
 subconcern(cyber_security,availability).
 
-%subconcern(physical_security,integrity).
-%subconcern(physical_security,availability).
 subconcern(physical_security,ultility).
 
 subconcern(predictability,controls).
@@ -73,17 +72,15 @@ subconcern(predictability,innovation).
 subconcern(confidentiality,encryption).
 subconcern(confidentiality,privacy_policy).
 subconcern(confidentiality,protection).
-subconcern(confidentiality,encrypt_method).
 
 subconcern(availability,software_patches).
 subconcern(availability,hardware_patches).
 subconcern(availability,license).
 
-subconcern(controls,authorization).
-subconcern(controls,roles).
-subconcern(controls,privileges).
+subconcern(controls,authentication).
+subconcern(controls,identity).
 
-subconcern(privileges,permissions).
+subconcern(identity,authorization).
 
 % Property --- Requirements
 property(data_encrypted).
@@ -92,7 +89,7 @@ property(protocol_encrypted).
 
 property(firewall_setup).
 property(hidden_backdoor).
-property(devices_checked).
+property(data_filtering).
 
 property(software_licensed).
 property(privacy_standard).
@@ -114,29 +111,27 @@ property(record_video_50fps).
 property(basic_mode).
 property(advanced_mode).
 
-property(devices_accessible_permission).
-property(data_accessible_permission).
+property(devices_access_permission).
+property(data_access_permission).
 
 % Addressed : Relation Properties-Concerns
 addressedBy(encryption,data_encrypted).
 addressedBy(encryption,conn_encrypted).
 addressedBy(encryption,protocol_encrypted).
+addressedBy(encryption,algo_AES).
+addressedBy(encryption,algo_RSA).
 
 addressedBy(protection,firewall_setup).
 addressedBy(protection,hidden_backdoor).
-addressedBy(protection,devices_checked).
+addressedBy(protection,data_filtering).
 
 addressedBy(privacy_policy,software_licensed).
 addressedBy(privacy_policy,privacy_standard).
 
-addressedBy(encrypt_method,algo_AES).
-addressedBy(encrypt_method,algo_RSA).
-addressedBy(encrypt_method,algo_DES).
-
-addressedBy(authorization,oAuth).
-addressedBy(authorization,single_auth).
-addressedBy(authorization,two_factors_auth).
-addressedBy(authorization,finger_printing_auth).
+addressedBy(authentication,oAuth).
+addressedBy(authentication,single_auth).
+addressedBy(authentication,two_factors_auth).
+addressedBy(authentication,finger_printing_auth).
 
 addressedBy(integrity,secure_boot).
 
@@ -146,8 +141,8 @@ addressedBy(integrity,advanced_mode).
 addressedBy(frequency,record_video_25fps).
 addressedBy(frequency,record_video_50fps).
 
-addressedBy(permissions,devices_accessible_permission).
-addressedBy(permissions,data_accessible_permission).
+addressedBy(authorization,devices_access_permission).
+addressedBy(authorization,data_access_permission).
 
 % Component and Relation
 component(sam).
@@ -155,27 +150,27 @@ component(cam).
 
 relation(cam,data_encrypted,"CAM access to encrypted data").
 relation(cam,secure_boot,"CAM use Secure Bot").
-relation(cam,devices_checked,"CAM has been checked").
+relation(cam,data_filtering,"CAM has been checked").
 relation(cam,record_video_50fps,"CAM has been recorded 50FPS").
 relation(cam,advanced_mode,"CAM used Advanced mode").
-relation(cam,devices_accessible_permission,"Have to have permission to access CAM").
+relation(cam,devices_access_permission,"Have to have permission to access CAM").
 
 relation(sam,data_encrypted,"SAM access to encrypted data").
 relation(sam,secure_boot,"SAM use Secure Bot").
 relation(sam,software_licensed,"SAM used licensed software").
 relation(sam,two_factors_auth,"Access to SAM required 2-factors authentication").
 relation(sam,firewall_setup,"Firewall protected SAM").
-relation(sam,data_accessible_permission,"Have to have permission to access CAM").
+relation(sam,data_access_permission,"Have to have permission to access CAM").
 
 % ======Observation for Initial State
 obs(data_encrypted,true).
-obs(devices_checked,true).
+obs(data_filtering,true).
 obs(software_licensed,true).
 obs(two_factors_auth,false). % Change here to test
 obs(secure_boot,true).
 obs(record_video_50fps,true).
 obs(advanced_mode,true).
 obs(firewall_setup,false). % Change here to test
-obs(devices_accessible_permission,true).
-obs(data_accessible_permission,true).
+obs(devices_access_permission,true).
+obs(data_access_permission,true).
 
