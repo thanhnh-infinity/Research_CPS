@@ -151,7 +151,7 @@ component(cam).
 relation(cam,data_encrypted,"CAM access to encrypted data").
 relation(cam,secure_boot,"CAM use Secure Bot").
 relation(cam,data_filtering,"CAM has been checked").
-relation(cam,record_video_50fps,"CAM has been recorded 50FPS").
+%relation(cam,record_video_50fps,"CAM has been recorded 50FPS").
 relation(cam,advanced_mode,"CAM used Advanced mode").
 relation(cam,devices_access_permission,"Have to have permission to access CAM").
 
