@@ -18,4 +18,5 @@
 
 # Issue 4: The composition of concerns : C1*C2(CPS) = C1(CPS) U C2(CPS)
     - Example: "Timing Security" --> The composition of timing and security results in the collection of all the properties of CPS that are required by the "timing" and "security" concerns. ===> Resolving "conflicts" between properties is ONE of the Tasks of "requirement analysis"
+    - 
 
