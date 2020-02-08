@@ -23,7 +23,7 @@ obs(two_factors,false).
 obs(iris_scan,false).
 obs(oauth,true).
 obs(opt_code,false).
-obs(email_verify,false).
+obs(email_verify,true).
 obs(ip_check,true).
 
 group(1..5).
@@ -44,11 +44,13 @@ suppBy(ip_check,auth_strategies,5).
 h(P,0) :- obs(P,true), property(P).
 -h(P,0) :- obs(P,false), property(P).
 
-sat(P,G,M,N) :- property(P), obs(P,unknown), group(G), N = #count{R : req(R), suppBy(R,P,G), obs(R,true)}, M = #count{R : req(R), suppBy(R,P,G)}, M = N.
+%leadTo(P,G) :- property(P), obs(P,unknown), group(G), N = #count{R : suppBy(R,P,G), obs(R,true)}, M = #count{R : suppBy(R,P,G)}, M = N, M > 0.
 
-h(P,0) :- sat(P,G,_,_), property(P), group(G).
+leadTo(P,G) :- property(P), obs(P,unknown), group(G), N = #count{R : suppBy(R,P,G), not obs(R,true)}, M = #count{R : suppBy(R,P,G)}, M > 0, N = 0. 
+
+h(P,0) :- leadTo(P,G), property(P), group(G).
 -h(P,0) :- not h(P,0), property(P).
 
 #show h/2.
 #show -h/2.
-#show sat/4.
+#show leadTo/2.
