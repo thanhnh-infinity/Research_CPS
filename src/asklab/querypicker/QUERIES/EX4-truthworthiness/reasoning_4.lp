@@ -235,12 +235,7 @@ leadTo(P,G) :- property(P), obs(P,unknown), group(G), N = #count{R : suppBy(R,P,
 h(P,0) :- leadTo(P,G), property(P), group(G).
 -h(P,0) :- not h(P,0), property(P).
 
-%---- Reasoning Property Satisfaction by Property Requirements -----
-%%%%% --- Default value
-deg(P,C,10,T) :-  property(P), concern(C), addressedBy(C,P), 
-                  N=#count{D:deg(P,C,D,T),D!=10}, step(T), N<=0.
-%deg(C,C1,10,T) :- concern(C), concern(C1), subconcern(C1,C),
-%                  N=#count{D:deg(C,C1,D,T),D!=10}, step(T), N<=0.
+%---- Reasoning Property Satisfaction by Property Requirements ----
 
 %%%%% --- Default Assignment PID values for Property Requirements --
 deg(advanced_mode,operation_mode,8,0).
@@ -265,10 +260,63 @@ deg(protocol_encrypted,encryption,10,0).
 deg(data_encrypted,encryption,10,0).
 
 %------------------------------------------------------------------
-deg(P,C,D*D1,T) :- component(Com), requirement(R), property(P), suppBy(R,P,G), group(G), 
-                   h(use(Com,R),T), step(T), deg(P,C,D,T), deg(R,P,D1,T). 
+%---- Reasoning Likelihood of Concerns Satisfaction ---------------
+%-- Asumming -- Se phai bo di khi co cach tinh Property
+degree_pos(encryption,80,0).
+degree_pos(verification,21,0).
+degree_pos(integrity,12,0).
+degree_pos(authorization,70,0).
+
+degree_pos(manageability,1,0).
+degree_pos(dissociability,1,0).
+degree_pos(severity,1,0).
+degree_pos(controllability,1,0).
+degree_pos(frequency,1,0).
+degree_pos(availability,1,0).
+degree_pos(transparency,1,0).
+degree_pos(innovation,1,0).
+degree_pos(ultility,1,0).
+degree_pos(authentication,1,0).
+degree_pos(all,1,0).
+degree_pos(trustworthiness,1,0).
+degree_pos(safety,1,0).
+degree_pos(reliability,1,0).
+degree_pos(security,1,0).
+degree_pos(resilience,1,0).
+degree_pos(privacy,1,0).
+
+degree_pos(functional_safety,1,0).
+degree_pos(cyber_security,1,0).
+degree_pos(physical_security,1,0).
+degree_pos(predictability,1,0).
+
+degree_pos(confidentiality,1,0).
+degree_pos(controls,1,0).
+
+
+%--- Reasoning Algorithm ----
+order(SC,C,N)      :- subconcern(C,SC), N = { SC < SCp : subconcern(C,SCp)}.
+has_subconcern(C)  :- subconcern(C,SC), concern(C), concern(SC).
+-has_subconcern(C) :- concern(C), not has_subconcern(C).
+
+likelihood_sat_sub(C,1,T)       :- step(T), concern(C), -has_subconcern(C). 
+likelihood_sat(C,N,T)           :- step(T), concern(C), 
+                                   likelihood_sat_sub(C,N1,T), 
+                                   degree_pos(C,N2,T), N=N1*N2.
+likelihood_sat_sub_aux(C,0,X,T) :- step(T), subconcern(C,SC), order(SC,C,0), 
+                                   likelihood_sat(SC,X,T).
+likelihood_sat_sub_aux(C,N,V,T) :- step(T), subconcern(C,SC), order(SC,C,N), 
+                                   likelihood_sat(SC,Y,T), likelihood_sat_sub_aux(C,N-1,X,T), 
+                                   V=X*Y. 
+likelihood_sat_sub(C,X,T)       :- step(T), concern(C), 
+                                   likelihood_sat_sub_aux(C,N,X,T), 
+                                   not likelihood_sat_sub_aux(C,N+1,_,T).
 %------------------------------------------------------------------
 %#show h/2.
 %#show -h/2.
 %#show leadTo/2.
-#show deg/4.
+%#show deg/4.
+%#show order/3.
+#show likelihood_sat/3.
+%#show likelihood_sat_sub_aux/4.
+%#show degree_pos/3.
