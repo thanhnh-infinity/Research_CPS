@@ -239,8 +239,8 @@ h(P,0) :- leadTo(P,G), property(P), group(G).
 %%%%% --- Default value
 deg(P,C,10,T) :-  property(P), concern(C), addressedBy(C,P), 
                   N=#count{D:deg(P,C,D,T),D!=10}, step(T), N<=0.
-deg(C,C1,10,T) :- concern(C), concern(C1), subconcern(C1,C),
-                  N=#count{D:deg(C,C1,D,T),D!=10}, step(T), N<=0.
+%deg(C,C1,10,T) :- concern(C), concern(C1), subconcern(C1,C),
+%                  N=#count{D:deg(C,C1,D,T),D!=10}, step(T), N<=0.
 
 %%%%% --- Default Assignment PID values for Property Requirements --
 deg(advanced_mode,operation_mode,8,0).
@@ -265,10 +265,10 @@ deg(protocol_encrypted,encryption,10,0).
 deg(data_encrypted,encryption,10,0).
 
 %------------------------------------------------------------------
-
+deg(P,C,D*D1,T) :- component(Com), requirement(R), property(P), suppBy(R,P,G), group(G), 
+                   h(use(Com,R),T), step(T), deg(P,C,D,T), deg(R,P,D1,T). 
 %------------------------------------------------------------------
 %#show h/2.
 %#show -h/2.
 %#show leadTo/2.
 #show deg/4.
-#show count/3.
