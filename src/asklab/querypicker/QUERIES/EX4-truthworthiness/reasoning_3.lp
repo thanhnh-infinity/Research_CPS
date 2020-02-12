@@ -1,3 +1,7 @@
+%%%%
+% This file is a reasoning for satisfaction of property based on property requirements supporting it
+%%%%
+
 step(0).
 
 concern(authorization).
@@ -22,8 +26,8 @@ obs(finger_printing,false).
 obs(two_factors,false).
 obs(iris_scan,false).
 obs(oauth,true).
-obs(opt_code,false).
-obs(email_verify,true).
+obs(opt_code,true).
+obs(email_verify,false).
 obs(ip_check,true).
 
 group(1..5).
