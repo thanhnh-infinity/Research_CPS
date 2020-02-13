@@ -49,7 +49,28 @@ likelihood_sat_sub_aux(a,2,32256,0)
 
 likelihood_sat_sub(a,32256,0)
 
-likelihood_sat(authentication,1,0) likelihood_sat(authorization,70,0) likelihood_sat(verification,21,0) likelihood_sat(encryption,80,0) likelihood_sat(ultility,1,0) likelihood_sat(innovation,1,0) likelihood_sat(transparency,1,0) likelihood_sat(availability,1,0) likelihood_sat(integrity,12,0) likelihood_sat(frequency,1,0) likelihood_sat(controllability,1,0) likelihood_sat(severity,1,0) likelihood_sat(dissociability,1,0) likelihood_sat(manageability,1,0) likelihood_sat(resilience,1,0) likelihood_sat(reliability,1,0) likelihood_sat(functional_safety,1,0) likelihood_sat(physical_security,1,0) likelihood_sat(controls,70,0) likelihood_sat(confidentiality,1680,0) likelihood_sat(predictability,70,0) likelihood_sat(safety,1,0) likelihood_sat(cyber_security,20160,0) likelihood_sat(privacy,70,0) likelihood_sat(security,20160,0) likelihood_sat(trustworthiness,1411200,0) likelihood_sat(all,1411200,0)
+=============
+
+
+order_requirement(finger_printing,auth_strategies,5) 
+order_requirement(two_factors,auth_strategies,0) 
+order_requirement(iris_scan,auth_strategies,3) 
+order_requirement(oauth,auth_strategies,2) 
+order_requirement(opt_code,auth_strategies,1) 
+order_requirement(email_verify,auth_strategies,6) 
+order_requirement(ip_check,auth_strategies,4) 
+
+order_requirement(advanced_mode,operation_mode,1) 
+order_requirement(basic_mode,operation_mode,0)
+
+ order_requirement(saving_mode,energy_mode,0) 
+ order_requirement(powerful_mode,energy_mode,1) 
+ order_requirement(normal_mode,energy_mode,2) 
+ 
+ deg_prop_imp_req_aux(auth_strategies,0,1,0) 
+ deg_prop_imp_req_aux(operation_mode,0,1,0) 
+ deg_prop_imp_req_aux(energy_mode,0,1,0) 
+ deg_prop_imp_req_aux(operation_mode,0,6,0)
 
 
 

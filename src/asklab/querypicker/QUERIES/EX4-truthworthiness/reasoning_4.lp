@@ -2,12 +2,11 @@
 % Satisfaction Theory + Positive Impacts Degree
 %%%%%%%
 
-
 step(0).
 
 %-------The Ontology---------------------
 % concern 
-aspect(trustworhtiness).
+aspect(trustworthiness).
 
 concern(all).
 concern(trustworthiness).
@@ -109,8 +108,8 @@ addressedBy(encryption,algo_AES).
 addressedBy(encryption,algo_RSA).
 addressedBy(encryption,algo_DES).
 
-addressedBy(protection,firewall_setup).
-addressedBy(protection,ip_filtering).
+addressedBy(verification,firewall_setup).
+addressedBy(verification,ip_filtering).
 
 
 addressedBy(integrity,secure_boot).
@@ -178,7 +177,7 @@ obs(advanced_mode,true).
 obs(basic_mode,true).
 
 suppBy(advanced_mode,operation_mode,1).
-suppBy(advanced_mode,operation_mode,2).
+suppBy(basic_mode,operation_mode,2).
 
 %--- For Energy_Mode
 requirement(saving_mode).
@@ -191,7 +190,7 @@ obs(normal_mode,true).
 
 suppBy(saving_mode,energy_mode,1).
 suppBy(powerful_mode,energy_mode,2).
-suppBy(normal_mode,energy_mode,2).
+suppBy(normal_mode,energy_mode,3).
 
 % Component
 %---- Define component ----
@@ -238,27 +237,47 @@ h(P,0) :- leadTo(P,G), property(P), group(G).
 %---- Reasoning Property Satisfaction by Property Requirements ----
 
 %%%%% --- Default Assignment PID values for Property Requirements --
-deg(advanced_mode,operation_mode,8,0).
-deg(basic_mode,operation_mode,6,0).
-deg(saving_mode,energy_mode,2,0).
-deg(normal_mode,energy_mode,7,0).
-deg(powerful_mode,energy_mode,9,0).
-deg(finger_printing,auth_strategies,7,0).
-deg(two_factors,auth_strategies,6,0).
-deg(oauth,auth_strategies,5,0).
-deg(opt_code,auth_strategies,3,0).
-deg(email_verify,auth_strategies,3,0).
-deg(ip_check,auth_strategies,3,0).
+deg_req(advanced_mode,operation_mode,8,0).
+deg_req(basic_mode,operation_mode,6,0).
+deg_req(saving_mode,energy_mode,2,0).
+deg_req(normal_mode,energy_mode,7,0).
+deg_req(powerful_mode,energy_mode,9,0).
+deg_req(finger_printing,auth_strategies,7,0).
+deg_req(two_factors,auth_strategies,6,0).
+deg_req(oauth,auth_strategies,5,0).
+deg_req(opt_code,auth_strategies,3,0).
+deg_req(email_verify,auth_strategies,3,0).
+deg_req(ip_check,auth_strategies,3,0).
 
 %%%%% --- Default Assignment PID values for Property NOT have any supports --
-deg(secure_boot,integrity,6,0).
-deg(firewall_setup,verification,7,0).
-deg(ip_filtering,verification,3,0).
-deg(algo_RSA,encryption,8,0).
-deg(algo_AES,encryption,6,0).
-deg(protocol_encrypted,encryption,10,0).
-deg(data_encrypted,encryption,10,0).
+deg_prop(secure_boot,integrity,6,0).
+deg_prop(firewall_setup,verification,7,0).
+deg_prop(ip_filtering,verification,3,0).
+deg_prop(algo_RSA,encryption,8,0).
+deg_prop(algo_AES,encryption,6,0).
+deg_prop(protocol_encrypted,encryption,10,0).
+deg_prop(data_encrypted,encryption,10,0).
 
+%%%%%
+order_requirement(R,P,N)  :- suppBy(R,P,_), 
+                               N = { R < Rp : suppBy(Rp,P,_)}.
+has_requirement(P)        :- suppBy(R,P,_), property(P), requirement(R).
+-has_requirement(P)       :- property(P), not has_requirement(P).
+
+deg_prop_imp_sub(P,1,T)   :- step(T), property(P), -has_requirement(P). 
+deg_prop_imp(P,N,T)       :- step(T), property(P), 
+                             deg_prop_imp_sub(P,N1,T), 
+                             deg_prop(P,_,N2,T), N=N1*N2.
+deg_prop_imp_req_aux(P,0,X,T) :- step(T), suppBy(R,P,_), order_requirement(R,P,0),                              
+                                 deg_req(R,P,X,T), h(use(Com,R),T), component(Com).
+deg_prop_imp_req_aux(P,0,1,T) :- step(T), suppBy(R,P,_), order_requirement(R,P,0),                              
+                                 deg_req(R,P,X,T), not h(use(Com,R),T), component(Com).
+%likelihood_sat_sub_aux(P,N,V,T) :- step(T), subconcern(C,SC), order(SC,C,N), 
+%                                   likelihood_sat(SC,Y,T), likelihood_sat_sub_aux(C,N-1,X,T), 
+%                                   V=X*Y. 
+%likelihood_sat_sub(C,X,T)       :- step(T), concern(C), 
+%                                   likelihood_sat_sub_aux(C,N,X,T), 
+%                                   not likelihood_sat_sub_aux(C,N+1,_,T).
 %------------------------------------------------------------------
 %---- Reasoning Likelihood of Concerns Satisfaction ---------------
 %-- Asumming -- Se phai bo di khi co cach tinh Property
@@ -267,34 +286,34 @@ degree_pos(verification,21,0).
 degree_pos(integrity,12,0).
 degree_pos(authorization,70,0).
 
-degree_pos(manageability,1,0).
-degree_pos(dissociability,1,0).
-degree_pos(severity,1,0).
-degree_pos(controllability,1,0).
-degree_pos(frequency,1,0).
-degree_pos(availability,1,0).
-degree_pos(transparency,1,0).
-degree_pos(innovation,1,0).
-degree_pos(ultility,1,0).
-degree_pos(authentication,1,0).
-degree_pos(all,1,0).
-degree_pos(trustworthiness,1,0).
-degree_pos(safety,1,0).
-degree_pos(reliability,1,0).
-degree_pos(security,1,0).
-degree_pos(resilience,1,0).
-degree_pos(privacy,1,0).
+%degree_pos(manageability,1,0).
+%degree_pos(dissociability,1,0).
+%degree_pos(severity,1,0).
+%degree_pos(controllability,1,0).
+%degree_pos(frequency,1,0).
+%degree_pos(availability,1,0).
+%degree_pos(transparency,1,0).
+%degree_pos(innovation,1,0).
+%degree_pos(ultility,1,0).
+%degree_pos(authentication,1,0).
+%degree_pos(all,1,0).
+%degree_pos(trustworthiness,1,0).
+%degree_pos(safety,1,0).
+%degree_pos(reliability,1,0).
+%degree_pos(security,1,0).
+%degree_pos(resilience,1,0).
+%degree_pos(privacy,1,0).
+%degree_pos(functional_safety,1,0).
+%degree_pos(cyber_security,1,0).
+%degree_pos(physical_security,1,0).
+%degree_pos(predictability,1,0).
+%degree_pos(confidentiality,1,0).
+%degree_pos(controls,1,0).
 
-degree_pos(functional_safety,1,0).
-degree_pos(cyber_security,1,0).
-degree_pos(physical_security,1,0).
-degree_pos(predictability,1,0).
+degree_pos(C,1,T) :- concern(C), N=#count{P : addressedBy(C,P),property(P)}, 
+                     N<=0, step(T).
 
-degree_pos(confidentiality,1,0).
-degree_pos(controls,1,0).
-
-
-%--- Reasoning Algorithm ----
+%--- Reasoning Algorithm Likelihood of Concern Satisfaction ----
 order(SC,C,N)      :- subconcern(C,SC), N = { SC < SCp : subconcern(C,SCp)}.
 has_subconcern(C)  :- subconcern(C,SC), concern(C), concern(SC).
 -has_subconcern(C) :- concern(C), not has_subconcern(C).
@@ -320,3 +339,6 @@ likelihood_sat_sub(C,X,T)       :- step(T), concern(C),
 #show likelihood_sat/3.
 %#show likelihood_sat_sub_aux/4.
 %#show degree_pos/3.
+%#show deg_prop_sat/3.
+%#show order_requirement/3.
+%#show deg_prop_imp_req_aux/4.
