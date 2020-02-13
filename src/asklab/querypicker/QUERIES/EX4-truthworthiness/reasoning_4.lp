@@ -268,10 +268,10 @@ deg_prop_imp_sub(P,1,T)   :- step(T), property(P), -has_requirement(P).
 deg_prop_imp(P,N,T)       :- step(T), property(P), 
                              deg_prop_imp_sub(P,N1,T), 
                              deg_prop(P,_,N2,T), N=N1*N2.
-deg_prop_imp_req_aux(P,0,X,T) :- step(T), suppBy(R,P,_), order_requirement(R,P,0),                              
-                                 deg_req(R,P,X,T), h(use(Com,R),T), component(Com).
-deg_prop_imp_req_aux(P,0,1,T) :- step(T), suppBy(R,P,_), order_requirement(R,P,0),                              
-                                 deg_req(R,P,X,T), not h(use(Com,R),T), component(Com).
+%deg_prop_imp_req_aux(P,0,X,T) :- step(T), suppBy(R,P,_), order_requirement(R,P,0),                              
+%                                 deg_req(R,P,X,T), h(use(Com,R),T), component(Com).
+%deg_prop_imp_req_aux(P,0,1,T) :- step(T), suppBy(R,P,_), order_requirement(R,P,0),                              
+%                                 deg_req(R,P,X,T), not h(use(Com,R),T), component(Com).
 %likelihood_sat_sub_aux(P,N,V,T) :- step(T), subconcern(C,SC), order(SC,C,N), 
 %                                   likelihood_sat(SC,Y,T), likelihood_sat_sub_aux(C,N-1,X,T), 
 %                                   V=X*Y. 
