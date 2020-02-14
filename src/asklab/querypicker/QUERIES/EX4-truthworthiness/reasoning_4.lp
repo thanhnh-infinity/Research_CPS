@@ -90,6 +90,7 @@ property(algo_DES).
 
 property(firewall_setup).
 property(ip_filtering).
+property(mac_check).
 
 property(secure_boot).
 
@@ -110,7 +111,7 @@ addressedBy(encryption,algo_DES).
 
 addressedBy(verification,firewall_setup).
 addressedBy(verification,ip_filtering).
-
+addressedBy(verification,mac_check).
 
 addressedBy(integrity,secure_boot).
 addressedBy(integrity,energy_mode).
@@ -204,17 +205,21 @@ possible_rel_pos(sam,conn_encrypted).
 possible_rel_pos(sam,algo_RSA).
 possible_rel_pos(sam,algo_AES).
 possible_rel_pos(sam,firewall_setup).
+possible_rel_pos(sam,mac_check).
 possible_rel_pos(sam,secure_boot).
-possible_rel_pos(sam,trusted_environment).
-possible_rel_pos(sam,finger_printing).
 possible_rel_pos(sam,advanced_mode).
+possible_rel_pos(sam,iris_scan).
+possible_rel_pos(sam,two_factors).
+possible_rel_pos(sam,finger_printing).
+
 
 possible_rel_pos(cam,data_encrypted).
 possible_rel_pos(cam,conn_encrypted).
-possible_rel_pos(cam,ip_filtering).
+possible_rel_pos(cam,protocol_encrypted).
+possible_rel_pos(cam,mac_check).
 possible_rel_pos(cam,secure_boot).
-possible_rel_pos(cam,trusted_auth_device).
 possible_rel_pos(cam,advanced_mode).
+possible_rel_pos(cam,trusted_auth_device).
 
 possible_rel_pos(battery,powerful_mode).
 
@@ -226,13 +231,15 @@ relation(sam,secure_boot).
 
 relation(cam,ip_filtering).
 relation(cam,data_encrypted).
+relation(cam,conn_encrypted).
 relation(cam,secure_boot).
+relation(cam,trusted_auth_device).
 
 %---- Current Action Relation to property requirement ----
-relation(sam,basic_mode).
+relation(sam,advanced_mode).
 relation(sam,finger_printing).
 relation(cam,advanced_mode).
-relation(battery,normal_mode).
+relation(battery,saving_mode).
 
 %--- Reasoning first step
 h(use(C,P),0) :- property(P), component(C), step(T), relation(C,P).
