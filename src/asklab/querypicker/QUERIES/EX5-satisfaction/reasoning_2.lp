@@ -216,28 +216,28 @@ component(cam).
 component(battery).
 
 %---- Define Possible Positive Relation of each component
-possible_rel_pos(sam,data_encrypted).
-possible_rel_pos(sam,conn_encrypted).
-possible_rel_pos(sam,algo_RSA).
-possible_rel_pos(sam,algo_AES).
-possible_rel_pos(sam,firewall_setup).
-possible_rel_pos(sam,mac_check).
-possible_rel_pos(sam,secure_boot).
-possible_rel_pos(sam,advanced_mode).
-possible_rel_pos(sam,iris_scan).
-possible_rel_pos(sam,two_factors).
-possible_rel_pos(sam,finger_printing).
+possible_impacts_pos(sam,data_encrypted,encryption).
+possible_impacts_pos(sam,conn_encrypted,encryption).
+possible_impacts_pos(sam,algo_RSA,encryption).
+possible_impacts_pos(sam,algo_AES,encryption).
+possible_impacts_pos(sam,firewall_setup,verification).
+possible_impacts_pos(sam,mac_check,verification).
+possible_impacts_pos(sam,secure_boot,integrity).
+possible_impacts_pos(sam,advanced_mode,integrity).
+possible_impacts_pos(sam,iris_scan,authorization).
+possible_impacts_pos(sam,two_factors,authorization).
+possible_impacts_pos(sam,finger_printing,authorization).
 
 
-possible_rel_pos(cam,data_encrypted).
-possible_rel_pos(cam,conn_encrypted).
-possible_rel_pos(cam,protocol_encrypted).
-possible_rel_pos(cam,mac_check).
-possible_rel_pos(cam,secure_boot).
-possible_rel_pos(cam,advanced_mode).
-possible_rel_pos(cam,trusted_auth_device).
+possible_impacts_pos(cam,data_encrypted,encryption).
+possible_impacts_pos(cam,conn_encrypted,encryption).
+possible_impacts_pos(cam,protocol_encrypted,encryption).
+possible_impacts_pos(cam,mac_check,verification).
+possible_impacts_pos(cam,secure_boot,integrity).
+possible_impacts_pos(cam,advanced_mode,integrity).
+possible_impacts_pos(cam,trusted_auth_device,authorization).
 
-possible_rel_pos(battery,powerful_mode).
+possible_impacts_pos(battery,powerful_mode,integrity).
 
 %---- Current Action Relation to property----
 relation(sam,data_encrypted).
@@ -345,12 +345,12 @@ h(sat(C),T) :- not -h(sat(C),T), concern(C), step(T).
 
 no_all_pos_concern(C,N1,T) :- concern(C), step(T), 
                               N1=#count{P,Com : component(Com),property(P),
-                                                possible_rel_pos(Com,P),
+                                                possible_impacts_pos(Com,P,C),
                                                 addressedBy(C,P)}.
 
 no_act_pos_concern(C,N2,T) :- concern(C), step(T), 
                               N2=#count{P,Com : component(Com),property(P),
-                                                possible_rel_pos(Com,P),
+                                                possible_impacts_pos(Com,P,C),
                                                 addressedBy(C,P), h(use(Com,P),T)}.
 
 degree_pos(C,1,T) :- step(T), concern(C), no_all_pos_concern(C,0,T).
