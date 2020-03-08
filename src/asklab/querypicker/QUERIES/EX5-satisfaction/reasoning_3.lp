@@ -387,13 +387,13 @@ likelihood_sat_sub(C,X,T)       :- step(T), concern(C),
                                    not likelihood_sat_sub_aux(C,N+1,_,T).
 %------------------------------------------------------------------
 %#show h/2.
-#show -h/2.
+%#show -h/2.
 %#show sat_formulas/4.
 %#show -sat_formulas/4.
 %#show leadTo/2.
 %#show deg/4.
 %#show order/3.
-%#show likelihood_sat/3.
+#show likelihood_sat/3.
 %#show likelihood_sat_sub_aux/4.
 %#show degree_pos/3.
 %#show deg_prop_sat/3.
