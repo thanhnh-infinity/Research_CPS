@@ -171,8 +171,8 @@ obs(trusted_environment,true).
 
 obs(finger_printing,true).
 obs(two_factors,false).
-obs(iris_scan,true).
-obs(oauth,false).
+obs(iris_scan,false).
+obs(oauth,true).
 obs(opt_code,true).
 obs(email_verify,false).
 obs(ip_check,true).
@@ -185,29 +185,42 @@ obs(powerful_mode,true).
 obs(normal_mode,true).
 
 % Formulas
-formulas(1..5).
+formulas(1..10).
+
+member(finger_printing,1).
+member(two_factors,2).
+member(iris_scan,3).
+member(oauth,4).
+member(opt_code,4).
+member(oauth,5).
+member(email_verify,5).
+member(ip_check,5).
+
+member(advanced_mode,6).
+member(basic_mode,7).
+
+member(saving_mode,8).
+member(powerful_mode,9).
+member(normal_mode,10).
 
 func_dec(sign_in_func,authorization).
 func_dec(operation_func,integrity).
 func_dec(energy_func,integrity).
 
-addressToFunc(finger_printing,authorization,sign_in_func,1).
-addressToFunc(two_factors,authorization,sign_in_func,2).
-addressToFunc(iris_scan,authorization,sign_in_func,3).
-addressToFunc(oauth,authorization,sign_in_func,4).
-addressToFunc(opt_code,authorization,sign_in_func,4).
-addressToFunc(oauth,authorization,sign_in_func,5).
-addressToFunc(email_verify,authorization,sign_in_func,5).
-addressToFunc(ip_check,authorization,sign_in_func,5).
+addressToFunc(authorization,sign_in_func,1).
+addressToFunc(authorization,sign_in_func,2).
+addressToFunc(authorization,sign_in_func,3).
+addressToFunc(authorization,sign_in_func,4).
+addressToFunc(authorization,sign_in_func,5).
 
 %--- For Operation_Mode
-addressToFunc(advanced_mode,integrity,operation_func,1).
-addressToFunc(basic_mode,integrity,operation_func,2).
+addressToFunc(integrity,operation_func,6).
+addressToFunc(integrity,operation_func,7).
 
 %--- For Energy_Mode
-addressToFunc(saving_mode,integrity,energy_func,1).
-addressToFunc(powerful_mode,integrity,energy_func,2).
-addressToFunc(normal_mode,integrity,energy_func,3).
+addressToFunc(integrity,energy_func,8).
+addressToFunc(integrity,energy_func,9).
+addressToFunc(integrity,energy_func,10).
 
 % Component
 %---- Define component ----
@@ -271,20 +284,19 @@ h(P,0) :- obs(P,true), property(P).
 -h(P,0) :- obs(P,false), property(P).
 
 %---- Reasoning Concern Satisfaction by Minimal Formulas -----
-sat_formulas(C,F,G,T):- concern(C), formulas(G), func_dec(F,C), step(T), 
-                        N=#count{P : addressToFunc(P,C,F,G), not h(P,T)},
-                        N=0, M=#count{P : addressToFunc(P,C,F,G)}, M>0.
-
+-sat_formulas(C,F,G,T) :- concern(C), property(P), formulas(G), 
+                          func_dec(F,C), addressedBy(C,P), member(P,G), addressToFunc(C,F,G),
+                          not h(P,T), step(T).
+sat_formulas(C,F,G,T) :- concern(C), formulas(G), func_dec(F,C), addressToFunc(C,F,G),
+                         not -sat_formulas(C,F,G,T), step(T).
 -h(sat(C,F),T) :- concern(C), func_dec(F,C), step(T), not sat_formulas(C,F,_,T).
 h(sat(C,F),T)  :- not -h(sat(C,F),T), step(T), func_dec(F,C).
 -h(sat(C),T)   :- concern(C), func_dec(F,C), not h(sat(C,F),T), step(T).
 -h(sat(C),T)   :- concern(C), func_dec(F,C), -h(sat(C,F),T), step(T).
 
-
-%---- Traditiona Reasoning about Concern Satisfaction ---
--h(sat(C),T) :- -h(P,T), property(P), step(T),
-                step(T), addressedBy(C,P), 
-                not addressToFunc(P,C,_,_).
+%---- Traditiona Reasoning about Concern Satisfaction ---                       
+-h(sat(C),T) :- -h(P,T), property(P), step(T),  addressedBy(C,P), 
+                 not member(P,_).
 -h(sat(X),T) :- concern(X), concern(Y), subconcern(X,Y), not h(sat(Y),T), step(T).
 -h(sat(X),T) :- concern(X), concern(Y), subconcern(X,Y), -h(sat(Y),T), step(T).
 h(sat(C),T) :- not -h(sat(C),T), concern(C), step(T).
@@ -377,6 +389,7 @@ likelihood_sat_sub(C,X,T)       :- step(T), concern(C),
 %#show h/2.
 #show -h/2.
 %#show sat_formulas/4.
+%#show -sat_formulas/4.
 %#show leadTo/2.
 %#show deg/4.
 %#show order/3.
