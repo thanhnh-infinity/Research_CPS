@@ -1,15 +1,3 @@
-step(0).
+Marcello comments about the conflict issue:
 
-prop(p1).
-prop(p2).
-prop(p3).
-prop(p4).
-
-{h(p1,0);h(p2,0);h(p3,0);h(p4,0)}.
-
-%-h(p2,0) :- h(p1,0), h(p3,0).
-
--h(P,T) :- 1{h(P1,T) : prop(P1), P1 != P}, prop(P), step(T).
-
-#show h/2.
-#show -h/2.
+- Given a specification of a CPS, find a combination of the existing requirements that must be satisfied in order to satisfy all (or the given) concerns. 
