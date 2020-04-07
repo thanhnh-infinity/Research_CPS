@@ -1,0 +1,17 @@
+Need to first install anaconda on Ubuntu WITH potassco clingo installed
+Then:
+
+sudo apt-get install python-pip
+conda create -n p3 python=3
+source activate p3
+
+pip install hexlite --user
+
+cd ~
+sudo nano ~/.bashrc
+put the following at the bottom:
+export PYTHONUSERBASE=~/.local/
+export PATH=$PATH:~/.local/bin
+
+conda install -c conda-forge rdflib
+Used for Python3 / RDF Compatibility

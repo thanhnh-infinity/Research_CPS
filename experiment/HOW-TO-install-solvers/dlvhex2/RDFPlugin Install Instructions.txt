@@ -1,0 +1,15 @@
+Go to rdfplugin at
+github.com/hexhex/rdfplugin/blob/master/plugin
+Select raw, copy and paste into a file, save As rdfplugin.py in a new folder within your core folder (maybe label it plugins)
+
+sudo apt-get install python-rdflib
+
+Within terminal:
+DLVHEX=dlvhex2
+RDFPLUGIN=/home/nick/Desktop/DLVHex/core/plugins/rdfplugin.py
+
+$DLVHEX --python-plugin=$RDFPLUGIN test.hex $*
+$DLVHEX --python-plugin=$RDFPLUGIN knows.hex --filter=knows $*
+$DLVHEX --python-plugin=$RDFPLUGIN explore.hex --filter=explore_upto $*
+
+Brings up atom error

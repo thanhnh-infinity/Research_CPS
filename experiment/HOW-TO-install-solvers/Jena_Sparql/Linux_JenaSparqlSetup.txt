@@ -1,0 +1,11 @@
+Attempt within Linux
+
+Download most recent version of Apache Jena
+Extract to a given location
+Set up JENAROOT environment variable with folder name as value
+JENAROOT=/home/nick/Desktop/Jena
+Add directory to PATH environment variable (.../Jena/bin)
+export PATH="/home/nick/Desktop/Jena/bat:$PATH"
+
+export JENA_HOME=/home/Desktop/Jena
+To use sparql, bin/sparql while in that directory

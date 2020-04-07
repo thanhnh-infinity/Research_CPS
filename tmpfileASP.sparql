@@ -74,10 +74,10 @@ input("cpsf:SAMEncryptedMem","cpsf:atomicStatement","encrypted_mem_sam").
 input("cpsf:SAMEncryptedMem","cpsf:hasType","cpsf:PropertyType_Assertion").
 input("cpsf:SAMEncryptedMem","rdf:type","cpsf:Property").
 input("cpsf:SAMEncryptedMem","rdf:type","owl:NamedIndividual").
+input("cpsf:Input1SecBoot","rdfs:comment","The camera uses secure boot").
 input("cpsf:Input1SecBoot","cpsf:atomicStatement","sec_boot_input1").
 input("cpsf:Input1SecBoot","cpsf:hasType","cpsf:PropertyType_Assertion").
 input("cpsf:Input1SecBoot","rdf:type","cpsf:Property").
-input("cpsf:Input1SecBoot","rdfs:comment","The sensor array uses secure boot").
 input("cpsf:Input1SecBoot","rdf:type","owl:NamedIndividual").
 input("cpsf:positive","rdf:type","cpsf:ImpactPolarity").
 input("cpsf:positive","rdf:type","owl:NamedIndividual").
@@ -264,10 +264,10 @@ input("cpsf:app1","rdf:type","cpsf:Application").
 input("cpsf:app1","rdf:type","owl:NamedIndividual").
 input("cpsf:TimeToMarket","rdf:type","cpsf:Concern").
 input("cpsf:TimeToMarket","rdf:type","owl:NamedIndividual").
+input("cpsf:Input1EncryptedMem","rdfs:comment","The camera uses encrypted memory").
 input("cpsf:Input1EncryptedMem","cpsf:atomicStatement","encrypted_mem_input1").
 input("cpsf:Input1EncryptedMem","cpsf:hasType","cpsf:PropertyType_Assertion").
 input("cpsf:Input1EncryptedMem","rdf:type","cpsf:Property").
-input("cpsf:Input1EncryptedMem","rdfs:comment","The sensor array uses encrypted memory").
 input("cpsf:Input1EncryptedMem","rdf:type","owl:NamedIndividual").
 input("cpsf:Controllability","rdf:type","cpsf:Concern").
 input("cpsf:Controllability","rdf:type","owl:NamedIndividual").
@@ -374,10 +374,10 @@ input("cpsf:PhysicalContext","rdf:type","cpsf:Concern").
 input("cpsf:PhysicalContext","rdf:type","owl:NamedIndividual").
 input("cpsf:Authorization","rdf:type","cpsf:Concern").
 input("cpsf:Authorization","rdf:type","owl:NamedIndividual").
+input("cpsf:Input1Modes","rdfs:comment","The camera should be capable of recording at 25fps and at 50fps").
 input("cpsf:Input1Modes","cpsf:atomicStatement","slow_mode_input1").
 input("cpsf:Input1Modes","cpsf:hasType","cpsf:PropertyType_Capability").
 input("cpsf:Input1Modes","rdf:type","cpsf:Property").
-input("cpsf:Input1Modes","rdfs:comment","The sensor array should be capable of low-rate and of high-rate readings").
 input("cpsf:Input1Modes","rdf:type","owl:NamedIndividual").
 input("cpsf:Availability","rdf:type","cpsf:Concern").
 input("cpsf:Availability","rdf:type","owl:NamedIndividual").
@@ -406,10 +406,10 @@ input("cpsf:Cybersecurity","rdf:type","owl:NamedIndividual").
 input("cpsf:UserIdentification","rdf:type","cpsf:Concern").
 input("cpsf:UserIdentification","rdf:type","owl:NamedIndividual").
 input("cpsf:CPSFrameworkConcept","rdf:type","owl:Class").
+input("cpsf:Input1ConsistentReadingFreq","rdfs:comment","The camera records at constant frame-rate").
 input("cpsf:Input1ConsistentReadingFreq","cpsf:atomicStatement","consist_reading_freq_input1").
 input("cpsf:Input1ConsistentReadingFreq","cpsf:hasType","cpsf:PropertyType_Assertion").
 input("cpsf:Input1ConsistentReadingFreq","rdf:type","cpsf:Property").
-input("cpsf:Input1ConsistentReadingFreq","rdfs:comment","The sensor array returns accurate readings").
 input("cpsf:Input1ConsistentReadingFreq","rdf:type","owl:NamedIndividual").
 input("cpsf:PropertyType_Assertion","rdf:type","cpsf:PropertyType").
 input("cpsf:PropertyType_Assertion","rdf:type","owl:NamedIndividual").
@@ -1063,12 +1063,12 @@ holds(prob_of_state(P),S2) :-
 #maxint=10000.
 % ------ Output Interface ------
 
-descr("using_basic_input1","The interpolating sensor array is in use").
-event_descr(recipient_rejects,"accelerator control shuts off").
+descr("using_basic_input1","Basic camera is in use").
+event_descr(recipient_rejects,"automated navigation shuts off").
 action_descr(patch(sam),"patch the SAM").
 
 event(recipient_rejects2,S) :- last_step(S),event(recipient_rejects,S).
-event_descr(recipient_rejects2,"brake control shuts off").
+event_descr(recipient_rejects2,"car shuts off").
 % ======== SIMPLE EXAMPLE 1 ========
 %       -- to be used together with theory*.lp
 %          and with step1-BASE.lp
@@ -1171,107 +1171,3 @@ event(recipient_rejects,S) :- last_step(S),-holds(sat("cpsf:Functional","cpsf:bc
 % ------ Output Interface ------
 
 output(D,event,"-",S) :- event(E,S),event_descr(E,D).
-% Step 3 -- to be used together with step2.lp
-% A cyberattack has occurred and hacked the SAM to switch 
-% input device 1 to fast-mode.
-% The attack affects the SAM and its effect cannot be directly reversed 
-% in order to lower the operating mode of input device 1.
-% We want to know if there is a mitigation and, if so, which one.
-%
-% Outcome:
-%   * Replacing the basic input device 1 with the advanced type solves the
-%     problem. The advanced input device 1 can operate in fast-mode
-%     with encrypted memory enabled.
-%
-% Questions:
-%   1. Is the functionality concern satisfied now?
-%   2. Is the functional aspect satisfied now?
-%   3. Are all aspects satisfied now?
-%   4. What is the mitigation?
-% 
-% Answers:
-%   1. Yes (because the advanced input device 1 can operate
-%           in fast-mode without compromising functionality)
-%   2. Yes (because all concerns and sub-concerns of functional
-%           aspect are satisfied)
-%   3. Yes (because all aspects are satisfied)
-%   4. Replace the basic input device 1 with the advanced one
-
-step(2).
-
-action(enable(C)) :- config_feature(C).
-action_descr(enable(C),enable(D)) :- config_feature(C), descr(C,D).
-action(disable(C)) :- config_feature(C).
-action_descr(disable(C),disable(D)) :- config_feature(C), descr(C,D).
-
-do(A,S) v -do(A,S) :- step(S), action(A), not last_step(S).
-%%%%:- step(S), do(A1,S), do(A2,S), A1!=A2.
-
-% Minimize the number of actions
-:~ do(A,S), action(A), step(S).
-
-% EXAMPLE-SPECIFIC: do not execute actions before the cyberattack
-:- step(S1), step(S2), S1<=S2, action(A), do(A,S1), occurs(cyberattack,S2).
-
-% Effects of actions
-holds(sat(F),S2) :-
-	step(S), step(S2), S2=S+1,
-	fluent(sat(F)),
-	do(enable(F),S).
-:- step(S), fluent(sat(F)), do(enable(F),S), holds(sat(F),S).
--holds(sat(F),S2) :- 
-	step(S), step(S2), S2=S+1,
-	fluent(sat(F)),
-	do(disable(F),S).
-:- step(S), fluent(sat(F)), do(disable(F),S), -holds(sat(F),S).
-
-% The entire concern tree of every function must be satisfied
-:- last_step(S), functionClass(F,FC), -holds(sat(all,F),S).
-
-output(D,action,"-",S) :- step(S), action(A), do(A,S), action_descr(A,D).
-output("probability of success",P,"-",S) :- step(S), holds(prob_of_state(P),S).
-% Step 3  -- to be used together with step3.lp
-% A cyberattack has occurred and hacked the SAM to switch 
-% input device 1 to fast-mode.
-% The attack affects the SAM and its effect on the SAM cannot 
-% be reversed unless a patch is applied to the SAM. The SAM
-% forces the SAM to switch input device 1 to slow-mode.
-% We want to know if there is a mitigation and, if so, which one.
-%
-% Outcome:
-%   * Replacing the basic input device 1 with the advanced type solves the
-%     problem. The advanced input device 1 can operate in fast-mode
-%     with encrypted memory enabled.
-%   * Patching the SAM is another mitigation.
-%
-% Questions:
-%   1. Is the functionality concern satisfied now?
-%   2. Is the functional aspect satisfied now?
-%   3. Are all aspects satisfied now?
-%   4. What is the mitigation?
-% 
-% Answers:
-%   1. Yes (because the advanced input device 1 can operate
-%           in fast-mode without compromising functionality)
-%   2. Yes (because all concerns and sub-concerns of functional
-%           aspect are satisfied)
-%   3. Yes (because all aspects are satisfied)
-%   4a. Replace the basic input device 1 with the advanced one
-%   4b. Patch the SAM
-
-action(patch(sam)).
-prob_success(patch(sam),80).
-%%%%action_descr(patch(sam),"patch the SAM").
-
-% Effects of actions
--holds(affected(sam),S2) :-
-	step(S), step(S2), S2=S+1,
-	do(patch(sam),S).
-holds(sat("slow_mode_input1"),S2) :-
-	step(S), step(S2), S2=S+1,
-	do(patch(sam),S).
-:- step(S), do(patch(sam),S), -holds(affected(sam),S).
-
-% already enforced by step3.lp
-%% The entire concern tree of every function must be satisfied
-%:- last_step(S), functionClass(F,FC), -holds(sat(all,F),S).
