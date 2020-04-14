@@ -346,9 +346,9 @@ public class QueryPicker {
 //		runB.addActionListener(new ExecActionListener(tmpFile,ontologyDir,sparqlFile,taASP,taRes,progressBar,solverL));
 
 		JTextArea taRes = new JTextArea();
-		taRes.setEditable(false);
+		taRes.setEditable(true);
 		taRes.setFont(new Font("monospaced", Font.PLAIN, 12));
-		((DefaultCaret) taRes.getCaret()).setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+		//((DefaultCaret) taRes.getCaret()).setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
 		JScrollPane spRes = new JScrollPane(taRes);
 
 		JPanel taQs = new JPanel();

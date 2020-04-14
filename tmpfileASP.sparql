@@ -74,10 +74,10 @@ input("cpsf:SAMEncryptedMem","cpsf:atomicStatement","encrypted_mem_sam").
 input("cpsf:SAMEncryptedMem","cpsf:hasType","cpsf:PropertyType_Assertion").
 input("cpsf:SAMEncryptedMem","rdf:type","cpsf:Property").
 input("cpsf:SAMEncryptedMem","rdf:type","owl:NamedIndividual").
-input("cpsf:Input1SecBoot","rdfs:comment","The camera uses secure boot").
 input("cpsf:Input1SecBoot","cpsf:atomicStatement","sec_boot_input1").
 input("cpsf:Input1SecBoot","cpsf:hasType","cpsf:PropertyType_Assertion").
 input("cpsf:Input1SecBoot","rdf:type","cpsf:Property").
+input("cpsf:Input1SecBoot","rdfs:comment","The sensor array uses secure boot").
 input("cpsf:Input1SecBoot","rdf:type","owl:NamedIndividual").
 input("cpsf:positive","rdf:type","cpsf:ImpactPolarity").
 input("cpsf:positive","rdf:type","owl:NamedIndividual").
@@ -264,10 +264,10 @@ input("cpsf:app1","rdf:type","cpsf:Application").
 input("cpsf:app1","rdf:type","owl:NamedIndividual").
 input("cpsf:TimeToMarket","rdf:type","cpsf:Concern").
 input("cpsf:TimeToMarket","rdf:type","owl:NamedIndividual").
-input("cpsf:Input1EncryptedMem","rdfs:comment","The camera uses encrypted memory").
 input("cpsf:Input1EncryptedMem","cpsf:atomicStatement","encrypted_mem_input1").
 input("cpsf:Input1EncryptedMem","cpsf:hasType","cpsf:PropertyType_Assertion").
 input("cpsf:Input1EncryptedMem","rdf:type","cpsf:Property").
+input("cpsf:Input1EncryptedMem","rdfs:comment","The sensor array uses encrypted memory").
 input("cpsf:Input1EncryptedMem","rdf:type","owl:NamedIndividual").
 input("cpsf:Controllability","rdf:type","cpsf:Concern").
 input("cpsf:Controllability","rdf:type","owl:NamedIndividual").
@@ -374,10 +374,10 @@ input("cpsf:PhysicalContext","rdf:type","cpsf:Concern").
 input("cpsf:PhysicalContext","rdf:type","owl:NamedIndividual").
 input("cpsf:Authorization","rdf:type","cpsf:Concern").
 input("cpsf:Authorization","rdf:type","owl:NamedIndividual").
-input("cpsf:Input1Modes","rdfs:comment","The camera should be capable of recording at 25fps and at 50fps").
 input("cpsf:Input1Modes","cpsf:atomicStatement","slow_mode_input1").
 input("cpsf:Input1Modes","cpsf:hasType","cpsf:PropertyType_Capability").
 input("cpsf:Input1Modes","rdf:type","cpsf:Property").
+input("cpsf:Input1Modes","rdfs:comment","The sensor array should be capable of low-rate and of high-rate readings").
 input("cpsf:Input1Modes","rdf:type","owl:NamedIndividual").
 input("cpsf:Availability","rdf:type","cpsf:Concern").
 input("cpsf:Availability","rdf:type","owl:NamedIndividual").
@@ -406,10 +406,10 @@ input("cpsf:Cybersecurity","rdf:type","owl:NamedIndividual").
 input("cpsf:UserIdentification","rdf:type","cpsf:Concern").
 input("cpsf:UserIdentification","rdf:type","owl:NamedIndividual").
 input("cpsf:CPSFrameworkConcept","rdf:type","owl:Class").
-input("cpsf:Input1ConsistentReadingFreq","rdfs:comment","The camera records at constant frame-rate").
 input("cpsf:Input1ConsistentReadingFreq","cpsf:atomicStatement","consist_reading_freq_input1").
 input("cpsf:Input1ConsistentReadingFreq","cpsf:hasType","cpsf:PropertyType_Assertion").
 input("cpsf:Input1ConsistentReadingFreq","rdf:type","cpsf:Property").
+input("cpsf:Input1ConsistentReadingFreq","rdfs:comment","The sensor array returns accurate readings").
 input("cpsf:Input1ConsistentReadingFreq","rdf:type","owl:NamedIndividual").
 input("cpsf:PropertyType_Assertion","rdf:type","cpsf:PropertyType").
 input("cpsf:PropertyType_Assertion","rdf:type","owl:NamedIndividual").
@@ -1063,12 +1063,12 @@ holds(prob_of_state(P),S2) :-
 #maxint=10000.
 % ------ Output Interface ------
 
-descr("using_basic_input1","Basic camera is in use").
-event_descr(recipient_rejects,"automated navigation shuts off").
+descr("using_basic_input1","The interpolating sensor array is in use").
+event_descr(recipient_rejects,"accelerator control shuts off").
 action_descr(patch(sam),"patch the SAM").
 
 event(recipient_rejects2,S) :- last_step(S),event(recipient_rejects,S).
-event_descr(recipient_rejects2,"car shuts off").
+event_descr(recipient_rejects2,"brake control shuts off").
 % ======== SIMPLE EXAMPLE 1 ========
 %       -- to be used together with theory*.lp
 %          and with step1-BASE.lp

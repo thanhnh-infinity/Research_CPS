@@ -139,4 +139,34 @@ EX3-adaptivecruise
 dlv (all models)
 FULL-step3-ext.txt
 *LBL
+
+
+*LBL
+<html><u><font color='red'>Elevator Example</font></u></html>
+*QUERY
+Most/Least Trustworthy Component
+EX4-elevator
+dlv (all models)
+FULL-step1.txt
+*QUERY
+Check unsatisfied concerns
+EX4-elevator
+dlv (all models)
+FULL-step1.txt
+*QUERY
+After cyberattack
+EX4-elevator
+dlv (all models)
+FULL-step2.txt
+*QUERY
+Cyberattack mitigation
+EX4-elevator
+dlv (all models)
+FULL-step3.txt
+*QUERY
+Cyberattack mitigation (multiple solutions)
+EX4-elevator
+dlv (all models)
+FULL-step3-ext.txt
+*LBL
  
