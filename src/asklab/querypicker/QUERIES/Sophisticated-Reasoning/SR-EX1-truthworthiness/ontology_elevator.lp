@@ -27,12 +27,10 @@ concern(integrity).
 concern(physical_integrity).
 concern(availability).
 concern(stability).
-
 concern(controls).
 concern(transparency).
 concern(availability).
 concern(innovation).
-
 concern(encryption).
 concern(privacy_policy).
 concern(protection).
@@ -44,7 +42,6 @@ concern(authentication).
 concern(roles).
 concern(privileges).
 concern(permissions).
-
 concern(functionality).
 
 % subconcern.
@@ -89,12 +86,9 @@ subconcern(confidentiality,protection).
 subconcern(availability,software_patches).
 subconcern(availability,hardware_patches).
 subconcern(availability,license).
-
 subconcern(controls,authentication).
 subconcern(controls,identity).
-
 subconcern(identity,authorization).
-
 subconcern(stability,functionality).
 
 % Property --- Requirements

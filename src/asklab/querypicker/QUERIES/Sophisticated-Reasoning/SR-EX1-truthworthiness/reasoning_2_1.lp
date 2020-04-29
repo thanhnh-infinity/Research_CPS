@@ -19,15 +19,15 @@ holds(P,0) :- obs(P,true), property(P).
 
 % -- Step 3: Check addresses links
 addrForConcern(P,C) :- property(P), 
-					   addressedBy(C,P), 
-					   sol(all).
+					             addressedBy(C,P), 
+					             sol(all).
 addrForConcern(P,C) :- addrForConcern(P,C1), 
                        subconcern(C,C1), 
                        sol(all).
                        
 % -- Step 4 [1,2]: Reasoning a component C has good/bad property P at step S.
 compGoodProp(Com,P,S) :- relation(Com,P,D), holds(P,S), 
-						 component(Com), property(P), step(S).
+						             component(Com), property(P), step(S).
 compBadProp(Com,P,S)  :- component(Com), property(P), step(S),
                          relation(Com,P,D), -holds(P,S).
 
@@ -39,7 +39,7 @@ tw_property(P,N) :- N=#count{C : addrForConcern(P,C)},
 
 % -- Step 6: Compute the good trustworthiness value of component C
 tw_good_comp(Comp,TWvalue,S) :- component(Comp), step(S),
-								TWvalue = #sum{N,P : tw_property(P,N), property(P), compGoodProp(Comp,P,S)}.
+								                TWvalue = #sum{N,P : tw_property(P,N), property(P), compGoodProp(Comp,P,S)}.
 
 % -- Step 7: Compute the bad trustworthiness value of component C
 tw_bad_comp(Comp,TWvalue,S)  :- component(Comp), step(S),
@@ -61,8 +61,7 @@ highest_TW_comp(C,S) :- component(C), step(S), distance(C,M,S),
 lowest_TW_comp(C,S)  :- component(C), step(S), distance(C,M,S),
                         M == #min{N:distance(_,N,S)}.
 %----------------------------------------------
-%=====ACTIONS and CHANGES======
-%----------------------------------------------
+
 
 % ====== SHOW ========
 #show tw_property/2.
