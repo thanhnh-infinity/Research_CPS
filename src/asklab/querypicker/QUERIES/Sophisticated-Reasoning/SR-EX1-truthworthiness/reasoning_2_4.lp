@@ -73,10 +73,10 @@ h(prob_of_state(P),T2)  :- step(T), step(T2), T2=T+1,
 last_step(T):- step(T),T2=T+1, not step(T2).
 check_p(P,T) :- h(prob_of_state(P),T).
 %last_step(1). 
-#maximize{P : h(prob_of_state(P),T), last_step(T)}.
+%#maximize{P : h(prob_of_state(P),T), last_step(T)}.
 
 #show occurs/2.
 %#show executable/2.
 #show check_p/2.
 %#show action/1.
-#show h/2.
+%#show h/2.
