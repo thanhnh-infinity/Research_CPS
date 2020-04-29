@@ -79,4 +79,4 @@ check_p(P,T) :- h(prob_of_state(P),T).
 %#show executable/2.
 #show check_p/2.
 %#show action/1.
-%#show h/2.
+#show h/2.
