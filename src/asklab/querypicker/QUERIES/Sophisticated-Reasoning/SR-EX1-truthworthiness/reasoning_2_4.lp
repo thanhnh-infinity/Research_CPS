@@ -21,7 +21,7 @@ h(sat(C),T) :- not -h(sat(C),T), concern(C), step(T).
 1{occurs(A,T):action(A)}1 :- step(T), T<n.
 :- occurs(A,T), not executable(A,T).
 
-% Inerital axioms
+% Inertial axioms
 fluent(F) :- property(F).
 h(F,T+1)    :- h(F,T), not -h(F,T+1), step(T), fluent(F).
 -h(F,T+1)   :- -h(F,T), not h(F,T+1), step(T), fluent(F).
@@ -29,22 +29,21 @@ h(F,T+1)    :- h(F,T), not -h(F,T+1), step(T), fluent(F).
 % Goal
 :- not h(sat(C),n), concern(C).
 
-% action and metadata
-action(tOn(detect_No_passenger)).
+% Actions
+action(tOn(X)) :- property(X).
+action(patch(X)) :- property(X).
+
 prob_success(tOn(detect_No_passenger),80).
-
-action(tOn(control_speed)).
 prob_success(tOn(control_speed),70).
-
-action(patch(control_speed)).
 prob_success(patch(control_speed),30).
 
-% Predcondition
+%% Preconditions
 executable(tOn(detect_No_passenger),T) :- -h(detect_No_passenger,T), step(T).
 executable(tOn(control_speed),T) :- -h(control_speed,T), step(T).
 executable(patch(control_speed),T) :- -h(control_speed,T), step(T).
 
-% Effect 
+
+%% Effects
 h(X,T+1) :- occurs(tOn(X),T), step(T).
 h(X,T+1) :- occurs(patch(X),T), step(T).
 
@@ -73,3 +72,4 @@ check_p(P,T) :- h(prob_of_state(P),T).
 #show occurs/2.
 %#show executable/2.
 #show check_p/2.
+%#show action/1.
