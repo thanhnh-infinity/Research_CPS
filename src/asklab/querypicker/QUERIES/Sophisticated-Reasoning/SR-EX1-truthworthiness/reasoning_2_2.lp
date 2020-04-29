@@ -1,5 +1,6 @@
 #include "./ontology_elevator.lp".
 
+step(0).
 %=====Satisfaction Reasoning======
 
 h(P,0) :- obs(P,true), property(P).
@@ -14,6 +15,5 @@ h(P,0) :- obs(P,true), property(P).
 h(sat(C),T) :- not -h(sat(C),T), concern(C), step(T).
 
 % ---------------------------------------------
-% ==========  ACTIONS and CHANGES =============
-% ---------------------------------------------
+#show -h/2.
 

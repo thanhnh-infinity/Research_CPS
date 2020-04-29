@@ -1,0 +1,75 @@
+#include "./ontology_elevator.lp".
+#const n = 2.
+step(0..n).
+%=====Satisfaction Reasoning======
+
+h(P,0) :- obs(P,true), property(P).
+-h(P,0) :- obs(P,false), property(P).
+
+-h(sat(C),T) :- -h(P,T), property(P), step(T), 
+                addressedBy(C,P).
+-h(sat(X),T) :- concern(X), concern(Y), 
+                subconcern(X,Y), not h(sat(Y),T), step(T).
+-h(sat(X),T) :- concern(X), concern(Y), 
+                subconcern(X,Y), -h(sat(Y),T), step(T).
+h(sat(C),T) :- not -h(sat(C),T), concern(C), step(T).
+
+% ---------------------------------------------
+% ==========  ACTIONS and CHANGES =============
+% ---------------------------------------------
+% Generate action
+1{occurs(A,T):action(A)}1 :- step(T), T<n.
+:- occurs(A,T), not executable(A,T).
+
+% Inerital axioms
+fluent(F) :- property(F).
+h(F,T+1)    :- h(F,T), not -h(F,T+1), step(T), fluent(F).
+-h(F,T+1)   :- -h(F,T), not h(F,T+1), step(T), fluent(F).
+
+% Goal
+:- not h(sat(C),n), concern(C).
+
+% action and metadata
+action(tOn(detect_No_passenger)).
+prob_success(tOn(detect_No_passenger),80).
+
+action(tOn(control_speed)).
+prob_success(tOn(control_speed),70).
+
+action(patch(control_speed)).
+prob_success(patch(control_speed),30).
+
+% Predcondition
+executable(tOn(detect_No_passenger),T) :- -h(detect_No_passenger,T), step(T).
+executable(tOn(control_speed),T) :- -h(control_speed,T), step(T).
+executable(patch(control_speed),T) :- -h(control_speed,T), step(T).
+
+% Effect 
+h(X,T+1) :- occurs(tOn(X),T), step(T).
+h(X,T+1) :- occurs(patch(X),T), step(T).
+
+%:- occurs(A1,T), occurs(A2,T), A1 != A2.
+
+% ---------------------------------------------
+% ==========  Probabilistic of success ========
+% ---------------------------------------------
+h(prob_of_state(100),0).
+h(prob_of_state(P2),T2) :- step(T),step(T2), T2=T+1, 
+                           h(prob_of_state(P),T), 
+                           occurs(A,T), 
+                           prob_success(A,PSucc),
+                           P2a=P*PSucc,P2=P2a/100.
+known_prob_success(T)   :- step(T), occurs(A,T), 
+                           prob_success(A,PSucc).
+unknown_prob_success(T) :- step(T), not known_prob_success(T).
+h(prob_of_state(P),T2)  :- step(T), step(T2), T2=T+1, 
+                           h(prob_of_state(P),T), 
+                           unknown_prob_success(T).
+last_step(T):- step(T),T2=T+1, not step(T2).
+check_p(P,T) :- h(prob_of_state(P),T).
+%last_step(1). 
+#maximize{P : h(prob_of_state(P),T), last_step(T)}.
+
+#show occurs/2.
+%#show executable/2.
+#show check_p/2.
