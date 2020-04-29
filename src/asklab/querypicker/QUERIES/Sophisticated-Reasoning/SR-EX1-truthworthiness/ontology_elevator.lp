@@ -176,3 +176,4 @@ obs(halting,true).
 obs(control_moving,true).
 obs(communicate_with_other_comp,true).
 obs(detect_No_passenger,false).
+obs(availablePatch(control_speed),true).

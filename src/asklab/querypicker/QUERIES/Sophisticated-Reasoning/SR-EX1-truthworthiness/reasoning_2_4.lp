@@ -3,8 +3,10 @@
 step(0..n).
 %=====Satisfaction Reasoning======
 
-h(P,0) :- obs(P,true), property(P).
--h(P,0) :- obs(P,false), property(P).
+%h(P,0) :- obs(P,true), property(P).
+-h(P,0) :- obs(P,false).
+%h(P,0) :- obs(availablePatch(P),true), property(P).
+h(P,0) :- obs(P,true).
 
 -h(sat(C),T) :- -h(P,T), property(P), step(T), 
                 addressedBy(C,P).
@@ -23,6 +25,8 @@ h(sat(C),T) :- not -h(sat(C),T), concern(C), step(T).
 
 % Inertial axioms
 fluent(F) :- property(F).
+fluent(availablePatch(F)) :- property(F).
+
 h(F,T+1)    :- h(F,T), not -h(F,T+1), step(T), fluent(F).
 -h(F,T+1)   :- -h(F,T), not h(F,T+1), step(T), fluent(F).
 
@@ -38,10 +42,12 @@ prob_success(tOn(control_speed),70).
 prob_success(patch(control_speed),30).
 
 %% Preconditions
-executable(tOn(detect_No_passenger),T) :- -h(detect_No_passenger,T), step(T).
-executable(tOn(control_speed),T) :- -h(control_speed,T), step(T).
-executable(patch(control_speed),T) :- -h(control_speed,T), step(T).
+%executable(tOn(detect_No_passenger),T) :- -h(detect_No_passenger,T), step(T).
+%executable(tOn(control_speed),T) :- -h(control_speed,T), step(T).
+%executable(patch(control_speed),T) :- -h(control_speed,T), step(T).
 
+executable(tOn(X),T) :- -h(X,T), property(X), step(T).
+executable(patch(X),T) :- -h(X,T), h(availablePatch(X),T), property(X), step(T).
 
 %% Effects
 h(X,T+1) :- occurs(tOn(X),T), step(T).
@@ -73,3 +79,4 @@ check_p(P,T) :- h(prob_of_state(P),T).
 %#show executable/2.
 #show check_p/2.
 %#show action/1.
+%#show h/2.
