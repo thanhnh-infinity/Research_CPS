@@ -63,4 +63,4 @@ input(X,Y,Z) :- rel3(X,Y,Z).
 % part1 + part2                :  1.04s
 % part1 + part2 + part3        :  1.12s
 % part1 + part2 + part3 + par4 :  out of memory
-% CDAO + phylotastic           :  2.43
+% CDAO + phylotastic           :  2.83
