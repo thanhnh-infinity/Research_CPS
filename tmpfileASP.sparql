@@ -30,6 +30,10 @@ input("cpsf:conditionProperty","rdf:type","owl:ObjectProperty").
 input("cpsf:RealizationFacet","rdfs:comment","CPS-independent").
 input("cpsf:RealizationFacet","rdf:type","cpsf:Facet").
 input("cpsf:RealizationFacet","rdf:type","owl:NamedIndividual").
+input("cpsf:ExtraProperty","cpsf:atomicStatement","extra_property").
+input("cpsf:ExtraProperty","cpsf:hasType","cpsf:PropertyType_Assertion").
+input("cpsf:ExtraProperty","rdf:type","cpsf:Property").
+input("cpsf:ExtraProperty","rdf:type","owl:NamedIndividual").
 input("cpsf:Communication","rdf:type","cpsf:Concern").
 input("cpsf:Communication","rdf:type","owl:NamedIndividual").
 input("cpsf:OperationsOnData","cpsf:includesConcern","cpsf:Transformation").
@@ -74,7 +78,7 @@ input("cpsf:SAMEncryptedMem","cpsf:atomicStatement","encrypted_mem_sam").
 input("cpsf:SAMEncryptedMem","cpsf:hasType","cpsf:PropertyType_Assertion").
 input("cpsf:SAMEncryptedMem","rdf:type","cpsf:Property").
 input("cpsf:SAMEncryptedMem","rdf:type","owl:NamedIndividual").
-input("cpsf:Input1SecBoot","rdfs:comment","The sensor array uses secure boot").
+input("cpsf:Input1SecBoot","rdfs:comment","Input Device 1 uses secure boot").
 input("cpsf:Input1SecBoot","cpsf:atomicStatement","sec_boot_input1").
 input("cpsf:Input1SecBoot","cpsf:hasType","cpsf:PropertyType_Assertion").
 input("cpsf:Input1SecBoot","rdf:type","cpsf:Property").
@@ -259,12 +263,16 @@ input("cpsf:ResourceIdentification","rdf:type","cpsf:Concern").
 input("cpsf:ResourceIdentification","rdf:type","owl:NamedIndividual").
 input("cpsf:Polymorphism","rdf:type","cpsf:Concern").
 input("cpsf:Polymorphism","rdf:type","owl:NamedIndividual").
+input("cpsf:c0004_01b","cpsf:conditionProperty","cpsf:ExtraProperty").
+input("cpsf:c0004_01b","cpsf:conditionPolarity","cpsf:positive").
+input("cpsf:c0004_01b","rdf:type","cpsf:Condition").
+input("cpsf:c0004_01b","rdf:type","owl:NamedIndividual").
 input("cpsf:app1","cpsf:hasBC","cpsf:bc1").
 input("cpsf:app1","rdf:type","cpsf:Application").
 input("cpsf:app1","rdf:type","owl:NamedIndividual").
 input("cpsf:TimeToMarket","rdf:type","cpsf:Concern").
 input("cpsf:TimeToMarket","rdf:type","owl:NamedIndividual").
-input("cpsf:Input1EncryptedMem","rdfs:comment","The sensor array uses encrypted memory").
+input("cpsf:Input1EncryptedMem","rdfs:comment","Input Device 1 uses encrypted memory").
 input("cpsf:Input1EncryptedMem","cpsf:atomicStatement","encrypted_mem_input1").
 input("cpsf:Input1EncryptedMem","cpsf:hasType","cpsf:PropertyType_Assertion").
 input("cpsf:Input1EncryptedMem","rdf:type","cpsf:Property").
@@ -353,6 +361,13 @@ input("cpsf:Trustworthiness","cpsf:includesConcern","cpsf:Reliability").
 input("cpsf:Trustworthiness","cpsf:includesConcern","cpsf:Privacy").
 input("cpsf:Trustworthiness","rdf:type","cpsf:Aspect").
 input("cpsf:Trustworthiness","rdf:type","owl:NamedIndividual").
+input("cpsf:ir0004b","rdfs:comment","cpsf:Functionality is addressed by property cpsf:ExtraProperty").
+input("cpsf:ir0004b","cpsf:hasCondition","cpsf:c0004_01b").
+input("cpsf:ir0004b","cpsf:addressesPolarity","cpsf:positive").
+input("cpsf:ir0004b","cpsf:addressesConcern","cpsf:Functionality").
+input("cpsf:ir0004b","cpsf:addressesAtFunc","cpsf:bc1").
+input("cpsf:ir0004b","rdf:type","cpsf:ImpactRule").
+input("cpsf:ir0004b","rdf:type","owl:NamedIndividual").
 input("cpsf:Functional","cpsf:includesConcern","cpsf:Sensing").
 input("cpsf:Functional","cpsf:includesConcern","cpsf:Measurability").
 input("cpsf:Functional","cpsf:includesConcern","cpsf:Uncertainty").
@@ -374,7 +389,7 @@ input("cpsf:PhysicalContext","rdf:type","cpsf:Concern").
 input("cpsf:PhysicalContext","rdf:type","owl:NamedIndividual").
 input("cpsf:Authorization","rdf:type","cpsf:Concern").
 input("cpsf:Authorization","rdf:type","owl:NamedIndividual").
-input("cpsf:Input1Modes","rdfs:comment","The sensor array should be capable of low-rate and of high-rate readings").
+input("cpsf:Input1Modes","rdfs:comment","Input Device 1 should be capable of operating in low-speed mode and in high-speed mode").
 input("cpsf:Input1Modes","cpsf:atomicStatement","slow_mode_input1").
 input("cpsf:Input1Modes","cpsf:hasType","cpsf:PropertyType_Capability").
 input("cpsf:Input1Modes","rdf:type","cpsf:Property").
@@ -406,7 +421,7 @@ input("cpsf:Cybersecurity","rdf:type","owl:NamedIndividual").
 input("cpsf:UserIdentification","rdf:type","cpsf:Concern").
 input("cpsf:UserIdentification","rdf:type","owl:NamedIndividual").
 input("cpsf:CPSFrameworkConcept","rdf:type","owl:Class").
-input("cpsf:Input1ConsistentReadingFreq","rdfs:comment","The sensor array returns accurate readings").
+input("cpsf:Input1ConsistentReadingFreq","rdfs:comment","Input Device 1 maintains consistent reading frequency").
 input("cpsf:Input1ConsistentReadingFreq","cpsf:atomicStatement","consist_reading_freq_input1").
 input("cpsf:Input1ConsistentReadingFreq","cpsf:hasType","cpsf:PropertyType_Assertion").
 input("cpsf:Input1ConsistentReadingFreq","rdf:type","cpsf:Property").
@@ -1059,115 +1074,87 @@ holds(prob_of_state(P),S2) :-
 	step(S), step(S2), S2=S+1,
 	holds(prob_of_state(P),S),
 	unk_prob_success(S).
-% For use with dlv and probabilistic information
-#maxint=10000.
-% ------ Output Interface ------
+%
+% Calculation of degree of satisfaction of positively-impacting requirements.
+% Requires clingo. Not supported by dlv.
+%
 
-descr("using_basic_input1","The interpolating sensor array is in use").
-event_descr(recipient_rejects,"accelerator control shuts off").
-action_descr(patch(sam),"patch the SAM").
+degree_impacted_pos(C,F,S,N) :-
+	step(S), relevantToFunc(C,F),
+	N1=#count{ Rule: rule(Rule),
+		  addressesAtFunc(Rule,F),
+		  addressesConcern(Rule,C),
+		  addressesPolarity(Rule,pos),
+		  body_satisfied(Rule,S)
+		},
+	N2=#count{ Rule: rule(Rule),
+		  addressesAtFunc(Rule,F),
+		  addressesConcern(Rule,C),
+		  addressesPolarity(Rule,pos)
+		},
+	N2!=0,
+	N=N1*100/N2.
 
-event(recipient_rejects2,S) :- last_step(S),event(recipient_rejects,S).
-event_descr(recipient_rejects2,"brake control shuts off").
-% ======== SIMPLE EXAMPLE 1 ========
+degree_impacted_pos(C,F,S,100) :-
+	step(S), relevantToFunc(C,F),
+	N2=#count{ Rule: rule(Rule),
+		  addressesAtFunc(Rule,F),
+		  addressesConcern(Rule,C),
+		  addressesPolarity(Rule,pos)
+		},
+	N2=0.
+
+
+% Order sibling concerns
+order(SC,F,N):-
+	subconcern(C,SC), relevantToFunc(SC,F),
+	N = { SC < SCp : subconcern(C,SCp), relevantToFunc(SCp,F) }.
+
+likelihood_sat_sub_aux(C,F,0,S,X) :- step(S), relevantToFunc(C,F), subconcern(C,SC),order(SC,F,0),likelihood_sat(SC,F,S,X).
+likelihood_sat_sub_aux(C,F,N,S,X*Y/100) :- step(S), relevantToFunc(C,F), subconcern(C,SC),order(SC,F,N),likelihood_sat(SC,F,S,Y),likelihood_sat_sub_aux(C,F,N-1,S,X).
+has_subconcerns(C) :- subconcern(C,SC).
+-has_subconcerns(C) :- concern(C), not has_subconcerns(C).
+likelihood_sat_sub(C,F,S,100) :- step(S), concern(C),  relevantToFunc(C,F), -has_subconcerns(C).
+likelihood_sat_sub(C,F,S,X) :- step(S), concern(C),  relevantToFunc(C,F), likelihood_sat_sub_aux(C,F,N,S,X),not likelihood_sat_sub_aux(C,F,N+1,S,_).
+
+likelihood_sat(C,F,S,N) :- step(S), concern(C), relevantToFunc(C,F), likelihood_sat_sub(C,F,S,N1),degree_impacted_pos(C,F,S,N2),N=N1*N2/100.
 %       -- to be used together with theory*.lp
 %          and with step1-BASE.lp
-%          (this example uses pessimistic inference)
+
+% Reason pessimistically about concerns, i.e. concerns default to unsatisfied
 %
-% SYSTEM DESCRIPTION
-% Input device 1 can operate in one of slow-mode and fast-mode.
-% The SAM determines the mode of operation of input device 1.
-% Normally, input device 1 reads inputs with a consistent frequency.
-% If the basic type of input device 1 is configured to use
-% encrypted memory and fast-mode, then the device will be
-% unable to maintain a consistent frequency of reading.
+% For illustration purposes, we consider as relevant only the following concerns
+% and their ancestors:
+%  * Confidentiality
+%  * Functionality
+%  * Integrity
 %
-% CONFIGURATION
-% The SAM and input device 1 are configured to use encrypted 
-% memory and secure boot. 
-% The basic type of input device 1 is used.
-% The SAM is configured to set input device 1 to slow-mode.
-%
-% Questions:
-%   1. Is the functionality concern satisfied?
-%   2. Is the functional aspect satisfied?
-%   3. Are all aspects satisfied?
-% 
-% Answers:
-%   1. Yes
-%   2. Yes (because all concerns and sub-concerns of functional aspect are satisfied)
-%   3. Yes (because all aspects are satisfied)
+% The example shows that, under this reasoning mode, the (relevant portion of the)
+% entire concern tree is satisfied. This is due to the fact that the three
+% above concerns are addressed by requirements that are satisfied.  
 
 % Enable skeptical inference on concern satisfaction
 inference(concerns,pessimistic).
 
+obs(sat("extra_property"),false).
+
 
 % ------ Output Interface ------
 
-%output(D,property,S) :- last_step(S), -holds(sat_property(A),S), atomic_statement(P,A), descr(P,D).
-%output(C,concern,S) :- last_step(S), -holds(sat_concern(C),S),-aspect(C).
-%output(C,aspect,S) :- last_step(S), -holds(sat_concern(C),S),aspect(C).
-%output("concern-tree",tree,S) :- last_step(S), -holds(sat_all,S).
-%
-%output_headings("unsatisfied concern/aspect/property","type","step").
+output(D,property,"-",S,"-") :- last_step(S), holds(sat(A),S), atomic_statement(P,A), descr(P,D).
+output(C,concern,F,S,L) :- last_step(S), holds(sat(C,F),S),likelihood(sat(C,F),S,L),concern(C),not aspect(C), C!=all.
+output(C,aspect,F,S,L) :- last_step(S), holds(sat(C,F),S),likelihood(sat(C,F),S,L),aspect(C).
+output("concern-tree",tree,F,S,L) :- last_step(S), holds(sat(all,F),S),likelihood(sat(all,F),S,L).
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-output(D,property,"-",S) :- last_step(S), -holds(sat(A),S), atomic_statement(P,A), descr(P,D).
-output(C,concern,F,S) :- last_step(S), -holds(sat(C,F),S),concern(C),not aspect(C), C!=all.
-output(C,aspect,F,S) :- last_step(S), -holds(sat(C,F),S),aspect(C).
-output("concern-tree",tree,F,S) :- last_step(S), -holds(sat(all,F),S).
-
-output(C,"concern/aspect (unk)",F,S) :- 
+output(C,"concern/aspect (unk)",F,S,100) :- 
 	inference(concerns,skeptical),
 	last_step(S), concern(C), relevantToFunc(C,F), 
 	not holds(sat(C,F),S),
 	not holds(sat(C,F),S).
 
-output_headings("unsatisfied concern/aspect/property","type","function","step").
-	% Step 2 -- to be used together with step1.lp
-% A cyberattack occurs and hacks the SAM to switch 
-% input device 1 to fast-mode.
-%
-% Outcome:
-%   * the CPS no longer satisfies the interity concern
-%     because its properties say that the basic camera cannot 
-%     record at 30+ fps. Hence, the recording is thrown out
-%     of court.
-%
-% Questions:
-%   1. Is the functionality concern satisfied?
-%   2. Is the functional aspect satisfied?
-%   3. Are all aspects satisfied?
-%   4. What happens in the environment?
-% 
-% Answers:
-%   1. No (functionality is violated if the basic type of input
-%          device 1 is operating in fast-mode with encrypted memory)
-%   2. No (because functionality is violated)
-%   3. No (because functional aspect is violated)
-%   4. The recording is thrown out of court (because functional aspect
-%      was violated)
-
-% Knowledge of cyberattacks, effects, and ramifications
-% This is outside of the scope of the CPS Model
-
-step(1).
-
-% a cyberattack
-occurs(cyberattack,0).
-fluent(affected(sam)).
-obs(affected(sam),false).
-holds(affected(sam),S2) :-
-	step(S), step(S2), S2=S+1,
-	occurs(cyberattack,S).
--holds(sat("slow_mode_input1"),S) :-
-	step(S),
-	holds(affected(sam),S).
-
-% if input device 1 does not function properly, the recording is thrown out
-event(recipient_rejects,S) :- last_step(S),-holds(sat("cpsf:Functional","cpsf:bc1"),S).
-%%%%event_descr(recipient_rejects,"recording thrown out in court")
-
+output_headings("satisfied concern/aspect/property","type","function","step","likelihood").
 % ------ Output Interface ------
 
-output(D,event,"-",S) :- event(E,S),event_descr(E,D).
+descr("using_basic_input1","Basic type of input device 1 is in use").
+event_descr(recipient_rejects,"recipient rejects input").
+action_descr(patch(sam),"patch the SAM").

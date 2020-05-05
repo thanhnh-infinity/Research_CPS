@@ -306,8 +306,8 @@ public class QueryPicker {
 							+ ". Defaulting to " + solverStrings[solverIndex]);
 				}
 
-				taQs.add(createQueryButton(title, sparqlFile, dataDir + "/BASE", dataDir + subdir, aspfile, progressBar,
-						solverConst[solverIndex], taRes));
+				taQs.add(createQueryButton(title, sparqlFile, dataDir + "/BASE", dataDir + subdir, aspfile, progressBar, solverConst[solverIndex], taRes));
+				// taQs.add(createQueryButton(title, sparqlFile, dataDir + "/Phylotastic", dataDir + subdir, aspfile, progressBar,solverConst[solverIndex], taRes));
 			} else
 				throw (new IOException("Unexpected tag \"" + line + "\"+in file " + contentFile));
 		}

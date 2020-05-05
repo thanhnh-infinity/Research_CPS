@@ -1,36 +1,3 @@
-* Starting Brain-Storming *
+/home/thanhnh/All_Workspace/Java_Workspace/CPS/bin/asklab/cpsf/./runjena.sh --file=./tmpfile.sparql --data=./tmpDir/cpsframework-v3-base.owl --data=./tmpDir/cpsframework-v3-bodycamCPS.owl --results=text
 
-# Purpose of this document is to discover and extend the Idea for Problems and Issues of CPS System --- Which should be extended for Reasoning about Trustworthinesss in Cyber-Physical System paper
-
-# Issue 1: Improve the relation between Component and original CPS Ontology --> supplymentary properties 
-    - Design new concept of CPS : Requirement OR Supplymentary Property (SP).
-    - SP will supportFor a Property p in CPS. For example, ActiveAuthenticaion is a property which address for concenr Authentication. (Finger_printing_auth and two_factors_auth) are 2 SPs support for property ActiveAuthentication. The ActiveAuthenticaion is Satisfied Iff sat(Finger_printing_auth) OR sat(two_factors_auth)
-    - Design new relation between a component c in C to a set of Supplymentary Proerties sp in SP. ==> denote relate(c,sp).
-    - Assume that, there is a problem in CPS and make two_factors_auth is FALSE (unsat(two_factors_auth)). The mitigation action is not only able to turnOn/Off the two_factors_auth Supplymentary proerty, but also is able to switch the authentication function FROM two_factors_auth TO Finger_printing_auth. 
-    - Generate the more powerful mitigation strategies (multiple types of actions which changes status of Supplymentary properties AND changes the relation between component and Supplymentary properties).
-    - Allow composition from independent --- changing situations
-
-# Issue 2: Combination of IT and OT alongs associated with Timing Constraints
-    - 
-
-# Issue 3: Emergent Behaviors and Effects: 
-    - 
-
-# Issue 4: The composition of concerns : C1*C2(CPS) = C1(CPS) U C2(CPS)
-    - Example: "Timing Security" --> The composition of timing and security results in the collection of all the properties of CPS that are required by the "timing" and "security" concerns. ===> Resolving "conflicts" between properties is ONE of the Tasks of "requirement analysis"
-    - WebServer uses SOAP protocol to make request and satisfy Verification concern; But now, most of net-systems uses REST-HTTP to transfer data. WebServer need to uses REST-HTTP to satisfy Integrity concern. Assume that this server only works on SOAP or REST-HTTP (not all). :- use(server,OSAP), use(server,HTTP). ==> How to solve the conflicts ==> Solution: Use additional device/software to convert SOAP protcol to REST-HTTP or inverse to connect with server
-    - Example 3 : LKAS system {SAM,CAM,Battery} : SAM -> advanced_mode, Cam -> Advanced_mode , Battery -> normal_working
-    -use(Battery,normal_working) :- 2{use(X,advanced_mode):component(X)}.  => -holds(normal_working)
-
-# Issuse 5: Some queries for Trustworthinesss CPS:
-    - What are the robustness requirements/properties ? (Preventing a fault)
-    - What are the resiliency requirements/properties ? (Recovering from a fault or sub-fault)
-    - What happens if information within the system leaks (or is pulled out) ?
-        + Intellectual property losses. Recommended encryption: 128-bit and higher (AES)
-        + Property p is still True => But the information still leaks => need to change to property p' higher than p
-    - What happens if the system acts on incorrect data (including software)?
-    - What happens if the system or data it generates is not accessible and prepared to function properly when and where needed?
-        + Fault causes loss in productivity
-
-
-
+ /home/thanhnh/All_Workspace/Java_Workspace/CPS/bin/asklab/cpsf/./runjena.sh --file=./tmpfile.sparql --data=./tmpDir/cdao_phylotastic.owl --data=./tmpDir/phylogenetic_methods.owl --data=./tmpDir/mygrid-ontology.owl --data=./tmpDir/mygrid-moby-service.owl --results=text  
