@@ -1,4 +1,4 @@
-#include "./ontology_elevator.lp".
+%#include "./ontology_elevator.lp".
 
 %=====REASONING TRUTHWORTHINESS with STEP======
 
