@@ -64,15 +64,15 @@ lowest_TW_comp(C,S)  :- component(C), step(S), distance(C,M,S),
 
 
 % ====== SHOW ========
-#show tw_property/2.
+%#show tw_property/2.
 %#show compGoodProp/3.
 %#show compBadProp/3.
-#show tw_good_comp/3.
-#show tw_bad_comp/3.
-#show highest_TW_comp/2.
-#show lowest_TW_comp/2.
+%#show tw_good_comp/3.
+%#show tw_bad_comp/3.
+%#show highest_TW_comp/2.
+%#show lowest_TW_comp/2.
 %#show addrForConcern/2.
 %#show addressedBy/2.
 %#show order/3.
-#show distance/3.
+%#show distance/3.
 

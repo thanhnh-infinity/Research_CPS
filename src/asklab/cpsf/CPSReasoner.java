@@ -84,7 +84,7 @@ public class CPSReasoner {
 			}
 			out = runCmd(cmd);
 
-			// System.out.println("---ThanhNH : " + out);
+			//System.out.println("---ThanhNH : " + out);
 
 			/* convert output to one-literal-per-line */
 			cmd = mkatomsCmd();
@@ -443,8 +443,8 @@ class aspToOWLoutput {
 	int n_answers;
 
 	// https://stackoverflow.com/questions/40770990/split-string-by-comma-but-ignore-commas-in-brackets-or-in-quotes
-//	final static String commaRegex=",(?=([^\"]*\"[^\"]*\")*[^\"]*$)";
-//	final static String commaRegex=",(?=[^\\)]*(?:\\(|$))";
+    // final static String commaRegex=",(?=([^\"]*\"[^\"]*\")*[^\"]*$)";
+    // final static String commaRegex=",(?=[^\\)]*(?:\\(|$))";
 	final static String commaRegex = ",(?=([^\"]*\"[^\"]*\")*[^\"]*$)(?=[^\\)]*(?:\\(|$))";
 
 	String process(Vector<String> in) throws IOException {
@@ -459,7 +459,7 @@ class aspToOWLoutput {
 
 		res = linesToString();
 
-		res = "Query Results (" + n_answers + " answers): \n" + res;
+		res = "Query Results (" + n_answers + " answers): \n-------------------------------------------- \n" + res;
 
 		return (res);
 	}

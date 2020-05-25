@@ -25,7 +25,7 @@ FILES="$REASONING/Integration/SR-RE-01-truthworthiness/ontology_elevator.lp $REA
 OUTPUT=FULL-step1.txt
 cat $FILES > $OUTPUT
 
-FILES="$BASE/step1-BASE.lp $BASE/theory.lp $BASE/theory-maxint.lp output.lp $BASE/step1.lp"
+FILES="$REASONING/Integration/SR-RE-01-truthworthiness/ontology_elevator.lp $REASONING/Integration/SR-RE-01-truthworthiness/reasoning_2_2.lp output_sr_re_01_02.lp"
 OUTPUT=FULL-step2.txt
 cat $FILES > $OUTPUT
 
