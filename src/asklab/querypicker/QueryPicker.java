@@ -385,6 +385,21 @@ public class QueryPicker {
 				System.exit(0);
 			}
 		});
+		
+		
+		JButton exportCSV = new JButton("Export CSV");
+		exportCSV.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Export everything to CSV");
+			}
+		});
+		
+		JButton exportJSON = new JButton("Export JSON");
+		exportJSON.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Export everything to JSON");
+			}
+		});
 
 		pan = new JPanel();
 		pan.setLayout(new BoxLayout(pan, BoxLayout.X_AXIS));
@@ -394,7 +409,12 @@ public class QueryPicker {
 //		pan.add(new JLabel("    "));
 		pan.add(progressBar);
 		pan.add(new JLabel("    "));
+		pan.add(exportCSV);
+		pan.add(new JLabel(" "));
+		pan.add(exportJSON);
+		pan.add(new JLabel(" "));
 		pan.add(quitB);
+		
 
 		rightpan.add(pan);
 //		rightpan.add(GUIHelper.makeBorder(spRes,"Result"));

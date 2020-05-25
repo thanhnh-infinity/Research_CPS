@@ -697,42 +697,97 @@ obs(control_moving,true).
 obs(communicate_with_other_comp,true).
 obs(detect_No_passenger,false).
 obs(availablePatch(control_speed),true).
-%==================================
 %#include "./ontology_elevator.lp".
 
+%=====REASONING TRUTHWORTHINESS with STEP======
+
+% =====Configuration=========
+%sol(addr).
+sol(all).
+
+% =====State of CPS System===
 step(0).
-%=====Satisfaction Reasoning======
 
-h(P,0) :- obs(P,true), property(P).
--h(P,0) :- obs(P,false), property(P).
+%----------------------------------------------
+%=====REASONING TRUTHWORTHINESS with STEP======
+%----------------------------------------------
 
--h(sat(C),T) :- -h(P,T), property(P), step(T), 
-                addressedBy(C,P).
--h(sat(X),T) :- concern(X), concern(Y), 
-                subconcern(X,Y), not h(sat(Y),T), step(T).
--h(sat(X),T) :- concern(X), concern(Y), 
-                subconcern(X,Y), -h(sat(Y),T), step(T).
-h(sat(C),T) :- not -h(sat(C),T), concern(C), step(T).
+% -- Step 2 : Representation the property P in initial state of CPS 
+holds(P,0) :- obs(P,true), property(P).
+-holds(P,0) :- obs(P,false), property(P).
 
-% ---------------------------------------------
-%#show -h/2.
+% -- Step 3: Check addresses links
+addrForConcern(P,C) :- property(P), 
+					             addressedBy(C,P), 
+					             sol(all).
+addrForConcern(P,C) :- addrForConcern(P,C1), 
+                       subconcern(C,C1), 
+                       sol(all).
+                       
+% -- Step 4 [1,2]: Reasoning a component C has good/bad property P at step S.
+compGoodProp(Com,P,S) :- relation(Com,P,D), holds(P,S), 
+						             component(Com), property(P), step(S).
+compBadProp(Com,P,S)  :- component(Com), property(P), step(S),
+                         relation(Com,P,D), -holds(P,S).
+
+% -- Step 5: Compute the tw_property: total number of links to the concerns that are addressed by and related to property P
+tw_property(P,N) :- N=#count{C : addressedBy(C,P)}, 
+                    property(P), sol(addr).
+tw_property(P,N) :- N=#count{C : addrForConcern(P,C)}, 
+                    property(P), sol(all).
+
+% -- Step 6: Compute the good trustworthiness value of component C
+tw_good_comp(Comp,TWvalue,S) :- component(Comp), step(S),
+								                TWvalue = #sum{N,P : tw_property(P,N), property(P), compGoodProp(Comp,P,S)}.
+
+% -- Step 7: Compute the bad trustworthiness value of component C
+tw_bad_comp(Comp,TWvalue,S)  :- component(Comp), step(S),
+                                TWvalue = #sum{N,P : tw_property(P,N), property(P), compBadProp(Comp,P,S)}.
+
+% -- Step 7-1 : Middle layer: Representation good/bad tw if not exists
+tw_good_comp(Comp,0,S)  :- not tw_good_comp(Comp,_,S), 
+                           component(Comp), step(S).
+tw_bad_comp(Comp,0,S)   :- not tw_bad_comp(Comp,_,S), 
+                           component(Comp), step(S).
+
+% -- Step 8: Ordering and result
+distance(C,D,S) :- component(C), step(S), tw_good_comp(C,TWp,S),
+                   tw_bad_comp(C,TWn,S), D = TWp-TWn. 
+
+% -- Step 9: Find the highest/lowest TW value
+highest_TW_comp(C,S) :- component(C), step(S), distance(C,M,S),
+                        M == #max{N:distance(_,N,S)}.
+lowest_TW_comp(C,S)  :- component(C), step(S), distance(C,M,S),
+                        M == #min{N:distance(_,N,S)}.
+%----------------------------------------------
+
+
+% ====== SHOW ========
+%#show tw_property/2.
+%#show compGoodProp/3.
+%#show compBadProp/3.
+%#show tw_good_comp/3.
+%#show tw_bad_comp/3.
+%#show highest_TW_comp/2.
+%#show lowest_TW_comp/2.
+%#show addrForConcern/2.
+%#show addressedBy/2.
+%#show order/3.
+%#show distance/3.
 
 % ------ Output Interface ------
 
-output_headings("Unsatisfied concern/aspect/property","type","function","step").
+output_headings("Query response","Component","Positive TW val","Negative TW val","Distance","step").
 
 % Support : Identify the last step in the input
 last_step(S) :- step(S), S2=S+1, not step(S2).
 
-output(C,concern,"-",S) :- last_step(S), -h(sat(C),S), concern(C).
-output(C,aspect,"-",S) :- last_step(S), -h(sat(C),S), aspect(C).
-output(C,concern,F,S) :- last_step(S), -h(sat(C,F),S),concern(C), not aspect(C), C!=all.
-output(C,aspect,F,S) :- last_step(S), -h(sat(C,F),S), aspect(C).
-output("concern-tree",tree,F,S) :- last_step(S), -h(sat(all,F),S).
-output("concern-tree",tree,"-",S) :- last_step(S), -h(sat(all),S).
-
-output(P,property,"-",S) :- last_step(S), -h(P,S), property(P).
-
+output("Most trustworthy component",C,TWp,TWn,D,S) :- highest_TW_comp(C,S), step(S), last_step(S), 
+														  tw_good_comp(C,TWp,S), tw_bad_comp(C,TWn,S),
+														  distance(C,D,S).
+output("Lest trustworthy component",C,TWp,TWn,D,S) :- lowest_TW_comp(C,S), step(S), last_step(S), 
+														  tw_good_comp(C,TWp,S), tw_bad_comp(C,TWn,S),
+														  distance(C,D,S).
 
 % ====== SHOW ========
 %#show output_headings/6.

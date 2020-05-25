@@ -156,7 +156,7 @@ FULL-step2.txt
 *QUERY
 After cyberattack
 EX4-sr-elevator
-dlv (all models)
+clingo (all models)
 FULL-step3.txt
 *QUERY
 Cyberattack mitigation
