@@ -142,30 +142,60 @@ FULL-step3-ext.txt
  
 
 *LBL
-<html><u><font color='red'>SR-RE-01 : Elevator</font></u></html>
+<html><u><font color='red'>Sophisticated Reasoning: Elevator</font></u></html>
 *QUERY
-Most/Least Trustworthy Component
+SR-RE-01: Most/Least Trustworthy Component
 EX4-sr-elevator
 clingo (all models)
 FULL-step1.txt
 *QUERY
-Check unsatisfied concerns
+SR-RE-01: Check unsatisfied concerns
 EX4-sr-elevator
 clingo (all models)
 FULL-step2.txt
 *QUERY
-After cyberattack
+SR-RE-01: After cyberattack
 EX4-sr-elevator
 clingo (all models)
 FULL-step3.txt
 *QUERY
-Cyberattack mitigation
+SR-RE-01: Cyberattack mitigation
 EX4-sr-elevator
 dlv (all models)
 FULL-step4.txt
 *QUERY
-Cyberattack mitigation (multiple solutions)
+SR-RE-01: Cyberattack mitigation (multiple solutions)
 EX4-sr-elevator
+dlv (all models)
+FULL-step4-ext.txt
+*LBL
+
+
+*LBL
+<html><u><font color='red'>Sophisticated Reasoning: LKAS Lane-keeping Assistant System</font></u></html>
+*QUERY
+SR-RE-01: Most/Least Trustworthy Component
+EX5-sr-lkas
+clingo (all models)
+FULL-step1.txt
+*QUERY
+SR-RE-01: Check unsatisfied concerns
+EX5-sr-lkas
+clingo (all models)
+FULL-step2.txt
+*QUERY
+SR-RE-01: After cyberattack
+EX5-sr-lkas
+clingo (all models)
+FULL-step3.txt
+*QUERY
+SR-RE-01: Cyberattack mitigation
+EX5-sr-lkas
+dlv (all models)
+FULL-step4.txt
+*QUERY
+SR-RE-01: Cyberattack mitigation (multiple solutions)
+EX5-sr-lkas
 dlv (all models)
 FULL-step4-ext.txt
 *LBL

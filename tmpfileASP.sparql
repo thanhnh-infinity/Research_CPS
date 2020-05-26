@@ -530,27 +530,23 @@ concern(resilience).
 concern(privacy).
 
 concern(functional_safety).
-concern(human_safety).
 concern(cyber_security).
 concern(physical_security).
 concern(predictability).
 concern(manageability).
 concern(dissociability).
 
-concern(hazard).
-
 concern(severity).
 concern(frequency).
 concern(controllability).
 concern(confidentiality).
 concern(integrity).
-concern(physical_integrity).
 concern(availability).
-concern(stability).
 concern(controls).
 concern(transparency).
 concern(availability).
 concern(innovation).
+
 concern(encryption).
 concern(privacy_policy).
 concern(protection).
@@ -562,7 +558,6 @@ concern(authentication).
 concern(roles).
 concern(privileges).
 concern(permissions).
-concern(functionality).
 
 % subconcern.
 subconcern(trustworthiness,safety).
@@ -572,7 +567,6 @@ subconcern(trustworthiness,resilience).
 subconcern(trustworthiness,privacy).
 
 subconcern(safety,functional_safety).
-subconcern(safety,human_safety).
 
 subconcern(security,cyber_security).
 subconcern(security,physical_security).
@@ -581,19 +575,15 @@ subconcern(privacy,predictability).
 subconcern(privacy,manageability).
 subconcern(privacy,dissociability).
 
-subconcern(functional_safety,hazard).
-
-subconcern(hazard,severity).
-subconcern(hazard,frequency).
-subconcern(hazard,controllability).
+subconcern(functional_safety,severity).
+subconcern(functional_safety,frequency).
+subconcern(functional_safety,controllability).
 
 subconcern(cyber_security,confidentiality).
 subconcern(cyber_security,integrity).
 subconcern(cyber_security,availability).
 
 subconcern(physical_security,ultility).
-subconcern(physical_security,physical_integrity).
-subconcern(physical_security,stability).
 
 subconcern(predictability,controls).
 subconcern(predictability,transparency).
@@ -606,97 +596,104 @@ subconcern(confidentiality,protection).
 subconcern(availability,software_patches).
 subconcern(availability,hardware_patches).
 subconcern(availability,license).
+
 subconcern(controls,authentication).
 subconcern(controls,identity).
+
 subconcern(identity,authorization).
-subconcern(stability,functionality).
 
 % Property --- Requirements
-property(maintenance_regularly).
-property(control_speed).
-property(record_25fps).
-property(send_actions).
-property(control_pulley).
-property(pulley_release).
-property(pulley_clench).
-property(moving_up).
-property(moving_down).
-property(halting).
-property(control_moving).
-property(communicate_with_other_comp).
-property(detect_No_passenger).
+property(data_encrypted).
+property(conn_encrypted).
+property(protocol_encrypted).
 
+property(firewall_setup).
+property(hidden_backdoor).
+property(data_filtering).
+
+property(software_licensed).
+property(privacy_standard).
+
+property(algo_AES).
+property(algo_RSA).
+property(algo_DES).
+
+property(oAuth).
+property(two_factors_auth).
+property(finger_printing_auth).
+property(single_auth).
+
+property(secure_boot).
+
+property(record_video_25fps).
+property(record_video_50fps).
+
+property(basic_mode).
+property(advanced_mode).
+
+property(devices_access_permission).
+property(data_access_permission).
 
 % Addressed : Relation Properties-Concerns
-addressedBy(controllability,maintenance_regularly).
-addressedBy(frequency,maintenance_regularly).
-addressedBy(controllability,control_speed).
-addressedBy(human_safety,control_speed).
-addressedBy(integrity,record_25fps).
-addressedBy(integrity,send_actions).
-addressedBy(functionality,send_actions).
-addressedBy(functionality,control_pulley).
+addressedBy(encryption,data_encrypted).
+addressedBy(encryption,conn_encrypted).
+addressedBy(encryption,protocol_encrypted).
+addressedBy(encryption,algo_AES).
+addressedBy(encryption,algo_RSA).
 
-addressedBy(physical_integrity,pulley_release).
-addressedBy(physical_integrity,pulley_clench).
-addressedBy(physical_integrity,moving_up).
-addressedBy(physical_integrity,moving_down).
-addressedBy(physical_integrity,halting).
+addressedBy(protection,firewall_setup).
+addressedBy(protection,hidden_backdoor).
+addressedBy(protection,data_filtering).
 
-addressedBy(functionality,control_moving).
-addressedBy(availability,communicate_with_other_comp).
-addressedBy(functionality,communicate_with_other_comp).
-addressedBy(manageability,communicate_with_other_comp).
-addressedBy(manageability,detect_No_passenger).
+addressedBy(privacy_policy,software_licensed).
+addressedBy(privacy_policy,privacy_standard).
 
+addressedBy(authentication,oAuth).
+addressedBy(authentication,single_auth).
+addressedBy(authentication,two_factors_auth).
+addressedBy(authentication,finger_printing_auth).
+
+addressedBy(integrity,secure_boot).
+
+addressedBy(integrity,basic_mode).
+addressedBy(integrity,advanced_mode).
+
+addressedBy(frequency,record_video_25fps).
+addressedBy(frequency,record_video_50fps).
+
+addressedBy(authorization,devices_access_permission).
+addressedBy(authorization,data_access_permission).
 
 % Component and Relation
-component(cp).
-component(er).
-component(pf).
-component(ec).
-component(escam).
+component(sam).
+component(cam).
 
-relation(cp,maintenance_regularly,"cp maintenance").
-relation(cp,communicate_with_other_comp,"cp communicate").
+relation(cam,data_encrypted,"CAM access to encrypted data").
+relation(cam,secure_boot,"CAM use Secure Bot").
+relation(cam,data_filtering,"CAM has been checked").
+%relation(cam,record_video_50fps,"CAM has been recorded 50FPS").
+relation(cam,advanced_mode,"CAM used Advanced mode").
+relation(cam,devices_access_permission,"Have to have permission to access CAM").
 
-relation(er,control_speed,"er control speed").
-relation(er,send_actions,"er send actions").
-relation(er,communicate_with_other_comp,"er communicate").
-
-relation(pf,maintenance_regularly,"PF maintenance").
-relation(pf,control_speed,"PF control speed").
-relation(pf,control_pulley,"PF control pulley").
-relation(pf,pulley_release,"PF release").
-relation(pf,pulley_clench,"PF clench").
-relation(pf,communicate_with_other_comp,"PF communicate").
-
-relation(ec,maintenance_regularly,"EC maintenance").
-relation(ec,halting,"PF halts").
-relation(ec,moving_down,"EC downd").
-relation(ec,moving_up,"EC up").
-relation(ec,control_moving,"EC moving").
-relation(ec,communicate_with_other_comp,"EC communicate").
-
-relation(escam,record_25fps,"ESCAM maintenance").
-relation(escam,communicate_with_other_comp,"ESCAM").
-relation(escam,detect_No_passenger,"ESCAM").
+relation(sam,data_encrypted,"SAM access to encrypted data").
+relation(sam,secure_boot,"SAM use Secure Bot").
+relation(sam,software_licensed,"SAM used licensed software").
+relation(sam,two_factors_auth,"Access to SAM required 2-factors authentication").
+relation(sam,firewall_setup,"Firewall protected SAM").
+relation(sam,data_access_permission,"Have to have permission to access CAM").
 
 % ======Observation for Initial State
-obs(maintenance_regularly,true).
-obs(control_speed,false).
-obs(record_25fps,true).
-obs(send_actions,true).
-obs(control_pulley,true).
-obs(pulley_release,true).
-obs(pulley_clench,true).
-obs(moving_up,true).
-obs(moving_down,true).
-obs(halting,true).
-obs(control_moving,true).
-obs(communicate_with_other_comp,true).
-obs(detect_No_passenger,false).
-obs(availablePatch(control_speed),true).
+obs(data_encrypted,true).
+obs(data_filtering,true).
+obs(software_licensed,true).
+obs(two_factors_auth,false). % Change here to test
+obs(secure_boot,true).
+obs(record_video_50fps,true).
+obs(advanced_mode,true).
+obs(firewall_setup,false). % Change here to test
+obs(devices_access_permission,true).
+obs(data_access_permission,true).
+
 %#include "./ontology_elevator.lp".
 
 %=====REASONING TRUTHWORTHINESS with STEP======
