@@ -222,13 +222,6 @@
         <rdfs:comment>pg 15</rdfs:comment>
     </owl:Class>
     
-
-
-    <!-- http://www.asklab.tk/ontologies/CPS-Framework#BusinessCase -->
-
-    <owl:Class rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#BusinessCase">
-        <rdfs:subClassOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Function"/>
-    </owl:Class>
     
 
 
@@ -338,13 +331,6 @@
     </owl:Class>
     
 
-
-    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Scenario -->
-
-    <owl:Class rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Scenario">
-        <rdfs:subClassOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Function"/>
-    </owl:Class>
-    
 
 
     <!-- http://www.asklab.tk/ontologies/CPS-Framework#Test -->
@@ -475,12 +461,7 @@
     
 
 
-    <!-- http://www.asklab.tk/ontologies/CPS-Framework#BusinessCase -->
-
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#BusinessCase">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#BusinessCase"/>
-        <nextFC rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#UseCase"/>
-    </owl:NamedIndividual>
+    
     
 
 
@@ -1322,12 +1303,7 @@
     
 
 
-    <!-- http://www.asklab.tk/ontologies/CPS-Framework#UseCase -->
-
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#UseCase">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#UseCase"/>
-        <nextFC rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Scenario"/>
-    </owl:NamedIndividual>
+   
     
 
 
