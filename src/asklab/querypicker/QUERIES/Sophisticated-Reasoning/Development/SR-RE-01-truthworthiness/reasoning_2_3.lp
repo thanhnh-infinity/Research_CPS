@@ -1,5 +1,8 @@
 #include "./ontology_elevator.lp".
 #include "./obs_init_state_elevator.lp".
+
+%#include "./ontology_LKAS_2.lp".
+%#include "./obs_init_state_LKAS.lp".
 %=================================
 #const n = 2.
 step(0..n).

@@ -1,5 +1,8 @@
 #include "./ontology_elevator.lp".
 #include "./obs_init_state_elevator.lp".
+
+%#include "./ontology_LKAS_2.lp".
+%#include "./obs_init_state_LKAS.lp".
 %=================================
 #const n = 2.
 step(0..n).
@@ -67,6 +70,9 @@ prob_success(tOn(detect_No_passenger),80).
 prob_success(tOn(control_speed),70).
 prob_success(patch(control_speed),30).
 
+prob_success(tOn(firewall_setup),60).
+prob_success(tOn(two_factors_auth),30).
+prob_success(patch(two_factors_auth),20).
 
 h(prob_of_state(100),0).
 h(prob_of_state(P2),T2) :- step(T),step(T2), T2=T+1, 

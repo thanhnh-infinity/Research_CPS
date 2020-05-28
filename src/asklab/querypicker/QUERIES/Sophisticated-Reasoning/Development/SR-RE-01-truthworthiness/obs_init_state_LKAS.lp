@@ -9,3 +9,4 @@ obs(advanced_mode,true).
 obs(firewall_setup,false). % Change here to test
 obs(devices_access_permission,true).
 obs(data_access_permission,true).
+obs(availablePatch(two_factors_auth),true).

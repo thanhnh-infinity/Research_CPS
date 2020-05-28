@@ -1,6 +1,9 @@
 #include "./ontology_elevator.lp".
 #include "./obs_init_state_elevator.lp".
 
+%#include "./ontology_LKAS_2.lp".
+%#include "./obs_init_state_LKAS.lp".
+
 step(0).
 %=====Satisfaction Reasoning======
 
