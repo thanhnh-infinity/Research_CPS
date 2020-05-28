@@ -33,10 +33,10 @@ FILES="$BASE/step1-BASE.lp $BASE/theory.lp $BASE/theory-maxint.lp output.lp $BAS
 OUTPUT=FULL-step3.txt
 cat $FILES > $OUTPUT
 
-FILES="$BASE/step1-BASE.lp $BASE/theory.lp $BASE/theory-maxint.lp output.lp $BASE/step1.lp $BASE/step2.lp $BASE/step3.lp"
+FILES="$REASONING/Integration/SR-RE-01-truthworthiness/ontology_elevator.lp  $REASONING/Integration/SR-RE-01-truthworthiness/reasoning_2_3.lp output_sr_re_01_03.lp"
 OUTPUT=FULL-step4.txt
 cat $FILES > $OUTPUT
 
-FILES="$BASE/step1-BASE.lp $BASE/theory.lp $BASE/theory-maxint.lp output.lp $BASE/step1.lp $BASE/step2.lp $BASE/step3.lp $BASE/step3-ext.lp"
+FILES="$REASONING/Integration/SR-RE-01-truthworthiness/ontology_elevator.lp  $REASONING/Integration/SR-RE-01-truthworthiness/reasoning_2_4.lp output_sr_re_01_04.lp"
 OUTPUT=FULL-step4-ext.txt
 cat $FILES > $OUTPUT
