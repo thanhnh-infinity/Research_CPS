@@ -58,26 +58,6 @@ h(X,T+1) :- occurs(patch(X),T), step(T).
 
 %:- occurs(A1,T), occurs(A2,T), A1 != A2.
 
-% ---------------------------------------------
-% ==========  Probabilistic of success ========
-% ---------------------------------------------
-prob_success(tOn(detect_No_passenger),80).
-prob_success(tOn(control_speed),70).
-prob_success(patch(control_speed),30).
-
-h(prob_of_state(100),0).
-h(prob_of_state(P2),T2) :- step(T),step(T2), T2=T+1, 
-                           h(prob_of_state(P),T), 
-                           occurs(A,T), 
-                           prob_success(A,PSucc),
-                           P2a=P*PSucc,P2=P2a/100.
-known_prob_success(T)   :- step(T), occurs(A,T), 
-                           prob_success(A,PSucc).
-unknown_prob_success(T) :- step(T), not known_prob_success(T).
-h(prob_of_state(P),T2)  :- step(T), step(T2), T2=T+1, 
-                           h(prob_of_state(P),T), 
-                           unknown_prob_success(T).
-last_step(T):- step(T),T2=T+1, not step(T2).
-check_p(P,T) :- h(prob_of_state(P),T).
-%last_step(1). 
-#maximize{P : h(prob_of_state(P),T), last_step(T)}.
+%=========================================
+%#show occurs/2.
+%#show executable/2.

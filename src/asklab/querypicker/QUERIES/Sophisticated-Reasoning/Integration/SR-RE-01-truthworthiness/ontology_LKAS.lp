@@ -164,15 +164,4 @@ relation(sam,two_factors_auth,"Access to SAM required 2-factors authentication")
 relation(sam,firewall_setup,"Firewall protected SAM").
 relation(sam,data_accessible_permission,"Have to have permission to access CAM").
 
-% ======Observation for Initial State
-obs(data_encrypted,true).
-obs(devices_checked,true).
-obs(software_licensed,true).
-obs(two_factors_auth,false). % Change here to test
-obs(secure_boot,true).
-obs(record_video_50fps,true).
-obs(advanced_mode,true).
-obs(firewall_setup,false). % Change here to test
-obs(devices_accessible_permission,true).
-obs(data_accessible_permission,true).
-
+% ==================================

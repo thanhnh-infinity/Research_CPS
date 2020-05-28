@@ -1,6 +1,4 @@
-%==================================
-%#include "./ontology_elevator.lp".
-
+%=================================
 step(0).
 %=====Satisfaction Reasoning======
 
