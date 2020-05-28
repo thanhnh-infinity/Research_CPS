@@ -159,14 +159,14 @@ EX4-sr-elevator
 clingo (all models)
 FULL-step3.txt
 *QUERY
-SR-RE-01: Cyberattack mitigation
+SR-RE-01: Mitigation Strategy: Random method + List all possible solutions
 EX4-sr-elevator
-dlv (all models)
+clingo (all models)
 FULL-step4.txt
 *QUERY
-SR-RE-01: Cyberattack mitigation (multiple solutions)
+SR-RE-01: Mitigation Strategy: Highest chance to succeed (Probabilistic Reasoning)
 EX4-sr-elevator
-dlv (all models)
+clingo (all models)
 FULL-step4-ext.txt
 *LBL
 
@@ -189,14 +189,14 @@ EX5-sr-lkas
 clingo (all models)
 FULL-step3.txt
 *QUERY
-SR-RE-01: Cyberattack mitigation
+SR-RE-01: Mitigation Strategy: Random method + List all possible solutions
 EX5-sr-lkas
-dlv (all models)
+clingo (all models)
 FULL-step4.txt
 *QUERY
-SR-RE-01: Cyberattack mitigation (multiple solutions)
+SR-RE-01: Mitigation Strategy: Highest chance to succeed (Probabilistic Reasoning)
 EX5-sr-lkas
-dlv (all models)
+clingo (all models)
 FULL-step4-ext.txt
 *LBL
  

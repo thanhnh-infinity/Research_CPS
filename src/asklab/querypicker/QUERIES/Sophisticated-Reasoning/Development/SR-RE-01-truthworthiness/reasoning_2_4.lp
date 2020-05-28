@@ -74,6 +74,8 @@ prob_success(tOn(firewall_setup),60).
 prob_success(tOn(two_factors_auth),30).
 prob_success(patch(two_factors_auth),20).
 
+% ---------------------------------------------
+
 h(prob_of_state(100),0).
 h(prob_of_state(P2),T2) :- step(T),step(T2), T2=T+1, 
                            h(prob_of_state(P),T), 
@@ -91,6 +93,7 @@ check_p(P,T) :- h(prob_of_state(P),T).
 %last_step(1). 
 #maximize{P : h(prob_of_state(P),T), last_step(T)}.
 
+% ---------------------------------------------
 #show occurs/2.
 %#show executable/2.
 #show check_p/2.
