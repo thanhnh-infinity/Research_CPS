@@ -1,4 +1,6 @@
 #include "./ontology_elevator.lp".
+#include "./obs_init_state_elevator.lp".
+%=================================
 #const n = 2.
 step(0..n).
 %=====Satisfaction Reasoning======
@@ -26,20 +28,23 @@ h(sat(C),T) :- not -h(sat(C),T), concern(C), step(T).
 % Inertial axioms
 fluent(F) :- property(F).
 fluent(availablePatch(F)) :- property(F).
+%fluent(sat(A)) :- concern(A).
 
 h(F,T+1)    :- h(F,T), not -h(F,T+1), step(T), fluent(F).
 -h(F,T+1)   :- -h(F,T), not h(F,T+1), step(T), fluent(F).
 
-% Goal
+% Goal check type 2
+%goal(G) :- h(sat(trustworthiness),G), step(G).
+%success :- goal(G), G <= n, step(G).
+%:- not success.
+
+% Goal check type 1
 :- not h(sat(C),n), concern(C).
+%:- not h(sat(A),n), aspect(A).
 
 % Actions
 action(tOn(X)) :- property(X).
 action(patch(X)) :- property(X).
-
-prob_success(tOn(detect_No_passenger),80).
-prob_success(tOn(control_speed),70).
-prob_success(patch(control_speed),30).
 
 %% Preconditions
 %executable(tOn(detect_No_passenger),T) :- -h(detect_No_passenger,T), step(T).
@@ -58,6 +63,11 @@ h(X,T+1) :- occurs(patch(X),T), step(T).
 % ---------------------------------------------
 % ==========  Probabilistic of success ========
 % ---------------------------------------------
+prob_success(tOn(detect_No_passenger),80).
+prob_success(tOn(control_speed),70).
+prob_success(patch(control_speed),30).
+
+
 h(prob_of_state(100),0).
 h(prob_of_state(P2),T2) :- step(T),step(T2), T2=T+1, 
                            h(prob_of_state(P),T), 

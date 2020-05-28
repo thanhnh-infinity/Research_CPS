@@ -1,4 +1,5 @@
 #include "./ontology_elevator.lp".
+#include "./obs_init_state_elevator.lp".
 
 step(0).
 %=====Satisfaction Reasoning======

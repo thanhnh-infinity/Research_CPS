@@ -1,4 +1,6 @@
 #include "./ontology_elevator.lp".
+#include "./obs_init_state_elevator.lp".
+%=================================
 #const n = 2.
 step(0..n).
 %=====Satisfaction Reasoning======
@@ -31,16 +33,18 @@ fluent(availablePatch(F)) :- property(F).
 h(F,T+1)    :- h(F,T), not -h(F,T+1), step(T), fluent(F).
 -h(F,T+1)   :- -h(F,T), not h(F,T+1), step(T), fluent(F).
 
-% Goal
+% Goal check type 2
+%goal(G) :- h(sat(trustworthiness),G), step(G).
+%success :- goal(G), G <= n, step(G).
+%:- not success.
+
+% Goal check type 1
 :- not h(sat(C),n), concern(C).
+%:- not h(sat(A),n), aspect(A).
 
 % Actions
 action(tOn(X)) :- property(X).
 action(patch(X)) :- property(X).
-
-prob_success(tOn(detect_No_passenger),80).
-prob_success(tOn(control_speed),70).
-prob_success(patch(control_speed),30).
 
 %% Preconditions
 %executable(tOn(detect_No_passenger),T) :- -h(detect_No_passenger,T), step(T).
@@ -56,26 +60,7 @@ h(X,T+1) :- occurs(patch(X),T), step(T).
 
 %:- occurs(A1,T), occurs(A2,T), A1 != A2.
 
-% ---------------------------------------------
-% ==========  Probabilistic of success ========
-% ---------------------------------------------
-%h(prob_of_state(100),0).
-%h(prob_of_state(P2),T2) :- step(T),step(T2), T2=T+1, 
-%                           h(prob_of_state(P),T), 
-%                           occurs(A,T), 
-%                           prob_success(A,PSucc),
-%                           P2a=P*PSucc,P2=P2a/100.
-%known_prob_success(T)   :- step(T), occurs(A,T), 
-%                           prob_success(A,PSucc).
-%unknown_prob_success(T) :- step(T), not known_prob_success(T).
-%h(prob_of_state(P),T2)  :- step(T), step(T2), T2=T+1, 
-%                           h(prob_of_state(P),T), 
-%                           unknown_prob_success(T).
-%last_step(T):- step(T),T2=T+1, not step(T2).
-%check_p(P,T) :- h(prob_of_state(P),T).
-%last_step(1). 
-%#maximize{P : h(prob_of_state(P),T), last_step(T)}.
-
+%=========================================
 #show occurs/2.
 %#show executable/2.
 %#show check_p/2.
