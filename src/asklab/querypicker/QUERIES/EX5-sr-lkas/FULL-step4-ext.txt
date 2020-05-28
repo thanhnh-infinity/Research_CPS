@@ -283,7 +283,7 @@ output(A,P,Pr,S) :- occurs(A,S),
                     h(prob_of_state(Pr),S), 
                     step(S).
 
-output("-","-",Pr,S) :- h(prob_of_state(Pr),S), last_step(S).
+output("---Overall---","----Final---",Pr,S) :- h(prob_of_state(Pr),S), last_step(S).
 
 
 % ====== SHOW ========
