@@ -74,7 +74,7 @@ input("cpsf:SAMEncryptedMem","cpsf:atomicStatement","encrypted_mem_sam").
 input("cpsf:SAMEncryptedMem","cpsf:hasType","cpsf:PropertyType_Assertion").
 input("cpsf:SAMEncryptedMem","rdf:type","cpsf:Property").
 input("cpsf:SAMEncryptedMem","rdf:type","owl:NamedIndividual").
-input("cpsf:Input1SecBoot","rdfs:comment","The sensor array uses secure boot").
+input("cpsf:Input1SecBoot","rdfs:comment","The camera uses secure boot").
 input("cpsf:Input1SecBoot","cpsf:atomicStatement","sec_boot_input1").
 input("cpsf:Input1SecBoot","cpsf:hasType","cpsf:PropertyType_Assertion").
 input("cpsf:Input1SecBoot","rdf:type","cpsf:Property").
@@ -264,7 +264,7 @@ input("cpsf:app1","rdf:type","cpsf:Application").
 input("cpsf:app1","rdf:type","owl:NamedIndividual").
 input("cpsf:TimeToMarket","rdf:type","cpsf:Concern").
 input("cpsf:TimeToMarket","rdf:type","owl:NamedIndividual").
-input("cpsf:Input1EncryptedMem","rdfs:comment","The sensor array uses encrypted memory").
+input("cpsf:Input1EncryptedMem","rdfs:comment","The camera uses encrypted memory").
 input("cpsf:Input1EncryptedMem","cpsf:atomicStatement","encrypted_mem_input1").
 input("cpsf:Input1EncryptedMem","cpsf:hasType","cpsf:PropertyType_Assertion").
 input("cpsf:Input1EncryptedMem","rdf:type","cpsf:Property").
@@ -374,7 +374,7 @@ input("cpsf:PhysicalContext","rdf:type","cpsf:Concern").
 input("cpsf:PhysicalContext","rdf:type","owl:NamedIndividual").
 input("cpsf:Authorization","rdf:type","cpsf:Concern").
 input("cpsf:Authorization","rdf:type","owl:NamedIndividual").
-input("cpsf:Input1Modes","rdfs:comment","The sensor array should be capable of low-rate and of high-rate readings").
+input("cpsf:Input1Modes","rdfs:comment","The camera should be capable of recording at 25fps and at 50fps").
 input("cpsf:Input1Modes","cpsf:atomicStatement","slow_mode_input1").
 input("cpsf:Input1Modes","cpsf:hasType","cpsf:PropertyType_Capability").
 input("cpsf:Input1Modes","rdf:type","cpsf:Property").
@@ -406,7 +406,7 @@ input("cpsf:Cybersecurity","rdf:type","owl:NamedIndividual").
 input("cpsf:UserIdentification","rdf:type","cpsf:Concern").
 input("cpsf:UserIdentification","rdf:type","owl:NamedIndividual").
 input("cpsf:CPSFrameworkConcept","rdf:type","owl:Class").
-input("cpsf:Input1ConsistentReadingFreq","rdfs:comment","The sensor array returns accurate readings").
+input("cpsf:Input1ConsistentReadingFreq","rdfs:comment","The camera records at constant frame-rate").
 input("cpsf:Input1ConsistentReadingFreq","cpsf:atomicStatement","consist_reading_freq_input1").
 input("cpsf:Input1ConsistentReadingFreq","cpsf:hasType","cpsf:PropertyType_Assertion").
 input("cpsf:Input1ConsistentReadingFreq","rdf:type","cpsf:Property").
@@ -518,297 +518,3 @@ input("cpsf:Constructivity","rdf:type","cpsf:Concern").
 input("cpsf:Constructivity","rdf:type","owl:NamedIndividual").
 input("cpsf:Storage","rdf:type","cpsf:Concern").
 input("cpsf:Storage","rdf:type","owl:NamedIndividual").
-% Aspect
-aspect(trustworthiness).
-
-% Concern
-concern(trustworthiness).
-concern(safety).
-concern(reliability).
-concern(security).
-concern(resilience).
-concern(privacy).
-
-concern(functional_safety).
-concern(cyber_security).
-concern(physical_security).
-concern(predictability).
-concern(manageability).
-concern(dissociability).
-
-concern(severity).
-concern(frequency).
-concern(controllability).
-concern(confidentiality).
-concern(integrity).
-concern(availability).
-concern(controls).
-concern(transparency).
-concern(availability).
-concern(innovation).
-
-concern(encryption).
-concern(privacy_policy).
-concern(protection).
-concern(software_patches).
-concern(hardware_patches).
-concern(license).
-concern(authorization).
-concern(authentication).
-concern(roles).
-concern(privileges).
-concern(permissions).
-
-% subconcern.
-subconcern(trustworthiness,safety).
-subconcern(trustworthiness,reliability).
-subconcern(trustworthiness,security).
-subconcern(trustworthiness,resilience).
-subconcern(trustworthiness,privacy).
-
-subconcern(safety,functional_safety).
-
-subconcern(security,cyber_security).
-subconcern(security,physical_security).
-
-subconcern(privacy,predictability).
-subconcern(privacy,manageability).
-subconcern(privacy,dissociability).
-
-subconcern(functional_safety,severity).
-subconcern(functional_safety,frequency).
-subconcern(functional_safety,controllability).
-
-subconcern(cyber_security,confidentiality).
-subconcern(cyber_security,integrity).
-subconcern(cyber_security,availability).
-
-subconcern(physical_security,ultility).
-
-subconcern(predictability,controls).
-subconcern(predictability,transparency).
-subconcern(predictability,innovation).
-
-subconcern(confidentiality,encryption).
-subconcern(confidentiality,privacy_policy).
-subconcern(confidentiality,protection).
-
-subconcern(availability,software_patches).
-subconcern(availability,hardware_patches).
-subconcern(availability,license).
-
-subconcern(controls,authentication).
-subconcern(controls,identity).
-
-subconcern(identity,authorization).
-
-% Property --- Requirements
-property(data_encrypted).
-property(conn_encrypted).
-property(protocol_encrypted).
-
-property(firewall_setup).
-property(hidden_backdoor).
-property(data_filtering).
-
-property(software_licensed).
-property(privacy_standard).
-
-property(algo_AES).
-property(algo_RSA).
-property(algo_DES).
-
-property(oAuth).
-property(two_factors_auth).
-property(finger_printing_auth).
-property(single_auth).
-
-property(secure_boot).
-
-property(record_video_25fps).
-property(record_video_50fps).
-
-property(basic_mode).
-property(advanced_mode).
-
-property(devices_access_permission).
-property(data_access_permission).
-
-% Addressed : Relation Properties-Concerns
-addressedBy(encryption,data_encrypted).
-addressedBy(encryption,conn_encrypted).
-addressedBy(encryption,protocol_encrypted).
-addressedBy(encryption,algo_AES).
-addressedBy(encryption,algo_RSA).
-
-addressedBy(protection,firewall_setup).
-addressedBy(protection,hidden_backdoor).
-addressedBy(protection,data_filtering).
-
-addressedBy(privacy_policy,software_licensed).
-addressedBy(privacy_policy,privacy_standard).
-
-addressedBy(authentication,oAuth).
-addressedBy(authentication,single_auth).
-addressedBy(authentication,two_factors_auth).
-addressedBy(authentication,finger_printing_auth).
-
-addressedBy(integrity,secure_boot).
-
-addressedBy(integrity,basic_mode).
-addressedBy(integrity,advanced_mode).
-
-addressedBy(frequency,record_video_25fps).
-addressedBy(frequency,record_video_50fps).
-
-addressedBy(authorization,devices_access_permission).
-addressedBy(authorization,data_access_permission).
-
-% Component and Relation
-component(sam).
-component(cam).
-
-relation(cam,data_encrypted,"CAM access to encrypted data").
-relation(cam,secure_boot,"CAM use Secure Bot").
-relation(cam,data_filtering,"CAM has been checked").
-%relation(cam,record_video_50fps,"CAM has been recorded 50FPS").
-relation(cam,advanced_mode,"CAM used Advanced mode").
-relation(cam,devices_access_permission,"Have to have permission to access CAM").
-
-relation(sam,data_encrypted,"SAM access to encrypted data").
-relation(sam,secure_boot,"SAM use Secure Bot").
-relation(sam,software_licensed,"SAM used licensed software").
-relation(sam,two_factors_auth,"Access to SAM required 2-factors authentication").
-relation(sam,firewall_setup,"Firewall protected SAM").
-relation(sam,data_access_permission,"Have to have permission to access CAM").
-
-% ====================================================
-% ======Observation for Initial State
-obs(data_encrypted,true).
-obs(data_filtering,true).
-obs(software_licensed,true).
-obs(two_factors_auth,false). % Change here to test
-obs(secure_boot,true).
-obs(record_video_50fps,true).
-obs(advanced_mode,true).
-obs(firewall_setup,false). % Change here to test
-obs(devices_access_permission,true).
-obs(data_access_permission,true).
-obs(availablePatch(two_factors_auth),true).
-
-
-
-
-%=================================
-#const n = 2.
-step(0..n).
-%=====Satisfaction Reasoning======
-
-%h(P,0) :- obs(P,true), property(P).
--h(P,0) :- obs(P,false).
-%h(P,0) :- obs(availablePatch(P),true), property(P).
-h(P,0) :- obs(P,true).
-
--h(sat(C),T) :- -h(P,T), property(P), step(T), 
-                addressedBy(C,P).
--h(sat(X),T) :- concern(X), concern(Y), 
-                subconcern(X,Y), not h(sat(Y),T), step(T).
--h(sat(X),T) :- concern(X), concern(Y), 
-                subconcern(X,Y), -h(sat(Y),T), step(T).
-h(sat(C),T) :- not -h(sat(C),T), concern(C), step(T).
-
--h(sat(all),T)  :- 1{-h(sat(A),T); not h(sat(A),T)},
-                   aspect(A), step(T).
-h(sat(all),T)   :- not -h(sat(all),T), step(T).
-% ---------------------------------------------
-% ==========  ACTIONS and CHANGES =============
-% ---------------------------------------------
-% Generate action
-1{occurs(A,T):action(A)}1 :- step(T), T<n.
-:- occurs(A,T), not executable(A,T).
-
-% Inertial axioms
-fluent(F) :- property(F).
-fluent(availablePatch(F)) :- property(F).
-%fluent(sat(A)) :- concern(A).
-
-h(F,T+1)    :- h(F,T), not -h(F,T+1), step(T), fluent(F).
--h(F,T+1)   :- -h(F,T), not h(F,T+1), step(T), fluent(F).
-
-% Goal check type 2
-%goal(G) :- h(sat(trustworthiness),G), step(G).
-%success :- goal(G), G <= n, step(G).
-%:- not success.
-
-% Goal check type 1
-:- not h(sat(C),n), concern(C).
-%:- not h(sat(A),n), aspect(A).
-
-% Actions
-action(tOn(X)) :- property(X).
-action(patch(X)) :- property(X).
-
-%% Preconditions
-%executable(tOn(detect_No_passenger),T) :- -h(detect_No_passenger,T), step(T).
-%executable(tOn(control_speed),T) :- -h(control_speed,T), step(T).
-%executable(patch(control_speed),T) :- -h(control_speed,T), step(T).
-
-executable(tOn(X),T) :- -h(X,T), property(X), step(T).
-executable(patch(X),T) :- -h(X,T), h(availablePatch(X),T), property(X), step(T).
-
-%% Effects
-h(X,T+1) :- occurs(tOn(X),T), step(T).
-h(X,T+1) :- occurs(patch(X),T), step(T).
-
-%:- occurs(A1,T), occurs(A2,T), A1 != A2.
-
-% ---------------------------------------------
-% ==========  Probabilistic of success ========
-% ---------------------------------------------
-prob_success(tOn(detect_No_passenger),80).
-prob_success(tOn(control_speed),70).
-prob_success(patch(control_speed),30).
-
-prob_success(tOn(firewall_setup),60).
-prob_success(tOn(two_factors_auth),30).
-prob_success(patch(two_factors_auth),20).
-
-% ---------------------------------------------
-
-h(prob_of_state(100),0).
-h(prob_of_state(P2),T2) :- step(T),step(T2), T2=T+1, 
-                           h(prob_of_state(P),T), 
-                           occurs(A,T), 
-                           prob_success(A,PSucc),
-                           P2a=P*PSucc,P2=P2a/100.
-known_prob_success(T)   :- step(T), occurs(A,T), 
-                           prob_success(A,PSucc).
-unknown_prob_success(T) :- step(T), not known_prob_success(T).
-h(prob_of_state(P),T2)  :- step(T), step(T2), T2=T+1, 
-                           h(prob_of_state(P),T), 
-                           unknown_prob_success(T).
-last_step(T):- step(T),T2=T+1, not step(T2).
-check_p(P,T) :- h(prob_of_state(P),T).
-%last_step(1). 
-#maximize{P : h(prob_of_state(P),T), last_step(T)}.
-
-% ---------------------------------------------
-% ------ Output Interface ------
-
-output_headings("Action","Prob. Success of Action","Prob. of State","Step").
-
-% Support : Identify the last step in the input
-last_step(S) :- step(S), S2=S+1, not step(S2).
-
-output(A,P,Pr,S) :- occurs(A,S), 
-                    prob_success(A,P), 
-                    action(A), 
-                    h(prob_of_state(Pr),S), 
-                    step(S).
-
-output("---Overall---","----Final---",Pr,S) :- h(prob_of_state(Pr),S), last_step(S).
-
-
-% ====== SHOW ========
-%#show output_headings/6.
-%#show output/6.
