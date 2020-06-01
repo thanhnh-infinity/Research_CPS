@@ -194,6 +194,9 @@ h(P,0) :- obs(P,true), property(P).
                 subconcern(X,Y), -h(sat(Y),T), step(T).
 h(sat(C),T) :- not -h(sat(C),T), concern(C), step(T).
 
+-h(sat(all),T)  :- 1{-h(sat(A),T); not h(sat(A),T)},
+                   aspect(A), step(T).
+h(sat(all),T)   :- not -h(sat(all),T), step(T).
 % ---------------------------------------------
 %#show -h/2.
 
