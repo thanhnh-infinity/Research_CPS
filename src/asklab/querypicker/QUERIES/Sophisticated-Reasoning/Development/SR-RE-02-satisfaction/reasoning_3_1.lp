@@ -1,5 +1,5 @@
 #include "./ontology_LKAS.lp".
-#include "./obs_init_state_LKAS.lp".
+#include "./obs_init_state_LKAS_1.lp".
 
 %==============================================
 step(0).
@@ -8,8 +8,8 @@ step(0).
 % Satisfaction Theory + Positive Impacts Degree
 %%%%%%%
 
-%--- Reasoning first step -----------TAM THOI DE CHO NAY ---> PHAI SUA
-h(use(C,P),0) :- property(P), component(C), step(0), relation(C,P).
+%--- Reasoning first step -----------
+h(use(C,P),0) :- property(P), component(C), step(0), active(C,P).
 
 %---- Reasoning Property Satisfaction by observation -----
 h(P,0) :- obs(P,true), property(P).
