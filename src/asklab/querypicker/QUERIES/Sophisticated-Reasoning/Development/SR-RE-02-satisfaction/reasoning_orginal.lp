@@ -162,19 +162,18 @@ obs(algo_DES,true).
 obs(firewall_setup,true).
 obs(ip_filtering,true).
 
-
 obs(secure_boot,true).
 
 
 obs(trusted_auth_device,true).
 obs(trusted_environment,true).
 
-obs(finger_printing,true).
+obs(finger_printing,false).
 obs(two_factors,false).
 obs(iris_scan,false).
-obs(oauth,true).
+obs(oauth,false).
 obs(opt_code,true).
-obs(email_verify,false).
+obs(email_verify,true).
 obs(ip_check,true).
 
 obs(advanced_mode,true).
@@ -229,8 +228,10 @@ component(cam).
 component(battery).
 
 %---- Define Possible Positive Relation of each component
+%--- possible pos impact sam
 possible_impacts_pos(sam,data_encrypted,encryption).
 possible_impacts_pos(sam,conn_encrypted,encryption).
+possible_impacts_pos(sam,protocol_encrypted,encryption).
 possible_impacts_pos(sam,algo_RSA,encryption).
 possible_impacts_pos(sam,algo_AES,encryption).
 possible_impacts_pos(sam,firewall_setup,verification).
@@ -240,8 +241,10 @@ possible_impacts_pos(sam,advanced_mode,integrity).
 possible_impacts_pos(sam,iris_scan,authorization).
 possible_impacts_pos(sam,two_factors,authorization).
 possible_impacts_pos(sam,finger_printing,authorization).
+possible_impacts_pos(sam,trusted_environment,authorization).
 
-
+%--- possible pos impact cam
+possible_impacts_pos(cam,algo_RSA,encryption).
 possible_impacts_pos(cam,data_encrypted,encryption).
 possible_impacts_pos(cam,conn_encrypted,encryption).
 possible_impacts_pos(cam,protocol_encrypted,encryption).
@@ -249,26 +252,74 @@ possible_impacts_pos(cam,mac_check,verification).
 possible_impacts_pos(cam,secure_boot,integrity).
 possible_impacts_pos(cam,advanced_mode,integrity).
 possible_impacts_pos(cam,trusted_auth_device,authorization).
+possible_impacts_pos(cam,trusted_environment,authorization).
 
+
+%-- possible pos impact bat
 possible_impacts_pos(battery,powerful_mode,integrity).
+possible_impacts_pos(battery,trusted_environment,authorization).
 
-%---- Current Action Relation to property----
-relation(sam,data_encrypted).
-relation(sam,algo_RSA).
-relation(sam,firewall_setup).
-relation(sam,secure_boot).
+%---- Current Active Between Components and Properties----
+active(sam,data_encrypted).
+active(sam,algo_RSA).
+active(sam,firewall_setup).
+active(sam,secure_boot).
 
-relation(cam,ip_filtering).
-relation(cam,data_encrypted).
+active(cam,ip_filtering).
+active(cam,data_encrypted).
+active(cam,conn_encrypted).
+active(cam,secure_boot).
+active(cam,trusted_auth_device).
+
+active(sam,advanced_mode).
+active(sam,finger_printing).
+active(cam,advanced_mode).
+active(battery,saving_mode).
+
+%---- Possible Relations Between Componentns and Properties ----
+%--- Possible relation cam
+relation(cam,algo_AES).
+relation(cam,algo_RSA).
+relation(cam,algo_DES).
 relation(cam,conn_encrypted).
+relation(cam,data_encrypted).
+relation(cam,protocol_encrypted).
+relation(cam,ip_filtering).
+relation(cam,mac_check).
+relation(cam,advanced_mode).
+relation(cam,basic_mode).
 relation(cam,secure_boot).
 relation(cam,trusted_auth_device).
+relation(cam,trusted_environment).
+relation(cam,iris_scan).
 
-%---- Current Action Relation to property requirement ----
+%--- Possible relation sam
+relation(sam,algo_AES).
+relation(sam,algo_RSA).
+relation(sam,algo_DES).
+relation(sam,conn_encrypted).
+relation(sam,data_encrypted).
+relation(sam,protocol_encrypted).
+relation(sam,ip_filtering).
+relation(sam,firewall_setup).
+relation(sam,mac_check).
 relation(sam,advanced_mode).
+relation(sam,basic_mode).
+relation(sam,secure_boot).
 relation(sam,finger_printing).
-relation(cam,advanced_mode).
+relation(sam,two_factors).
+relation(sam,iris_scan).
+relation(sam,oauth).
+relation(sam,opt_code).
+relation(sam,email_verify).
+relation(sam,ip_check).
+relation(sam,trusted_environment).
+
+%--- Possible relation battery
+relation(battery,powerful_mode).
+relation(battery,normal_mode).
 relation(battery,saving_mode).
+relation(battery,trusted_environment).
 
 %%%%%%%
 % Satisfaction Theory + Positive Impacts Degree
@@ -277,7 +328,7 @@ relation(battery,saving_mode).
 step(0).
 
 %--- Reasoning first step -----------
-h(use(C,P),0) :- property(P), component(C), step(T), relation(C,P).
+h(use(C,P),0) :- property(P), component(C), step(T), active(C,P).
 
 %---- Reasoning Property Satisfaction by observation -----
 h(P,0) :- obs(P,true), property(P).
@@ -387,7 +438,7 @@ likelihood_sat_sub(C,X,T)       :- step(T), concern(C),
                                    not likelihood_sat_sub_aux(C,N+1,_,T).
 %------------------------------------------------------------------
 %#show h/2.
-%#show -h/2.
+#show -h/2.
 %#show sat_formulas/4.
 %#show -sat_formulas/4.
 %#show leadTo/2.
@@ -402,4 +453,3 @@ likelihood_sat_sub(C,X,T)       :- step(T), concern(C),
 %#show no_act_pos_concern/3.
 %#show no_all_pos_concern/3.
 %#show degree_pos_temp/3.
-
