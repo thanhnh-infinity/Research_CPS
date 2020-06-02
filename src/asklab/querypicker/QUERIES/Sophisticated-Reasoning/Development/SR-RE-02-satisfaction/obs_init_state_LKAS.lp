@@ -22,3 +22,21 @@ obs(basic_mode,true).
 obs(saving_mode,true).
 obs(powerful_mode,true).
 obs(normal_mode,true).
+
+%========== Current Active Between Components and Properties ==========
+active(sam,data_encrypted).
+active(sam,algo_RSA).
+active(sam,firewall_setup).
+active(sam,secure_boot).
+
+active(cam,ip_filtering).
+active(cam,data_encrypted).
+active(cam,conn_encrypted).
+active(cam,secure_boot).
+active(cam,trusted_auth_device).
+
+% Change to see the different of LoS values
+active(sam,finger_printing).
+active(sam,basic_mode).
+active(cam,basic_mode).
+active(battery,powerful_mode).

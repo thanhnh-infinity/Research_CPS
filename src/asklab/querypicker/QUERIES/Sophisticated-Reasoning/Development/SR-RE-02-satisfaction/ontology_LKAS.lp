@@ -235,23 +235,6 @@ relation(battery,normal_mode).
 relation(battery,saving_mode).
 relation(battery,trusted_environment).
 
-%---- Current Active Between Components and Properties----
-active(sam,data_encrypted).
-active(sam,algo_RSA).
-active(sam,firewall_setup).
-active(sam,secure_boot).
-
-active(cam,ip_filtering).
-active(cam,data_encrypted).
-active(cam,conn_encrypted).
-active(cam,secure_boot).
-active(cam,trusted_auth_device).
-
-active(sam,advanced_mode).
-active(sam,finger_printing).
-active(cam,advanced_mode).
-active(battery,saving_mode).
-
 %---- Define Possible Positive Impact Relation of each component
 % possible pos impact sam
 possible_impacts_pos(sam,data_encrypted,encryption).

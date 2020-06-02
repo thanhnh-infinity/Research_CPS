@@ -271,6 +271,7 @@ active(cam,conn_encrypted).
 active(cam,secure_boot).
 active(cam,trusted_auth_device).
 
+% Change to see the different of LoS values
 active(sam,advanced_mode).
 active(sam,finger_printing).
 active(cam,advanced_mode).
