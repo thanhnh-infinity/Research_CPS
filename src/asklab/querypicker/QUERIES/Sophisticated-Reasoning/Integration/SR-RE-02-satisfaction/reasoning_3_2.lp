@@ -1,33 +1,39 @@
-#include "./ontology_LKAS_1.lp".
+#include "./ontology_LKAS.lp".
+#include "./obs_init_state_LKAS_3.lp".
+
+%==============================================
+step(0).
 
 %%%%%%%
 % Satisfaction Theory + Positive Impacts Degree
 %%%%%%%
 
-step(0).
+%--- Reasoning first step -----
+h(use(C,P),0) :- property(P), component(C), step(0), active(C,P).
 
-%--- Reasoning first step -----------
-h(use(C,P),0) :- property(P), component(C), step(T), relation(C,P).
-h(use(C,R),0) :- requirement(R), component(C), step(T), relation(C,R).
-
-%---- Traditiona Reasoning about Property and Concern Satisfaction ---
+%---- Reasoning Property Satisfaction by observation -----
 h(P,0) :- obs(P,true), property(P).
 -h(P,0) :- obs(P,false), property(P).
 
--h(sat(C),T) :- -h(P,T), property(P), step(T), addressedBy(C,P), step(T).
+%---- Reasoning Concern Satisfaction by Minimal Formulas -----
+-sat_formulas(C,F,G,T) :- concern(C), property(P), formulas(G), 
+                          func_dec(F,C), addressedBy(C,P), member(P,G), addressToFunc(C,F,G),
+                          not h(P,T), step(T).
+sat_formulas(C,F,G,T) :- concern(C), formulas(G), func_dec(F,C), addressToFunc(C,F,G),
+                         not -sat_formulas(C,F,G,T), step(T).
+-h(sat(C,F),T) :- concern(C), func_dec(F,C), step(T), not sat_formulas(C,F,_,T).
+h(sat(C,F),T)  :- not -h(sat(C,F),T), step(T), func_dec(F,C).
+-h(sat(C),T)   :- concern(C), func_dec(F,C), not h(sat(C,F),T), step(T).
+-h(sat(C),T)   :- concern(C), func_dec(F,C), -h(sat(C,F),T), step(T).
+
+%---- Traditiona Reasoning about Concern Satisfaction ---                       
+-h(sat(C),T) :- -h(P,T), property(P), step(T),  addressedBy(C,P), 
+                 not member(P,_).
 -h(sat(X),T) :- concern(X), concern(Y), subconcern(X,Y), not h(sat(Y),T), step(T).
 -h(sat(X),T) :- concern(X), concern(Y), subconcern(X,Y), -h(sat(Y),T), step(T).
 h(sat(C),T) :- not -h(sat(C),T), concern(C), step(T).
 
-%---- Reasoning Property Satisfaction by Property Requirements -----
-%leadTo(P,G) :- property(P), obs(P,unknown), group(G), N = #count{R : suppBy(R,P,G), obs(R,true)}, M = #count{R : suppBy(R,P,G)}, M = N, M > 0.
 
-leadTo(P,G) :- property(P), obs(P,unknown), group(G), N = #count{R : suppBy(R,P,G), not obs(R,true)}, M = #count{R : suppBy(R,P,G)}, M > 0, N = 0. 
-
-h(P,0) :- leadTo(P,G), property(P), group(G).
--h(P,0) :- not h(P,0), property(P).
-
-%---- Reasoning Property Satisfaction by Property Requirements ----
 
 %%%%% --- Default Assignment PID values for Property Requirements --
 %deg_req(advanced_mode,operation_mode,8,0).
@@ -81,25 +87,15 @@ h(P,0) :- leadTo(P,G), property(P), group(G).
 %                     N<=0, step(T).
 
 
-no_all_pos_concern(C,N1+N2,T) :- concern(C), step(T), 
-                                 N1=#count{R,Com : component(Com),
-                                           requirement(R),property(P),
-                                           possible_rel_pos(Com,R),
-                                           addressedBy(C,P), suppBy(R,P,_)}, 
-                                 N2=#count{P,Com : component(Com),property(P),
-                                           possible_rel_pos(Com,P),
-                                           addressedBy(C,P)}.
+no_all_pos_concern(C,N1,T) :- concern(C), step(T), 
+                              N1=#count{P,Com : component(Com),property(P),
+                                                possible_impacts_pos(Com,P,C),
+                                                addressedBy(C,P)}.
 
-no_act_pos_concern(C,N1+N2,T) :- concern(C), step(T), 
-                                 N1=#count{R,Com : component(Com),
-                                           requirement(R),property(P),
-                                           possible_rel_pos(Com,R),
-                                           addressedBy(C,P), 
-                                           suppBy(R,P,_), h(use(Com,R),T)
-                                           }, 
-                                 N2=#count{P,Com : component(Com),property(P),
-                                           possible_rel_pos(Com,P),
-                                           addressedBy(C,P), h(use(Com,P),T)}.
+no_act_pos_concern(C,N2,T) :- concern(C), step(T), 
+                              N2=#count{P,Com : component(Com),property(P),
+                                                possible_impacts_pos(Com,P,C),
+                                                addressedBy(C,P), h(use(Com,P),T)}.
 
 degree_pos(C,1,T) :- step(T), concern(C), no_all_pos_concern(C,0,T).
 degree_pos(C,N1*100/N2,T) :- concern(C), no_act_pos_concern(C,N1,T), no_all_pos_concern(C,N2,T), N2!=0.
@@ -123,7 +119,9 @@ likelihood_sat_sub(C,X,T)       :- step(T), concern(C),
                                    not likelihood_sat_sub_aux(C,N+1,_,T).
 %------------------------------------------------------------------
 %#show h/2.
-%#show -h/2.
+#show -h/2.
+%#show sat_formulas/4.
+%#show -sat_formulas/4.
 %#show leadTo/2.
 %#show deg/4.
 %#show order/3.
@@ -134,5 +132,6 @@ likelihood_sat_sub(C,X,T)       :- step(T), concern(C),
 %#show order_requirement/3.
 %#show deg_prop_imp_req_aux/4.
 %#show no_act_pos_concern/3.
+%#show no_all_pos_concern/3.
 %#show degree_pos_temp/3.
 

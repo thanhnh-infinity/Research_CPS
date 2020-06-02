@@ -10,15 +10,15 @@ obs(ip_filtering,true).
 obs(secure_boot,true).
 obs(trusted_auth_device,true).
 obs(trusted_environment,true).
-obs(finger_printing,true).
+obs(finger_printing,false).
 obs(two_factors,false).
 obs(iris_scan,false).
-obs(oauth,true).
+obs(oauth,false).
 obs(opt_code,true).
 obs(email_verify,true).
 obs(ip_check,true).
-obs(advanced_mode,false).
-obs(basic_mode,false).
+obs(advanced_mode,true).
+obs(basic_mode,true).
 obs(saving_mode,true).
 obs(powerful_mode,true).
 obs(normal_mode,true).
@@ -37,6 +37,6 @@ active(cam,trusted_auth_device).
 
 % Change to see the different of LoS values
 active(sam,finger_printing).
-active(sam,advanced_mode).
-active(cam,advanced_mode).
-active(battery,saving_mode).
+active(sam,basic_mode).
+active(cam,basic_mode).
+active(battery,powerful_mode).
