@@ -1,5 +1,5 @@
 #include "./ontology_LKAS.lp".
-#include "./obs_init_state_LKAS_3.lp".
+#include "./obs_init_state_LKAS_4.lp".
 
 %==============================================
 step(0).
@@ -14,6 +14,7 @@ h(use(C,P),0) :- property(P), component(C), step(0), active(C,P).
 %---- Reasoning Property Satisfaction by observation -----
 h(P,0) :- obs(P,true), property(P).
 -h(P,0) :- obs(P,false), property(P).
+h(P,0) :- property(P), not obs(P,false).
 
 %---- Reasoning Concern Satisfaction by Minimal Formulas -----
 -sat_formulas(C,F,G,T) :- concern(C), property(P), formulas(G), 
