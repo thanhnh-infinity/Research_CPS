@@ -1,5 +1,5 @@
-#include "./ontology_LKAS.lp".
-#include "./obs_init_state_LKAS_1.lp".
+
+
 
 %==============================================
 step(0).
@@ -34,4 +34,4 @@ h(sat(C,F),T)  :- not -h(sat(C,F),T), step(T), func_dec(F,C).
 h(sat(C),T) :- not -h(sat(C),T), concern(C), step(T).
 
 %=============================
-#show -h/2.
+%#show -h/2.

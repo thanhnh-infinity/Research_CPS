@@ -173,6 +173,8 @@ FULL-step4-ext.txt
 
 *LBL
 <html><u><font color='red'>Sophisticated Reasoning: LKAS Lane-keeping Assistant System</font></u></html>
+*LBL
+<html><i><font color='blue'>Sophisticated Reasoning 01></i></html>
 *QUERY
 SR-RE-01: Most/Least Trustworthy Component
 EX5-sr-lkas
@@ -198,5 +200,57 @@ SR-RE-01: Mitigation Strategy: Highest chance to succeed (Probabilistic Reasonin
 EX5-sr-lkas
 clingo (all models)
 FULL-step4-ext.txt
+*LBL
+<html><i><font color='blue'>Sophisticated Reasoning 02</i></html>
+*QUERY
+SR-RE-02: Satisfaction Reasoning w. Decomposition Function (Case 0)
+EX5-sr-lkas
+clingo (all models)
+FULL-SR-ER-02-01-00.txt
+*QUERY
+SR-RE-02: Satisfaction Reasoning w. Decomposition Function (Case 1)
+EX5-sr-lkas
+clingo (all models)
+FULL-SR-ER-02-01-01.txt
+*QUERY
+SR-RE-02: Satisfaction Reasoning w. Decomposition Function (Case 2)
+EX5-sr-lkas
+clingo (all models)
+FULL-SR-ER-02-01-02.txt
+*QUERY
+SR-RE-02: Satisfaction Reasoning w. Decomposition Function (Case 3)
+EX5-sr-lkas
+clingo (all models)
+FULL-SR-ER-02-01-03.txt
+*QUERY
+SR-RE-02: Satisfaction Reasoning w. Decomposition Function (Case 4)
+EX5-sr-lkas
+clingo (all models)
+FULL-SR-ER-02-01-04.txt
+*QUERY
+SR-RE-02: Likelihood of Concern Satisfaction (Case 0)
+EX5-sr-lkas
+clingo (all models)
+FULL-SR-ER-02-02-00.txt
+*QUERY
+SR-RE-02: Likelihood of Concern Satisfaction (Case 1)
+EX5-sr-lkas
+clingo (all models)
+FULL-SR-ER-02-02-01.txt
+*QUERY
+SR-RE-02: Likelihood of Concern Satisfaction (Case 2)
+EX5-sr-lkas
+clingo (all models)
+FULL-SR-ER-02-02-02.txt
+*QUERY
+SR-RE-02: Likelihood of Concern Satisfaction (Case 3)
+EX5-sr-lkas
+clingo (all models)
+FULL-SR-ER-02-02-03.txt
+*QUERY
+SR-RE-02: Likelihood of Concern Satisfaction (Case 4)
+EX5-sr-lkas
+clingo (all models)
+FULL-SR-ER-02-02-04.txt
 *LBL
  

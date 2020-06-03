@@ -8,20 +8,20 @@ obs(algo_DES,true).
 obs(firewall_setup,true).
 obs(ip_filtering,true).
 obs(secure_boot,true).
-obs(trusted_auth_device,true).
+obs(trusted_auth_device,false).
 obs(trusted_environment,true).
-obs(finger_printing,false).
+obs(finger_printing,true).
 obs(two_factors,false).
 obs(iris_scan,false).
-obs(oauth,false).
+obs(oauth,true).
 obs(opt_code,true).
 obs(email_verify,true).
 obs(ip_check,true).
 obs(advanced_mode,true).
 obs(basic_mode,true).
-obs(saving_mode,true).
-obs(powerful_mode,true).
-obs(normal_mode,true).
+obs(saving_mode,false).
+obs(powerful_mode,false).
+obs(normal_mode,false).
 
 %========== Current Active Between Components and Properties ==========
 active(sam,data_encrypted).
