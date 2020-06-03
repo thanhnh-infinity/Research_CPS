@@ -7,11 +7,11 @@
 #const n = 2.
 step(0..n).
 %=====Satisfaction Reasoning======
-
 %h(P,0) :- obs(P,true), property(P).
 -h(P,0) :- obs(P,false).
 %h(P,0) :- obs(availablePatch(P),true), property(P).
 h(P,0) :- obs(P,true).
+h(P,0) :- property(P), not obs(P,false).
 
 -h(sat(C),T) :- -h(P,T), property(P), step(T), 
                 addressedBy(C,P).

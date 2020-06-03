@@ -6,9 +6,9 @@
 %=================================
 step(0).
 %=====Satisfaction Reasoning======
-
 h(P,0) :- obs(P,true), property(P).
 -h(P,0) :- obs(P,false), property(P).
+h(P,0) :- property(P), not obs(P,false).
 
 -h(sat(C),T) :- -h(P,T), property(P), step(T), 
                 addressedBy(C,P).
