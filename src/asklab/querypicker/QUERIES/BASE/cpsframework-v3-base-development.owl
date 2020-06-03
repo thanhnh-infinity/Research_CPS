@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="http://www.asklab.tk/ontologies/CPS-Framework#"
      xml:base="http://www.asklab.tk/ontologies/CPS-Framework"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:CPS-Framework="http://www.asklab.tk/ontologies/CPS-Framework#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:CPS-Framework="http://www.asklab.tk/ontologies/CPS-Framework#">
     <owl:Ontology rdf:about="http://www.asklab.tk/ontologies/CPS-Framework"/>
     
 
@@ -541,6 +541,8 @@
 
     <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Confidentiality">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
+        <includesConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Encryption"/>
+        <includesConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Verification"/>
         <relevantToFunc rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#bc1"/>
     </owl:NamedIndividual>
     
@@ -582,6 +584,15 @@
 
     <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Controllability">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Controls -->
+
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Controls">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
+        <includesConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization"/>
     </owl:NamedIndividual>
     
 
@@ -693,6 +704,22 @@
     
 
 
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Dissociability -->
+
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Dissociability">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Encryption -->
+
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Encryption">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.asklab.tk/ontologies/CPS-Framework#Engineerability -->
 
     <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Engineerability">
@@ -717,6 +744,14 @@
     
 
 
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Frequency -->
+
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Frequency">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.asklab.tk/ontologies/CPS-Framework#Functional -->
 
     <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Functional">
@@ -734,6 +769,23 @@
         <includesConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Sensing"/>
         <includesConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#StatesAndModes"/>
         <includesConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Uncertainty"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Functional_Safety -->
+
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Functional_Safety">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
+        <includesConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Hazard"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Functional_Stability -->
+
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Functional_Stability">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
     </owl:NamedIndividual>
     
 
@@ -763,6 +815,17 @@
     
 
 
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Hazard -->
+
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Hazard">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
+        <includesConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Controllability"/>
+        <includesConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Frequency"/>
+        <includesConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Severity"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.asklab.tk/ontologies/CPS-Framework#Human -->
 
     <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Human">
@@ -776,6 +839,14 @@
     <!-- http://www.asklab.tk/ontologies/CPS-Framework#HumanFactors -->
 
     <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#HumanFactors">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Human_Safety -->
+
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Human_Safety">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
     </owl:NamedIndividual>
     
@@ -1000,6 +1071,16 @@
 
     <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#PhysicalSecurity">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
+        <includesConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Physical_Integrity"/>
+        <includesConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Stability"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Physical_Integrity -->
+
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Physical_Integrity">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
     </owl:NamedIndividual>
     
 
@@ -1028,10 +1109,22 @@
     
 
 
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Predictability -->
+
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Predictability">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
+        <includesConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Controls"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.asklab.tk/ontologies/CPS-Framework#Privacy -->
 
     <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Privacy">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
+        <includesConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Dissociability"/>
+        <includesConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Manageability"/>
+        <includesConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Predictability"/>
     </owl:NamedIndividual>
     
 
@@ -1186,6 +1279,8 @@
 
     <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Safety">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
+        <includesConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Functional_Safety"/>
+        <includesConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Human_Safety"/>
     </owl:NamedIndividual>
     
 
@@ -1212,6 +1307,23 @@
 
     <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Sensing">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Severity -->
+
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Severity">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Stability -->
+
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Stability">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
+        <includesConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Functional_Stability"/>
     </owl:NamedIndividual>
     
 
@@ -1553,5 +1665,5 @@
 
 
 
-<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
 

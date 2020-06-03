@@ -15,6 +15,11 @@ input("cpsf:HumanFactors","rdf:type","cpsf:Concern").
 input("cpsf:HumanFactors","rdf:type","owl:NamedIndividual").
 input("cpsf:Cost","rdf:type","cpsf:Concern").
 input("cpsf:Cost","rdf:type","owl:NamedIndividual").
+input("cpsf:Hazard","cpsf:includesConcern","cpsf:Severity").
+input("cpsf:Hazard","cpsf:includesConcern","cpsf:Frequency").
+input("cpsf:Hazard","cpsf:includesConcern","cpsf:Controllability").
+input("cpsf:Hazard","rdf:type","cpsf:Concern").
+input("cpsf:Hazard","rdf:type","owl:NamedIndividual").
 input("cpsf:ir0002","rdfs:comment","cpsf:Integrity is addressed by property cpsf:Input1SecBoot").
 input("cpsf:ir0002","cpsf:hasCondition","cpsf:c0002_01").
 input("cpsf:ir0002","cpsf:addressesPolarity","cpsf:positive").
@@ -57,11 +62,17 @@ input("cpsf:Environment","rdf:type","owl:NamedIndividual").
 input("cpsf:refinedInto","rdfs:range","cpsf:Function").
 input("cpsf:refinedInto","rdfs:domain","cpsf:Function").
 input("cpsf:refinedInto","rdf:type","owl:ObjectProperty").
+input("cpsf:Severity","rdf:type","cpsf:Concern").
+input("cpsf:Severity","rdf:type","owl:NamedIndividual").
 input("cpsf:Integrity","cpsf:relevantToFunc","cpsf:bc1").
 input("cpsf:Integrity","rdf:type","cpsf:Concern").
 input("cpsf:Integrity","rdf:type","owl:NamedIndividual").
 input("cpsf:Measurability","rdf:type","cpsf:Concern").
 input("cpsf:Measurability","rdf:type","owl:NamedIndividual").
+input("cpsf:Physical_Integrity","rdf:type","cpsf:Concern").
+input("cpsf:Physical_Integrity","rdf:type","owl:NamedIndividual").
+input("cpsf:Encryption","rdf:type","cpsf:Concern").
+input("cpsf:Encryption","rdf:type","owl:NamedIndividual").
 input("cpsf:Discoverability","rdf:type","cpsf:Concern").
 input("cpsf:Discoverability","rdf:type","owl:NamedIndividual").
 input("cpsf:Function","rdfs:subClassOf","cpsf:CPSFrameworkConcept").
@@ -81,14 +92,14 @@ input("cpsf:Input1SecBoot","rdf:type","cpsf:Property").
 input("cpsf:Input1SecBoot","rdf:type","owl:NamedIndividual").
 input("cpsf:positive","rdf:type","cpsf:ImpactPolarity").
 input("cpsf:positive","rdf:type","owl:NamedIndividual").
-input("cpsf:DeviceIdentification","rdf:type","cpsf:Concern").
-input("cpsf:DeviceIdentification","rdf:type","owl:NamedIndividual").
-input("cpsf:Analytics","rdf:type","cpsf:Concern").
-input("cpsf:Analytics","rdf:type","owl:NamedIndividual").
 input("cpsf:c0005_01","cpsf:conditionProperty","cpsf:SAMEncryptedMem").
 input("cpsf:c0005_01","cpsf:conditionPolarity","cpsf:positive").
 input("cpsf:c0005_01","rdf:type","cpsf:Condition").
 input("cpsf:c0005_01","rdf:type","owl:NamedIndividual").
+input("cpsf:Analytics","rdf:type","cpsf:Concern").
+input("cpsf:Analytics","rdf:type","owl:NamedIndividual").
+input("cpsf:DeviceIdentification","rdf:type","cpsf:Concern").
+input("cpsf:DeviceIdentification","rdf:type","owl:NamedIndividual").
 input("cpsf:RelatedData","rdf:type","cpsf:Concern").
 input("cpsf:RelatedData","rdf:type","owl:NamedIndividual").
 input("cpsf:ir0005","rdfs:comment","cpsf:Confidentiality is addressed by property cpsf:SAMEncryptedMem").
@@ -129,8 +140,13 @@ input("cpsf:Synchronization","rdf:type","cpsf:Concern").
 input("cpsf:Synchronization","rdf:type","owl:NamedIndividual").
 input("cpsf:TimeIntervalAndLatencyControl","rdf:type","cpsf:Concern").
 input("cpsf:TimeIntervalAndLatencyControl","rdf:type","owl:NamedIndividual").
+input("cpsf:Safety","cpsf:includesConcern","cpsf:Human_Safety").
+input("cpsf:Safety","cpsf:includesConcern","cpsf:Functional_Safety").
 input("cpsf:Safety","rdf:type","cpsf:Concern").
 input("cpsf:Safety","rdf:type","owl:NamedIndividual").
+input("cpsf:Privacy","cpsf:includesConcern","cpsf:Predictability").
+input("cpsf:Privacy","cpsf:includesConcern","cpsf:Manageability").
+input("cpsf:Privacy","cpsf:includesConcern","cpsf:Dissociability").
 input("cpsf:Privacy","rdf:type","cpsf:Concern").
 input("cpsf:Privacy","rdf:type","owl:NamedIndividual").
 input("cpsf:ConfigurationForLeastFFunctionality","rdf:type","cpsf:Concern").
@@ -140,6 +156,8 @@ input("cpsf:Complexity","rdf:type","owl:NamedIndividual").
 input("cpsf:Actuation","rdf:type","cpsf:Concern").
 input("cpsf:Actuation","rdf:type","owl:NamedIndividual").
 input("cpsf:Confidentiality","cpsf:relevantToFunc","cpsf:bc1").
+input("cpsf:Confidentiality","cpsf:includesConcern","cpsf:Verification").
+input("cpsf:Confidentiality","cpsf:includesConcern","cpsf:Encryption").
 input("cpsf:Confidentiality","rdf:type","cpsf:Concern").
 input("cpsf:Confidentiality","rdf:type","owl:NamedIndividual").
 input("cpsf:uc1","rdf:type","cpsf:UseCase").
@@ -150,8 +168,13 @@ input("cpsf:Usability","rdf:type","cpsf:Concern").
 input("cpsf:Usability","rdf:type","owl:NamedIndividual").
 input("cpsf:TimeOfData","rdf:type","cpsf:Concern").
 input("cpsf:TimeOfData","rdf:type","owl:NamedIndividual").
+input("cpsf:Predictability","cpsf:includesConcern","cpsf:Controls").
+input("cpsf:Predictability","rdf:type","cpsf:Concern").
+input("cpsf:Predictability","rdf:type","owl:NamedIndividual").
 input("cpsf:Producibility","rdf:type","cpsf:Concern").
 input("cpsf:Producibility","rdf:type","owl:NamedIndividual").
+input("cpsf:Frequency","rdf:type","cpsf:Concern").
+input("cpsf:Frequency","rdf:type","owl:NamedIndividual").
 input("cpsf:Planning","rdf:type","cpsf:Concern").
 input("cpsf:Planning","rdf:type","owl:NamedIndividual").
 input("cpsf:hasCondition","rdfs:comment","pg 15").
@@ -169,6 +192,9 @@ input("cpsf:Aggregation_Disaggregation","rdf:type","cpsf:Concern").
 input("cpsf:Aggregation_Disaggregation","rdf:type","owl:NamedIndividual").
 input("cpsf:Test","rdfs:subClassOf","cpsf:Property").
 input("cpsf:Test","rdf:type","owl:Class").
+input("cpsf:Controls","cpsf:includesConcern","cpsf:Authorization").
+input("cpsf:Controls","rdf:type","cpsf:Concern").
+input("cpsf:Controls","rdf:type","owl:NamedIndividual").
 input("cpsf:Scenario","rdf:type","cpsf:Scenario").
 input("cpsf:Scenario","rdf:type","owl:NamedIndividual").
 input("cpsf:Scenario","rdfs:subClassOf","cpsf:Function").
@@ -195,10 +221,14 @@ input("cpsf:Sensing","rdf:type","cpsf:Concern").
 input("cpsf:Sensing","rdf:type","owl:NamedIndividual").
 input("cpsf:Deployability","rdf:type","cpsf:Concern").
 input("cpsf:Deployability","rdf:type","owl:NamedIndividual").
+input("cpsf:PhysicalSecurity","cpsf:includesConcern","cpsf:Stability").
+input("cpsf:PhysicalSecurity","cpsf:includesConcern","cpsf:Physical_Integrity").
 input("cpsf:PhysicalSecurity","rdf:type","cpsf:Concern").
 input("cpsf:PhysicalSecurity","rdf:type","owl:NamedIndividual").
 input("cpsf:Monitorability","rdf:type","cpsf:Concern").
 input("cpsf:Monitorability","rdf:type","owl:NamedIndividual").
+input("cpsf:Dissociability","rdf:type","cpsf:Concern").
+input("cpsf:Dissociability","rdf:type","owl:NamedIndividual").
 input("cpsf:Provenance","rdf:type","cpsf:Concern").
 input("cpsf:Provenance","rdf:type","owl:NamedIndividual").
 input("cpsf:Resilience","rdf:type","cpsf:Concern").
@@ -206,6 +236,10 @@ input("cpsf:Resilience","rdf:type","owl:NamedIndividual").
 input("cpsf:Functionality","cpsf:relevantToFunc","cpsf:bc1").
 input("cpsf:Functionality","rdf:type","cpsf:Concern").
 input("cpsf:Functionality","rdf:type","owl:NamedIndividual").
+input("cpsf:c0004_01","cpsf:conditionProperty","cpsf:Input1Modes").
+input("cpsf:c0004_01","cpsf:conditionPolarity","cpsf:positive").
+input("cpsf:c0004_01","rdf:type","cpsf:Condition").
+input("cpsf:c0004_01","rdf:type","owl:NamedIndividual").
 input("cpsf:Timing","cpsf:includesConcern","cpsf:TimeIntervalAndLatencyControl").
 input("cpsf:Timing","cpsf:includesConcern","cpsf:TimeAwareness").
 input("cpsf:Timing","cpsf:includesConcern","cpsf:Synchronization").
@@ -213,10 +247,6 @@ input("cpsf:Timing","cpsf:includesConcern","cpsf:ManagingTimingAndLatency").
 input("cpsf:Timing","cpsf:includesConcern","cpsf:LogicalTime").
 input("cpsf:Timing","rdf:type","cpsf:Aspect").
 input("cpsf:Timing","rdf:type","owl:NamedIndividual").
-input("cpsf:c0004_01","cpsf:conditionProperty","cpsf:Input1Modes").
-input("cpsf:c0004_01","cpsf:conditionPolarity","cpsf:positive").
-input("cpsf:c0004_01","rdf:type","cpsf:Condition").
-input("cpsf:c0004_01","rdf:type","owl:NamedIndividual").
 input("cpsf:Requirement","rdfs:subClassOf","cpsf:Property").
 input("cpsf:Requirement","rdf:type","owl:Class").
 input("cpsf:Security","cpsf:includesConcern","cpsf:PhysicalSecurity").
@@ -236,6 +266,8 @@ input("cpsf:LocationOfData","rdf:type","cpsf:Concern").
 input("cpsf:LocationOfData","rdf:type","owl:NamedIndividual").
 input("cpsf:Application","rdfs:subClassOf","cpsf:CPSFrameworkConcept").
 input("cpsf:Application","rdf:type","owl:Class").
+input("cpsf:Functional_Stability","rdf:type","cpsf:Concern").
+input("cpsf:Functional_Stability","rdf:type","owl:NamedIndividual").
 input("cpsf:ir0006","rdfs:comment","cpsf:Confidentiality is addressed by property cpsf:Input1EncryptedMem").
 input("cpsf:ir0006","cpsf:hasCondition","cpsf:c0006_01").
 input("cpsf:ir0006","cpsf:addressesPolarity","cpsf:positive").
@@ -262,6 +294,8 @@ input("cpsf:Polymorphism","rdf:type","owl:NamedIndividual").
 input("cpsf:app1","cpsf:hasBC","cpsf:bc1").
 input("cpsf:app1","rdf:type","cpsf:Application").
 input("cpsf:app1","rdf:type","owl:NamedIndividual").
+input("cpsf:Human_Safety","rdf:type","cpsf:Concern").
+input("cpsf:Human_Safety","rdf:type","owl:NamedIndividual").
 input("cpsf:TimeToMarket","rdf:type","cpsf:Concern").
 input("cpsf:TimeToMarket","rdf:type","owl:NamedIndividual").
 input("cpsf:Input1EncryptedMem","rdfs:comment","The sensor array uses encrypted memory").
@@ -432,6 +466,9 @@ input("cpsf:negative","rdf:type","cpsf:ImpactPolarity").
 input("cpsf:negative","rdf:type","owl:NamedIndividual").
 input("cpsf:Velocity","rdf:type","cpsf:Concern").
 input("cpsf:Velocity","rdf:type","owl:NamedIndividual").
+input("cpsf:Stability","cpsf:includesConcern","cpsf:Functional_Stability").
+input("cpsf:Stability","rdf:type","cpsf:Concern").
+input("cpsf:Stability","rdf:type","owl:NamedIndividual").
 input("cpsf:c0006_01","cpsf:conditionProperty","cpsf:Input1EncryptedMem").
 input("cpsf:c0006_01","cpsf:conditionPolarity","cpsf:positive").
 input("cpsf:c0006_01","rdf:type","cpsf:Condition").
@@ -510,6 +547,9 @@ input("cpsf:Data","cpsf:includesConcern","cpsf:Identity").
 input("cpsf:Data","cpsf:includesConcern","cpsf:DataSemantics").
 input("cpsf:Data","rdf:type","cpsf:Aspect").
 input("cpsf:Data","rdf:type","owl:NamedIndividual").
+input("cpsf:Functional_Safety","cpsf:includesConcern","cpsf:Hazard").
+input("cpsf:Functional_Safety","rdf:type","cpsf:Concern").
+input("cpsf:Functional_Safety","rdf:type","owl:NamedIndividual").
 input("cpsf:DataIntegrity","rdf:type","cpsf:Concern").
 input("cpsf:DataIntegrity","rdf:type","owl:NamedIndividual").
 input("cpsf:Condition","rdfs:subClassOf","cpsf:ImpactRuleConcepts").
