@@ -44,6 +44,9 @@ input("cpsf:RealizationFacet","rdf:type","owl:NamedIndividual").
 input("cpsf:Sign_In_Func","cpsf:decomposition_function_of","cpsf:Authorization").
 input("cpsf:Sign_In_Func","rdf:type","cpsf:DecompositionFunction").
 input("cpsf:Sign_In_Func","rdf:type","owl:NamedIndividual").
+input("cpsf:setUpForComponent","rdfs:range","cpsf:Component").
+input("cpsf:setUpForComponent","rdfs:domain","cpsf:InitActiveComponent").
+input("cpsf:setUpForComponent","rdf:type","owl:ObjectProperty").
 input("cpsf:Communication","rdf:type","cpsf:Concern").
 input("cpsf:Communication","rdf:type","owl:NamedIndividual").
 input("cpsf:OperationsOnData","cpsf:includesConcern","cpsf:Transformation").
@@ -88,6 +91,11 @@ input("cpsf:Two_Factors","rdf:type","cpsf:Property").
 input("cpsf:Two_Factors","rdf:type","owl:NamedIndividual").
 input("cpsf:Measurability","rdf:type","cpsf:Concern").
 input("cpsf:Measurability","rdf:type","owl:NamedIndividual").
+input("cpsf:pos_imp_sam_protocol_encrypted","cpsf:positiveImpactTo","cpsf:Encryption").
+input("cpsf:pos_imp_sam_protocol_encrypted","cpsf:confProperty","cpsf:Protocol_Encrypted").
+input("cpsf:pos_imp_sam_protocol_encrypted","cpsf:confComponent","cpsf:SAM").
+input("cpsf:pos_imp_sam_protocol_encrypted","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_sam_protocol_encrypted","rdf:type","owl:NamedIndividual").
 input("cpsf:Physical_Integrity","rdf:type","cpsf:Concern").
 input("cpsf:Physical_Integrity","rdf:type","owl:NamedIndividual").
 input("cpsf:Conn_Encrypted","cpsf:addConcern","cpsf:Encryption").
@@ -105,6 +113,11 @@ input("cpsf:Function","rdf:type","owl:Class").
 input("cpsf:addressesPolarity","rdfs:range","cpsf:ImpactPolarity").
 input("cpsf:addressesPolarity","rdfs:domain","cpsf:ImpactRule").
 input("cpsf:addressesPolarity","rdf:type","owl:ObjectProperty").
+input("cpsf:pos_imp_cam_data_encrypted","cpsf:positiveImpactTo","cpsf:Encryption").
+input("cpsf:pos_imp_cam_data_encrypted","cpsf:confProperty","cpsf:Data_Encrypted").
+input("cpsf:pos_imp_cam_data_encrypted","cpsf:confComponent","cpsf:CAM").
+input("cpsf:pos_imp_cam_data_encrypted","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_cam_data_encrypted","rdf:type","owl:NamedIndividual").
 input("cpsf:SAMEncryptedMem","rdfs:comment","SAM uses encrypted memory").
 input("cpsf:SAMEncryptedMem","cpsf:atomicStatement","encrypted_mem_sam").
 input("cpsf:SAMEncryptedMem","cpsf:hasType","cpsf:PropertyType_Assertion").
@@ -114,6 +127,11 @@ input("cpsf:Input1SecBoot","cpsf:atomicStatement","sec_boot_input1").
 input("cpsf:Input1SecBoot","cpsf:hasType","cpsf:PropertyType_Assertion").
 input("cpsf:Input1SecBoot","rdf:type","cpsf:Property").
 input("cpsf:Input1SecBoot","rdf:type","owl:NamedIndividual").
+input("cpsf:initial_configuration_0","cpsf:obsFalse","cpsf:Normal_Mode").
+input("cpsf:initial_configuration_0","cpsf:obsFalse","cpsf:IRIS_Scan").
+input("cpsf:initial_configuration_0","cpsf:obsFalse","cpsf:Two_Factors").
+input("cpsf:initial_configuration_0","rdf:type","cpsf:InitialConfiguration").
+input("cpsf:initial_configuration_0","rdf:type","owl:NamedIndividual").
 input("cpsf:Firewall_Setup","cpsf:addConcern","cpsf:Verification").
 input("cpsf:Firewall_Setup","rdf:type","cpsf:Property").
 input("cpsf:Firewall_Setup","rdf:type","owl:NamedIndividual").
@@ -150,6 +168,11 @@ input("cpsf:Authentication","rdf:type","cpsf:Concern").
 input("cpsf:Authentication","rdf:type","owl:NamedIndividual").
 input("cpsf:DataQuality","rdf:type","cpsf:Concern").
 input("cpsf:DataQuality","rdf:type","owl:NamedIndividual").
+input("cpsf:init_active_battery","cpsf:activeToProperty","cpsf:Trusted_Environment").
+input("cpsf:init_active_battery","cpsf:activeToProperty","cpsf:Saving_Mode").
+input("cpsf:init_active_battery","cpsf:setUpForComponent","cpsf:BATTERY").
+input("cpsf:init_active_battery","rdf:type","cpsf:InitActiveComponent").
+input("cpsf:init_active_battery","rdf:type","owl:NamedIndividual").
 input("cpsf:Property","rdfs:comment","pg 15").
 input("cpsf:Property","rdfs:subClassOf","cpsf:CPSFrameworkConcept").
 input("cpsf:Property","rdf:type","owl:Class").
@@ -207,6 +230,11 @@ input("cpsf:Confidentiality","cpsf:includesConcern","cpsf:Verification").
 input("cpsf:Confidentiality","cpsf:includesConcern","cpsf:Encryption").
 input("cpsf:Confidentiality","rdf:type","cpsf:Concern").
 input("cpsf:Confidentiality","rdf:type","owl:NamedIndividual").
+input("cpsf:pos_imp_sam_firewall_setup","cpsf:positiveImpactTo","cpsf:Verification").
+input("cpsf:pos_imp_sam_firewall_setup","cpsf:confProperty","cpsf:Firewall_Setup").
+input("cpsf:pos_imp_sam_firewall_setup","cpsf:confComponent","cpsf:SAM").
+input("cpsf:pos_imp_sam_firewall_setup","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_sam_firewall_setup","rdf:type","owl:NamedIndividual").
 input("cpsf:uc1","rdf:type","cpsf:UseCase").
 input("cpsf:uc1","rdf:type","owl:NamedIndividual").
 input("cpsf:ManagingTimingAndLatency","rdf:type","cpsf:Concern").
@@ -215,6 +243,11 @@ input("cpsf:Usability","rdf:type","cpsf:Concern").
 input("cpsf:Usability","rdf:type","owl:NamedIndividual").
 input("cpsf:TimeOfData","rdf:type","cpsf:Concern").
 input("cpsf:TimeOfData","rdf:type","owl:NamedIndividual").
+input("cpsf:pos_imp_cam_advanced_mode","cpsf:positiveImpactTo","cpsf:Integrity").
+input("cpsf:pos_imp_cam_advanced_mode","cpsf:confProperty","cpsf:Advanced_Mode").
+input("cpsf:pos_imp_cam_advanced_mode","cpsf:confComponent","cpsf:CAM").
+input("cpsf:pos_imp_cam_advanced_mode","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_cam_advanced_mode","rdf:type","owl:NamedIndividual").
 input("cpsf:Predictability","cpsf:includesConcern","cpsf:Controls").
 input("cpsf:Predictability","rdf:type","cpsf:Concern").
 input("cpsf:Predictability","rdf:type","owl:NamedIndividual").
@@ -222,6 +255,11 @@ input("cpsf:IP_Check","cpsf:memberOf","cpsf:g5").
 input("cpsf:IP_Check","cpsf:addConcern","cpsf:Authorization").
 input("cpsf:IP_Check","rdf:type","cpsf:Property").
 input("cpsf:IP_Check","rdf:type","owl:NamedIndividual").
+input("cpsf:pos_imp_sam_algo_RSA","cpsf:positiveImpactTo","cpsf:Encryption").
+input("cpsf:pos_imp_sam_algo_RSA","cpsf:confProperty","cpsf:Algo_RSA").
+input("cpsf:pos_imp_sam_algo_RSA","cpsf:confComponent","cpsf:SAM").
+input("cpsf:pos_imp_sam_algo_RSA","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_sam_algo_RSA","rdf:type","owl:NamedIndividual").
 input("cpsf:Producibility","rdf:type","cpsf:Concern").
 input("cpsf:Producibility","rdf:type","owl:NamedIndividual").
 input("cpsf:Frequency","rdf:type","cpsf:Concern").
@@ -241,6 +279,11 @@ input("cpsf:Powerful_Mode","cpsf:memberOf","cpsf:g9").
 input("cpsf:Powerful_Mode","cpsf:addConcern","cpsf:Integrity").
 input("cpsf:Powerful_Mode","rdf:type","cpsf:Property").
 input("cpsf:Powerful_Mode","rdf:type","owl:NamedIndividual").
+input("cpsf:pos_imp_cam_conn_encrypted","cpsf:positiveImpactTo","cpsf:Encryption").
+input("cpsf:pos_imp_cam_conn_encrypted","cpsf:confProperty","cpsf:Conn_Encrypted").
+input("cpsf:pos_imp_cam_conn_encrypted","cpsf:confComponent","cpsf:CAM").
+input("cpsf:pos_imp_cam_conn_encrypted","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_cam_conn_encrypted","rdf:type","owl:NamedIndividual").
 input("cpsf:StatesAndModes","rdf:type","cpsf:Concern").
 input("cpsf:StatesAndModes","rdf:type","owl:NamedIndividual").
 input("cpsf:Aggregation_Disaggregation","rdf:type","cpsf:Concern").
@@ -260,6 +303,15 @@ input("cpsf:Scenario","rdf:type","cpsf:Scenario").
 input("cpsf:Scenario","rdf:type","owl:NamedIndividual").
 input("cpsf:Scenario","rdfs:subClassOf","cpsf:Function").
 input("cpsf:Scenario","rdf:type","owl:Class").
+input("cpsf:init_active_cam","cpsf:activeToProperty","cpsf:Advanced_Mode").
+input("cpsf:init_active_cam","cpsf:activeToProperty","cpsf:Trusted_Auth_Device").
+input("cpsf:init_active_cam","cpsf:activeToProperty","cpsf:Secure_Boot").
+input("cpsf:init_active_cam","cpsf:activeToProperty","cpsf:Conn_Encrypted").
+input("cpsf:init_active_cam","cpsf:activeToProperty","cpsf:IP_Filtering").
+input("cpsf:init_active_cam","cpsf:activeToProperty","cpsf:Data_Encrypted").
+input("cpsf:init_active_cam","cpsf:setUpForComponent","cpsf:CAM").
+input("cpsf:init_active_cam","rdf:type","cpsf:InitActiveComponent").
+input("cpsf:init_active_cam","rdf:type","owl:NamedIndividual").
 input("cpsf:Activity","rdfs:subClassOf","cpsf:CPSFrameworkConcept").
 input("cpsf:Activity","rdf:type","owl:Class").
 input("cpsf:ConceptualizationFacet","rdfs:comment","CPS-independent").
@@ -286,6 +338,16 @@ input("cpsf:PhysicalSecurity","cpsf:includesConcern","cpsf:Stability").
 input("cpsf:PhysicalSecurity","cpsf:includesConcern","cpsf:Physical_Integrity").
 input("cpsf:PhysicalSecurity","rdf:type","cpsf:Concern").
 input("cpsf:PhysicalSecurity","rdf:type","owl:NamedIndividual").
+input("cpsf:pos_imp_cam_mac_check","cpsf:positiveImpactTo","cpsf:Verification").
+input("cpsf:pos_imp_cam_mac_check","cpsf:confProperty","cpsf:Mac_Check").
+input("cpsf:pos_imp_cam_mac_check","cpsf:confComponent","cpsf:CAM").
+input("cpsf:pos_imp_cam_mac_check","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_cam_mac_check","rdf:type","owl:NamedIndividual").
+input("cpsf:pos_imp_sam_secure_boot","cpsf:positiveImpactTo","cpsf:Integrity").
+input("cpsf:pos_imp_sam_secure_boot","cpsf:confProperty","cpsf:Secure_Boot").
+input("cpsf:pos_imp_sam_secure_boot","cpsf:confComponent","cpsf:SAM").
+input("cpsf:pos_imp_sam_secure_boot","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_sam_secure_boot","rdf:type","owl:NamedIndividual").
 input("cpsf:Monitorability","rdf:type","cpsf:Concern").
 input("cpsf:Monitorability","rdf:type","owl:NamedIndividual").
 input("cpsf:Trusted_Environment","cpsf:addConcern","cpsf:Authorization").
@@ -323,6 +385,11 @@ input("cpsf:Functionality","rdf:type","owl:NamedIndividual").
 input("cpsf:g8","cpsf:addressToFunc","cpsf:Energy_Func").
 input("cpsf:g8","rdf:type","cpsf:Formulas").
 input("cpsf:g8","rdf:type","owl:NamedIndividual").
+input("cpsf:pos_imp_sam_algo_AES","cpsf:positiveImpactTo","cpsf:Encryption").
+input("cpsf:pos_imp_sam_algo_AES","cpsf:confProperty","cpsf:Algo_AES").
+input("cpsf:pos_imp_sam_algo_AES","cpsf:confComponent","cpsf:SAM").
+input("cpsf:pos_imp_sam_algo_AES","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_sam_algo_AES","rdf:type","owl:NamedIndividual").
 input("cpsf:c0004_01","cpsf:conditionProperty","cpsf:Input1Modes").
 input("cpsf:c0004_01","cpsf:conditionPolarity","cpsf:positive").
 input("cpsf:c0004_01","rdf:type","cpsf:Condition").
@@ -351,6 +418,19 @@ input("cpsf:PropertyType","rdfs:subClassOf","cpsf:CPSFrameworkConcept").
 input("cpsf:PropertyType","rdf:type","owl:Class").
 input("cpsf:LocationOfData","rdf:type","cpsf:Concern").
 input("cpsf:LocationOfData","rdf:type","owl:NamedIndividual").
+input("cpsf:pos_imp_cam_trusted_environment","cpsf:positiveImpactTo","cpsf:Authorization").
+input("cpsf:pos_imp_cam_trusted_environment","cpsf:confProperty","cpsf:Trusted_Environment").
+input("cpsf:pos_imp_cam_trusted_environment","cpsf:confComponent","cpsf:CAM").
+input("cpsf:pos_imp_cam_trusted_environment","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_cam_trusted_environment","rdf:type","owl:NamedIndividual").
+input("cpsf:positiveImpactTo","rdfs:range","cpsf:Concern").
+input("cpsf:positiveImpactTo","rdfs:domain","cpsf:Component_Property").
+input("cpsf:positiveImpactTo","rdf:type","owl:ObjectProperty").
+input("cpsf:pos_imp_cam_protocol_encrypted","cpsf:positiveImpactTo","cpsf:Encryption").
+input("cpsf:pos_imp_cam_protocol_encrypted","cpsf:confProperty","cpsf:Protocol_Encrypted").
+input("cpsf:pos_imp_cam_protocol_encrypted","cpsf:confComponent","cpsf:CAM").
+input("cpsf:pos_imp_cam_protocol_encrypted","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_cam_protocol_encrypted","rdf:type","owl:NamedIndividual").
 input("cpsf:Application","rdfs:subClassOf","cpsf:CPSFrameworkConcept").
 input("cpsf:Application","rdf:type","owl:Class").
 input("cpsf:Functional_Stability","rdf:type","cpsf:Concern").
@@ -384,6 +464,16 @@ input("cpsf:BATTERY","cpsf:relateToProperty","cpsf:Normal_Mode").
 input("cpsf:BATTERY","cpsf:relateToProperty","cpsf:Powerful_Mode").
 input("cpsf:BATTERY","rdf:type","cpsf:Component").
 input("cpsf:BATTERY","rdf:type","owl:NamedIndividual").
+input("cpsf:pos_imp_sam_trusted_environment","cpsf:positiveImpactTo","cpsf:Authorization").
+input("cpsf:pos_imp_sam_trusted_environment","cpsf:confProperty","cpsf:Trusted_Environment").
+input("cpsf:pos_imp_sam_trusted_environment","cpsf:confComponent","cpsf:SAM").
+input("cpsf:pos_imp_sam_trusted_environment","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_sam_trusted_environment","rdf:type","owl:NamedIndividual").
+input("cpsf:pos_imp_cam_algo_RSA","cpsf:positiveImpactTo","cpsf:Encryption").
+input("cpsf:pos_imp_cam_algo_RSA","cpsf:confProperty","cpsf:Algo_RSA").
+input("cpsf:pos_imp_cam_algo_RSA","cpsf:confComponent","cpsf:CAM").
+input("cpsf:pos_imp_cam_algo_RSA","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_cam_algo_RSA","rdf:type","owl:NamedIndividual").
 input("cpsf:app1","cpsf:hasBC","cpsf:bc1").
 input("cpsf:app1","rdf:type","cpsf:Application").
 input("cpsf:app1","rdf:type","owl:NamedIndividual").
@@ -414,6 +504,11 @@ input("cpsf:includesConcern","rdfs:comment","CPS-independent").
 input("cpsf:includesConcern","rdfs:range","cpsf:Concern").
 input("cpsf:includesConcern","rdfs:domain","cpsf:Concern").
 input("cpsf:includesConcern","rdf:type","owl:ObjectProperty").
+input("cpsf:pos_imp_sam_data_encrypted","cpsf:positiveImpactTo","cpsf:Encryption").
+input("cpsf:pos_imp_sam_data_encrypted","cpsf:confProperty","cpsf:Data_Encrypted").
+input("cpsf:pos_imp_sam_data_encrypted","cpsf:confComponent","cpsf:SAM").
+input("cpsf:pos_imp_sam_data_encrypted","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_sam_data_encrypted","rdf:type","owl:NamedIndividual").
 input("cpsf:Composition","cpsf:includesConcern","cpsf:Discoverability").
 input("cpsf:Composition","cpsf:includesConcern","cpsf:Constructivity").
 input("cpsf:Composition","cpsf:includesConcern","cpsf:Complexity").
@@ -436,6 +531,11 @@ input("cpsf:conditionPolarity","rdfs:domain","cpsf:Condition").
 input("cpsf:conditionPolarity","rdf:type","owl:ObjectProperty").
 input("cpsf:ComponentInventory","rdf:type","cpsf:Concern").
 input("cpsf:ComponentInventory","rdf:type","owl:NamedIndividual").
+input("cpsf:pos_imp_sam_mac_check","cpsf:positiveImpactTo","cpsf:Verification").
+input("cpsf:pos_imp_sam_mac_check","cpsf:confProperty","cpsf:Mac_Check").
+input("cpsf:pos_imp_sam_mac_check","cpsf:confComponent","cpsf:SAM").
+input("cpsf:pos_imp_sam_mac_check","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_sam_mac_check","rdf:type","owl:NamedIndividual").
 input("cpsf:Inheritance","rdf:type","cpsf:Concern").
 input("cpsf:Inheritance","rdf:type","owl:NamedIndividual").
 input("cpsf:Enterprise","rdf:type","cpsf:Concern").
@@ -489,6 +589,16 @@ input("cpsf:Trustworthiness","cpsf:includesConcern","cpsf:Reliability").
 input("cpsf:Trustworthiness","cpsf:includesConcern","cpsf:Privacy").
 input("cpsf:Trustworthiness","rdf:type","cpsf:Aspect").
 input("cpsf:Trustworthiness","rdf:type","owl:NamedIndividual").
+input("cpsf:init_active_sam","cpsf:activeToProperty","cpsf:Secure_Boot").
+input("cpsf:init_active_sam","rdf:type","owl:NamedIndividual").
+input("cpsf:init_active_sam","cpsf:activeToProperty","cpsf:Firewall_Setup").
+input("cpsf:init_active_sam","rdf:type","cpsf:InitActiveComponent").
+input("cpsf:init_active_sam","cpsf:activeToProperty","cpsf:Data_Encrypted").
+input("cpsf:init_active_sam","cpsf:activeToProperty","cpsf:Algo_RSA").
+input("cpsf:init_active_sam","cpsf:activeToProperty","cpsf:Trusted_Environment").
+input("cpsf:init_active_sam","cpsf:setUpForComponent","cpsf:SAM").
+input("cpsf:init_active_sam","cpsf:activeToProperty","cpsf:Finger_Printing").
+input("cpsf:init_active_sam","cpsf:activeToProperty","cpsf:Advanced_Mode").
 input("cpsf:Functional","cpsf:includesConcern","cpsf:Sensing").
 input("cpsf:Functional","cpsf:includesConcern","cpsf:Measurability").
 input("cpsf:Functional","cpsf:includesConcern","cpsf:Uncertainty").
@@ -504,6 +614,11 @@ input("cpsf:Functional","cpsf:includesConcern","cpsf:PhysicalContext").
 input("cpsf:Functional","cpsf:includesConcern","cpsf:Monitorability").
 input("cpsf:Functional","rdf:type","owl:NamedIndividual").
 input("cpsf:Functional","cpsf:includesConcern","cpsf:Physical").
+input("cpsf:pos_imp_cam_trusted_auth_device","cpsf:positiveImpactTo","cpsf:Authorization").
+input("cpsf:pos_imp_cam_trusted_auth_device","cpsf:confProperty","cpsf:Trusted_Auth_Device").
+input("cpsf:pos_imp_cam_trusted_auth_device","cpsf:confComponent","cpsf:CAM").
+input("cpsf:pos_imp_cam_trusted_auth_device","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_cam_trusted_auth_device","rdf:type","owl:NamedIndividual").
 input("cpsf:Fusion","rdf:type","cpsf:Concern").
 input("cpsf:Fusion","rdf:type","owl:NamedIndividual").
 input("cpsf:OPT_Code","cpsf:memberOf","cpsf:g4").
@@ -515,8 +630,18 @@ input("cpsf:Mac_Check","rdf:type","cpsf:Property").
 input("cpsf:Mac_Check","rdf:type","owl:NamedIndividual").
 input("cpsf:PhysicalContext","rdf:type","cpsf:Concern").
 input("cpsf:PhysicalContext","rdf:type","owl:NamedIndividual").
+input("cpsf:pos_imp_sam_iris_scan","cpsf:positiveImpactTo","cpsf:Authorization").
+input("cpsf:pos_imp_sam_iris_scan","cpsf:confProperty","cpsf:IRIS_Scan").
+input("cpsf:pos_imp_sam_iris_scan","cpsf:confComponent","cpsf:SAM").
+input("cpsf:pos_imp_sam_iris_scan","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_sam_iris_scan","rdf:type","owl:NamedIndividual").
 input("cpsf:Authorization","rdf:type","cpsf:Concern").
 input("cpsf:Authorization","rdf:type","owl:NamedIndividual").
+input("cpsf:pos_imp_sam_finger_printing","cpsf:positiveImpactTo","cpsf:Authorization").
+input("cpsf:pos_imp_sam_finger_printing","cpsf:confProperty","cpsf:Finger_Printing").
+input("cpsf:pos_imp_sam_finger_printing","cpsf:confComponent","cpsf:SAM").
+input("cpsf:pos_imp_sam_finger_printing","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_sam_finger_printing","rdf:type","owl:NamedIndividual").
 input("cpsf:g6","cpsf:addressToFunc","cpsf:Operation_Func").
 input("cpsf:g6","rdf:type","cpsf:Formulas").
 input("cpsf:g6","rdf:type","owl:NamedIndividual").
@@ -548,6 +673,9 @@ input("cpsf:Cybersecurity","cpsf:includesConcern","cpsf:Confidentiality").
 input("cpsf:Cybersecurity","cpsf:includesConcern","cpsf:Availability").
 input("cpsf:Cybersecurity","rdf:type","cpsf:Concern").
 input("cpsf:Cybersecurity","rdf:type","owl:NamedIndividual").
+input("cpsf:confComponent","rdfs:range","cpsf:Component").
+input("cpsf:confComponent","rdfs:domain","cpsf:Component_Property").
+input("cpsf:confComponent","rdf:type","owl:ObjectProperty").
 input("cpsf:UserIdentification","rdf:type","cpsf:Concern").
 input("cpsf:UserIdentification","rdf:type","owl:NamedIndividual").
 input("cpsf:CPSFrameworkConcept","rdf:type","owl:Class").
@@ -608,6 +736,16 @@ input("cpsf:Velocity","rdf:type","owl:NamedIndividual").
 input("cpsf:Stability","cpsf:includesConcern","cpsf:Functional_Stability").
 input("cpsf:Stability","rdf:type","cpsf:Concern").
 input("cpsf:Stability","rdf:type","owl:NamedIndividual").
+input("cpsf:pos_imp_cam_secure_boot","cpsf:positiveImpactTo","cpsf:Integrity").
+input("cpsf:pos_imp_cam_secure_boot","cpsf:confProperty","cpsf:Secure_Boot").
+input("cpsf:pos_imp_cam_secure_boot","cpsf:confComponent","cpsf:CAM").
+input("cpsf:pos_imp_cam_secure_boot","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_cam_secure_boot","rdf:type","owl:NamedIndividual").
+input("cpsf:pos_imp_sam_conn_encrypted","cpsf:positiveImpactTo","cpsf:Encryption").
+input("cpsf:pos_imp_sam_conn_encrypted","cpsf:confProperty","cpsf:Conn_Encrypted").
+input("cpsf:pos_imp_sam_conn_encrypted","cpsf:confComponent","cpsf:SAM").
+input("cpsf:pos_imp_sam_conn_encrypted","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_sam_conn_encrypted","rdf:type","owl:NamedIndividual").
 input("cpsf:c0006_01","cpsf:conditionProperty","cpsf:Input1EncryptedMem").
 input("cpsf:c0006_01","cpsf:conditionPolarity","cpsf:positive").
 input("cpsf:c0006_01","rdf:type","cpsf:Condition").
@@ -647,6 +785,11 @@ input("cpsf:c0003_01","cpsf:conditionProperty","cpsf:Input1ConsistentReadingFreq
 input("cpsf:c0003_01","cpsf:conditionPolarity","cpsf:positive").
 input("cpsf:c0003_01","rdf:type","cpsf:Condition").
 input("cpsf:c0003_01","rdf:type","owl:NamedIndividual").
+input("cpsf:pos_imp_battery_powerful_mode","cpsf:positiveImpactTo","cpsf:Integrity").
+input("cpsf:pos_imp_battery_powerful_mode","cpsf:confProperty","cpsf:Powerful_Mode").
+input("cpsf:pos_imp_battery_powerful_mode","cpsf:confComponent","cpsf:BATTERY").
+input("cpsf:pos_imp_battery_powerful_mode","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_battery_powerful_mode","rdf:type","owl:NamedIndividual").
 input("cpsf:OAuth","cpsf:memberOf","cpsf:g5").
 input("cpsf:OAuth","cpsf:memberOf","cpsf:g4").
 input("cpsf:OAuth","cpsf:addConcern","cpsf:Authorization").
@@ -663,6 +806,9 @@ input("cpsf:bc1","rdf:type","cpsf:BusinessCase").
 input("cpsf:bc1","rdf:type","owl:NamedIndividual").
 input("cpsf:Granularity","rdf:type","cpsf:Concern").
 input("cpsf:Granularity","rdf:type","owl:NamedIndividual").
+input("cpsf:activeToProperty","rdfs:range","cpsf:Property").
+input("cpsf:activeToProperty","rdfs:domain","cpsf:InitActiveComponent").
+input("cpsf:activeToProperty","rdf:type","owl:ObjectProperty").
 input("cpsf:AssuranceFacet","rdfs:comment","CPS-independent").
 input("cpsf:AssuranceFacet","rdf:type","cpsf:Facet").
 input("cpsf:AssuranceFacet","rdf:type","owl:NamedIndividual").
@@ -681,12 +827,20 @@ input("cpsf:Regulatory","rdf:type","owl:NamedIndividual").
 input("cpsf:addConcern","rdfs:range","cpsf:Concern").
 input("cpsf:addConcern","rdfs:domain","cpsf:Property").
 input("cpsf:addConcern","rdf:type","owl:ObjectProperty").
+input("cpsf:obsFalse","rdfs:range","cpsf:Component").
+input("cpsf:obsFalse","rdfs:domain","cpsf:InitialConfiguration").
+input("cpsf:obsFalse","rdf:type","owl:ObjectProperty").
 input("cpsf:Aspect","rdfs:comment","pg 15").
 input("cpsf:Aspect","rdfs:comment","all instances are CPS-independent").
 input("cpsf:Aspect","rdfs:subClassOf","cpsf:Concern").
 input("cpsf:Aspect","rdf:type","owl:Class").
 input("cpsf:Networkability","rdf:type","cpsf:Concern").
 input("cpsf:Networkability","rdf:type","owl:NamedIndividual").
+input("cpsf:pos_imp_sam_two_factors","cpsf:positiveImpactTo","cpsf:Authorization").
+input("cpsf:pos_imp_sam_two_factors","cpsf:confProperty","cpsf:Two_Factors").
+input("cpsf:pos_imp_sam_two_factors","cpsf:confComponent","cpsf:SAM").
+input("cpsf:pos_imp_sam_two_factors","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_sam_two_factors","rdf:type","owl:NamedIndividual").
 input("cpsf:Physical","rdf:type","cpsf:Concern").
 input("cpsf:Physical","rdf:type","owl:NamedIndividual").
 input("cpsf:nextFC","rdfs:comment","next level of functional decomposition").
@@ -695,6 +849,14 @@ input("cpsf:nextFC","rdfs:domain","cpsf:Function").
 input("cpsf:nextFC","rdf:type","owl:ObjectProperty").
 input("cpsf:DecompositionFunction","rdfs:subClassOf","cpsf:Function").
 input("cpsf:DecompositionFunction","rdf:type","owl:Class").
+input("cpsf:confProperty","rdfs:range","cpsf:Property").
+input("cpsf:confProperty","rdfs:domain","cpsf:Component_Property").
+input("cpsf:confProperty","rdf:type","owl:ObjectProperty").
+input("cpsf:pos_imp_sam_advanced_mode","cpsf:positiveImpactTo","cpsf:Integrity").
+input("cpsf:pos_imp_sam_advanced_mode","cpsf:confProperty","cpsf:Advanced_Mode").
+input("cpsf:pos_imp_sam_advanced_mode","cpsf:confComponent","cpsf:SAM").
+input("cpsf:pos_imp_sam_advanced_mode","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_sam_advanced_mode","rdf:type","owl:NamedIndividual").
 input("cpsf:Adaptability","rdf:type","cpsf:Concern").
 input("cpsf:Adaptability","rdf:type","owl:NamedIndividual").
 input("cpsf:UseCase","cpsf:nextFC","cpsf:Scenario").
@@ -721,6 +883,11 @@ input("cpsf:Data","rdf:type","owl:NamedIndividual").
 input("cpsf:Functional_Safety","cpsf:includesConcern","cpsf:Hazard").
 input("cpsf:Functional_Safety","rdf:type","cpsf:Concern").
 input("cpsf:Functional_Safety","rdf:type","owl:NamedIndividual").
+input("cpsf:pos_imp_battery_trusted_environment","cpsf:positiveImpactTo","cpsf:Authorization").
+input("cpsf:pos_imp_battery_trusted_environment","cpsf:confProperty","cpsf:Trusted_Environment").
+input("cpsf:pos_imp_battery_trusted_environment","cpsf:confComponent","cpsf:BATTERY").
+input("cpsf:pos_imp_battery_trusted_environment","rdf:type","cpsf:Component_Property").
+input("cpsf:pos_imp_battery_trusted_environment","rdf:type","owl:NamedIndividual").
 input("cpsf:DataIntegrity","rdf:type","cpsf:Concern").
 input("cpsf:DataIntegrity","rdf:type","owl:NamedIndividual").
 input("cpsf:Condition","rdfs:subClassOf","cpsf:ImpactRuleConcepts").
@@ -738,10 +905,11 @@ input("cpsf:Storage","rdf:type","owl:NamedIndividual").
 input("cpsf:g4","cpsf:addressToFunc","cpsf:Sign_In_Func").
 input("cpsf:g4","rdf:type","cpsf:Formulas").
 input("cpsf:g4","rdf:type","owl:NamedIndividual").
-% Aspect
+%-------The Ontology---------------------
+% concern 
 aspect(trustworthiness).
 
-% Concern
+concern(all).
 concern(trustworthiness).
 concern(safety).
 concern(reliability).
@@ -757,29 +925,24 @@ concern(manageability).
 concern(dissociability).
 
 concern(severity).
-concern(frequency).
 concern(controllability).
+concern(frequency).
 concern(confidentiality).
 concern(integrity).
 concern(availability).
 concern(controls).
 concern(transparency).
-concern(availability).
 concern(innovation).
+concern(ultility).
 
 concern(encryption).
-concern(privacy_policy).
-concern(protection).
-concern(software_patches).
-concern(hardware_patches).
-concern(license).
+concern(verification).
 concern(authorization).
 concern(authentication).
-concern(roles).
-concern(privileges).
-concern(permissions).
 
-% subconcern.
+% subconcern relation
+subconcern(all,trustworthiness).
+
 subconcern(trustworthiness,safety).
 subconcern(trustworthiness,reliability).
 subconcern(trustworthiness,security).
@@ -810,49 +973,48 @@ subconcern(predictability,transparency).
 subconcern(predictability,innovation).
 
 subconcern(confidentiality,encryption).
-subconcern(confidentiality,privacy_policy).
-subconcern(confidentiality,protection).
+subconcern(confidentiality,verification).
 
-subconcern(availability,software_patches).
-subconcern(availability,hardware_patches).
-subconcern(availability,license).
 
+subconcern(controls,authorization).
 subconcern(controls,authentication).
-subconcern(controls,identity).
 
-subconcern(identity,authorization).
+% Property
 
-% Property --- Requirements
 property(data_encrypted).
 property(conn_encrypted).
 property(protocol_encrypted).
-
-property(firewall_setup).
-property(hidden_backdoor).
-property(data_filtering).
-
-property(software_licensed).
-property(privacy_standard).
 
 property(algo_AES).
 property(algo_RSA).
 property(algo_DES).
 
-property(oAuth).
-property(two_factors_auth).
-property(finger_printing_auth).
-property(single_auth).
+property(firewall_setup).
+property(ip_filtering).
+property(mac_check).
 
 property(secure_boot).
 
-property(record_video_25fps).
-property(record_video_50fps).
 
-property(basic_mode).
+property(finger_printing).
+property(two_factors).
+property(iris_scan).
+property(oauth).
+property(opt_code).
+property(email_verify).
+property(ip_check).
+
+property(trusted_auth_device).
+property(trusted_environment).
+
 property(advanced_mode).
+property(basic_mode).
 
-property(devices_access_permission).
-property(data_access_permission).
+property(saving_mode).
+property(powerful_mode).
+property(normal_mode).
+
+
 
 % Addressed : Relation Properties-Concerns
 addressedBy(encryption,data_encrypted).
@@ -860,173 +1022,333 @@ addressedBy(encryption,conn_encrypted).
 addressedBy(encryption,protocol_encrypted).
 addressedBy(encryption,algo_AES).
 addressedBy(encryption,algo_RSA).
+addressedBy(encryption,algo_DES).
 
-addressedBy(protection,firewall_setup).
-addressedBy(protection,hidden_backdoor).
-addressedBy(protection,data_filtering).
-
-addressedBy(privacy_policy,software_licensed).
-addressedBy(privacy_policy,privacy_standard).
-
-addressedBy(authentication,oAuth).
-addressedBy(authentication,single_auth).
-addressedBy(authentication,two_factors_auth).
-addressedBy(authentication,finger_printing_auth).
+addressedBy(verification,firewall_setup).
+addressedBy(verification,ip_filtering).
+addressedBy(verification,mac_check).
 
 addressedBy(integrity,secure_boot).
-
-addressedBy(integrity,basic_mode).
 addressedBy(integrity,advanced_mode).
+addressedBy(integrity,basic_mode).
 
-addressedBy(frequency,record_video_25fps).
-addressedBy(frequency,record_video_50fps).
+addressedBy(integrity,saving_mode).
+addressedBy(integrity,powerful_mode).
+addressedBy(integrity,normal_mode).
 
-addressedBy(authorization,devices_access_permission).
-addressedBy(authorization,data_access_permission).
 
-% Component and Relation
+
+addressedBy(authorization,finger_printing).
+addressedBy(authorization,two_factors).
+addressedBy(authorization,iris_scan).
+addressedBy(authorization,oauth).
+addressedBy(authorization,opt_code).
+addressedBy(authorization,email_verify).
+addressedBy(authorization,ip_check).
+
+addressedBy(authorization,trusted_auth_device).
+addressedBy(authorization,trusted_environment).
+
+% Formulas
+formulas(1..10).
+
+member(finger_printing,1).
+member(two_factors,2).
+member(iris_scan,3).
+member(oauth,4).
+member(opt_code,4).
+member(oauth,5).
+member(email_verify,5).
+member(ip_check,5).
+
+member(advanced_mode,6).
+member(basic_mode,7).
+
+member(saving_mode,8).
+member(powerful_mode,9).
+member(normal_mode,10).
+
+func_dec(sign_in_func,authorization).
+func_dec(operation_func,integrity).
+func_dec(energy_func,integrity).
+
+addressToFunc(authorization,sign_in_func,1).
+addressToFunc(authorization,sign_in_func,2).
+addressToFunc(authorization,sign_in_func,3).
+addressToFunc(authorization,sign_in_func,4).
+addressToFunc(authorization,sign_in_func,5).
+
+%--- For Operation_Mode
+addressToFunc(integrity,operation_func,6).
+addressToFunc(integrity,operation_func,7).
+
+%--- For Energy_Mode
+addressToFunc(integrity,energy_func,8).
+addressToFunc(integrity,energy_func,9).
+addressToFunc(integrity,energy_func,10).
+
+%=============================================================
+%==================EXTENED ONTOLOGY===========================
+%=============================================================
+
+% ====Component
+%---- Define component ----
 component(sam).
 component(cam).
+component(battery).
 
-relation(cam,data_encrypted,"CAM access to encrypted data").
-relation(cam,secure_boot,"CAM use Secure Bot").
-relation(cam,data_filtering,"CAM has been checked").
-%relation(cam,record_video_50fps,"CAM has been recorded 50FPS").
-relation(cam,advanced_mode,"CAM used Advanced mode").
-relation(cam,devices_access_permission,"Have to have permission to access CAM").
+%---- Possible Relations Between Componentns and Properties ----
+% Possible relation cam
+relation(cam,algo_AES).
+relation(cam,algo_RSA).
+relation(cam,algo_DES).
+relation(cam,conn_encrypted).
+relation(cam,data_encrypted).
+relation(cam,protocol_encrypted).
+relation(cam,ip_filtering).
+relation(cam,mac_check).
+relation(cam,advanced_mode).
+relation(cam,basic_mode).
+relation(cam,secure_boot).
+relation(cam,trusted_auth_device).
+relation(cam,trusted_environment).
+relation(cam,iris_scan).
 
-relation(sam,data_encrypted,"SAM access to encrypted data").
-relation(sam,secure_boot,"SAM use Secure Bot").
-relation(sam,software_licensed,"SAM used licensed software").
-relation(sam,two_factors_auth,"Access to SAM required 2-factors authentication").
-relation(sam,firewall_setup,"Firewall protected SAM").
-relation(sam,data_access_permission,"Have to have permission to access CAM").
+% Possible relation sam
+relation(sam,algo_AES).
+relation(sam,algo_RSA).
+relation(sam,algo_DES).
+relation(sam,conn_encrypted).
+relation(sam,data_encrypted).
+relation(sam,protocol_encrypted).
+relation(sam,ip_filtering).
+relation(sam,firewall_setup).
+relation(sam,mac_check).
+relation(sam,advanced_mode).
+relation(sam,basic_mode).
+relation(sam,secure_boot).
+relation(sam,finger_printing).
+relation(sam,two_factors).
+relation(sam,iris_scan).
+relation(sam,oauth).
+relation(sam,opt_code).
+relation(sam,email_verify).
+relation(sam,ip_check).
+relation(sam,trusted_environment).
 
-% ====================================================
-% ======Observation for Initial State
+% Possible relation battery
+relation(battery,powerful_mode).
+relation(battery,normal_mode).
+relation(battery,saving_mode).
+relation(battery,trusted_environment).
+
+%---- Define Possible Positive Impact Relation of each component
+% possible pos impact sam
+possible_impacts_pos(sam,data_encrypted,encryption).
+possible_impacts_pos(sam,conn_encrypted,encryption).
+possible_impacts_pos(sam,protocol_encrypted,encryption).
+possible_impacts_pos(sam,algo_RSA,encryption).
+possible_impacts_pos(sam,algo_AES,encryption).
+possible_impacts_pos(sam,firewall_setup,verification).
+possible_impacts_pos(sam,mac_check,verification).
+possible_impacts_pos(sam,secure_boot,integrity).
+possible_impacts_pos(sam,advanced_mode,integrity).
+possible_impacts_pos(sam,iris_scan,authorization).
+possible_impacts_pos(sam,two_factors,authorization).
+possible_impacts_pos(sam,finger_printing,authorization).
+possible_impacts_pos(sam,trusted_environment,authorization).
+
+% possible pos impact cam
+possible_impacts_pos(cam,algo_RSA,encryption).
+possible_impacts_pos(cam,data_encrypted,encryption).
+possible_impacts_pos(cam,conn_encrypted,encryption).
+possible_impacts_pos(cam,protocol_encrypted,encryption).
+possible_impacts_pos(cam,mac_check,verification).
+possible_impacts_pos(cam,secure_boot,integrity).
+possible_impacts_pos(cam,advanced_mode,integrity).
+possible_impacts_pos(cam,trusted_auth_device,authorization).
+possible_impacts_pos(cam,trusted_environment,authorization).
+
+% possible pos impact bat
+possible_impacts_pos(battery,powerful_mode,integrity).
+possible_impacts_pos(battery,trusted_environment,authorization).
+%=============================================================%==================INITIAL OBSERVATION===========================
 obs(data_encrypted,true).
-obs(data_filtering,true).
-obs(software_licensed,true).
-obs(two_factors_auth,false). % Change here to test
+obs(conn_encrypted,true).
+obs(protocol_encrypted,true).
+obs(algo_AES,true).
+obs(algo_RSA,true).
+obs(algo_DES,true).
+obs(firewall_setup,true).
+obs(ip_filtering,true).
 obs(secure_boot,true).
-obs(record_video_50fps,true).
+obs(trusted_auth_device,true).
+obs(trusted_environment,true).
+obs(finger_printing,true).
+obs(two_factors,false).
+obs(iris_scan,false).
+obs(oauth,true).
+obs(opt_code,true).
+obs(email_verify,true).
+obs(ip_check,true).
 obs(advanced_mode,true).
-obs(firewall_setup,false). % Change here to test
-obs(devices_access_permission,true).
-obs(data_access_permission,true).
-obs(availablePatch(two_factors_auth),true).
+obs(basic_mode,true).
+obs(saving_mode,true).
+obs(powerful_mode,true).
+obs(normal_mode,false).
+
+%========== Current Active Between Components and Properties ==========
+active(sam,data_encrypted).
+active(sam,algo_RSA).
+active(sam,firewall_setup).
+active(sam,secure_boot).
+active(sam,trusted_environment).
+
+active(cam,ip_filtering).
+active(cam,data_encrypted).
+active(cam,conn_encrypted).
+active(cam,secure_boot).
+active(cam,trusted_auth_device).
 
 
+% Change to see the different of LoS values
+active(sam,finger_printing).
+active(sam,advanced_mode).
+active(cam,advanced_mode).
+
+active(battery,saving_mode).
+active(battery,trusted_environment).
 
 
-%=================================
-#const n = 2.
-step(0..n).
-%=====Satisfaction Reasoning======
+%==============================================
+step(0).
 
-%h(P,0) :- obs(P,true), property(P).
--h(P,0) :- obs(P,false).
-%h(P,0) :- obs(availablePatch(P),true), property(P).
-h(P,0) :- obs(P,true).
+%%%%%%%
+% Satisfaction Theory + Positive Impacts Degree
+%%%%%%%
 
--h(sat(C),T) :- -h(P,T), property(P), step(T), 
-                addressedBy(C,P).
--h(sat(X),T) :- concern(X), concern(Y), 
-                subconcern(X,Y), not h(sat(Y),T), step(T).
--h(sat(X),T) :- concern(X), concern(Y), 
-                subconcern(X,Y), -h(sat(Y),T), step(T).
+%--- Reasoning first step -----
+h(use(C,P),0) :- property(P), component(C), step(0), active(C,P).
+
+%---- Reasoning Property Satisfaction by observation -----
+h(P,0) :- obs(P,true), property(P).
+-h(P,0) :- obs(P,false), property(P).
+
+%---- Reasoning Concern Satisfaction by Minimal Formulas -----
+-sat_formulas(C,F,G,T) :- concern(C), property(P), formulas(G), 
+                          func_dec(F,C), addressedBy(C,P), member(P,G), addressToFunc(C,F,G),
+                          not h(P,T), step(T).
+sat_formulas(C,F,G,T) :- concern(C), formulas(G), func_dec(F,C), addressToFunc(C,F,G),
+                         not -sat_formulas(C,F,G,T), step(T).
+-h(sat(C,F),T) :- concern(C), func_dec(F,C), step(T), not sat_formulas(C,F,_,T).
+h(sat(C,F),T)  :- not -h(sat(C,F),T), step(T), func_dec(F,C).
+-h(sat(C),T)   :- concern(C), func_dec(F,C), not h(sat(C,F),T), step(T).
+-h(sat(C),T)   :- concern(C), func_dec(F,C), -h(sat(C,F),T), step(T).
+
+%---- Traditiona Reasoning about Concern Satisfaction ---                       
+-h(sat(C),T) :- -h(P,T), property(P), step(T),  addressedBy(C,P), 
+                 not member(P,_).
+-h(sat(X),T) :- concern(X), concern(Y), subconcern(X,Y), not h(sat(Y),T), step(T).
+-h(sat(X),T) :- concern(X), concern(Y), subconcern(X,Y), -h(sat(Y),T), step(T).
 h(sat(C),T) :- not -h(sat(C),T), concern(C), step(T).
 
--h(sat(all),T)  :- 1{-h(sat(A),T); not h(sat(A),T)},
-                   aspect(A), step(T).
-h(sat(all),T)   :- not -h(sat(all),T), step(T).
-% ---------------------------------------------
-% ==========  ACTIONS and CHANGES =============
-% ---------------------------------------------
-% Generate action
-1{occurs(A,T):action(A)}1 :- step(T), T<n.
-:- occurs(A,T), not executable(A,T).
 
-% Inertial axioms
-fluent(F) :- property(F).
-fluent(availablePatch(F)) :- property(F).
-%fluent(sat(A)) :- concern(A).
 
-h(F,T+1)    :- h(F,T), not -h(F,T+1), step(T), fluent(F).
--h(F,T+1)   :- -h(F,T), not h(F,T+1), step(T), fluent(F).
+%%%%% --- Default Assignment PID values for Property Requirements --
+%deg_req(advanced_mode,operation_mode,8,0).
+%deg_req(basic_mode,operation_mode,6,0).
+%deg_req(saving_mode,energy_mode,2,0).
+%deg_req(normal_mode,energy_mode,7,0).
+%deg_req(powerful_mode,energy_mode,9,0).
+%deg_req(finger_printing,auth_strategies,7,0).
+%deg_req(two_factors,auth_strategies,6,0).
+%deg_req(oauth,auth_strategies,5,0).
+%deg_req(opt_code,auth_strategies,3,0).
+%deg_req(email_verify,auth_strategies,3,0).
+%deg_req(ip_check,auth_strategies,3,0).
 
-% Goal check type 2
-%goal(G) :- h(sat(trustworthiness),G), step(G).
-%success :- goal(G), G <= n, step(G).
-%:- not success.
+%%%%% --- Default Assignment PID values for Property NOT have any supports --
+%deg_prop(secure_boot,integrity,6,0).
+%deg_prop(firewall_setup,verification,7,0).
+%deg_prop(ip_filtering,verification,3,0).
+%deg_prop(algo_RSA,encryption,8,0).
+%deg_prop(algo_AES,encryption,6,0).
+%deg_prop(protocol_encrypted,encryption,10,0).
+%deg_prop(data_encrypted,encryption,10,0).
 
-% Goal check type 1
-:- not h(sat(C),n), concern(C).
-%:- not h(sat(A),n), aspect(A).
+%%%%%
+%order_requirement(R,P,N)  :- suppBy(R,P,_), 
+%                               N = { R < Rp : suppBy(Rp,P,_)}.
+%has_requirement(P)        :- suppBy(R,P,_), property(P), requirement(R).
+%-has_requirement(P)       :- property(P), not has_requirement(P).
 
-% Actions
-action(tOn(X)) :- property(X).
-action(patch(X)) :- property(X).
+%deg_prop_imp_sub(P,1,T)   :- step(T), property(P), -has_requirement(P). 
+%deg_prop_imp(P,N,T)       :- step(T), property(P), 
+%                             deg_prop_imp_sub(P,N1,T), 
+%                             deg_prop(P,_,N2,T), N=N1*N2.
+%deg_prop_imp_req_aux(P,0,X,T) :- step(T), suppBy(R,P,_), order_requirement(R,P,0),                              
+%                                 deg_req(R,P,X,T), h(use(Com,R),T), component(Com).
+%deg_prop_imp_req_aux(P,0,1,T) :- step(T), suppBy(R,P,_), order_requirement(R,P,0),                              
+%                                 deg_req(R,P,X,T), not h(use(Com,R),T), component(Com).
+%likelihood_sat_sub_aux(P,N,V,T) :- step(T), subconcern(C,SC), order(SC,C,N), 
+%                                   likelihood_sat(SC,Y,T), likelihood_sat_sub_aux(C,N-1,X,T), 
+%                                   V=X*Y. 
+%likelihood_sat_sub(C,X,T)       :- step(T), concern(C), 
+%                                   likelihood_sat_sub_aux(C,N,X,T), 
+%                                   not likelihood_sat_sub_aux(C,N+1,_,T).
+%------------------------------------------------------------------
+%---- Reasoning Positive Impacts Degree ---------------
+%degree_pos(encryption,80,0).
+%degree_pos(verification,21,0).
+%degree_pos(integrity,12,0).
+%degree_pos(authorization,70,0).
+%degree_pos(C,1,T) :- concern(C), N=#count{P : addressedBy(C,P),property(P)}, 
+%                     N<=0, step(T).
 
-%% Preconditions
-%executable(tOn(detect_No_passenger),T) :- -h(detect_No_passenger,T), step(T).
-%executable(tOn(control_speed),T) :- -h(control_speed,T), step(T).
-%executable(patch(control_speed),T) :- -h(control_speed,T), step(T).
 
-executable(tOn(X),T) :- -h(X,T), property(X), step(T).
-executable(patch(X),T) :- -h(X,T), h(availablePatch(X),T), property(X), step(T).
+no_all_pos_concern(C,N1,T) :- concern(C), step(T), 
+                              N1=#count{P,Com : component(Com),property(P),
+                                                possible_impacts_pos(Com,P,C),
+                                                addressedBy(C,P)}.
 
-%% Effects
-h(X,T+1) :- occurs(tOn(X),T), step(T).
-h(X,T+1) :- occurs(patch(X),T), step(T).
+no_act_pos_concern(C,N2,T) :- concern(C), step(T), 
+                              N2=#count{P,Com : component(Com),property(P),
+                                                possible_impacts_pos(Com,P,C),
+                                                addressedBy(C,P), h(use(Com,P),T)}.
 
-%:- occurs(A1,T), occurs(A2,T), A1 != A2.
+degree_pos(C,1,T) :- step(T), concern(C), no_all_pos_concern(C,0,T).
+degree_pos(C,N1*100/N2,T) :- concern(C), no_act_pos_concern(C,N1,T), no_all_pos_concern(C,N2,T), N2!=0.
 
-% ---------------------------------------------
-% ==========  Probabilistic of success ========
-% ---------------------------------------------
-prob_success(tOn(detect_No_passenger),80).
-prob_success(tOn(control_speed),70).
-prob_success(patch(control_speed),30).
+%--- Reasoning Algorithm Likelihood of Concern Satisfaction ----
+order(SC,C,N)      :- subconcern(C,SC), N = { SC < SCp : subconcern(C,SCp)}.
+has_subconcern(C)  :- subconcern(C,SC), concern(C), concern(SC).
+-has_subconcern(C) :- concern(C), not has_subconcern(C).
 
-prob_success(tOn(firewall_setup),60).
-prob_success(tOn(two_factors_auth),30).
-prob_success(patch(two_factors_auth),20).
+likelihood_sat_sub(C,1,T)       :- step(T), concern(C), -has_subconcern(C). 
+likelihood_sat(C,N,T)           :- step(T), concern(C), 
+                                   likelihood_sat_sub(C,N1,T), 
+                                   degree_pos(C,N2,T), N=N1*N2.
+likelihood_sat_sub_aux(C,0,X,T) :- step(T), subconcern(C,SC), order(SC,C,0), 
+                                   likelihood_sat(SC,X,T).
+likelihood_sat_sub_aux(C,N,V,T) :- step(T), subconcern(C,SC), order(SC,C,N), 
+                                   likelihood_sat(SC,Y,T), likelihood_sat_sub_aux(C,N-1,X,T), 
+                                   V=X*Y. 
+likelihood_sat_sub(C,X,T)       :- step(T), concern(C), 
+                                   likelihood_sat_sub_aux(C,N,X,T), 
+                                   not likelihood_sat_sub_aux(C,N+1,_,T).
+%------------------------------------------------------------------
 
-% ---------------------------------------------
-
-h(prob_of_state(100),0).
-h(prob_of_state(P2),T2) :- step(T),step(T2), T2=T+1, 
-                           h(prob_of_state(P),T), 
-                           occurs(A,T), 
-                           prob_success(A,PSucc),
-                           P2a=P*PSucc,P2=P2a/100.
-known_prob_success(T)   :- step(T), occurs(A,T), 
-                           prob_success(A,PSucc).
-unknown_prob_success(T) :- step(T), not known_prob_success(T).
-h(prob_of_state(P),T2)  :- step(T), step(T2), T2=T+1, 
-                           h(prob_of_state(P),T), 
-                           unknown_prob_success(T).
-last_step(T):- step(T),T2=T+1, not step(T2).
-check_p(P,T) :- h(prob_of_state(P),T).
-%last_step(1). 
-#maximize{P : h(prob_of_state(P),T), last_step(T)}.
-
-% ---------------------------------------------
 % ------ Output Interface ------
 
-output_headings("Action","Prob. Success of Action","Prob. of State","Step").
+output_headings("Concern","LoCS","Satisfied","Step").
 
 % Support : Identify the last step in the input
 last_step(S) :- step(S), S2=S+1, not step(S2).
 
-output(A,P,Pr,S) :- occurs(A,S), 
-                    prob_success(A,P), 
-                    action(A), 
-                    h(prob_of_state(Pr),S), 
-                    step(S).
 
-output("---Overall---","----Final---",Pr,S) :- h(prob_of_state(Pr),S), last_step(S).
+output(C,LoS,"N",S) :- last_step(S), -h(sat(C),S), likelihood_sat(C,LoS,S).
+output(C,LoS,"Y",S) :- last_step(S), h(sat(C),S), likelihood_sat(C,LoS,S).                         
+
 
 
 % ====== SHOW ========

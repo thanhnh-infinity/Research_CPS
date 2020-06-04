@@ -35,6 +35,10 @@ addressToFunc(C,DF,For) :- concern(C), decomposition(DF), formulas(For),
                            func_dec(DF,C), add_func(For,DF).
 
 
+%=============================================================
+%==================EXTENED ONTOLOGY===========================
+%=============================================================
+
 % Component
 component(Co)           :- input(Co,"rdf:type","cpsf:Component").
 
@@ -42,15 +46,32 @@ component(Co)           :- input(Co,"rdf:type","cpsf:Component").
 relation(Co,P)          :- component(Co), property(P),
                            input(Co,"cpsf:relateToProperty",P).
 
-%=============================================================
-%==================EXTENED ONTOLOGY===========================
-%=============================================================
 
-% ====Component
-
+% Possible Positive Impacts Component-Property to Concern
+component_property(CP)        :- input(CP,"rdf:type","cpsf:Component_Property").
+confComponent(CP,CO)          :- component_property(CP), component(CO),
+                                 input(CP,"cpsf:confComponent",CO).
+confProperty(CP,P)            :- component_property(CP), property(P),
+                                 input(CP,"cpsf:confProperty",P).
+positiveImpactTo(CP,C)        :- component_property(CP), concern(C),
+                                 input(CP,"cpsf:positiveImpactTo",C).
+possible_impacts_pos(CO,P,C)  :- component(CO), concern(C), property(P), 
+                                 component_property(CP), confComponent(CP,CO),
+                                 confProperty(CP,P), positiveImpactTo(CP,C).                              
 
 %=============================================================
-%==================INITIAL CONFIGURATIOn======================
+%==================INITIAL CONFIGURATION======================
 %=============================================================
+init_active_component(IA)     :- input(IA,"rdf:type","cpsf:InitActiveComponent").
+setUpForComponent(IA,CO)      :- init_active_component(IA), component(CO),
+                                 input(IA,"cpsf:setUpForComponent",CO).
+activeToProperty(IA,P)        :- init_active_component(IA), property(P),
+                                 input(IA,"cpsf:activeToProperty",P).
+active(CO,P)                  :- component(CO), property(P), init_active_component(IA),
+                                 setUpForComponent(IA,CO), activeToProperty(IA,P).
 
-#show relation/2.
+initial_configuration(IC)     :- input(IC,"rdf:type","cpsf:InitialConfiguration").
+obsFalse(IC,P)                :- initial_configuration(IC), property(P),
+                                 input(IC,"cpsf:obsFalse",P).
+obs(P,false)                  :- obsFalse(IC,P), initial_configuration(IC), property(P).
+obs(P,true)                   :- not obs(P,false), property(P).
