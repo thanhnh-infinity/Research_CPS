@@ -35,6 +35,13 @@ addressToFunc(C,DF,For) :- concern(C), decomposition(DF), formulas(For),
                            func_dec(DF,C), add_func(For,DF).
 
 
+% Component
+component(Co)           :- input(Co,"rdf:type","cpsf:Component").
+
+% Possible Relations between Components and Properties
+relation(Co,P)          :- component(Co), property(P),
+                           input(Co,"cpsf:relateToProperty",P).
+
 %=============================================================
 %==================EXTENED ONTOLOGY===========================
 %=============================================================
@@ -45,3 +52,5 @@ addressToFunc(C,DF,For) :- concern(C), decomposition(DF), formulas(For),
 %=============================================================
 %==================INITIAL CONFIGURATIOn======================
 %=============================================================
+
+#show relation/2.
