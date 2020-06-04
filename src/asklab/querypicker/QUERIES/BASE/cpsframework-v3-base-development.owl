@@ -71,6 +71,15 @@
     
 
 
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#decomposition_function_of -->
+
+    <owl:ObjectProperty rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#decomposition_function_of">
+        <rdfs:domain rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#DecompositionFunction"/>
+        <rdfs:range rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.asklab.tk/ontologies/CPS-Framework#hasBC -->
 
     <owl:ObjectProperty rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#hasBC">
@@ -256,6 +265,14 @@
     
 
 
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#DecompositionFunction -->
+
+    <owl:Class rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#DecompositionFunction">
+        <rdfs:subClassOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Function"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.asklab.tk/ontologies/CPS-Framework#DesignElement -->
 
     <owl:Class rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#DesignElement">
@@ -394,6 +411,14 @@
 
     <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Aggregation_Disaggregation">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Algorithm_Func -->
+
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Algorithm_Func">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#DecompositionFunction"/>
     </owl:NamedIndividual>
     
 
@@ -720,6 +745,15 @@
     
 
 
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Energy_Func -->
+
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Energy_Func">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#DecompositionFunction"/>
+        <decomposition_function_of rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.asklab.tk/ontologies/CPS-Framework#Engineerability -->
 
     <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Engineerability">
@@ -1030,6 +1064,15 @@
     
 
 
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Operation_Func -->
+
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Operation_Func">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#DecompositionFunction"/>
+        <decomposition_function_of rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.asklab.tk/ontologies/CPS-Framework#OperationsOnData -->
 
     <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#OperationsOnData">
@@ -1315,6 +1358,15 @@
 
     <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Severity">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Sign_In_Func -->
+
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Sign_In_Func">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#DecompositionFunction"/>
+        <decomposition_function_of rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization"/>
     </owl:NamedIndividual>
     
 
