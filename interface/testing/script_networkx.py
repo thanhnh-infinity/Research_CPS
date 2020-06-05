@@ -2,12 +2,18 @@ import networkx as nx
 import numpy as np
 import pygraphviz
 import matplotlib.pyplot as plt
+import graphviz 
 from networkx.drawing.nx_agraph import write_dot, graphviz_layout
 import numpy
 from owlready2 import *
+#from pyvis.network import Network
 my_onto = get_ontology("file://./cpsframework-v3-base.owl").load()
 
-
+concern_color = "#800000"
+property_color = "#595858"
+edge_color = "black"
+edge_width = 2
+edge_alpha = .8
 
 #removes the namespace from an owlr object, turns it into a string
 def remove_namespace(in_netx):
@@ -22,7 +28,7 @@ def remove_namespace(in_netx):
             break
  
     return in_str[(period + 1):]
-    
+   
 #recursive function to retrieve all concerns, puts them in concern_list
 def get_all_concerns(T,concern,concern_list):
     
@@ -34,17 +40,18 @@ def get_all_concerns(T,concern,concern_list):
         get_all_concerns(T,subconcern,concern_list)
         
 #creates all edges from passed node to its children
-def draw_children(G,node):
+def draw_children(G,node,concern_edges):
     
     children = node.includesConcern
         
     for child in children:
         
-        G.add_edge(remove_namespace(node),remove_namespace(child),length = 1)
+        G.add_edge(remove_namespace(node),remove_namespace(child),length = 1,style = "dashed")
+        concern_edges.append((remove_namespace(node),remove_namespace(child)))
         
 
 #adds properties to the graph by finding all impact rules, finding the concern they address, then the property they are connected to 
-def add_properties(G,ontology,property_list):
+def add_properties(G,ontology,property_list,property_edges):
     
     concerns_list = []
     
@@ -65,6 +72,8 @@ def add_properties(G,ontology,property_list):
         G.add_node(property_list[i])
         
         G.add_edge(remove_namespace(concerns_list[i]),property_list[i])
+        
+        property_edges.append((remove_namespace(concerns_list[i]),property_list[i]))
       
          
 def draw_ontology(ax,cps_onto,fs):
@@ -76,6 +85,9 @@ def draw_ontology(ax,cps_onto,fs):
     all_nodes = []
     all_concerns = []
     myproperty_list = []
+    concern_edges = []
+    property_edges = []
+    concern_edge_labels = {}
     
     
 
@@ -97,10 +109,10 @@ def draw_ontology(ax,cps_onto,fs):
     #draws edges between all concerns
     for node in all_nodes:
         
-        draw_children(T,node)
+        draw_children(T,node,concern_edges)
     
     #adds all properties and their edges to graph
-    add_properties(T,cps_onto,myproperty_list)
+    add_properties(T,cps_onto,myproperty_list,property_edges)
     
     #let graphviz handle creating tree structure
     pos = graphviz_layout(T, prog='dot')
@@ -108,6 +120,7 @@ def draw_ontology(ax,cps_onto,fs):
     #don't want negative position values, so add 500 to all x's, 100 to all y's
     for x in pos:
     
+            print(x)
             lst = list(pos[x])
             lst[0] = lst[0] + 500
             lst[1] = lst[1] + 100
@@ -142,13 +155,35 @@ def draw_ontology(ax,cps_onto,fs):
    
     sorted_concerns = sorted(all_concerns, key=lambda x:x.upper())
     
+    
+    
     plt.tight_layout()
     #nx.draw(T, pos, with_labels=True, arrows=True, ax = ax, node_size = .1, font_size = fs,node_shape = "s", bbox=dict(facecolor="#737373", boxstyle='round,pad=0.2'),font_color = "white",scale = 1)
     
     #draw all of the nodes, with no labels
     nx.draw_networkx_nodes(T, pos, with_labels=False, arrows=False, ax = ax, node_size = .1,scale = 1)
     #draw all of the edges
-    nx.draw_networkx_edges(T, pos, arrows=False)
+    nx.draw_networkx_edges(T, pos, edgelist = concern_edges, arrows=False,style = "solid",width = edge_width,edge_color = edge_color,alpha = edge_alpha)
+    nx.draw_networkx_edges(T, pos, edgelist = property_edges, arrows=False,style = "dashed",width = edge_width,edge_color = edge_color, alpha = edge_alpha)
+    
+   
+    
+    #set up and draw edge labels
+    concern_edge_labels = {}
+    for edge in concern_edges:
+        concern_edge_labels[edge] = 'subconcern'
+        
+      
+    nx.draw_networkx_edge_labels(T, pos, edge_labels=concern_edge_labels,font_size = fs)
+    
+    property_edge_labels = {}
+    for edge in property_edges:
+        property_edge_labels[edge] = 'address'
+        
+      
+    nx.draw_networkx_edge_labels(T, pos, edge_labels=property_edge_labels,font_size = fs)
+    
+    
     
     #draw all of the concerns with one color, the properties with another
     labels = {}
@@ -156,7 +191,7 @@ def draw_ontology(ax,cps_onto,fs):
     for concern in sorted_concerns:
         labels[concern] = concern
         
-    nx.draw_networkx_labels(T,pos,labels,font_size=fs,bbox=dict(facecolor="#737373", boxstyle='round,pad=0.2'),font_color = "white")   
+    nx.draw_networkx_labels(T,pos,labels,font_size=fs,bbox=dict(facecolor=concern_color, boxstyle='square,pad=.3'),font_color = "white")   
     
 
     labels = {}
@@ -165,14 +200,23 @@ def draw_ontology(ax,cps_onto,fs):
         
         labels[myproperty] = myproperty
         
-    nx.draw_networkx_labels(T,pos,labels,font_size=fs,bbox=dict(facecolor="red", boxstyle='round,pad=0.2'),font_color = "white") 
+    nx.draw_networkx_labels(T,pos,labels,font_size=fs,bbox=dict(facecolor=property_color, boxstyle='round4,pad=.5'),font_color = "white") 
     
     
+    #write_dot(T, "grid.dot")
     
-    return xmin, xmax, ymin, ymax, sorted_concerns
+    return xmin, xmax, ymin, ymax, sorted_concerns, pos
     
-fig, ax = plt.subplots(figsize = (10,10))
+#fig, ax = plt.subplots(figsize = (10,10))
 
-draw_ontology(ax,my_onto,8)
+#x, y, z, w, ww = draw_ontology(ax,my_onto,8)
+
+
+#G = Network()
+#G.from_nx(T)
+
+#G.toggle_physics(False)
+#G.toggle_drag_nodes(False)
+#G.show("willy.html")
 
 
