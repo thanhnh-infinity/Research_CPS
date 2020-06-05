@@ -14,7 +14,7 @@ concern(all).
 subconcern(all,A) :- aspect(A).
 
 % Property addresses a concern
-addressedBy(P,C) :- property(P), concern(C), 
+addressedBy(C,P) :- property(P), concern(C), 
                     input(P,"cpsf:addConcern",C).
 
 
@@ -72,6 +72,10 @@ active(CO,P)                  :- component(CO), property(P), init_active_compone
 
 initial_configuration(IC)     :- input(IC,"rdf:type","cpsf:InitialConfiguration").
 obsFalse(IC,P)                :- initial_configuration(IC), property(P),
-                                 input(IC,"cpsf:obsFalse",P).
-obs(P,false)                  :- obsFalse(IC,P), initial_configuration(IC), property(P).
+                                 intial_select(IC), input(IC,"cpsf:obsFalse",P).
+obs(P,false)                  :- obsFalse(IC,P), initial_configuration(IC), 
+                                 property(P), intial_select(IC).
 obs(P,true)                   :- not obs(P,false), property(P).
+
+intial_select("cpsf:initial_configuration_4").
+%=============================================================

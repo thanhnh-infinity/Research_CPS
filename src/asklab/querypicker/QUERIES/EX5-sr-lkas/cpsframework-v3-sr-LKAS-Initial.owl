@@ -70,5 +70,38 @@
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#IRIS_Scan"/>
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Normal_Mode"/>
     </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#initial_configuration_1">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InitialConfiguration"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Finger_Printing"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Two_Factors"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#IRIS_Scan"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#OAuth"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#initial_configuration_2">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InitialConfiguration"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Two_Factors"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#IRIS_Scan"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Advanced_Mode"/>
+	<obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Basic_Mode"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#initial_configuration_3">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InitialConfiguration"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Two_Factors"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#IRIS_Scan"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Trusted_Auth_Device"/>
+	<obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Saving_Mode"/>
+	<obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Powerful_Mode"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Normal_Mode"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#initial_configuration_4">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InitialConfiguration"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Finger_Printing"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Two_Factors"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#IRIS_Scan"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#OAuth"/>
+	<obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Saving_Mode"/>
+	<obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Powerful_Mode"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Normal_Mode"/>
+    </owl:NamedIndividual>
 	
 </rdf:RDF>

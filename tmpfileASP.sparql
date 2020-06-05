@@ -248,6 +248,14 @@ input("cpsf:pos_imp_cam_advanced_mode","cpsf:confProperty","cpsf:Advanced_Mode")
 input("cpsf:pos_imp_cam_advanced_mode","cpsf:confComponent","cpsf:CAM").
 input("cpsf:pos_imp_cam_advanced_mode","rdf:type","cpsf:Component_Property").
 input("cpsf:pos_imp_cam_advanced_mode","rdf:type","owl:NamedIndividual").
+input("cpsf:initial_configuration_3","cpsf:obsFalse","cpsf:Normal_Mode").
+input("cpsf:initial_configuration_3","cpsf:obsFalse","cpsf:Powerful_Mode").
+input("cpsf:initial_configuration_3","cpsf:obsFalse","cpsf:Saving_Mode").
+input("cpsf:initial_configuration_3","cpsf:obsFalse","cpsf:Trusted_Auth_Device").
+input("cpsf:initial_configuration_3","cpsf:obsFalse","cpsf:IRIS_Scan").
+input("cpsf:initial_configuration_3","cpsf:obsFalse","cpsf:Two_Factors").
+input("cpsf:initial_configuration_3","rdf:type","cpsf:InitialConfiguration").
+input("cpsf:initial_configuration_3","rdf:type","owl:NamedIndividual").
 input("cpsf:Predictability","cpsf:includesConcern","cpsf:Controls").
 input("cpsf:Predictability","rdf:type","cpsf:Concern").
 input("cpsf:Predictability","rdf:type","owl:NamedIndividual").
@@ -431,6 +439,12 @@ input("cpsf:pos_imp_cam_protocol_encrypted","cpsf:confProperty","cpsf:Protocol_E
 input("cpsf:pos_imp_cam_protocol_encrypted","cpsf:confComponent","cpsf:CAM").
 input("cpsf:pos_imp_cam_protocol_encrypted","rdf:type","cpsf:Component_Property").
 input("cpsf:pos_imp_cam_protocol_encrypted","rdf:type","owl:NamedIndividual").
+input("cpsf:initial_configuration_1","cpsf:obsFalse","cpsf:OAuth").
+input("cpsf:initial_configuration_1","cpsf:obsFalse","cpsf:IRIS_Scan").
+input("cpsf:initial_configuration_1","cpsf:obsFalse","cpsf:Two_Factors").
+input("cpsf:initial_configuration_1","cpsf:obsFalse","cpsf:Finger_Printing").
+input("cpsf:initial_configuration_1","rdf:type","cpsf:InitialConfiguration").
+input("cpsf:initial_configuration_1","rdf:type","owl:NamedIndividual").
 input("cpsf:Application","rdfs:subClassOf","cpsf:CPSFrameworkConcept").
 input("cpsf:Application","rdf:type","owl:Class").
 input("cpsf:Functional_Stability","rdf:type","cpsf:Concern").
@@ -579,6 +593,15 @@ input("cpsf:Maintainability","rdf:type","cpsf:Concern").
 input("cpsf:Maintainability","rdf:type","owl:NamedIndividual").
 input("cpsf:DataModels","rdf:type","cpsf:Concern").
 input("cpsf:DataModels","rdf:type","owl:NamedIndividual").
+input("cpsf:initial_configuration_4","cpsf:obsFalse","cpsf:Normal_Mode").
+input("cpsf:initial_configuration_4","cpsf:obsFalse","cpsf:Powerful_Mode").
+input("cpsf:initial_configuration_4","cpsf:obsFalse","cpsf:Saving_Mode").
+input("cpsf:initial_configuration_4","cpsf:obsFalse","cpsf:OAuth").
+input("cpsf:initial_configuration_4","cpsf:obsFalse","cpsf:IRIS_Scan").
+input("cpsf:initial_configuration_4","cpsf:obsFalse","cpsf:Two_Factors").
+input("cpsf:initial_configuration_4","cpsf:obsFalse","cpsf:Finger_Printing").
+input("cpsf:initial_configuration_4","rdf:type","cpsf:InitialConfiguration").
+input("cpsf:initial_configuration_4","rdf:type","owl:NamedIndividual").
 input("cpsf:hasType","rdfs:range","cpsf:PropertyType").
 input("cpsf:hasType","rdfs:domain","cpsf:Property").
 input("cpsf:hasType","rdf:type","owl:ObjectProperty").
@@ -836,6 +859,12 @@ input("cpsf:Aspect","rdfs:subClassOf","cpsf:Concern").
 input("cpsf:Aspect","rdf:type","owl:Class").
 input("cpsf:Networkability","rdf:type","cpsf:Concern").
 input("cpsf:Networkability","rdf:type","owl:NamedIndividual").
+input("cpsf:initial_configuration_2","cpsf:obsFalse","cpsf:Basic_Mode").
+input("cpsf:initial_configuration_2","cpsf:obsFalse","cpsf:Advanced_Mode").
+input("cpsf:initial_configuration_2","cpsf:obsFalse","cpsf:IRIS_Scan").
+input("cpsf:initial_configuration_2","cpsf:obsFalse","cpsf:Two_Factors").
+input("cpsf:initial_configuration_2","rdf:type","cpsf:InitialConfiguration").
+input("cpsf:initial_configuration_2","rdf:type","owl:NamedIndividual").
 input("cpsf:pos_imp_sam_two_factors","cpsf:positiveImpactTo","cpsf:Authorization").
 input("cpsf:pos_imp_sam_two_factors","cpsf:confProperty","cpsf:Two_Factors").
 input("cpsf:pos_imp_sam_two_factors","cpsf:confComponent","cpsf:SAM").
@@ -1191,18 +1220,17 @@ obs(oauth,true).
 obs(opt_code,true).
 obs(email_verify,true).
 obs(ip_check,true).
-obs(advanced_mode,true).
-obs(basic_mode,true).
+obs(advanced_mode,false).
+obs(basic_mode,false).
 obs(saving_mode,true).
 obs(powerful_mode,true).
-obs(normal_mode,false).
+obs(normal_mode,true).
 
 %========== Current Active Between Components and Properties ==========
 active(sam,data_encrypted).
 active(sam,algo_RSA).
 active(sam,firewall_setup).
 active(sam,secure_boot).
-active(sam,trusted_environment).
 
 active(cam,ip_filtering).
 active(cam,data_encrypted).
@@ -1210,14 +1238,11 @@ active(cam,conn_encrypted).
 active(cam,secure_boot).
 active(cam,trusted_auth_device).
 
-
 % Change to see the different of LoS values
 active(sam,finger_printing).
 active(sam,advanced_mode).
 active(cam,advanced_mode).
-
 active(battery,saving_mode).
-active(battery,trusted_environment).
 
 
 %==============================================

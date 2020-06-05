@@ -120,7 +120,7 @@ likelihood_sat_sub(C,X,T)       :- step(T), concern(C),
                                    not likelihood_sat_sub_aux(C,N+1,_,T).
 %------------------------------------------------------------------
 %#show h/2.
-#show -h/2.
+%#show -h/2.
 %#show sat_formulas/4.
 %#show -sat_formulas/4.
 %#show leadTo/2.
@@ -128,11 +128,13 @@ likelihood_sat_sub(C,X,T)       :- step(T), concern(C),
 %#show order/3.
 %#show likelihood_sat/3.
 %#show likelihood_sat_sub_aux/4.
-%#show degree_pos/3.
+#show degree_pos/3.
 %#show deg_prop_sat/3.
 %#show order_requirement/3.
 %#show deg_prop_imp_req_aux/4.
 %#show no_act_pos_concern/3.
 %#show no_all_pos_concern/3.
 %#show degree_pos_temp/3.
+%#show possible_impacts_pos/3.
+%#show addressedBy/2.
 
