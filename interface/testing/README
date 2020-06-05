@@ -1,0 +1,26 @@
+At the moment, the three files that make up the interface are OntologyGUI.py, owlNode.py, and owlOntology.py.
+The rest of the files are outdated an no longer used. I am using a few packages whose versions required are
+specific to your python version, so it is difficult to say exactly which packages you will need to install to run the program.
+To run the program execute OntologyGUI.py
+
+The program however requires:
+  numpy
+  matplotlib
+  networkx
+  graphviz
+  pygraphviz
+  owlready2
+  pydotplus
+
+The difficulty is getting graphviz, pygraphviz and pydotplus all to be happy with eachother.
+I'd recommend using whichever methods you usually use to install packages to get these
+and note that if you are using anaconda, an easy way to install these packages is:
+
+  conda install -c alubbock graphviz pygraphviz
+
+However, it doesn't seem perfect for everyone
+
+You also may get the error "dot not recognized", which can be fixed using "dot -c" in terminal
+
+I hope to either find a solution for installing these packages easily, or restructure the
+program so it doesn't require these packages at all.
