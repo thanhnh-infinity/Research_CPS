@@ -62,20 +62,32 @@ possible_impacts_pos(CO,P,C)  :- component(CO), concern(C), property(P),
 %=============================================================
 %==================INITIAL CONFIGURATION======================
 %=============================================================
-init_active_component(IA)     :- input(IA,"rdf:type","cpsf:InitActiveComponent").
-setUpForComponent(IA,CO)      :- init_active_component(IA), component(CO),
-                                 input(IA,"cpsf:setUpForComponent",CO).
-activeToProperty(IA,P)        :- init_active_component(IA), property(P),
-                                 input(IA,"cpsf:activeToProperty",P).
-active(CO,P)                  :- component(CO), property(P), init_active_component(IA),
-                                 setUpForComponent(IA,CO), activeToProperty(IA,P).
+init_active_com_pro(IACP)     :- input(IACP,"rdf:type","cpsf:InititalActiveComponentsProperties").
+active_com_pro(ACP)           :- input(ACP,"rdf:type","cpsf:ActiveComponentProperty").
+includesActivation(IACP,ACP)  :- init_active_com_pro(IACP), active_com_pro(ACP),
+                                 input(IACP,"cpsf:includesActivation",ACP).
 
+init_active_com(ACP)          :- init_active_com_pro(IACP), inital_active_select(IACP),
+                                 active_com_pro(ACP), includesActivation(IACP,ACP).           
+
+
+setUpForComponent(IAC,CO)     :- init_active_com(IAC), component(CO),
+                                 input(IAC,"cpsf:setUpForComponent",CO).
+activeToProperty(IAC,P)       :- init_active_com(IAC), property(P),
+                                 input(IAC,"cpsf:activeToProperty",P).
+active(CO,P)                  :- component(CO), property(P), init_active_com(IAC),
+                                 setUpForComponent(IAC,CO), activeToProperty(IAC,P).
+
+% Set up case for Properties Observation
 initial_configuration(IC)     :- input(IC,"rdf:type","cpsf:InitialConfiguration").
 obsFalse(IC,P)                :- initial_configuration(IC), property(P),
-                                 intial_select(IC), input(IC,"cpsf:obsFalse",P).
+                                 intial_conf_select(IC), input(IC,"cpsf:obsFalse",P).
 obs(P,false)                  :- obsFalse(IC,P), initial_configuration(IC), 
-                                 property(P), intial_select(IC).
+                                 property(P), intial_conf_select(IC).
 obs(P,true)                   :- not obs(P,false), property(P).
 
-intial_select("cpsf:initial_configuration_4").
+% Input Changes
+intial_conf_select("cpsf:initial_configuration_0").
+inital_active_select("cpsf:active_component_properties_case_0").
 %=============================================================
+%#show init_active_com/1.
