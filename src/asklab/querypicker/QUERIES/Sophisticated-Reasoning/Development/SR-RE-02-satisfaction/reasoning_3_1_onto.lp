@@ -1,5 +1,6 @@
 #include "./CPS_Ontology.lp".
 #include "./ontology_driven.lp".
+#include "./ontology_init.lp".
 
 %==============================================
 step(0).
