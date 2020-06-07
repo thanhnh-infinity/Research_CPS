@@ -1,6 +1,6 @@
 #include "./CPS_Ontology.lp".
 #include "./ontology_driven.lp".
-#include "./ontology_init.lp".
+#include "./ontology_init_4.lp".
 
 step(0).
 %=====Satisfaction Reasoning======
