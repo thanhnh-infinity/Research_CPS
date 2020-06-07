@@ -34,39 +34,39 @@
     </owl:ObjectProperty>
 
     <!-- Consider Case for active -->
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#active_component_properties_case_0">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_active_component_properties_case_0">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InititalActiveComponentsProperties"/>
-        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#sam_activations_0"/>
-        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#cam_activations_0"/>
-        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#battery_activations_0"/>
+        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_sam_activations_0"/>
+        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_cam_activations_0"/>
+        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_battery_activations_0"/>
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#active_component_properties_case_1">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_active_component_properties_case_1">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InititalActiveComponentsProperties"/>
-        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#sam_activations_1"/>
-        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#cam_activations_1"/>
-        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#battery_activations_1"/>
+        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_sam_activations_1"/>
+        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_cam_activations_1"/>
+        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_battery_activations_1"/>
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#active_component_properties_case_2">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_active_component_properties_case_2">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InititalActiveComponentsProperties"/>
-        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#sam_activations_2"/>
-        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#cam_activations_2"/>
-        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#battery_activations_2"/>
+        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_sam_activations_2"/>
+        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_cam_activations_2"/>
+        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_battery_activations_2"/>
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#active_component_properties_case_3">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_active_component_properties_case_3">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InititalActiveComponentsProperties"/>
-        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#sam_activations_3"/>
-        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#cam_activations_3"/>
-        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#battery_activations_3"/>
+        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_sam_activations_3"/>
+        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_cam_activations_3"/>
+        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_battery_activations_3"/>
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#active_component_properties_case_4">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_active_component_properties_case_4">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InititalActiveComponentsProperties"/>
-        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#sam_activations_4"/>
-        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#cam_activations_4"/>
-        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#battery_activations_4"/>
+        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_sam_activations_4"/>
+        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_cam_activations_4"/>
+        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_battery_activations_4"/>
     </owl:NamedIndividual>	
 
     <!-- Case 0 -->
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#sam_activations_0">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_sam_activations_0">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ActiveComponentProperty"/>
         <setUpForComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#SAM"/>
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Data_Encrypted"/>
@@ -77,7 +77,7 @@
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Advanced_Mode"/>
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Finger_Printing"/>
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#cam_activations_0">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_cam_activations_0">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ActiveComponentProperty"/>
         <setUpForComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#CAM"/>     
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Data_Encrypted"/>
@@ -87,7 +87,7 @@
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Trusted_Auth_Device"/>
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Advanced_Mode"/>
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#battery_activations_0">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_battery_activations_0">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ActiveComponentProperty"/>
         <setUpForComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#BATTERY"/>
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Saving_Mode"/>
@@ -95,7 +95,7 @@
     </owl:NamedIndividual>
 
     <!-- Case 1 -->
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#sam_activations_1">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_sam_activations_1">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ActiveComponentProperty"/>
         <setUpForComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#SAM"/>
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Data_Encrypted"/>
@@ -105,7 +105,7 @@
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Basic_Mode"/>
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Finger_Printing"/>
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#cam_activations_1">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_cam_activations_1">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ActiveComponentProperty"/>
         <setUpForComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#CAM"/>     
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Data_Encrypted"/>
@@ -115,14 +115,14 @@
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Trusted_Auth_Device"/>
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Basic_Mode"/>
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#battery_activations_1">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_battery_activations_1">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ActiveComponentProperty"/>
         <setUpForComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#BATTERY"/>
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Powerful_Mode"/> 
     </owl:NamedIndividual>
 
     <!-- Case 2 -->
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#sam_activations_2">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_sam_activations_2">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ActiveComponentProperty"/>
         <setUpForComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#SAM"/>
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Data_Encrypted"/>
@@ -132,7 +132,7 @@
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Advanced_Mode"/>
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Finger_Printing"/>
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#cam_activations_2">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_cam_activations_2">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ActiveComponentProperty"/>
         <setUpForComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#CAM"/>     
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Data_Encrypted"/>
@@ -142,14 +142,14 @@
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Trusted_Auth_Device"/>
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Advanced_Mode"/>
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#battery_activations_2">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_battery_activations_2">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ActiveComponentProperty"/>
         <setUpForComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#BATTERY"/>
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Saving_Mode"/> 
     </owl:NamedIndividual>
 
     <!-- Case 3 -->
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#sam_activations_3">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_sam_activations_3">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ActiveComponentProperty"/>
         <setUpForComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#SAM"/>
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Data_Encrypted"/>
@@ -160,7 +160,7 @@
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Finger_Printing"/>
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Trusted_Environment"/> 
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#cam_activations_3">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_cam_activations_3">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ActiveComponentProperty"/>
         <setUpForComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#CAM"/>     
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Data_Encrypted"/>
@@ -170,7 +170,7 @@
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Trusted_Auth_Device"/>
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Advanced_Mode"/>
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#battery_activations_3">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_battery_activations_3">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ActiveComponentProperty"/>
         <setUpForComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#BATTERY"/>
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Saving_Mode"/>
@@ -178,7 +178,7 @@
     </owl:NamedIndividual>
     
     <!-- Case 4 -->
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#sam_activations_4">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_sam_activations_4">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ActiveComponentProperty"/>
         <setUpForComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#SAM"/>
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Data_Encrypted"/>
@@ -189,7 +189,7 @@
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Finger_Printing"/>
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Trusted_Environment"/> 
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#cam_activations_4">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_cam_activations_4">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ActiveComponentProperty"/>
         <setUpForComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#CAM"/>     
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Data_Encrypted"/>
@@ -199,7 +199,7 @@
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Trusted_Auth_Device"/>
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Advanced_Mode"/>
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#battery_activations_4">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_battery_activations_4">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ActiveComponentProperty"/>
         <setUpForComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#BATTERY"/>
         <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Saving_Mode"/>
@@ -208,14 +208,14 @@
 
     <!-- Properties Observation -->
     <!-- Case 0 -->
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#initial_configuration_0">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_initial_conf_0">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InitialConfiguration"/>
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Two_Factors"/>
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#IRIS_Scan"/>
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Normal_Mode"/>
     </owl:NamedIndividual>
     <!-- Case 1 -->
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#initial_configuration_1">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_initial_conf_1">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InitialConfiguration"/>
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Finger_Printing"/>
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Two_Factors"/>
@@ -223,7 +223,7 @@
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#OAuth"/>
     </owl:NamedIndividual>
     <!-- Case 2 -->
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#initial_configuration_2">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_initial_conf_2">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InitialConfiguration"/>
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Two_Factors"/>
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#IRIS_Scan"/>
@@ -231,7 +231,7 @@
 	<obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Basic_Mode"/>
     </owl:NamedIndividual>
     <!-- Case 3 -->
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#initial_configuration_3">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_initial_conf_3">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InitialConfiguration"/>
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Two_Factors"/>
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#IRIS_Scan"/>
@@ -241,7 +241,7 @@
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Normal_Mode"/>
     </owl:NamedIndividual>
     <!-- Case 4 -->
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#initial_configuration_4">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_initial_conf_4">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InitialConfiguration"/>
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Finger_Printing"/>
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Two_Factors"/>
