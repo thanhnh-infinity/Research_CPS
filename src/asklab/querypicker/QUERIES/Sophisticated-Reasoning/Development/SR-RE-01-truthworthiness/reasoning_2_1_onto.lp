@@ -1,5 +1,6 @@
 #include "./CPS_Ontology.lp".
 #include "./ontology_driven.lp".
+#include "./ontology_init.lp".
 
 %#include "./ontology_LKAS_2.lp".
 %#include "./obs_init_state_LKAS.lp".
