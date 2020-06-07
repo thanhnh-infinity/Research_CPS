@@ -207,14 +207,14 @@
     </owl:NamedIndividual>
 
     <!-- Properties Observation -->
-    <!-- Case 0 -->
+    <!-- Case SR-ER-02 0 -->
     <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_initial_conf_0">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InitialConfiguration"/>
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Two_Factors"/>
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#IRIS_Scan"/>
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Normal_Mode"/>
     </owl:NamedIndividual>
-    <!-- Case 1 -->
+    <!-- Case SR-ER-02 1 -->
     <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_initial_conf_1">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InitialConfiguration"/>
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Finger_Printing"/>
@@ -222,7 +222,7 @@
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#IRIS_Scan"/>
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#OAuth"/>
     </owl:NamedIndividual>
-    <!-- Case 2 -->
+    <!-- Case SR-ER-02 2 -->
     <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_initial_conf_2">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InitialConfiguration"/>
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Two_Factors"/>
@@ -230,7 +230,7 @@
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Advanced_Mode"/>
 	<obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Basic_Mode"/>
     </owl:NamedIndividual>
-    <!-- Case 3 -->
+    <!-- Case SR-ER-02 3 -->
     <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_initial_conf_3">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InitialConfiguration"/>
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Two_Factors"/>
@@ -240,7 +240,7 @@
 	<obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Powerful_Mode"/>
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Normal_Mode"/>
     </owl:NamedIndividual>
-    <!-- Case 4 -->
+    <!-- Case SR-ER-02 4 -->
     <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_02_initial_conf_4">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InitialConfiguration"/>
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Finger_Printing"/>
@@ -251,5 +251,40 @@
 	<obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Powerful_Mode"/>
         <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Normal_Mode"/>
     </owl:NamedIndividual>
-	
+    
+
+    <!-- Case SR-ER-01 0 -->
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_01_initial_conf_0">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InitialConfiguration"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Two_Factors"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Firewall_Setup"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_01_initial_conf_1">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InitialConfiguration"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Two_Factors"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Firewall_Setup"/>
+	<obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Finger_Printing"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_01_initial_conf_2">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InitialConfiguration"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Two_Factors"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Firewall_Setup"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Powerful_Mode"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Normal_Mode"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_01_initial_conf_3">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InitialConfiguration"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Two_Factors"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Firewall_Setup"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Finger_Printing"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#IRIS_Scan"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#OAuth"/>
+    </owl:NamedIndividual> 
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#lkas_sr_er_01_initial_conf_4">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InitialConfiguration"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Two_Factors"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Firewall_Setup"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Advanced_Mode"/>
+    </owl:NamedIndividual>
+    
 </rdf:RDF>

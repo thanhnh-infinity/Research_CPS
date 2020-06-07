@@ -137,29 +137,29 @@ component(pf).
 component(ec).
 component(escam).
 
-relation(cp,maintenance_regularly,"cp maintenance").
-relation(cp,communicate_with_other_comp,"cp communicate").
+relation(cp,maintenance_regularly).
+relation(cp,communicate_with_other_comp).
 
-relation(er,control_speed,"er control speed").
-relation(er,send_actions,"er send actions").
-relation(er,communicate_with_other_comp,"er communicate").
+relation(er,control_speed).
+relation(er,send_actions).
+relation(er,communicate_with_other_comp).
 
-relation(pf,maintenance_regularly,"PF maintenance").
-relation(pf,control_speed,"PF control speed").
-relation(pf,control_pulley,"PF control pulley").
-relation(pf,pulley_release,"PF release").
-relation(pf,pulley_clench,"PF clench").
-relation(pf,communicate_with_other_comp,"PF communicate").
+relation(pf,maintenance_regularly).
+relation(pf,control_speed).
+relation(pf,control_pulley).
+relation(pf,pulley_release).
+relation(pf,pulley_clench).
+relation(pf,communicate_with_other_comp).
 
-relation(ec,maintenance_regularly,"EC maintenance").
-relation(ec,halting,"PF halts").
-relation(ec,moving_down,"EC downd").
-relation(ec,moving_up,"EC up").
-relation(ec,control_moving,"EC moving").
-relation(ec,communicate_with_other_comp,"EC communicate").
+relation(ec,maintenance_regularly).
+relation(ec,halting).
+relation(ec,moving_down).
+relation(ec,moving_up).
+relation(ec,control_moving).
+relation(ec,communicate_with_other_comp).
 
-relation(escam,record_25fps,"ESCAM maintenance").
-relation(escam,communicate_with_other_comp,"ESCAM").
-relation(escam,detect_No_passenger,"ESCAM").
+relation(escam,record_25fps).
+relation(escam,communicate_with_other_comp).
+relation(escam,detect_No_passenger).
 
 

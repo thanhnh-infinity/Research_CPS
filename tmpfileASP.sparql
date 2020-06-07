@@ -57,6 +57,11 @@ input("cpsf:RealizationFacet","rdf:type","owl:NamedIndividual").
 input("cpsf:Sign_In_Func","cpsf:decomposition_function_of","cpsf:Authorization").
 input("cpsf:Sign_In_Func","rdf:type","cpsf:DecompositionFunction").
 input("cpsf:Sign_In_Func","rdf:type","owl:NamedIndividual").
+input("cpsf:lkas_sr_er_01_initial_conf_1","cpsf:obsFalse","cpsf:Finger_Printing").
+input("cpsf:lkas_sr_er_01_initial_conf_1","cpsf:obsFalse","cpsf:Firewall_Setup").
+input("cpsf:lkas_sr_er_01_initial_conf_1","cpsf:obsFalse","cpsf:Two_Factors").
+input("cpsf:lkas_sr_er_01_initial_conf_1","rdf:type","cpsf:InitialConfiguration").
+input("cpsf:lkas_sr_er_01_initial_conf_1","rdf:type","owl:NamedIndividual").
 input("cpsf:setUpForComponent","rdfs:range","cpsf:Component").
 input("cpsf:setUpForComponent","rdfs:domain","cpsf:ActiveComponentProperty").
 input("cpsf:setUpForComponent","rdf:type","owl:ObjectProperty").
@@ -202,6 +207,11 @@ input("cpsf:Authentication","rdf:type","cpsf:Concern").
 input("cpsf:Authentication","rdf:type","owl:NamedIndividual").
 input("cpsf:DataQuality","rdf:type","cpsf:Concern").
 input("cpsf:DataQuality","rdf:type","owl:NamedIndividual").
+input("cpsf:lkas_sr_er_01_initial_conf_4","cpsf:obsFalse","cpsf:Advanced_Mode").
+input("cpsf:lkas_sr_er_01_initial_conf_4","cpsf:obsFalse","cpsf:Firewall_Setup").
+input("cpsf:lkas_sr_er_01_initial_conf_4","cpsf:obsFalse","cpsf:Two_Factors").
+input("cpsf:lkas_sr_er_01_initial_conf_4","rdf:type","cpsf:InitialConfiguration").
+input("cpsf:lkas_sr_er_01_initial_conf_4","rdf:type","owl:NamedIndividual").
 input("cpsf:Property","rdfs:comment","pg 15").
 input("cpsf:Property","rdfs:subClassOf","cpsf:CPSFrameworkConcept").
 input("cpsf:Property","rdf:type","owl:Class").
@@ -402,6 +412,12 @@ input("cpsf:PhysicalSecurity","cpsf:includesConcern","cpsf:Stability").
 input("cpsf:PhysicalSecurity","cpsf:includesConcern","cpsf:Physical_Integrity").
 input("cpsf:PhysicalSecurity","rdf:type","cpsf:Concern").
 input("cpsf:PhysicalSecurity","rdf:type","owl:NamedIndividual").
+input("cpsf:lkas_sr_er_01_initial_conf_2","cpsf:obsFalse","cpsf:Normal_Mode").
+input("cpsf:lkas_sr_er_01_initial_conf_2","cpsf:obsFalse","cpsf:Powerful_Mode").
+input("cpsf:lkas_sr_er_01_initial_conf_2","cpsf:obsFalse","cpsf:Firewall_Setup").
+input("cpsf:lkas_sr_er_01_initial_conf_2","cpsf:obsFalse","cpsf:Two_Factors").
+input("cpsf:lkas_sr_er_01_initial_conf_2","rdf:type","cpsf:InitialConfiguration").
+input("cpsf:lkas_sr_er_01_initial_conf_2","rdf:type","owl:NamedIndividual").
 input("cpsf:pos_imp_cam_mac_check","cpsf:positiveImpactTo","cpsf:Verification").
 input("cpsf:pos_imp_cam_mac_check","cpsf:confProperty","cpsf:Mac_Check").
 input("cpsf:pos_imp_cam_mac_check","cpsf:confComponent","cpsf:CAM").
@@ -668,6 +684,10 @@ input("cpsf:uc2","rdf:type","cpsf:UseCase").
 input("cpsf:uc2","rdf:type","owl:NamedIndividual").
 input("cpsf:ImpactPolarity","rdfs:subClassOf","cpsf:ImpactRuleConcepts").
 input("cpsf:ImpactPolarity","rdf:type","owl:Class").
+input("cpsf:lkas_sr_er_01_initial_conf_0","cpsf:obsFalse","cpsf:Firewall_Setup").
+input("cpsf:lkas_sr_er_01_initial_conf_0","cpsf:obsFalse","cpsf:Two_Factors").
+input("cpsf:lkas_sr_er_01_initial_conf_0","rdf:type","cpsf:InitialConfiguration").
+input("cpsf:lkas_sr_er_01_initial_conf_0","rdf:type","owl:NamedIndividual").
 input("cpsf:lkas_sr_er_02_sam_activations_3","cpsf:activeToProperty","cpsf:Data_Encrypted").
 input("cpsf:lkas_sr_er_02_sam_activations_3","cpsf:activeToProperty","cpsf:Secure_Boot").
 input("cpsf:lkas_sr_er_02_sam_activations_3","rdf:type","owl:NamedIndividual").
@@ -853,6 +873,13 @@ input("cpsf:Velocity","rdf:type","owl:NamedIndividual").
 input("cpsf:Stability","cpsf:includesConcern","cpsf:Functional_Stability").
 input("cpsf:Stability","rdf:type","cpsf:Concern").
 input("cpsf:Stability","rdf:type","owl:NamedIndividual").
+input("cpsf:lkas_sr_er_01_initial_conf_3","cpsf:obsFalse","cpsf:OAuth").
+input("cpsf:lkas_sr_er_01_initial_conf_3","cpsf:obsFalse","cpsf:IRIS_Scan").
+input("cpsf:lkas_sr_er_01_initial_conf_3","cpsf:obsFalse","cpsf:Finger_Printing").
+input("cpsf:lkas_sr_er_01_initial_conf_3","cpsf:obsFalse","cpsf:Firewall_Setup").
+input("cpsf:lkas_sr_er_01_initial_conf_3","cpsf:obsFalse","cpsf:Two_Factors").
+input("cpsf:lkas_sr_er_01_initial_conf_3","rdf:type","cpsf:InitialConfiguration").
+input("cpsf:lkas_sr_er_01_initial_conf_3","rdf:type","owl:NamedIndividual").
 input("cpsf:pos_imp_cam_secure_boot","cpsf:positiveImpactTo","cpsf:Integrity").
 input("cpsf:pos_imp_cam_secure_boot","cpsf:confProperty","cpsf:Secure_Boot").
 input("cpsf:pos_imp_cam_secure_boot","cpsf:confComponent","cpsf:CAM").

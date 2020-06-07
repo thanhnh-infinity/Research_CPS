@@ -1,5 +1,5 @@
-#include "./ontology_elevator.lp".
-#include "./obs_init_state_elevator.lp".
+#include "./CPS_Ontology.lp".
+#include "./ontology_driven.lp".
 
 %#include "./ontology_LKAS_2.lp".
 %#include "./obs_init_state_LKAS.lp".
@@ -77,6 +77,6 @@ lowest_TW_comp(C,S)  :- component(C), step(S), distance(C,M,S),
 #show lowest_TW_comp/2.
 %#show addrForConcern/2.
 %#show addressedBy/2.
-%#show order/3.
+%#show obs/2.
 #show distance/3.
 

@@ -87,7 +87,8 @@ obs(P,false)                  :- obsFalse(IC,P), initial_configuration(IC),
 obs(P,true)                   :- not obs(P,false), property(P).
 
 % Input Changes
-intial_conf_select("cpsf:initial_configuration_0").
-inital_active_select("cpsf:active_component_properties_case_0").
+intial_conf_select("cpsf:lkas_sr_er_01_initial_conf_4").
+inital_active_select("cpsf:lkas_sr_er_01_active_component_properties_case_0").
+obs(availablePatch("cpsf:Two_Factors"),true).
 %=============================================================
-%#show init_active_com/1.
+%#show obs/1.

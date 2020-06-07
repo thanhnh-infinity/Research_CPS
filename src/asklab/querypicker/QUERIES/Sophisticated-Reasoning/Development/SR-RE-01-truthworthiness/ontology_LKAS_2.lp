@@ -148,19 +148,19 @@ addressedBy(authorization,data_access_permission).
 component(sam).
 component(cam).
 
-relation(cam,data_encrypted,"CAM access to encrypted data").
-relation(cam,secure_boot,"CAM use Secure Bot").
-relation(cam,data_filtering,"CAM has been checked").
+relation(cam,data_encrypted).
+relation(cam,secure_boot).
+relation(cam,data_filtering).
 %relation(cam,record_video_50fps,"CAM has been recorded 50FPS").
-relation(cam,advanced_mode,"CAM used Advanced mode").
-relation(cam,devices_access_permission,"Have to have permission to access CAM").
+relation(cam,advanced_mode).
+relation(cam,devices_access_permission).
 
-relation(sam,data_encrypted,"SAM access to encrypted data").
-relation(sam,secure_boot,"SAM use Secure Bot").
-relation(sam,software_licensed,"SAM used licensed software").
-relation(sam,two_factors_auth,"Access to SAM required 2-factors authentication").
-relation(sam,firewall_setup,"Firewall protected SAM").
-relation(sam,data_access_permission,"Have to have permission to access CAM").
+relation(sam,data_encrypted).
+relation(sam,secure_boot).
+relation(sam,software_licensed).
+relation(sam,two_factors_auth).
+relation(sam,firewall_setup).
+relation(sam,data_access_permission).
 
 
 
