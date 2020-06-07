@@ -1,0 +1,133 @@
+%-----------The CPS ontology -----------------
+% aspect
+property(P)     :- input(P,"rdf:type","cpsf:Property").
+descr(P,D)      :- input(P,"rdfs:comment",D).
+concern(C)      :- input(C,"rdf:type","cpsf:Concern").
+aspect(A)       :- input(A,"rdf:type","cpsf:Aspect").
+subconcern(S,O) :- input(S,"cpsf:includesConcern",O).
+
+% every aspect is a concern
+concern(A) :- aspect(A).
+
+% meta-aspect "all", which is a parent of every aspect
+concern(all).
+subconcern(all,A) :- aspect(A).
+
+% Property addresses a concern
+addressedBy(C,P) :- property(P), concern(C), 
+                    input(P,"cpsf:addConcern",C).
+
+
+% Formulas
+formulas(For)    :- input(For,"rdf:type","cpsf:Formulas").
+
+% Properties memeber of formulas
+member(P,For)    :- property(P), formulas(For),
+                    input(P,"cpsf:memberOf",For).
+
+% Decompostion Function
+decomposition(DF)       :- input(DF,"rdf:type","cpsf:DecompositionFunction"). 
+func_dec(DF,C)          :- decomposition(DF), concern(C),
+                           input(DF,"cpsf:decomposition_function_of",C).
+add_func(For,DF)        :- decomposition(DF), formulas(For),
+                           input(For,"cpsf:addressToFunc",DF).
+addressToFunc(C,DF,For) :- concern(C), decomposition(DF), formulas(For),
+                           func_dec(DF,C), add_func(For,DF).
+
+
+%=============================================================
+%==================EXTENED ONTOLOGY===========================
+%=============================================================
+
+% Component
+component(Co)           :- input(Co,"rdf:type","cpsf:Component").
+
+% Possible Relations between Components and Properties
+relation(Co,P)          :- component(Co), property(P),
+                           input(Co,"cpsf:relateToProperty",P).
+
+
+% Possible Positive Impacts Component-Property to Concern
+component_property(CP)        :- input(CP,"rdf:type","cpsf:Component_Property").
+confComponent(CP,CO)          :- component_property(CP), component(CO),
+                                 input(CP,"cpsf:confComponent",CO).
+confProperty(CP,P)            :- component_property(CP), property(P),
+                                 input(CP,"cpsf:confProperty",P).
+positiveImpactTo(CP,C)        :- component_property(CP), concern(C),
+                                 input(CP,"cpsf:positiveImpactTo",C).
+possible_impacts_pos(CO,P,C)  :- component(CO), concern(C), property(P), 
+                                 component_property(CP), confComponent(CP,CO),
+                                 confProperty(CP,P), positiveImpactTo(CP,C).                              
+
+%=============================================================
+%==================INITIAL CONFIGURATION======================
+%=============================================================
+init_active_com_pro(IACP)     :- input(IACP,"rdf:type","cpsf:InititalActiveComponentsProperties").
+active_com_pro(ACP)           :- input(ACP,"rdf:type","cpsf:ActiveComponentProperty").
+includesActivation(IACP,ACP)  :- init_active_com_pro(IACP), active_com_pro(ACP),
+                                 input(IACP,"cpsf:includesActivation",ACP).
+
+init_active_com(ACP)          :- init_active_com_pro(IACP), inital_active_select(IACP),
+                                 active_com_pro(ACP), includesActivation(IACP,ACP).           
+
+
+setUpForComponent(IAC,CO)     :- init_active_com(IAC), component(CO),
+                                 input(IAC,"cpsf:setUpForComponent",CO).
+activeToProperty(IAC,P)       :- init_active_com(IAC), property(P),
+                                 input(IAC,"cpsf:activeToProperty",P).
+active(CO,P)                  :- component(CO), property(P), init_active_com(IAC),
+                                 setUpForComponent(IAC,CO), activeToProperty(IAC,P).
+
+% Set up case for Properties Observation
+initial_configuration(IC)     :- input(IC,"rdf:type","cpsf:InitialConfiguration").
+obsFalse(IC,P)                :- initial_configuration(IC), property(P),
+                                 intial_conf_select(IC), input(IC,"cpsf:obsFalse",P).
+obs(P,false)                  :- obsFalse(IC,P), initial_configuration(IC), 
+                                 property(P), intial_conf_select(IC).
+obs(P,true)                   :- not obs(P,false), property(P).
+%=============================================================
+%#show obs/1.% Input Changes
+intial_conf_select("cpsf:lkas_sr_er_01_initial_conf_0").
+inital_active_select("cpsf:lkas_sr_er_01_active_component_properties_case_0").
+obs(availablePatch("cpsf:Two_Factors"),true).
+obs(availablePatch("cpsf:Firewall_Setup"),true).
+%===========================================================================%=================================
+step(0).
+%=====Satisfaction Reasoning======
+h(P,0)  :- obs(P,true), property(P).
+-h(P,0) :- obs(P,false), property(P).
+h(P,0)  :- property(P), not obs(P,false).
+
+-h(sat(C),T)   :- -h(P,T), property(P), step(T), 
+                  addressedBy(C,P).
+-h(sat(X),T)   :- concern(X), concern(Y), 
+                  subconcern(X,Y), not h(sat(Y),T), step(T).
+-h(sat(X),T)   :- concern(X), concern(Y), 
+                  subconcern(X,Y), -h(sat(Y),T), step(T).
+h(sat(C),T)    :- not -h(sat(C),T), concern(C), step(T).
+
+%-h(sat(all),T) :- 1{-h(sat(trustworthiness),T); not h(sat(trustworthiness),T)}, step(T).
+-h(sat(all),T) :- -h(sat(A),T), aspect(A), step(T).
+h(sat(all),T)  :- not -h(sat(all),T), step(T).
+% ---------------------------------------------
+
+% ------ Output Interface ------
+
+output_headings("Unsatisfied concern/aspect/property","type","function","step").
+
+% Support : Identify the last step in the input
+last_step(S) :- step(S), S2=S+1, not step(S2).
+
+output(C,concern,"-",S) :- last_step(S), -h(sat(C),S), concern(C).
+output(C,aspect,"-",S) :- last_step(S), -h(sat(C),S), aspect(C).
+output(C,concern,F,S) :- last_step(S), -h(sat(C,F),S),concern(C), not aspect(C), C!=all.
+output(C,aspect,F,S) :- last_step(S), -h(sat(C,F),S), aspect(C).
+output("concern-tree",tree,F,S) :- last_step(S), -h(sat(all,F),S).
+output("concern-tree",tree,"-",S) :- last_step(S), -h(sat(all),S).
+
+output(P,property,"-",S) :- last_step(S), -h(P,S), property(P).
+
+
+% ====== SHOW ========
+%#show output_headings/6.
+%#show output/6.

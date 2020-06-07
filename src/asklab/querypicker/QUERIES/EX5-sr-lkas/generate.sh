@@ -4,7 +4,7 @@ BASE=../BASE/
 
 REASONING=../Sophisticated-Reasoning/
 
-
+# Build files for ASP Ontolog Usecase SR-ER-01 LKAS
 FILES="$REASONING/Integration/SR-RE-01-truthworthiness/ontology_LKAS_2.lp $REASONING/Integration/SR-RE-01-truthworthiness/obs_init_state_LKAS.lp $REASONING/Integration/SR-RE-01-truthworthiness/reasoning_2_1.lp output_sr_re_01_01.lp"
 OUTPUT=FULL-step1.txt
 cat $FILES > $OUTPUT
@@ -25,6 +25,28 @@ FILES="$REASONING/Integration/SR-RE-01-truthworthiness/ontology_LKAS_2.lp $REASO
 OUTPUT=FULL-step4-ext.txt
 cat $FILES > $OUTPUT
 
+# Build files for OWL Ontolog Usecase SR-ER-01 Case 0 LKAS
+FILES="$REASONING/Integration/SR-RE-01-truthworthiness/ontology_driven.lp $REASONING/Integration/SR-RE-01-truthworthiness/ontology_init_0.lp $REASONING/Integration/SR-RE-01-truthworthiness/reasoning_2_1_onto.lp output_sr_re_01_01.lp"
+OUTPUT=FULL-SR-ER-01-01-00.txt
+cat $FILES > $OUTPUT
+
+FILES="$REASONING/Integration/SR-RE-01-truthworthiness/ontology_driven.lp $REASONING/Integration/SR-RE-01-truthworthiness/ontology_init_0.lp $REASONING/Integration/SR-RE-01-truthworthiness/reasoning_2_2_onto.lp output_sr_re_01_02.lp"
+OUTPUT=FULL-SR-ER-01-02-00.txt
+cat $FILES > $OUTPUT
+
+FILES="$BASE/step1-BASE.lp $BASE/theory.lp $BASE/theory-maxint.lp output.lp $BASE/step1.lp $BASE/step2.lp"
+OUTPUT=FULL-SR-ER-01-02-1-00.txt
+cat $FILES > $OUTPUT
+
+FILES="$REASONING/Integration/SR-RE-01-truthworthiness/ontology_driven.lp $REASONING/Integration/SR-RE-01-truthworthiness/ontology_init_0.lp $REASONING/Integration/SR-RE-01-truthworthiness/reasoning_2_3_onto.lp output_sr_re_01_03.lp"
+OUTPUT=FULL-SR-ER-01-03-00.txt
+cat $FILES > $OUTPUT
+
+FILES="$REASONING/Integration/SR-RE-01-truthworthiness/ontology_driven.lp $REASONING/Integration/SR-RE-01-truthworthiness/ontology_init_0.lp $REASONING/Integration/SR-RE-01-truthworthiness/reasoning_2_4_onto.lp output_sr_re_01_04.lp"
+OUTPUT=FULL-SR-ER-01-04-00.txt
+cat $FILES > $OUTPUT
+
+# Build files for ASP Ontolog Usecase SR-ER-02 LKAS
 FILES="$REASONING/Integration/SR-RE-02-satisfaction/ontology_LKAS.lp $REASONING/Integration/SR-RE-02-satisfaction/obs_init_state_LKAS_0.lp $REASONING/Integration/SR-RE-02-satisfaction/reasoning_3_1.lp output_sr_re_02_01.lp"
 OUTPUT=FULL-SR-ER-02-01-00.txt
 cat $FILES > $OUTPUT
