@@ -52,363 +52,127 @@
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formulas"/>
         <addressToFunc rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Sign_In_Func"/>
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#g2">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formulas"/>
-        <addressToFunc rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Sign_In_Func"/> 
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#g3">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formulas"/>
-        <addressToFunc rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Sign_In_Func"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#g4">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formulas"/>
-        <addressToFunc rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Sign_In_Func"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#g5">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formulas"/>
-        <addressToFunc rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Sign_In_Func"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#g6">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formulas"/>
-        <addressToFunc rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Operation_Func"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#g7">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formulas"/>
-        <addressToFunc rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Operation_Func"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#g8">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formulas"/>
-        <addressToFunc rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Energy_Func"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#g9">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formulas"/>
-        <addressToFunc rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Energy_Func"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#g10">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formulas"/>
-        <addressToFunc rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Energy_Func"/>
-    </owl:NamedIndividual>
+    
 
     <!-- Design Components -->
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#SAM">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#CP">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Algo_AES"/>
-	<relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Algo_RSA"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Algo_DES"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Conn_Encrypted"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Data_Encrypted"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Protocol_Encrypted"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#IP_Filtering"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Firewall_Setup"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Mac_Check"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Advanced_Mode"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Basic_Mode"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Secure_Boot"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Finger_Printing"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Two_Factors"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#IRIS_Scan"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#OAuth"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#OPT_Code"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Email_Verify"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#IP_Check"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Trusted_Environment"/>
+        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Maintenance_Regularly"/>
+	<relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Communicate_With_Other_Component"/>
+        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Send_Actions"/>
     </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#CAM">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#ER">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Algo_AES"/>
-	<relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Algo_RSA"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Algo_DES"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Conn_Encrypted"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Data_Encrypted"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Protocol_Encrypted"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#IP_Filtering"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Mac_Check"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Advanced_Mode"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Basic_Mode"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Secure_Boot"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#IRIS_Scan"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Trusted_Auth_Device"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Trusted_Environment"/>
+        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Control_Speed"/>
+	<relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Send_Actions"/>
+        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Communicate_With_Other_Component"/>
+        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Maintenance_Regularly"/>
+        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Detect_Up_11"/>   
     </owl:NamedIndividual>
-   
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#BATTERY">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#PF">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Powerful_Mode"/>
-	<relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Normal_Mode"/>
-	<relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Saving_Mode"/>
-        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Trusted_Environment"/>
+        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Maintenance_Regularly"/>
+	<relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Control_Speed"/>
+	<relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Control_Pulley"/>
+        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Pulley_Release"/>
+        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Pulley_Clench"/>
+        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Communicate_With_Other_Component"/>
+        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Send_Actions"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#EC">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component"/>
+        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Maintenance_Regularly"/>
+	<relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Control_Speed"/>
+	<relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Halting"/>
+        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Moving_Up"/>
+        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Moving_Down"/>
+        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Communicate_With_Other_Component"/>
+        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Control_Moving"/>
+        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Send_Actions"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#ESCam">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component"/>
+        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Flash_Warning"/>
+	<relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Send_Actions"/>
+        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Communicate_With_Other_Component"/>
+        <relateToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Detect_Up_11"/>
     </owl:NamedIndividual>
 		
     	
     <!-- Desing Properties and Its actions -->
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Advanced_Mode">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Maintenance_Regularly">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity"/>
-        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#g6"/>
+        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Controllability"/>
+	<addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Frequency"/>
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Basic_Mode">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Control_Speed">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity"/>
-        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#g7"/>
+        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Controllability"/>
+        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Human_Safety"/>
     </owl:NamedIndividual>
- 
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Secure_Boot">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Flash_Warning">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
         <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity"/>	
     </owl:NamedIndividual> 
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Send_Actions">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
+        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity"/>
+        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Functional_Stability"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Control_Pulley">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
+        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Functional_Stability"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Pulley_Release">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
+        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Pulley_Clench">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
+        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Halting">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
+        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Moving_Up">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
+        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Moving_Down">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
+        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Control_Moving">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
+        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Functional_Stability"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Communicate_With_Other_Component">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
+        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Availability"/>
+        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Functional_Stability"/>
+        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Manageability"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Detect_Up_11">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
+        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Manageability"/>
+    </owl:NamedIndividual>
     
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Powerful_Mode">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity"/>
-        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#g9"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Normal_Mode">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity"/>
-        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#g10"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Saving_Mode">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity"/>
-        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#g8"/>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Trusted_Auth_Device">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Trusted_Environment">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization"/>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Data_Encrypted">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Encryption"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Conn_Encrypted">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Encryption"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Protocol_Encrypted">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Encryption"/>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Algo_AES">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Encryption"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Algo_RSA">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Encryption"/>
-    </owl:NamedIndividual>					
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Algo_DES">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Encryption"/>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Firewall_Setup">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Verification"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#IP_Filtering">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Verification"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Mac_Check">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Verification"/>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Finger_Printing">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization"/>
-        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#g1"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Two_Factors">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization"/>
-        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#g2"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#IRIS_Scan">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization"/>
-        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#g3"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#OAuth">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization"/>
-        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#g4"/>
-        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#g5"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#OPT_Code">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization"/>
-        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#g4"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Email_Verify">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization"/>
-        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#g5"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#IP_Check">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <addConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization"/>
-        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#g5"/>
-    </owl:NamedIndividual>						
 
    
     <!-- Design possible impact compoennt-property to a concern -->
-    <!-- SAM -->
+    <!-- SAM --> 
+    <!--
     <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_sam_data_encrypted">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
         <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#SAM"/>
         <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Data_Encrypted"/>
         <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Encryption"/>
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_sam_conn_encrypted">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
-        <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#SAM"/>
-        <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Conn_Encrypted"/>
-        <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Encryption"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_sam_protocol_encrypted">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
-        <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#SAM"/>
-        <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Protocol_Encrypted"/>
-        <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Encryption"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_sam_algo_RSA">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
-        <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#SAM"/>
-        <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Algo_RSA"/>
-        <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Encryption"/>
-    </owl:NamedIndividual>
-	<owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_sam_algo_AES">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
-        <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#SAM"/>
-        <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Algo_AES"/>
-        <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Encryption"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_sam_firewall_setup">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
-        <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#SAM"/>
-        <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Firewall_Setup"/>
-        <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Verification"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_sam_mac_check">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
-        <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#SAM"/>
-        <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Mac_Check"/>
-        <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Verification"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_sam_secure_boot">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
-        <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#SAM"/>
-        <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Secure_Boot"/>
-        <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_sam_advanced_mode">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
-        <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#SAM"/>
-        <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Advanced_Mode"/>
-        <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_sam_iris_scan">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
-        <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#SAM"/>
-        <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#IRIS_Scan"/>
-        <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_sam_two_factors">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
-        <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#SAM"/>
-        <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Two_Factors"/>
-        <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_sam_finger_printing">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
-        <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#SAM"/>
-        <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Finger_Printing"/>
-        <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_sam_trusted_environment">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
-        <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#SAM"/>
-        <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Trusted_Environment"/>
-        <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization"/>
-    </owl:NamedIndividual>
+    -->
 
-    <!-- CAM -->
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_cam_algo_RSA">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
-        <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#CAM"/>
-        <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Algo_RSA"/>
-        <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Encryption"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_cam_data_encrypted">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
-        <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#CAM"/>
-        <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Data_Encrypted"/>
-        <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Encryption"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_cam_conn_encrypted">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
-        <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#CAM"/>
-        <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Conn_Encrypted"/>
-        <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Encryption"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_cam_protocol_encrypted">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
-        <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#CAM"/>
-        <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Protocol_Encrypted"/>
-        <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Encryption"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_cam_mac_check">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
-        <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#CAM"/>
-        <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Mac_Check"/>
-        <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Verification"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_cam_secure_boot">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
-        <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#CAM"/>
-        <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Secure_Boot"/>
-        <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_cam_advanced_mode">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
-        <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#CAM"/>
-        <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Advanced_Mode"/>
-        <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_cam_trusted_auth_device">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
-        <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#CAM"/>
-        <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Trusted_Auth_Device"/>
-        <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_cam_trusted_environment">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
-        <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#CAM"/>
-        <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Trusted_Environment"/>
-        <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization"/>
-    </owl:NamedIndividual>
-
-    <!-- BATTERY -->
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_battery_powerful_mode">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
-        <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#BATTERY"/>
-        <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Powerful_Mode"/>
-        <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity"/>
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#pos_imp_battery_trusted_environment">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
-        <confComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#BATTERY"/>
-        <confProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Trusted_Environment"/>
-        <positiveImpactTo rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization"/>
-    </owl:NamedIndividual>
+    
 	
 </rdf:RDF>

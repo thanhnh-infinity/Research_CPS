@@ -3,6 +3,7 @@
 BASE=../BASE/
 
 REASONING=../Sophisticated-Reasoning/
+# LKAS
 
 # Build files for ASP Ontolog Usecase SR-ER-01 LKAS
 FILES="$REASONING/Integration/SR-RE-01-truthworthiness/ontology_LKAS_2.lp $REASONING/Integration/SR-RE-01-truthworthiness/obs_init_state_LKAS.lp $REASONING/Integration/SR-RE-01-truthworthiness/reasoning_2_1.lp output_sr_re_01_01.lp"
@@ -25,6 +26,8 @@ FILES="$REASONING/Integration/SR-RE-01-truthworthiness/ontology_LKAS_2.lp $REASO
 OUTPUT=FULL-step4-ext.txt
 cat $FILES > $OUTPUT
 
+
+
 # Build files for OWL Ontolog Usecase SR-ER-01 Case 0 LKAS
 FILES="$REASONING/Integration/SR-RE-01-truthworthiness/ontology_driven.lp $REASONING/Integration/SR-RE-01-truthworthiness/ontology_init_0.lp $REASONING/Integration/SR-RE-01-truthworthiness/reasoning_2_1_onto.lp output_sr_re_01_01.lp"
 OUTPUT=FULL-SR-ER-01-01-00.txt
@@ -46,7 +49,7 @@ FILES="$REASONING/Integration/SR-RE-01-truthworthiness/ontology_driven.lp $REASO
 OUTPUT=FULL-SR-ER-01-04-00.txt
 cat $FILES > $OUTPUT
 
-# Build files for OWL Ontolog Usecase SR-ER-01 Case 2 LKAS
+# Build files for OWL Ontolog Usecase SR-ER-01 Case 1 LKAS
 FILES="$REASONING/Integration/SR-RE-01-truthworthiness/ontology_driven.lp $REASONING/Integration/SR-RE-01-truthworthiness/ontology_init_1.lp $REASONING/Integration/SR-RE-01-truthworthiness/reasoning_2_1_onto.lp output_sr_re_01_01.lp"
 OUTPUT=FULL-SR-ER-01-01-01.txt
 cat $FILES > $OUTPUT
@@ -129,6 +132,7 @@ cat $FILES > $OUTPUT
 FILES="$REASONING/Integration/SR-RE-02-satisfaction/ontology_LKAS.lp $REASONING/Integration/SR-RE-02-satisfaction/obs_init_state_LKAS_4.lp $REASONING/Integration/SR-RE-02-satisfaction/reasoning_3_1.lp output_sr_re_02_01.lp"
 OUTPUT=FULL-SR-ER-02-01-04.txt
 cat $FILES > $OUTPUT
+
 
 FILES="$REASONING/Integration/SR-RE-02-satisfaction/ontology_LKAS.lp $REASONING/Integration/SR-RE-02-satisfaction/obs_init_state_LKAS_0.lp $REASONING/Integration/SR-RE-02-satisfaction/reasoning_3_2.lp output_sr_re_02_02.lp"
 OUTPUT=FULL-SR-ER-02-02-00.txt
