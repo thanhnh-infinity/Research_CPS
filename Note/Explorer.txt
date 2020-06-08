@@ -1,22 +1,3 @@
-* Starting Brain-Storming *
+/home/thanhnh/All_Workspace/Java_Workspace/CPS/bin/asklab/cpsf/./runjena.sh --file=./tmpfile.sparql --data=./tmpDir/cpsframework-v3-base.owl --data=./tmpDir/cpsframework-v3-bodycamCPS.owl --results=text
 
-# Purpose of this document is to discover and extend the Idea for Problems and Issues of CPS System --- Which should be extended for Reasoning about Trustworthinesss in Cyber-Physical System paper
-
-# Issue 1: Improve the relation between Component and original CPS Ontology --> supplymentary properties 
-    - Design new concept of CPS : Requirement OR Supplymentary Property (SP).
-    - SP will supportFor a Property p in CPS. For example, ActiveAuthenticaion is a property which address for concenr Authentication. (Finger_printing_auth and two_factors_auth) are 2 SPs support for property ActiveAuthentication. The ActiveAuthenticaion is Satisfied Iff sat(Finger_printing_auth) OR sat(two_factors_auth)
-    - Design new relation between a component c in C to a set of Supplymentary Proerties sp in SP. ==> denote relate(c,sp).
-    - Assume that, there is a problem in CPS and make two_factors_auth is FALSE (unsat(two_factors_auth)). The mitigation action is not only able to turnOn/Off the two_factors_auth Supplymentary proerty, but also is able to switch the authentication function FROM two_factors_auth TO Finger_printing_auth. 
-    - Generate the more powerful mitigation strategies (multiple types of actions which changes status of Supplymentary properties AND changes the relation between component and Supplymentary properties).
-    - Allow composition from independent --- changing situations
-
-# Issue 2: Combination of IT and OT alongs associated with Timing Constraints
-    - 
-
-# Issue 3: Emergent Behaviors and Effects: 
-    - 
-
-# Issue 4: The composition of concerns : C1*C2(CPS) = C1(CPS) U C2(CPS)
-    - Example: "Timing Security" --> The composition of timing and security results in the collection of all the properties of CPS that are required by the "timing" and "security" concerns. ===> Resolving "conflicts" between properties is ONE of the Tasks of "requirement analysis"
-    - 
-
+ /home/thanhnh/All_Workspace/Java_Workspace/CPS/bin/asklab/cpsf/./runjena.sh --file=./tmpfile.sparql --data=./tmpDir/cdao_phylotastic.owl --data=./tmpDir/phylogenetic_methods.owl --data=./tmpDir/mygrid-ontology.owl --data=./tmpDir/mygrid-moby-service.owl --results=text  

@@ -1,0 +1,66 @@
+% GET ALL
+%rel1(X,Y,Z) :- &rdf["file:part1.owl"](X,Y,Z).
+%rel1(X,Y,Z) :- &rdf["file:part2.owl"](X,Y,Z).
+%rel1(X,Y,Z) :- &rdf["file:part3.owl"](X,Y,Z).
+%rel1(X,Y,Z) :- &rdf["file:part4.owl"](X,Y,Z).
+
+%rel1(X,Y,Z) :- &rdf["file:./Phylotastic/cdao_phylotastic.owl"](X,Y,Z).
+%rel1(X,Y,Z) :- &rdf["file:./Phylotastic/mao.owl"](X,Y,Z).
+%rel1(X,Y,Z) :- &rdf["file:./Phylotastic/mygrid-moby-service.owl"](X,Y,Z).
+%rel1(X,Y,Z) :- &rdf["file:./Phylotastic/mygrid-ontology.owl"](X,Y,Z).
+%rel1(X,Y,Z) :- &rdf["file:./Phylotastic/phylogenetic_methods.owl"](X,Y,Z).
+
+% GET CONDITIONS: ANON + Type + SubClassOf
+%rel1(X,"http://www.semanticweb.org/hashowl#def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd",Y) :- &rdf["file:part1.owl"](X,"http://www.semanticweb.org/hashowl#def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd",Y).
+%rel1(X,"http://www.semanticweb.org/hashowl#def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd",Y) :- &rdf["file:part2.owl"](X,"http://www.semanticweb.org/hashowl#def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd",Y).
+%rel1(X,"http://www.semanticweb.org/hashowl#def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd",Y) :- &rdf["file:part3.owl"](X,"http://www.semanticweb.org/hashowl#def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd",Y).
+%rel1(X,"http://www.semanticweb.org/hashowl#def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd",Y) :- &rdf["file:part4.owl"](X,"http://www.semanticweb.org/hashowl#def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd",Y).
+
+%rel2(X,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Y) :- &rdf["file:part1.owl"](X,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Y).
+%rel2(X,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Y) :- &rdf["file:part2.owl"](X,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Y).
+%rel2(X,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Y) :- &rdf["file:part3.owl"](X,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Y).
+%rel2(X,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Y) :- &rdf["file:part4.owl"](X,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Y).
+
+
+%rel3(X,"http://www.w3.org/2000/01/rdf-schema#subClassOf",Y) :- &rdf["file:part1.owl"](X,"http://www.w3.org/2000/01/rdf-schema#subClassOf",Y).
+%rel3(X,"http://www.w3.org/2000/01/rdf-schema#subClassOf",Y) :- &rdf["file:part2.owl"](X,"http://www.w3.org/2000/01/rdf-schema#subClassOf",Y).
+%rel3(X,"http://www.w3.org/2000/01/rdf-schema#subClassOf",Y) :- &rdf["file:part3.owl"](X,"http://www.w3.org/2000/01/rdf-schema#subClassOf",Y).
+%rel3(X,"http://www.w3.org/2000/01/rdf-schema#subClassOf",Y) :- &rdf["file:part4.owl"](X,"http://www.w3.org/2000/01/rdf-schema#subClassOf",Y).
+
+% CDAO
+rel1(X,"http://www.semanticweb.org/hashowl#def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd",Z) :- &rdf["file:./Phylotastic/cdao_phylotastic.owl"](X,"http://www.semanticweb.org/hashowl#def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd",Z).
+rel1(X,"http://www.semanticweb.org/hashowl#def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd",Z) :- &rdf["file:./Phylotastic/mygrid-moby-service.owl"](X,"http://www.semanticweb.org/hashowl#def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd",Z).
+rel1(X,"http://www.semanticweb.org/hashowl#def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd",Z) :- &rdf["file:./Phylotastic/mao.owl"](X,"http://www.semanticweb.org/hashowl#def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd",Z).
+rel1(X,"http://www.semanticweb.org/hashowl#def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd",Z) :- &rdf["file:./Phylotastic/phylogenetic_methods.owl"](X,"http://www.semanticweb.org/hashowl#def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd",Z).
+
+rel2(X,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Z) :- &rdf["file:./Phylotastic/cdao_phylotastic.owl"](X,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Z).
+rel2(X,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Z) :- &rdf["file:./Phylotastic/mygrid-moby-service.owl"](X,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Z).
+rel2(X,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Z) :- &rdf["file:./Phylotastic/mao.owl"](X,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Z).
+rel2(X,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Z) :- &rdf["file:./Phylotastic/phylogenetic_methods.owl"](X,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Z).
+
+
+rel3(X,"http://www.w3.org/2000/01/rdf-schema#subClassOf",Z) :- &rdf["file:./Phylotastic/cdao_phylotastic.owl"](X,"http://www.w3.org/2000/01/rdf-schema#subClassOf",Z).
+rel3(X,"http://www.w3.org/2000/01/rdf-schema#subClassOf",Z) :- &rdf["file:./Phylotastic/mygrid-moby-service.owl"](X,"http://www.w3.org/2000/01/rdf-schema#subClassOf",Z).
+rel3(X,"http://www.w3.org/2000/01/rdf-schema#subClassOf",Z) :- &rdf["file:./Phylotastic/mao.owl"](X,"http://www.w3.org/2000/01/rdf-schema#subClassOf",Z).
+rel3(X,"http://www.w3.org/2000/01/rdf-schema#subClassOf",Z) :- &rdf["file:./Phylotastic/phylogenetic_methods.owl"](X,"http://www.w3.org/2000/01/rdf-schema#subClassOf",Z).
+
+input(X,Y,Z) :- rel1(X,Y,Z).
+input(X,Y,Z) :- rel2(X,Y,Z).
+input(X,Y,Z) :- rel3(X,Y,Z).
+
+
+
+%%%%%%%%%%%%%  Report Time %%%%%%%%%%%%%%
+%%%%% GET ALL %%%%%%%%%%%%%%
+% part1.owl                    : 
+% part1 + part2                : 
+% part1 + part2 + part3        : 
+% part1 + part2 + part3 + par4 : 
+% CDAO + phylotastic           :  2.63s
+
+%%%% GET WITH CONDITIONS : Anou + Type + SubClassOf %%%%
+% part1.owl                    :  1.02s
+% part1 + part2                :  1.04s
+% part1 + part2 + part3        :  1.12s
+% part1 + part2 + part3 + par4 :  out of memory
+% CDAO + phylotastic           :  2.83

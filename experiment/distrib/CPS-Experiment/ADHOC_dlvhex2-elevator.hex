@@ -1,0 +1,4 @@
+rel1(X,Y,Z) :- &rdf["file:cpsframework-v3-base.owl"](X,Y,Z).
+input(X,Y,Z) :- rel1(X,Y,Z).
+
+% Time : 

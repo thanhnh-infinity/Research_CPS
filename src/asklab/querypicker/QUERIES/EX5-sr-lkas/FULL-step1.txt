@@ -1,0 +1,274 @@
+% Aspect
+aspect(trustworthiness).
+
+% Concern
+concern(trustworthiness).
+concern(safety).
+concern(reliability).
+concern(security).
+concern(resilience).
+concern(privacy).
+
+concern(functional_safety).
+concern(cyber_security).
+concern(physical_security).
+concern(predictability).
+concern(manageability).
+concern(dissociability).
+
+concern(severity).
+concern(frequency).
+concern(controllability).
+concern(confidentiality).
+concern(integrity).
+concern(availability).
+concern(controls).
+concern(transparency).
+concern(availability).
+concern(innovation).
+
+concern(encryption).
+concern(privacy_policy).
+concern(protection).
+concern(software_patches).
+concern(hardware_patches).
+concern(license).
+concern(authorization).
+concern(authentication).
+concern(roles).
+concern(privileges).
+concern(permissions).
+
+% subconcern.
+subconcern(trustworthiness,safety).
+subconcern(trustworthiness,reliability).
+subconcern(trustworthiness,security).
+subconcern(trustworthiness,resilience).
+subconcern(trustworthiness,privacy).
+
+subconcern(safety,functional_safety).
+
+subconcern(security,cyber_security).
+subconcern(security,physical_security).
+
+subconcern(privacy,predictability).
+subconcern(privacy,manageability).
+subconcern(privacy,dissociability).
+
+subconcern(functional_safety,severity).
+subconcern(functional_safety,frequency).
+subconcern(functional_safety,controllability).
+
+subconcern(cyber_security,confidentiality).
+subconcern(cyber_security,integrity).
+subconcern(cyber_security,availability).
+
+subconcern(physical_security,ultility).
+
+subconcern(predictability,controls).
+subconcern(predictability,transparency).
+subconcern(predictability,innovation).
+
+subconcern(confidentiality,encryption).
+subconcern(confidentiality,privacy_policy).
+subconcern(confidentiality,protection).
+
+subconcern(availability,software_patches).
+subconcern(availability,hardware_patches).
+subconcern(availability,license).
+
+subconcern(controls,authentication).
+subconcern(controls,identity).
+
+subconcern(identity,authorization).
+
+% Property --- Requirements
+property(data_encrypted).
+property(conn_encrypted).
+property(protocol_encrypted).
+
+property(firewall_setup).
+property(hidden_backdoor).
+property(data_filtering).
+
+property(software_licensed).
+property(privacy_standard).
+
+property(algo_AES).
+property(algo_RSA).
+property(algo_DES).
+
+property(oAuth).
+property(two_factors_auth).
+property(finger_printing_auth).
+property(single_auth).
+
+property(secure_boot).
+
+property(record_video_25fps).
+property(record_video_50fps).
+
+property(basic_mode).
+property(advanced_mode).
+
+property(devices_access_permission).
+property(data_access_permission).
+
+% Addressed : Relation Properties-Concerns
+addressedBy(encryption,data_encrypted).
+addressedBy(encryption,conn_encrypted).
+addressedBy(encryption,protocol_encrypted).
+addressedBy(encryption,algo_AES).
+addressedBy(encryption,algo_RSA).
+
+addressedBy(protection,firewall_setup).
+addressedBy(protection,hidden_backdoor).
+addressedBy(protection,data_filtering).
+
+addressedBy(privacy_policy,software_licensed).
+addressedBy(privacy_policy,privacy_standard).
+
+addressedBy(authentication,oAuth).
+addressedBy(authentication,single_auth).
+addressedBy(authentication,two_factors_auth).
+addressedBy(authentication,finger_printing_auth).
+
+addressedBy(integrity,secure_boot).
+
+addressedBy(integrity,basic_mode).
+addressedBy(integrity,advanced_mode).
+
+addressedBy(frequency,record_video_25fps).
+addressedBy(frequency,record_video_50fps).
+
+addressedBy(authorization,devices_access_permission).
+addressedBy(authorization,data_access_permission).
+
+% Component and Relation
+component(sam).
+component(cam).
+
+relation(cam,data_encrypted,"CAM access to encrypted data").
+relation(cam,secure_boot,"CAM use Secure Bot").
+relation(cam,data_filtering,"CAM has been checked").
+%relation(cam,record_video_50fps,"CAM has been recorded 50FPS").
+relation(cam,advanced_mode,"CAM used Advanced mode").
+relation(cam,devices_access_permission,"Have to have permission to access CAM").
+
+relation(sam,data_encrypted,"SAM access to encrypted data").
+relation(sam,secure_boot,"SAM use Secure Bot").
+relation(sam,software_licensed,"SAM used licensed software").
+relation(sam,two_factors_auth,"Access to SAM required 2-factors authentication").
+relation(sam,firewall_setup,"Firewall protected SAM").
+relation(sam,data_access_permission,"Have to have permission to access CAM").
+
+% ====================================================
+% ======Observation for Initial State
+obs(data_encrypted,true).
+obs(data_filtering,true).
+obs(software_licensed,true).
+obs(two_factors_auth,false). % Change here to test
+obs(secure_boot,true).
+obs(record_video_50fps,true).
+obs(advanced_mode,true).
+obs(firewall_setup,false). % Change here to test
+obs(devices_access_permission,true).
+obs(data_access_permission,true).
+obs(availablePatch(two_factors_auth),true).
+
+
+
+
+%=====REASONING TRUTHWORTHINESS with STEP======
+
+% =====Configuration=========
+%sol(addr).
+sol(all).
+
+% =====State of CPS System===
+step(0).
+
+%----------------------------------------------
+%=====REASONING TRUTHWORTHINESS with STEP======
+%----------------------------------------------
+
+% -- Step 2 : Representation the property P in initial state of CPS 
+holds(P,0) :- obs(P,true), property(P).
+-holds(P,0) :- obs(P,false), property(P).
+
+% -- Step 3: Check addresses links
+addrForConcern(P,C) :- property(P), 
+					             addressedBy(C,P), 
+					             sol(all).
+addrForConcern(P,C) :- addrForConcern(P,C1), 
+                       subconcern(C,C1), 
+                       sol(all).
+                       
+% -- Step 4 [1,2]: Reasoning a component C has good/bad property P at step S.
+compGoodProp(Com,P,S) :- relation(Com,P,D), holds(P,S), 
+						             component(Com), property(P), step(S).
+compBadProp(Com,P,S)  :- component(Com), property(P), step(S),
+                         relation(Com,P,D), -holds(P,S).
+
+% -- Step 5: Compute the tw_property: total number of links to the concerns that are addressed by and related to property P
+tw_property(P,N) :- N=#count{C : addressedBy(C,P)}, 
+                    property(P), sol(addr).
+tw_property(P,N) :- N=#count{C : addrForConcern(P,C)}, 
+                    property(P), sol(all).
+
+% -- Step 6: Compute the good trustworthiness value of component C
+tw_good_comp(Comp,TWvalue,S) :- component(Comp), step(S),
+								                TWvalue = #sum{N,P : tw_property(P,N), property(P), compGoodProp(Comp,P,S)}.
+
+% -- Step 7: Compute the bad trustworthiness value of component C
+tw_bad_comp(Comp,TWvalue,S)  :- component(Comp), step(S),
+                                TWvalue = #sum{N,P : tw_property(P,N), property(P), compBadProp(Comp,P,S)}.
+
+% -- Step 7-1 : Middle layer: Representation good/bad tw if not exists
+tw_good_comp(Comp,0,S)  :- not tw_good_comp(Comp,_,S), 
+                           component(Comp), step(S).
+tw_bad_comp(Comp,0,S)   :- not tw_bad_comp(Comp,_,S), 
+                           component(Comp), step(S).
+
+% -- Step 8: Ordering and result
+distance(C,D,S) :- component(C), step(S), tw_good_comp(C,TWp,S),
+                   tw_bad_comp(C,TWn,S), D = TWp-TWn. 
+
+% -- Step 9: Find the highest/lowest TW value
+highest_TW_comp(C,S) :- component(C), step(S), distance(C,M,S),
+                        M == #max{N:distance(_,N,S)}.
+lowest_TW_comp(C,S)  :- component(C), step(S), distance(C,M,S),
+                        M == #min{N:distance(_,N,S)}.
+%----------------------------------------------
+
+
+% ====== SHOW ========
+%#show tw_property/2.
+%#show compGoodProp/3.
+%#show compBadProp/3.
+%#show tw_good_comp/3.
+%#show tw_bad_comp/3.
+%#show highest_TW_comp/2.
+%#show lowest_TW_comp/2.
+%#show addrForConcern/2.
+%#show addressedBy/2.
+%#show order/3.
+%#show distance/3.
+
+% ------ Output Interface ------
+
+output_headings("Query response","Component","Positive TW val","Negative TW val","Distance","step").
+
+% Support : Identify the last step in the input
+last_step(S) :- step(S), S2=S+1, not step(S2).
+
+output("Most trustworthy component",C,TWp,TWn,D,S) :- highest_TW_comp(C,S), step(S), last_step(S), 
+														  tw_good_comp(C,TWp,S), tw_bad_comp(C,TWn,S),
+														  distance(C,D,S).
+output("Lest trustworthy component",C,TWp,TWn,D,S) :- lowest_TW_comp(C,S), step(S), last_step(S), 
+														  tw_good_comp(C,TWp,S), tw_bad_comp(C,TWn,S),
+														  distance(C,D,S).
+
+% ====== SHOW ========
+%#show output_headings/6.
+%#show output/6.

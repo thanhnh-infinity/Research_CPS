@@ -1,0 +1,12 @@
+==========================
+$dlvhex2 --python-plugin=rdfplugin.py ADHOC_dlvhex2-elevator.hex $*
+$dlvhex2 --python-plugin=rdfplugin.py ADHOC_dlvhex2-elevator.hex --filter=rel2 $*
+$dlvhex2 --python-plugin=rdfplugin.py ADHOC_dlvhex2-elevator.hex --filter=input $*
+
+==========================
+$dlvhex2 --python-plugin=rdfplugin.py ADHOC_dlvhex2-exp1.hex --filter=rel2 $*
+dlvhex2 --python-plugin=rdfplugin.py ADHOC_dlvhex2-myExp.hex --filter=input $*
+
+== OA4CPS
+
+/home/thanhnh/All_Workspace/Java_Workspace/CPS/bin/asklab/cpsf/./runjena.sh --file=./tmpfile.sparql --data=./Phylotastic/cdao_phylotastic.owl --data=./Phylotastic/phylogenetic_methods.owl --data=./Phylotastic/mygrid-ontology.owl --data=./Phylotastic/mygrid-moby-service.owl --results=text

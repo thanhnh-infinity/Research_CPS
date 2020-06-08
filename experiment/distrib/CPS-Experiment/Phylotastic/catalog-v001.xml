@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
+        <uri id="Automatically generated entry, Timestamp=1568301340448" name="http://www.cs.nmsu.edu/~epontell/CDAO/cdao.owl" uri="cdao_phylotastic.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1568301340448" name="http://www.cs.nmsu.edu/~epontell/Ontologies/phylogenetic_methods.owl" uri="phylogenetic_methods.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1568301340448" name="http://www.mygrid.org.uk/mygrid-moby-service" uri="mygrid-moby-service.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1568301340448" name="http://www.mygrid.org.uk/ontology" uri="mygrid-ontology.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1568301340448" name="http://www.w3.org/2006/12/owl2-xml#" uri="mao.owl"/>
+    </group>
+</catalog>
