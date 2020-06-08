@@ -1,0 +1,31 @@
+Ubuntu 18.4
+As per https://github.com/hexhex/core/blob/master/README
+
+If on a fresh new install:
+sudo apt install git
+
+Create a directory to install repository
+cd to that directory
+git clone --recursive git://github.com/hexhex/core.git
+sudo apt-get update
+sudo apt-get install autoconf automake libtool pkg-config libltdl-dev
+
+cd core
+./bootstrap.sh
+
+sudo apt-get install libboost-all-dev
+sudo apt-get install libbz2-dev
+sudo apt-get install libcurl4-openssl-dev
+Supports python versions 2.7 and 3.6
+
+Save this file
+https://github.com/tsuna/boost.m4/blob/master/build-aux/boost.m4
+And replace m4/boost.m4 with this file
+./bootstrap.sh
+
+Now we can configure, etc.
+./configure PKG_CONFIG_PATH=/usr/local/lib/pkgconfig --enable-python
+
+sudo apt-get install scons bison re2c
+sudo make install (need permissions to make directory)
+sudo ldconfig

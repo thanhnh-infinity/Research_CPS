@@ -1,0 +1,41 @@
+rel1(X,Y) :- &rdf["file:part1.owl"](X,"http://www.semanticweb.org/hashowl#def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd",Y).
+rel1(X,Y) :- &rdf["file:part2.owl"](X,"http://www.semanticweb.org/hashowl#def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd",Y).
+rel1(X,Y) :- &rdf["file:part3.owl"](X,"http://www.semanticweb.org/hashowl#def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd",Y).
+rel1(X,Y) :- &rdf["file:part4.owl"](X,"http://www.semanticweb.org/hashowl#def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd",Y).
+
+t(X,Y) :- &rdf["file:part1.owl"](X,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Y).
+t(X,Y) :- &rdf["file:part2.owl"](X,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Y).
+t(X,Y) :- &rdf["file:part3.owl"](X,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Y).
+t(X,Y) :- &rdf["file:part4.owl"](X,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Y).
+
+s(Z,Y) :- &rdf["file:part1.owl"](Z,"http://www.w3.org/2000/01/rdf-schema#subClassOf",Y).
+s(Z,Y) :- &rdf["file:part2.owl"](Z,"http://www.w3.org/2000/01/rdf-schema#subClassOf",Y).
+s(Z,Y) :- &rdf["file:part3.owl"](Z,"http://www.w3.org/2000/01/rdf-schema#subClassOf",Y).
+s(Z,Y) :- &rdf["file:part4.owl"](Z,"http://www.w3.org/2000/01/rdf-schema#subClassOf",Y).
+
+p(I) :- t(I,_).
+
+-rel2(X,Y2) :-
+	rel2(X,Y1),
+	rel1(_,Y1),
+	rel1(_,Y2),
+	Y1 != Y2.
+
+rel2(X,Y) :-
+	rel1(X,Y).
+
+rel2(X,Y) :-
+	t(X,Y),
+	rel2(Y,Y),
+	not -rel2(X,Y).
+
+rel2(X,Y) :-
+	s(X,Y),
+	rel2(Y,Y),
+	not -rel2(X,Y).
+
+output_headings("a","b").
+
+output(X,Y) :-
+	p(X),
+	rel2(X,Y).

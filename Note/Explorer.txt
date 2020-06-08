@@ -1,0 +1,3 @@
+/home/thanhnh/All_Workspace/Java_Workspace/CPS/bin/asklab/cpsf/./runjena.sh --file=./tmpfile.sparql --data=./tmpDir/cpsframework-v3-base.owl --data=./tmpDir/cpsframework-v3-bodycamCPS.owl --results=text
+
+ /home/thanhnh/All_Workspace/Java_Workspace/CPS/bin/asklab/cpsf/./runjena.sh --file=./tmpfile.sparql --data=./tmpDir/cdao_phylotastic.owl --data=./tmpDir/phylogenetic_methods.owl --data=./tmpDir/mygrid-ontology.owl --data=./tmpDir/mygrid-moby-service.owl --results=text  

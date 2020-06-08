@@ -1,0 +1,18 @@
+Nicholas Senatore
+
+*Remember to edit .bashrc file
+gedit /home/nicholas/.bashrc
+
+You need to use conda (packaging management system) to get Python enabled, atleast in the easiest way.
+
+1. Go through the user guide on how to use "conda"
+	-Follow examples to understand how to use Anaconda more accurately (creating new environments, packages, etc.)
+	-See my list of environments using 'conda info --envs'
+2. Update python to 3.7 (or appropriate version for Anaconda Installation)
+3. Download Anaconda from this page and follow instructions (https://docs.anaconda.com/anaconda/install/windows/)
+4. Start conda by opening Anaconda Prompt.
+5. Check what version I have by typing 'conda --version' (conda 4.5.11)
+6. Update conda using 'conda update conda' if needed. (Or all packages were already installed.)
+7. Install potassco clingo using 'conda install -c potassco clingo' in the default environment, base. Then type 'y' and enter.
+
+The packages are now installed with python support (the cloud).

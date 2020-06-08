@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.asklab.tk/ontologies/CPS-Framework#"
+     xml:base="http://www.asklab.tk/ontologies/CPS-Framework"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:CPS-Framework="http://www.asklab.tk/ontologies/CPS-Framework#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.asklab.tk/ontologies/CPS-Framework"/>
+    
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Input1ConsistentReadingFreq -->
+
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Input1ConsistentReadingFreq">
+        <rdfs:comment>The sensor array returns accurate readings</rdfs:comment>
+    </owl:NamedIndividual>
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Input1EncryptedMem -->
+
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Input1EncryptedMem">
+        <rdfs:comment>The sensor array uses encrypted memory</rdfs:comment>
+    </owl:NamedIndividual>
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Input1Modes -->
+
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Input1Modes">
+        <rdfs:comment>The sensor array should be capable of low-rate and of high-rate readings</rdfs:comment>
+    </owl:NamedIndividual>
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Input1SecBoot -->
+
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Input1SecBoot">
+        <rdfs:comment>The sensor array uses secure boot</rdfs:comment>
+    </owl:NamedIndividual>
+
+
+</rdf:RDF>

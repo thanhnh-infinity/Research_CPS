@@ -63,7 +63,7 @@ class OntologyGUI:
     
         self.input_owl_entry = Entry(self.input_frame, width = 30,borderwidth = 5,highlightbackground="white", fg = "#18453b",font = "Verdana 10 bold")
         self.input_owl_entry.pack()
-        self.input_owl_entry.insert(0,"cpsframework-v3-base.owl")
+        self.input_owl_entry.insert(0,"cpsframework-v3-base-development-gui.owl")
 
         #button to load ontology, calls function which handles loading
         self.loadOntology = tk.Button(self.input_frame, text = "Load Ontology",padx = 10, pady = 5, bg = "#18453b", fg = "white",borderwidth = 5,command = self.load_ontology)

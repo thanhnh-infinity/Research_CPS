@@ -1,0 +1,10 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX hashowl: <http://www.semanticweb.org/hashowl#>
+SELECT ?a ?b ?c
+WHERE {
+	?a ?b ?c .
+	FILTER ( ?b = hashowl:def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd || ?b = rdf:type  || ?b = rdfs:subClassOf )
+}

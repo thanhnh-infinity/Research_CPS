@@ -1,0 +1,674 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY owl11 "http://www.w3.org/2006/12/owl11#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY ontology "http://www.mygrid.org.uk/ontology#" >
+    <!ENTITY owl11xml "http://www.w3.org/2006/12/owl11-xml#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY mygrid-moby-service "http://www.mygrid.org.uk/mygrid-moby-service#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.mygrid.org.uk/mygrid-moby-service#"
+     xml:base="http://www.mygrid.org.uk/mygrid-moby-service"
+     xmlns:ontology="http://www.mygrid.org.uk/ontology#"
+     xmlns:owl11="http://www.w3.org/2006/12/owl11#"
+     xmlns:owl11xml="http://www.w3.org/2006/12/owl11-xml#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:mygrid-moby-service="http://www.mygrid.org.uk/mygrid-moby-service#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#">
+    <owl:Ontology rdf:about="">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >The MOBY-Mygrid Service Ontology</rdfs:label>
+        <owl:imports rdf:resource="http://www.mygrid.org.uk/ontology"/>
+        <owl:imports rdf:resource="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"/>
+        <owl:versionInfo rdf:datatype="&xsd;string">0.01</owl:versionInfo>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#hasOperation -->
+
+    <owl:ObjectProperty rdf:about="#hasOperation">
+        <rdfs:range rdf:resource="#operation"/>
+        <rdfs:domain rdf:resource="#serviceDescription"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#hasParameterType -->
+
+    <owl:ObjectProperty rdf:about="#hasParameterType">
+        <rdfs:domain rdf:resource="#parameter"/>
+        <rdfs:range rdf:resource="#parameterType"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#hasServiceType -->
+
+    <owl:ObjectProperty rdf:about="#hasServiceType">
+        <rdfs:range rdf:resource="#serviceType"/>
+        <rdfs:domain rdf:resource="#serviceDescription"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#hasUnitTest -->
+
+    <owl:ObjectProperty rdf:about="#hasUnitTest">
+        <rdfs:range rdf:resource="#unitTest"/>
+        <rdfs:domain rdf:resource="#operation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#inNamespaces -->
+
+    <owl:ObjectProperty rdf:about="#inNamespaces">
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&ontology;bioinformatics_metadata"/>
+                    <rdf:Description rdf:about="#parameterNamespace"/>
+                    <rdf:Description rdf:about="&ontology;bioinformatics_data"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+        <rdfs:domain rdf:resource="#parameter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#inputParameter -->
+
+    <owl:ObjectProperty rdf:about="#inputParameter">
+        <rdfs:range rdf:resource="#parameter"/>
+        <rdfs:domain rdf:resource="#operation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#objectType -->
+
+    <owl:ObjectProperty rdf:about="#objectType">
+        <rdfs:domain rdf:resource="#parameter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#outputParameter -->
+
+    <owl:ObjectProperty rdf:about="#outputParameter">
+        <rdfs:domain rdf:resource="#operation"/>
+        <rdfs:range rdf:resource="#parameter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#performsTask -->
+
+    <owl:ObjectProperty rdf:about="#performsTask">
+        <rdfs:domain rdf:resource="#operation"/>
+        <rdfs:range rdf:resource="#operationTask"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#providedBy -->
+
+    <owl:ObjectProperty rdf:about="#providedBy">
+        <rdfs:domain rdf:resource="#serviceDescription"/>
+        <rdfs:range rdf:resource="#organisation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#usesMethod -->
+
+    <owl:ObjectProperty rdf:about="#usesMethod">
+        <rdfs:domain rdf:resource="#operation"/>
+        <rdfs:range rdf:resource="#operationMethod"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#usesResource -->
+
+    <owl:ObjectProperty rdf:about="#usesResource">
+        <rdfs:domain rdf:resource="#operation"/>
+        <rdfs:range rdf:resource="#operationResource"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#authoritative -->
+
+    <owl:DatatypeProperty rdf:about="#authoritative">
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain rdf:resource="#organisation"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#datatype -->
+
+    <owl:DatatypeProperty rdf:about="#datatype">
+        <rdfs:domain rdf:resource="#parameter"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#enum -->
+
+    <owl:DatatypeProperty rdf:about="#enum">
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain rdf:resource="#parameter"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#exampleInput -->
+
+    <owl:DatatypeProperty rdf:about="#exampleInput">
+        <rdfs:comment
+            >This should carry the full body of the input message (e.g. the SOAP payload).  It does not contain individual parameter-values, but rather carrys the entire invocation message.</rdfs:comment>
+        <rdfs:domain rdf:resource="#unitTest"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#hasConfiguredInstanceExample -->
+
+    <owl:DatatypeProperty rdf:about="#hasConfiguredInstanceExample">
+        <rdfs:range rdf:resource="&xsd;anyURI"/>
+        <rdfs:domain rdf:resource="#operation"/>
+        <rdfs:domain rdf:resource="#serviceDescription"/>
+        <rdfs:comment
+            >This is a link to an executable version of the service. This will normally be represented by a workflow containing just the service</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#hasDefaultValue -->
+
+    <owl:DatatypeProperty rdf:about="#hasDefaultValue">
+        <rdfs:comment
+            >describes preconfigured values for input parameters</rdfs:comment>
+        <rdfs:domain rdf:resource="#parameter"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#hasInterfaceLocation -->
+
+    <owl:DatatypeProperty rdf:about="#hasInterfaceLocation">
+        <rdfs:domain rdf:resource="#serviceDescription"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#hasOperationNameText -->
+
+    <owl:DatatypeProperty rdf:about="#hasOperationNameText">
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain rdf:resource="#operation"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#hasOrganisationDescriptionText -->
+
+    <owl:DatatypeProperty rdf:about="#hasOrganisationDescriptionText">
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain rdf:resource="#organisation"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#hasParameterDescriptionText -->
+
+    <owl:DatatypeProperty rdf:about="#hasParameterDescriptionText">
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain rdf:resource="#parameter"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#hasParameterNameText -->
+
+    <owl:DatatypeProperty rdf:about="#hasParameterNameText">
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain rdf:resource="#parameter"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#hasServiceDescriptionLocation -->
+
+    <owl:DatatypeProperty rdf:about="#hasServiceDescriptionLocation">
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain rdf:resource="#serviceDescription"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#hasServiceDescriptionText -->
+
+    <owl:DatatypeProperty rdf:about="#hasServiceDescriptionText">
+        <rdfs:domain rdf:resource="#serviceDescription"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#hasServiceNameText -->
+
+    <owl:DatatypeProperty rdf:about="#hasServiceNameText">
+        <rdfs:domain rdf:resource="#serviceDescription"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#hasTavernaProcessorSpec -->
+
+    <owl:DatatypeProperty rdf:about="#hasTavernaProcessorSpec">
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain rdf:resource="#operation"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#isAlive -->
+
+    <owl:DatatypeProperty rdf:about="#isAlive">
+        <rdfs:domain rdf:resource="#serviceDescription"/>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#isMandatory -->
+
+    <owl:DatatypeProperty rdf:about="#isMandatory">
+        <rdfs:domain rdf:resource="#parameter"/>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
+        <rdfs:comment
+            >describes whether an input parameter is required or optional to execute the service</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#locationURI -->
+
+    <owl:DatatypeProperty rdf:about="#locationURI">
+        <rdfs:domain rdf:resource="#serviceDescription"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#max -->
+
+    <owl:DatatypeProperty rdf:about="#max">
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain rdf:resource="#parameter"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#min -->
+
+    <owl:DatatypeProperty rdf:about="#min">
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain rdf:resource="#parameter"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#validOutputXML -->
+
+    <owl:DatatypeProperty rdf:about="#validOutputXML">
+        <rdfs:comment
+            >value should be the full XML body of the output message (i.e. the SOAP Payload) which can be used canonically (using xmldiff) to validate the output from the service given the input of the associated unit test.</rdfs:comment>
+        <rdfs:domain rdf:resource="#unitTest"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#validREGEX -->
+
+    <owl:DatatypeProperty rdf:about="#validREGEX">
+        <rdfs:domain rdf:resource="#unitTest"/>
+        <rdfs:comment
+            >value is a regular expression that should match the output from the service given the associated input from the unit test</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#validXPath -->
+
+    <owl:DatatypeProperty rdf:about="#validXPath">
+        <rdfs:domain rdf:resource="#unitTest"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:comment
+            >value is an XPath statement that can be used to validate the output of a service given the associated input in the unit test</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#R-processor -->
+
+    <owl:Class rdf:about="#R-processor">
+        <rdfs:subClassOf rdf:resource="#serviceType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#beanshell -->
+
+    <owl:Class rdf:about="#beanshell">
+        <rdfs:subClassOf rdf:resource="#serviceType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#biomart -->
+
+    <owl:Class rdf:about="#biomart">
+        <rdfs:subClassOf rdf:resource="#serviceType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#collectionParameter -->
+
+    <owl:Class rdf:about="#collectionParameter">
+        <rdfs:subClassOf rdf:resource="#parameterType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#inferno -->
+
+    <owl:Class rdf:about="#inferno">
+        <rdfs:subClassOf rdf:resource="#serviceType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#localjava -->
+
+    <owl:Class rdf:about="#localjava">
+        <rdfs:subClassOf rdf:resource="#serviceType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#mapParameter -->
+
+    <owl:Class rdf:about="#mapParameter">
+        <rdfs:subClassOf rdf:resource="#collectionParameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#moby -->
+
+    <owl:Class rdf:about="#moby">
+        <rdfs:subClassOf rdf:resource="#serviceType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#moby-asynch -->
+
+    <owl:Class rdf:about="#moby-asynch">
+        <rdfs:subClassOf rdf:resource="#serviceType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#operation -->
+
+    <owl:Class rdf:about="#operation"/>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#operationMethod -->
+
+    <owl:Class rdf:about="#operationMethod"/>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#operationResource -->
+
+    <owl:Class rdf:about="#operationResource"/>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#operationTask -->
+
+    <owl:Class rdf:about="#operationTask"/>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#orderedCollectionParameter -->
+
+    <owl:Class rdf:about="#orderedCollectionParameter">
+        <rdfs:subClassOf rdf:resource="#collectionParameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#organisation -->
+
+    <owl:Class rdf:about="#organisation"/>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#parameter -->
+
+    <owl:Class rdf:about="#parameter"/>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#parameterNamespace -->
+
+    <owl:Class rdf:about="#parameterNamespace"/>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#parameterType -->
+
+    <owl:Class rdf:about="#parameterType">
+        <rdfs:label rdf:datatype="&xsd;string">parameterType</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#scufl -->
+
+    <owl:Class rdf:about="#scufl">
+        <rdfs:subClassOf rdf:resource="#serviceType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#secondaryParameter -->
+
+    <owl:Class rdf:about="#secondaryParameter">
+        <rdfs:subClassOf rdf:resource="#parameterType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#seqhound -->
+
+    <owl:Class rdf:about="#seqhound">
+        <rdfs:subClassOf rdf:resource="#serviceType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#serviceDescription -->
+
+    <owl:Class rdf:about="#serviceDescription">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >serviceDescription</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#serviceType -->
+
+    <owl:Class rdf:about="#serviceType"/>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#setParameter -->
+
+    <owl:Class rdf:about="#setParameter">
+        <rdfs:subClassOf rdf:resource="#collectionParameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#simpleParameter -->
+
+    <owl:Class rdf:about="#simpleParameter">
+        <rdfs:subClassOf rdf:resource="#parameterType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#soaplab -->
+
+    <owl:Class rdf:about="#soaplab">
+        <rdfs:subClassOf rdf:resource="#serviceType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#talisman -->
+
+    <owl:Class rdf:about="#talisman">
+        <rdfs:subClassOf rdf:resource="#serviceType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#unitTest -->
+
+    <owl:Class rdf:about="#unitTest">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/mygrid-moby-service#wsdl -->
+
+    <owl:Class rdf:about="#wsdl">
+        <rdfs:subClassOf rdf:resource="#serviceType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/ontology#bioinformatics_algorithm -->
+
+    <owl:Class rdf:about="&ontology;bioinformatics_algorithm">
+        <rdfs:subClassOf rdf:resource="#operationMethod"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/ontology#bioinformatics_data -->
+
+    <owl:Class rdf:about="&ontology;bioinformatics_data">
+        <rdfs:subClassOf rdf:resource="#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/ontology#bioinformatics_data_resource -->
+
+    <owl:Class rdf:about="&ontology;bioinformatics_data_resource">
+        <rdfs:subClassOf rdf:resource="#operationResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/ontology#bioinformatics_file_formats -->
+
+    <owl:Class rdf:about="&ontology;bioinformatics_file_formats">
+        <rdfs:subClassOf rdf:resource="#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/ontology#bioinformatics_metadata -->
+
+    <owl:Class rdf:about="&ontology;bioinformatics_metadata">
+        <rdfs:subClassOf rdf:resource="#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mygrid.org.uk/ontology#bioinformatics_task -->
+
+    <owl:Class rdf:about="&ontology;bioinformatics_task">
+        <rdfs:subClassOf rdf:resource="#operationTask"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <owl:Class rdf:about="&owl;Thing"/>
+</rdf:RDF>

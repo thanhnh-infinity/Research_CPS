@@ -1,0 +1,713 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+     <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
+     <!ENTITY swrlb "http://www.w3.org/2003/11/swrlb#" >
+     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+     <!ENTITY protege "http://protege.stanford.edu/plugins/owl/protege#" >
+     <!ENTITY xsp "http://www.owl-ontologies.com/2005/08/07/xsp.owl#" >
+     <!ENTITY hashowl "http://www.semanticweb.org/hashowl#" >
+     ]>
+<rdf:RDF xmlns="http://www.semanticweb.org/hashowl#"
+     xml:base="http://www.semanticweb.org/hashowl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+     xmlns:hashowl="http://www.semanticweb.org/hashowl#"
+     xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+
+    <owl:Ontology rdf:about="http://www.semanticweb.org/hashowl">
+    </owl:Ontology>
+    
+    <owl:ObjectProperty rdf:about="&hashowl;dd7ae8a49447c10adfb3dd9d5cf5c47f8307c5e2eab1578953139671c66067720">
+        <rdfs:range rdf:resource="&hashowl;d11cf45595b4798ba2c97d74a44c1f630edf21468cc207cde9326a6afcfff6399"/>
+        <rdfs:range rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+        <rdfs:domain rdf:resource="&hashowl;d93cdb506884c11a4cba7ff76af360cec1b69409ad3e17546b6ca6e7355b869ac"/>
+    </owl:ObjectProperty>    
+    <owl:ObjectProperty rdf:about="&hashowl;d91bc3dfb042211be204d8c2a4dca134523b5fecdb91f37d1e6a1b11fd80a085e">
+        <rdfs:range rdf:resource="&hashowl;dcfb906d985f7996941075e8e66d05c742dbbd332d77587c7203a7a8ec2fc0f79"/>
+        <rdfs:domain rdf:resource="&hashowl;d126c7113a800b97dbfc947628e022f0e54998cb21d6792217fc16974a18472e2"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&hashowl;d99271938fef2f70830c1625a323b52840535a5615e400090926f3982ba12c3b8">
+        <rdfs:range rdf:resource="&hashowl;d126c7113a800b97dbfc947628e022f0e54998cb21d6792217fc16974a18472e2"/>
+        <rdfs:domain rdf:resource="&hashowl;d18d23be4a3180d1a41b04b9cf31359fa5e392a7c128770d3052585419a43e0b6"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="&hashowl;d8dba72f9a2c3ab04d265b9068a07f96bffd796b8c2d3a65df9884d583c5166e9">
+        <rdfs:range rdf:resource="&hashowl;daa8cbfd2a5dac08e09f6cdf57012667f8328e1072bde1037f693c669aca7517f"/>
+	<rdfs:domain rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="&hashowl;d5c6eac2b0a0612aa0b370c0bb461f7ba3bd5a9884c3fb2b37cc81df90f909910">
+        <rdfs:range rdf:resource="&hashowl;d8d16dc8348e2e5bdb32ced57160451c44de3dc95eefab37019630c0b219a5bcc"/>
+        <rdfs:domain rdf:resource="&hashowl;daa81157a295e07dccd7ebece804511dd5984bfd29e9b8e4a7916c4484f4eedf4"/>
+	<rdfs:domain rdf:resource="&hashowl;d102115730abb6f87c8186e9b82b21e52009f9c1067715c7768506810208a889a"/>
+	<rdfs:domain rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+	<rdfs:domain rdf:resource="&hashowl;d11cf45595b4798ba2c97d74a44c1f630edf21468cc207cde9326a6afcfff6399"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="&hashowl;d4c316344f88ec8543196fcfc519fe502700f008bac3213857717d13903e49095">
+        <rdfs:range rdf:resource="&hashowl;d102115730abb6f87c8186e9b82b21e52009f9c1067715c7768506810208a889a"/>
+        <rdfs:domain rdf:resource="&hashowl;daa81157a295e07dccd7ebece804511dd5984bfd29e9b8e4a7916c4484f4eedf4"/>
+    </owl:ObjectProperty>		
+	
+	
+    <owl:ObjectProperty rdf:about="&hashowl;ddb06d5c4ed9d0ee720bcba0ed11a50f2988db939ba59f94a52bc29587e069c3d">
+        <rdfs:range rdf:resource="&hashowl;dca0b2ce8ddbfbaf68fa0e4d7d440921b53ac7bc5d5e6311d8426438cca7ed3e6"/>
+        <rdfs:domain rdf:resource="&hashowl;daa81157a295e07dccd7ebece804511dd5984bfd29e9b8e4a7916c4484f4eedf4"/>
+    </owl:ObjectProperty>	
+	
+	
+	
+    <owl:ObjectProperty rdf:about="&hashowl;d78f07bdc1173cd8957eba3aef3a42b86fe6c6554b32f0e71e902d01110efc1d9">
+        <rdfs:range rdf:resource="&hashowl;d445345e548f7ed8917bd5f3a1304ad2718156cc8a5cc8721ec3b95f69ab0c7a5"/>
+        <rdfs:domain rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+    </owl:ObjectProperty>		
+    <owl:ObjectProperty rdf:about="&hashowl;d6d68200ff91ab826b455c04b95ee17b919cc94f9c0e0153754db341841d964c2">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="d7a9ee28b5c0e0bb1f91bc5bcd49bab3c36c63ba23b9bf190e07283a9fee5a815">
+                    <rdf:Description rdf:about="&hashowl;d935da0d7d915e3d76c5c2d88fbae781f447cf9d8bcc0d33b776f47187865e8d1"/>
+                    <rdf:Description rdf:about="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="&hashowl;dab66a67b64a999a0a636e8dc7cde61871eb07770af2c3ee140b0515c9ba66929">
+        <rdfs:range rdf:resource="&hashowl;d0b1d444a654bee3f90ed3c28d11b326f45e4e3c332ea15d76e9a6e6d2625edac"/>
+        <rdfs:domain rdf:resource="&hashowl;dd22a67b5ffd2afd1098dd0582ff4f1fff9bd2a371fced3927de3713a89bc1028"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&hashowl;d0c2666536c7783446096dc9642a6f2f930c7cbb1c2fc7f4631646a8f1709acc4">
+        <rdfs:range rdf:resource="&hashowl;d1cc74ff87fcd33d35ff7fbcf1147e358af1df842b05ff7166f36a85a325408a5"/>
+        <rdfs:domain rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&hashowl;d0b6431c9bfa413026b0db7383192b919e35511c4298f6c08ef3c429030820676">
+        <rdfs:domain rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+        <rdfs:range rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&hashowl;d92e8cb7fe589edeec02e6e408bc3d60c1685ab58e82d1e1b25dd741fd7db3baa">
+        <rdfs:range rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+        <rdfs:domain rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+        <rdfs:subPropertyOf rdf:resource="&hashowl;d0b6431c9bfa413026b0db7383192b919e35511c4298f6c08ef3c429030820676"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="&hashowl;dd78959ba54b8feb23f976e57d78558716ba6ded6e90c41f346998db2d2739217">
+        <rdfs:range rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+        <rdfs:domain rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+        <rdfs:subPropertyOf rdf:resource="&hashowl;d0b6431c9bfa413026b0db7383192b919e35511c4298f6c08ef3c429030820676"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="&hashowl;deccec3025fba67fb7b755b49b6266e91fe5433cfa847f3baf812b45d60e57f51">
+        <rdfs:domain rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+        <rdfs:range rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+        <rdfs:subPropertyOf rdf:resource="&hashowl;d92e8cb7fe589edeec02e6e408bc3d60c1685ab58e82d1e1b25dd741fd7db3baa"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&hashowl;d501137b0e44fb5f0ce4adf7944fc82390e6c43dc6d9c2838c4c41fcdc7c74bb5">
+        <rdfs:domain rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+        <rdfs:range rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+        <rdfs:subPropertyOf rdf:resource="&hashowl;d0b6431c9bfa413026b0db7383192b919e35511c4298f6c08ef3c429030820676"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="&hashowl;d1b0ab6b7af9182128c578ac706e86eb0c534123ad925cc4263b3ceaa058fb180">
+        <rdfs:domain rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+        <rdfs:range rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+        <rdfs:subPropertyOf rdf:resource="&hashowl;d0b6431c9bfa413026b0db7383192b919e35511c4298f6c08ef3c429030820676"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&hashowl;d90be350962c5486283053b2095d66ae0317b5964381192c2a4f9ab709a21b2b4">
+        <rdfs:domain rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+        <rdfs:range rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+        <rdfs:subPropertyOf rdf:resource="&hashowl;d0b6431c9bfa413026b0db7383192b919e35511c4298f6c08ef3c429030820676"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="&hashowl;d44b5b01e65e09f8e691eb535fd84dbecbe4f7e30822cf4bdd4d04b2b9038d226">
+        <rdfs:domain rdf:resource="&hashowl;d0b1d444a654bee3f90ed3c28d11b326f45e4e3c332ea15d76e9a6e6d2625edac"/>
+        <rdfs:range rdf:resource="&hashowl;d93cdb506884c11a4cba7ff76af360cec1b69409ad3e17546b6ca6e7355b869ac"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&hashowl;d974e43ba8243818e0b9827db15adfed2e10e99f7e6398a74a0d00f9a6f0c6fd8">
+        <rdfs:range rdf:resource="&hashowl;dc1d032f0a6323b442aa49e6e9bc02e9b290733318d536d2b577ee290017b2d28"/>
+        <rdfs:domain rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+    </owl:ObjectProperty>
+    
+    
+	<owl:ObjectProperty rdf:about="&hashowl;d529fc0facf78c1d7a78ab70b194e1a6c3781a61f13b1086be30015c39851b89f">
+        <rdfs:range rdf:resource="&hashowl;dc1d032f0a6323b442aa49e6e9bc02e9b290733318d536d2b577ee290017b2d28"/>
+        <rdfs:domain rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+    </owl:ObjectProperty>
+  
+    <owl:ObjectProperty rdf:about="&hashowl;d5677a38a6e34e08beced48441de94742458cee9e4db705c9351febbe8e883045">
+        <rdfs:domain rdf:resource="hashowl;d0b1d444a654bee3f90ed3c28d11b326f45e4e3c332ea15d76e9a6e6d2625edac"/>
+        <rdfs:range rdf:resource="&hashowl;d10e0011da04bf19daa1219d832c756c6e387e49ebfbcf065323430c3fbcf8814"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&hashowl;d4a6cd35e9748b5de0dbe35bf095eb9eabdc118094fcc51fe27c5b29d57531314">
+        <rdfs:domain rdf:resource="&hashowl;d0b1d444a654bee3f90ed3c28d11b326f45e4e3c332ea15d76e9a6e6d2625edac"/>
+        <rdfs:range rdf:resource="&hashowl;d10e0011da04bf19daa1219d832c756c6e387e49ebfbcf065323430c3fbcf8814"/>
+    </owl:ObjectProperty>    
+    <owl:DatatypeProperty rdf:about="&hashowl;db68aa5b4362c69289d93b0cce3c47a263fe1172daae12f4dbb7b0b54906ce9e5">
+        <rdfs:domain rdf:resource="&hashowl;d6d11face42f59676beb3a46d50b4f9b932301ac0e2b232dabb4c5b30d54100d4"/>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="&hashowl;de29b34b22205513faf15b935e59aaba73cf3f0a00cea5adae4ce1cad92a41c06">
+        <rdfs:domain rdf:resource="&hashowl;d93cdb506884c11a4cba7ff76af360cec1b69409ad3e17546b6ca6e7355b869ac"/>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="&hashowl;d6d5e62eefa1ef9421493ea61c81e720ec825ab6d72eb5e1021bafef3bac18a27">
+        <rdfs:domain rdf:resource="&hashowl;d93cdb506884c11a4cba7ff76af360cec1b69409ad3e17546b6ca6e7355b869ac"/>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="&hashowl;dec2f5abc4b16bcfaf9a590d949c0ec02255f62320e6831e49b21316e9a49bc33">
+        <rdfs:domain rdf:resource="&hashowl;d93cdb506884c11a4cba7ff76af360cec1b69409ad3e17546b6ca6e7355b869ac"/>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="&hashowl;d05c2d2f9511dbb3bb070cbd476a88a592f4ea25be1ade427c6f4a0f6a38b1b72">
+        <rdfs:domain rdf:resource="&hashowl;d93cdb506884c11a4cba7ff76af360cec1b69409ad3e17546b6ca6e7355b869ac"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="&hashowl;d882b029ea015ec71d3d145b73e49256f4c232c2c7cb5a26c2c2d649461d68b22">
+        <rdfs:domain rdf:resource="&hashowl;d93cdb506884c11a4cba7ff76af360cec1b69409ad3e17546b6ca6e7355b869ac"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="&hashowl;dc21bbac55d30fe8255bc099d09fa2e6cc89eb068d5e79c56905b9d6499292424">
+        <rdfs:domain rdf:resource="&hashowl;d93cdb506884c11a4cba7ff76af360cec1b69409ad3e17546b6ca6e7355b869ac"/>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="&hashowl;dbf26fb810eb477d55bc1fff4563aa891a7a93d3bb01f10a374a96cb5982c4e7a">
+        <rdfs:domain rdf:resource="&hashowl;d93cdb506884c11a4cba7ff76af360cec1b69409ad3e17546b6ca6e7355b869ac"/>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="&hashowl;d614b537f5346caf887f6924557daf76bdb0f175a4f9f75be5882cbbefacd29ed">
+        <rdfs:domain rdf:resource="&hashowl;d93cdb506884c11a4cba7ff76af360cec1b69409ad3e17546b6ca6e7355b869ac"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="&hashowl;de1100d036e914fe4ffb06fbef2c33feed3fa973360c0ab69412dab2f7052ee41">
+        <rdfs:domain rdf:resource="&hashowl;d93cdb506884c11a4cba7ff76af360cec1b69409ad3e17546b6ca6e7355b869ac"/>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="&hashowl;def812e2fcf96082e2ad12dfccd94308af1ba8be76f954313d9495a82fe6bf762">
+        <rdfs:domain rdf:resource="&hashowl;d93cdb506884c11a4cba7ff76af360cec1b69409ad3e17546b6ca6e7355b869ac"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="&hashowl;d8564948d19956c6bf0d7db1047c6f9c1658836043a7926b45854e38ba427f4d1">
+        <rdfs:domain rdf:resource="&hashowl;d93cdb506884c11a4cba7ff76af360cec1b69409ad3e17546b6ca6e7355b869ac"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="&hashowl;d1b0f3ca411868ecf65211544b1ececb2bf9dcdc10145d3f593a5a2898580ec5c">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    </owl:DatatypeProperty>	
+	
+    <owl:DatatypeProperty rdf:about="&hashowl;d595aa7dc3ae7e92d387ebe39e1ea92e8c9d7f6fb94f3359c957ea2015a49a390">
+        <rdfs:domain rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="&hashowl;d96ae2f3fda9f9cab51d1263bf8370ceda25e843006667b54fcaca2eb0182f81e">
+        <rdfs:domain rdf:resource="&hashowl;dcfb906d985f7996941075e8e66d05c742dbbd332d77587c7203a7a8ec2fc0f79"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="&hashowl;d8f8b297f24fbd55a2a7c3a81108b9f8c76a8a283bde074c0ed303adc7e93dcf0">
+        <rdfs:domain rdf:resource="&hashowl;d126c7113a800b97dbfc947628e022f0e54998cb21d6792217fc16974a18472e2"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="&hashowl;d1b0f3ca411868ecf65211544b1ececb2bf9dcdc10145d3f593a5a2898580ec5c">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    </owl:DatatypeProperty>
+		<owl:DatatypeProperty rdf:about="&hashowl;d2c3937e94504890b491b17ab7336629ba9a4c725bb18fbb2bbb40d198a965f4f">
+			<rdfs:domain rdf:resource="&hashowl;dde581e2b55b21acaec934ae202002853de6b004e5afcc797c6f0d54425ecf9c5"/>
+		</owl:DatatypeProperty>
+		
+		
+		<owl:DatatypeProperty rdf:about="&hashowl;d7204eae5f36eea86d9b7fcadc4b8320955124d7a365a761de0fc963f829ec58b">
+			<rdfs:domain rdf:resource="&hashowl;dde581e2b55b21acaec934ae202002853de6b004e5afcc797c6f0d54425ecf9c5"/>
+		</owl:DatatypeProperty>
+		
+		
+		<owl:DatatypeProperty rdf:about="&hashowl;d73566db6dc970fe67ec1ea86a0c408f4c04b7d28d6447dd728565bfe9852b239">
+			<rdfs:domain rdf:resource="&hashowl;dde581e2b55b21acaec934ae202002853de6b004e5afcc797c6f0d54425ecf9c5"/>
+		</owl:DatatypeProperty>
+		
+		
+		<owl:DatatypeProperty rdf:about="&hashowl;d7d4925082821752dec17c9c2ca70f1c3005077e39fea00ebe30b22d827afa1dd">
+			<rdfs:domain rdf:resource="&hashowl;dc1d032f0a6323b442aa49e6e9bc02e9b290733318d536d2b577ee290017b2d28"/>
+		</owl:DatatypeProperty>
+		<owl:DatatypeProperty rdf:about="&hashowl;d6ed7301f8acf2c91e60b7f6310bad838c60a25538fc176e62e7796bb1d562796">
+			<rdfs:domain rdf:resource="&hashowl;dde581e2b55b21acaec934ae202002853de6b004e5afcc797c6f0d54425ecf9c5"/>
+		</owl:DatatypeProperty>
+		
+		
+		<owl:DatatypeProperty rdf:about="&hashowl;d4e1da1970ce73b67e53a2ce5392271dc6db7a1fa517c79dc5bed6a4fb6e1d880">
+			<rdfs:domain rdf:resource="&hashowl;dc1d032f0a6323b442aa49e6e9bc02e9b290733318d536d2b577ee290017b2d28"/>
+		</owl:DatatypeProperty>
+		
+		
+		<owl:DatatypeProperty rdf:about="&hashowl;d0c1b2ed1c1a31cc6959f4d20eeea127104cc9696b3a445680805a8f2853b8f64">
+			<rdfs:domain rdf:resource="&hashowl;dc1d032f0a6323b442aa49e6e9bc02e9b290733318d536d2b577ee290017b2d28"/>
+		</owl:DatatypeProperty>		
+		
+		<owl:DatatypeProperty rdf:about="&hashowl;daf99034cabd884f7cca94ee020f5e56160183941b4d93bc0462917ddb71cf8c2">
+			<rdfs:domain rdf:resource="&hashowl;dc1d032f0a6323b442aa49e6e9bc02e9b290733318d536d2b577ee290017b2d28"/>
+		</owl:DatatypeProperty>
+		
+		<owl:DatatypeProperty rdf:about="&hashowl;dc004b9bc3dd95db6d72d67a5f28fd047b14d4762cbdc608f3433550134d14e67">
+			<rdfs:domain rdf:resource="&hashowl;db9f850348defcc9aa675c15a02ab4a7268ce664e8c2b179e94af3a561d10a8c0"/>
+		</owl:DatatypeProperty>
+		
+		<owl:DatatypeProperty rdf:about="&hashowl;df7d3e6a8ae61e3f31bf5102d0ec0d193d00a673386b9015aa186c0325d0fd828">
+			<rdfs:domain rdf:resource="&hashowl;db9f850348defcc9aa675c15a02ab4a7268ce664e8c2b179e94af3a561d10a8c0"/>
+		</owl:DatatypeProperty>
+		
+		<owl:DatatypeProperty rdf:about="&hashowl;debfff8fcde296fbd45283ce24a36cf81f4f1ad2c67a410c5dd462da5e21373b5">
+			<rdfs:domain rdf:resource="&hashowl;dc1d032f0a6323b442aa49e6e9bc02e9b290733318d536d2b577ee290017b2d28"/>
+		</owl:DatatypeProperty>
+	
+		
+	
+		<owl:DatatypeProperty rdf:about="&hashowl;db81d476ff8f9e00fd1495d0d1a97b9edd486a614d84db3ab3308a76b82b50f88">
+			<rdfs:domain rdf:resource="&hashowl;dde581e2b55b21acaec934ae202002853de6b004e5afcc797c6f0d54425ecf9c5"/>
+		</owl:DatatypeProperty>
+	
+	
+	   
+		<owl:DatatypeProperty rdf:about="&hashowl;db8c2d2c6eeaa55828f55d72a87518fa4e160d6d69b44b201dc20bfd80b861116">
+			<rdfs:domain rdf:resource="&hashowl;dde581e2b55b21acaec934ae202002853de6b004e5afcc797c6f0d54425ecf9c5"/>
+		</owl:DatatypeProperty>
+		
+		
+		<owl:DatatypeProperty rdf:about="&hashowl;d69d9c0759e0568c0b7044994a7634b8fbbea5ac04a3787c05e2908fd6def9508">
+			<rdfs:domain rdf:resource="&hashowl;dde581e2b55b21acaec934ae202002853de6b004e5afcc797c6f0d54425ecf9c5"/>
+		</owl:DatatypeProperty>
+		<owl:DatatypeProperty rdf:about="&hashowl;de2a014cf294848ab11034999b924356fce89906e9689ed06898b878f1bc69f44">
+			<rdfs:domain rdf:resource="&hashowl;dc1d032f0a6323b442aa49e6e9bc02e9b290733318d536d2b577ee290017b2d28"/>
+		</owl:DatatypeProperty>
+	
+  
+    <owl:DatatypeProperty rdf:about="&hashowl;debf817c04d542d929aa705e7578e3565b79522ee6091dad06bca1893fd86a3a6">
+        <rdfs:domain rdf:resource="&hashowl;d93cdb506884c11a4cba7ff76af360cec1b69409ad3e17546b6ca6e7355b869ac"/>
+    </owl:DatatypeProperty>    
+    <owl:DatatypeProperty rdf:about="&hashowl;ddd195c5962316582d6817ccff657969fed38cae4d480058c0f544287dab65f95">
+        <rdfs:domain rdf:resource="&hashowl;d0b1d444a654bee3f90ed3c28d11b326f45e4e3c332ea15d76e9a6e6d2625edac"/>
+    </owl:DatatypeProperty>   
+    <owl:DatatypeProperty rdf:about="&hashowl;dc7168dc2acdaf3ee5da8728d53151b4f30e11eed510fa5ac295fb6101ce1ad0b">
+        <rdfs:domain rdf:resource="&hashowl;d0b1d444a654bee3f90ed3c28d11b326f45e4e3c332ea15d76e9a6e6d2625edac"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="&hashowl;d063e165519da5ef065471bbb5dcc156d368731aa3ee31d48be651fa67c68bc1b">
+        <rdfs:domain rdf:resource="&hashowl;d0b1d444a654bee3f90ed3c28d11b326f45e4e3c332ea15d76e9a6e6d2625edac"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="&hashowl;df99bef8d27c788c16b9dbb8d2e08d3259ffbea565b7d60047b437031d1964fad">
+        <rdfs:domain rdf:resource="&hashowl;d10e0011da04bf19daa1219d832c756c6e387e49ebfbcf065323430c3fbcf8814"/>
+        <rdfs:domain rdf:resource="&hashowl;dc7309f6466e5e2967153956f7467f05be08bbb7917a1cbecdaaab6c1292e1e93"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="&hashowl;d2ead0cd4f4d82d06a0bc2c1f846317234240f942deef56a77d40d5638d2c92a8">
+        <rdfs:domain rdf:resource="&hashowl;d10e0011da04bf19daa1219d832c756c6e387e49ebfbcf065323430c3fbcf8814"/>
+        <rdfs:domain rdf:resource="&hashowl;dc7309f6466e5e2967153956f7467f05be08bbb7917a1cbecdaaab6c1292e1e93"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="&hashowl;db8ec031c95e17754b6586c9af00cdc5872604bc31055642cd32da383cc952f84">
+        <rdfs:domain rdf:resource="&hashowl;d10e0011da04bf19daa1219d832c756c6e387e49ebfbcf065323430c3fbcf8814"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="&hashowl;d775101275444f502d23d73bdc172b5325dccf1d858ddbc039c2db18cd2506494">
+        <rdfs:domain rdf:resource="&hashowl;d10e0011da04bf19daa1219d832c756c6e387e49ebfbcf065323430c3fbcf8814"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="&hashowl;dd8ee60cb394d59df245937041decc662bdeda6786be69590f31e71b0585b4019">
+        <rdfs:domain rdf:resource="&hashowl;d10e0011da04bf19daa1219d832c756c6e387e49ebfbcf065323430c3fbcf8814"/>
+        <rdfs:domain rdf:resource="&hashowl;dc7309f6466e5e2967153956f7467f05be08bbb7917a1cbecdaaab6c1292e1e93"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="&hashowl;dbb54a139615eba8f6f0ffb5a867a2fc73c785ad50f42314d1361e7c524bb451e">
+        <rdfs:domain rdf:resource="&hashowl;d10e0011da04bf19daa1219d832c756c6e387e49ebfbcf065323430c3fbcf8814"/>
+        <rdfs:domain rdf:resource="&hashowl;dc7309f6466e5e2967153956f7467f05be08bbb7917a1cbecdaaab6c1292e1e93"/>
+    </owl:DatatypeProperty>
+    <owl:Class rdf:about="&hashowl;d8d7b242b8d43b5bdc4f10925dae4ffd2d9b43eac92fd500b2c694f5b467c0405">
+        <rdfs:subClassOf rdf:resource="&hashowl;d1cc74ff87fcd33d35ff7fbcf1147e358af1df842b05ff7166f36a85a325408a5"/>
+    </owl:Class>
+    <owl:Class rdf:about="&hashowl;d4d71330b2114ba495e99bf1babaceecf1f93f361a6c8bcc449742d43541d8c17">
+        <rdfs:subClassOf rdf:resource="&hashowl;d1cc74ff87fcd33d35ff7fbcf1147e358af1df842b05ff7166f36a85a325408a5"/>
+    </owl:Class>
+    <owl:Class rdf:about="&hashowl;d79e3ce48510d2bf68965d227236a5f5a80e8c9c98a366e712456953f4be3fe59">
+        <rdfs:subClassOf rdf:resource="&hashowl;d1cc74ff87fcd33d35ff7fbcf1147e358af1df842b05ff7166f36a85a325408a5"/>
+    </owl:Class>
+    <owl:Class rdf:about="&hashowl;d5c2a4fd4e75655411cf8726e3502d9ec6339167855eefda0325135e224dcdb8c">
+        <rdfs:subClassOf rdf:resource="&hashowl;d1cc74ff87fcd33d35ff7fbcf1147e358af1df842b05ff7166f36a85a325408a5"/>
+    </owl:Class>
+    <owl:Class rdf:about="&hashowl;dcfb906d985f7996941075e8e66d05c742dbbd332d77587c7203a7a8ec2fc0f79">
+        <rdfs:subClassOf rdf:resource="&hashowl;d298acd89a5c2205ed74f37ae236f9fc901f95a0eeb51f6c4480b56e99fdec5d2"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&hashowl;d126c7113a800b97dbfc947628e022f0e54998cb21d6792217fc16974a18472e2">
+        <rdfs:subClassOf rdf:resource="&hashowl;d298acd89a5c2205ed74f37ae236f9fc901f95a0eeb51f6c4480b56e99fdec5d2"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&hashowl;d18d23be4a3180d1a41b04b9cf31359fa5e392a7c128770d3052585419a43e0b6">
+        <rdfs:subClassOf rdf:resource="&hashowl;d298acd89a5c2205ed74f37ae236f9fc901f95a0eeb51f6c4480b56e99fdec5d2"/>
+    </owl:Class>
+    <owl:Class rdf:about="&hashowl;d08adaf25805e4e535244fc5e76937eb7af2f8c5b4c73c91a545a590b54914642"/>
+    <owl:Class rdf:about="&hashowl;d6d11face42f59676beb3a46d50b4f9b932301ac0e2b232dabb4c5b30d54100d4">
+        <rdfs:subClassOf rdf:resource="&hashowl;d08adaf25805e4e535244fc5e76937eb7af2f8c5b4c73c91a545a590b54914642"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&hashowl;d298acd89a5c2205ed74f37ae236f9fc901f95a0eeb51f6c4480b56e99fdec5d2"/>
+    
+    
+    <owl:Class rdf:about="&hashowl;dde581e2b55b21acaec934ae202002853de6b004e5afcc797c6f0d54425ecf9c5">
+        <rdfs:subClassOf rdf:resource="&hashowl;dc1d032f0a6323b442aa49e6e9bc02e9b290733318d536d2b577ee290017b2d28"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&hashowl;dc1d032f0a6323b442aa49e6e9bc02e9b290733318d536d2b577ee290017b2d28"/>
+    
+    <owl:Class rdf:about="&hashowl;db9f850348defcc9aa675c15a02ab4a7268ce664e8c2b179e94af3a561d10a8c0">
+        <rdfs:subClassOf rdf:resource="&hashowl;dc1d032f0a6323b442aa49e6e9bc02e9b290733318d536d2b577ee290017b2d28"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&hashowl;ddfc7e8f5489762ca9e36958cfa3531971d25a6e4aaa03d2216fd327fa30e0d34"/> 
+    <owl:Class rdf:about="&hashowl;d9d3da97ecb7cead96a68aed333c785fe23b231422b1074ebb200c19cad6a3189">
+        <rdfs:subClassOf rdf:resource="&hashowl;d1cc74ff87fcd33d35ff7fbcf1147e358af1df842b05ff7166f36a85a325408a5"/>
+    </owl:Class>
+    <owl:Class rdf:about="&hashowl;dc3b53c002fdffce3c6034e13b8b0664573b0c32edc3f9ccff272093f3661ef1c">
+        <rdfs:subClassOf rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+    </owl:Class>
+    <owl:Class rdf:about="&hashowl;d0163d8ca7d4dff0f92d68fc3063c6b69dbe0e503cc3b176175b3d8f48e50a5de">
+        <rdfs:subClassOf rdf:resource="&hashowl;deace5503789dd50ab059e9dcc8f67ca3698b3b42507b06275555d60860fbf3d9"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&hashowl;d11cf45595b4798ba2c97d74a44c1f630edf21468cc207cde9326a6afcfff6399">
+        <rdfs:subClassOf rdf:resource="&hashowl;d15011e2bd3978c459ffffe38d66256e6c0583be0a54fbcce523689e0c7beed1d"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&hashowl;d313e129c89506663c786387d4e7032c2c4efe55ddb64438cdc7a96fe60fb11f1">
+        <rdfs:subClassOf rdf:resource="&hashowl;d11cf45595b4798ba2c97d74a44c1f630edf21468cc207cde9326a6afcfff6399"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&hashowl;d93762c4550bbc262872ae90182abefc5879492fdbcfe51927fa1a2509734d621">
+        <rdfs:subClassOf rdf:resource="&hashowl;deace5503789dd50ab059e9dcc8f67ca3698b3b42507b06275555d60860fbf3d9"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&hashowl;deace5503789dd50ab059e9dcc8f67ca3698b3b42507b06275555d60860fbf3d9">
+        <rdfs:subClassOf rdf:resource="&hashowl;d11cf45595b4798ba2c97d74a44c1f630edf21468cc207cde9326a6afcfff6399"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&hashowl;d15011e2bd3978c459ffffe38d66256e6c0583be0a54fbcce523689e0c7beed1d"/>
+    <owl:Class rdf:about="&hashowl;d42ca2cd32cf969e58b0fdc82d74abb1516477878e8fedbd71337d385d4f6642b">
+        <rdfs:subClassOf rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&hashowl;de7113a0c4664964e29895e9de84e6793bf2ad882c034cf6cca14912f13c75460">
+        <rdfs:subClassOf rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+    </owl:Class>
+    <owl:Class rdf:about="&hashowl;d9c257e7e2ff8a82081effdc03ce4d9b80ae5d148bb338b4d0bb7c575636b811b">
+        <rdfs:subClassOf rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+    </owl:Class>
+    <owl:Class rdf:about="&hashowl;d8a6be2bd7e40832406023f51ff5d393fec64338563bd7b03e1213a5e9009493b">
+        <rdfs:subClassOf rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+    </owl:Class>
+    <owl:Class rdf:about="&hashowl;d2542d87477ced4bb6ef4e768cfa2c3ee90b4ccf89102911a6208d52c2d8c455a">
+        <rdfs:subClassOf rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+    </owl:Class>
+    <owl:Class rdf:about="&hashowl;d8f908e070c881f2bf5d1fc27971eced11032a85f5f54c3e74866e5c86418f7cd">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&hashowl;d9dacea8ac9e9f6977bc23fd87ae882bff6e0c641af61e423e4b106e1d15e91fe"/>
+                <owl:someValuesFrom rdf:resource="&hashowl;dd8fa22994b9c1f5dcb340fbca753bfa8cd8616e25450258ddc7ac086f2b64659"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&hashowl;d9dacea8ac9e9f6977bc23fd87ae882bff6e0c641af61e423e4b106e1d15e91fe"/>
+                <owl:someValuesFrom rdf:resource="&hashowl;d9c257e7e2ff8a82081effdc03ce4d9b80ae5d148bb338b4d0bb7c575636b811b"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+    </owl:Class>
+    <owl:Class rdf:about="&hashowl;db7dff51f7b6273f29f62db361352eb1a3e882a27a9e0e29356dc6c0270f1ce1b">
+        <rdfs:subClassOf rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+    </owl:Class>
+    <owl:Class rdf:about="&hashowl;dc2c64ad4c2b1442fc35fa10d34f591f82980bb51fd6cb013976a37547268085f">
+        <rdfs:subClassOf rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+    </owl:Class>
+    <owl:Class rdf:about="&hashowl;d0b1d444a654bee3f90ed3c28d11b326f45e4e3c332ea15d76e9a6e6d2625edac">
+        <rdfs:subClassOf rdf:resource="&hashowl;ddfc7e8f5489762ca9e36958cfa3531971d25a6e4aaa03d2216fd327fa30e0d34"/>
+    </owl:Class>
+    <owl:Class rdf:about="&hashowl;d445345e548f7ed8917bd5f3a1304ad2718156cc8a5cc8721ec3b95f69ab0c7a5">
+        <rdfs:subClassOf rdf:resource="&hashowl;df5a62e4b13957c98756edcba0a623d381eead1be2450bd44ea2a985bc2eaa3bf"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&hashowl;df5a62e4b13957c98756edcba0a623d381eead1be2450bd44ea2a985bc2eaa3bf"/>
+    <owl:Class rdf:about="&hashowl;d10e0011da04bf19daa1219d832c756c6e387e49ebfbcf065323430c3fbcf8814">
+        <rdfs:subClassOf rdf:resource="&hashowl;ddfc7e8f5489762ca9e36958cfa3531971d25a6e4aaa03d2216fd327fa30e0d34"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&hashowl;dc7309f6466e5e2967153956f7467f05be08bbb7917a1cbecdaaab6c1292e1e93">
+        <rdfs:subClassOf rdf:resource="&hashowl;ddfc7e8f5489762ca9e36958cfa3531971d25a6e4aaa03d2216fd327fa30e0d34"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&hashowl;daa8cbfd2a5dac08e09f6cdf57012667f8328e1072bde1037f693c669aca7517f"/>
+    <owl:Class rdf:about="&hashowl;d8d16dc8348e2e5bdb32ced57160451c44de3dc95eefab37019630c0b219a5bcc">
+        <rdfs:subClassOf rdf:resource="&hashowl;df5a62e4b13957c98756edcba0a623d381eead1be2450bd44ea2a985bc2eaa3bf"/>
+    </owl:Class>
+    <owl:Class rdf:about="&hashowl;de96adb418e8d7c86f91906d0eb4fa2e5df86c8a45167505cb5aab522d96e7145">
+        <rdfs:subClassOf rdf:resource="&hashowl;df5a62e4b13957c98756edcba0a623d381eead1be2450bd44ea2a985bc2eaa3bf"/>
+    </owl:Class>
+    <owl:Class rdf:about="&hashowl;daa81157a295e07dccd7ebece804511dd5984bfd29e9b8e4a7916c4484f4eedf4">
+        <rdfs:subClassOf rdf:resource="&hashowl;df5a62e4b13957c98756edcba0a623d381eead1be2450bd44ea2a985bc2eaa3bf"/>
+    </owl:Class>
+    <owl:Class rdf:about="&hashowl;dd22a67b5ffd2afd1098dd0582ff4f1fff9bd2a371fced3927de3713a89bc1028"/>
+    <owl:Class rdf:about="&hashowl;dac9e236fb1b427ec73cda0f6914d31463d291a58c99cef64b16a5dc75df3bdc2"/>
+    
+    <owl:Class rdf:about="&hashowl;d3977ec2ca8c831a22ef033a78c409d7bfef4912c8ff8faa8cc1e170d46763b67">
+        <rdfs:subClassOf rdf:resource="&hashowl;dd22a67b5ffd2afd1098dd0582ff4f1fff9bd2a371fced3927de3713a89bc1028"/>
+    </owl:Class>
+    <owl:Class rdf:about="&hashowl;d935da0d7d915e3d76c5c2d88fbae781f447cf9d8bcc0d33b776f47187865e8d1">
+        <rdfs:subClassOf rdf:resource="&hashowl;da5e64683777bdf036615374838f0298559a692be846d6b260fe88ececec93151"/>
+    </owl:Class>
+    <owl:Class rdf:about="&hashowl;d1cc74ff87fcd33d35ff7fbcf1147e358af1df842b05ff7166f36a85a325408a5">
+        <rdfs:subClassOf rdf:resource="&hashowl;dd22a67b5ffd2afd1098dd0582ff4f1fff9bd2a371fced3927de3713a89bc1028"/>
+    </owl:Class>
+    <owl:Class rdf:about="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a">
+        <rdfs:subClassOf rdf:resource="&hashowl;dd22a67b5ffd2afd1098dd0582ff4f1fff9bd2a371fced3927de3713a89bc1028"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&hashowl;d208467fbd13e193a4e22a75c21384edd4e5a026f627e106e8426cfade79bff34">
+        <rdfs:subClassOf rdf:resource="&hashowl;d38b6d32548f4d76fa793a44ee082af979ec5cc63bf0447e9d6baa196f6f9366a"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&hashowl;d93cdb506884c11a4cba7ff76af360cec1b69409ad3e17546b6ca6e7355b869ac">
+        <rdfs:subClassOf rdf:resource="&hashowl;d751c2021e2b83288bb8198cb97226c7e8f2ffa4e280ae85133395a81a2bd02c6"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&hashowl;d751c2021e2b83288bb8198cb97226c7e8f2ffa4e280ae85133395a81a2bd02c6"/>
+    <owl:NamedIndividual rdf:about="&hashowl;d7b33c3230e32a9f304e7dc2d1dae2b69a8f9c8359ce6130f4d4441fe79968e06">
+        <rdf:type rdf:resource="&hashowl;d126c7113a800b97dbfc947628e022f0e54998cb21d6792217fc16974a18472e2"/>
+        <hashowl:d8f8b297f24fbd55a2a7c3a81108b9f8c76a8a283bde074c0ed303adc7e93dcf0>d5cab1a7656f9bfb76751dba1b70b54ae9d80d9f5ddbad43854516536e0d35f97</hashowl:d8f8b297f24fbd55a2a7c3a81108b9f8c76a8a283bde074c0ed303adc7e93dcf0>
+        <d91bc3dfb042211be204d8c2a4dca134523b5fecdb91f37d1e6a1b11fd80a085e rdf:resource="&hashowl;d2b61d08b82c24cf490bda362944288547220e1ff476a5672644a54edec779555"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="&hashowl;d195b51df061d070436294a78d53fc735eb5171d2db5370f4c46f1af9a72721bc">
+        <rdf:type rdf:resource="&hashowl;d126c7113a800b97dbfc947628e022f0e54998cb21d6792217fc16974a18472e2"/>
+        <hashowl:d8f8b297f24fbd55a2a7c3a81108b9f8c76a8a283bde074c0ed303adc7e93dcf0>dede1d2ab289873e05250898f029c86258daf4eb2846aea6c6b54bcfdc0238d57</hashowl:d8f8b297f24fbd55a2a7c3a81108b9f8c76a8a283bde074c0ed303adc7e93dcf0>
+        <d91bc3dfb042211be204d8c2a4dca134523b5fecdb91f37d1e6a1b11fd80a085e rdf:resource="&hashowl;dee8afb44bbf6ff75af2a14ce7b8d46a0f0bf845cd3245cbf92d2a35d7f34cf7d"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="&hashowl;df3e0015744c100bebef32c0d593bf642d892ca8eca2f983b0ecd6401ec325b6e">
+        <rdf:type rdf:resource="&hashowl;d126c7113a800b97dbfc947628e022f0e54998cb21d6792217fc16974a18472e2"/>
+        <hashowl:d8f8b297f24fbd55a2a7c3a81108b9f8c76a8a283bde074c0ed303adc7e93dcf0>d7a42ee853941eed1d0763096aab8ac3976b6e45daa3d4c46330b63e48fa21af2</hashowl:d8f8b297f24fbd55a2a7c3a81108b9f8c76a8a283bde074c0ed303adc7e93dcf0>
+        <d91bc3dfb042211be204d8c2a4dca134523b5fecdb91f37d1e6a1b11fd80a085e rdf:resource="&hashowl;df0127f753466db994d1ec6e37c5aa6a0503f56dbbd37e2a3dcba2b5153ea9fe2"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="&hashowl;d95ce128fc1bbb202aef3c35a18b02f059d9d06a81306658240a262fd2099d6de">
+        <rdf:type rdf:resource="&hashowl;d18d23be4a3180d1a41b04b9cf31359fa5e392a7c128770d3052585419a43e0b6"/>
+        <d99271938fef2f70830c1625a323b52840535a5615e400090926f3982ba12c3b8 rdf:resource="&hashowl;d7b33c3230e32a9f304e7dc2d1dae2b69a8f9c8359ce6130f4d4441fe79968e06"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="&hashowl;d3dd999c06315dfb03384ae90f03e11543bac4d624d2af27bee518536e1bed6fd">
+        <rdf:type rdf:resource="&hashowl;d18d23be4a3180d1a41b04b9cf31359fa5e392a7c128770d3052585419a43e0b6"/>
+        <d99271938fef2f70830c1625a323b52840535a5615e400090926f3982ba12c3b8 rdf:resource="&hashowl;d195b51df061d070436294a78d53fc735eb5171d2db5370f4c46f1af9a72721bc"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="&hashowl;df60a57682e2425077109f3982cc8f8c2f1e20935bfcf57a0ba276281a4546a8e">
+        <rdf:type rdf:resource="&hashowl;d18d23be4a3180d1a41b04b9cf31359fa5e392a7c128770d3052585419a43e0b6"/>
+        <d99271938fef2f70830c1625a323b52840535a5615e400090926f3982ba12c3b8 rdf:resource="&hashowl;df3e0015744c100bebef32c0d593bf642d892ca8eca2f983b0ecd6401ec325b6e"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="&hashowl;d2b61d08b82c24cf490bda362944288547220e1ff476a5672644a54edec779555">
+        <rdf:type rdf:resource="&hashowl;dcfb906d985f7996941075e8e66d05c742dbbd332d77587c7203a7a8ec2fc0f79"/>
+        <hashowl:d1b0f3ca411868ecf65211544b1ececb2bf9dcdc10145d3f593a5a2898580ec5c>dc0509a487a18b003ba05e505419ebb63e57a29158073e381f57160b5c5b86426</hashowl:d1b0f3ca411868ecf65211544b1ececb2bf9dcdc10145d3f593a5a2898580ec5c>
+        <hashowl:d96ae2f3fda9f9cab51d1263bf8370ceda25e843006667b54fcaca2eb0182f81e>d65713c800717eac8566fe44914ea1838e44ad019e3a142f7ffaf7052c0bc2eab</hashowl:d96ae2f3fda9f9cab51d1263bf8370ceda25e843006667b54fcaca2eb0182f81e>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="&hashowl;dee8afb44bbf6ff75af2a14ce7b8d46a0f0bf845cd3245cbf92d2a35d7f34cf7d">
+        <rdf:type rdf:resource="&hashowl;dcfb906d985f7996941075e8e66d05c742dbbd332d77587c7203a7a8ec2fc0f79"/>
+        <hashowl:d1b0f3ca411868ecf65211544b1ececb2bf9dcdc10145d3f593a5a2898580ec5c>d4652614c4d8778e57a970722f142d832798c133a14b1232a92ffe26a0e98919e</hashowl:d1b0f3ca411868ecf65211544b1ececb2bf9dcdc10145d3f593a5a2898580ec5c>
+        <hashowl:d96ae2f3fda9f9cab51d1263bf8370ceda25e843006667b54fcaca2eb0182f81e>dea1848b78722206f17ea9ae8419e1d5e2b55255623e9d4851e1a9b4727bfa99b</hashowl:d96ae2f3fda9f9cab51d1263bf8370ceda25e843006667b54fcaca2eb0182f81e>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="&hashowl;df0127f753466db994d1ec6e37c5aa6a0503f56dbbd37e2a3dcba2b5153ea9fe2">
+        <rdf:type rdf:resource="&hashowl;dcfb906d985f7996941075e8e66d05c742dbbd332d77587c7203a7a8ec2fc0f79"/>
+        <hashowl:d1b0f3ca411868ecf65211544b1ececb2bf9dcdc10145d3f593a5a2898580ec5c>d809e63d5c8aa03af112d17361058d0d8955f6d8e1e7591487d593dad276f9757</hashowl:d1b0f3ca411868ecf65211544b1ececb2bf9dcdc10145d3f593a5a2898580ec5c>
+        <hashowl:d96ae2f3fda9f9cab51d1263bf8370ceda25e843006667b54fcaca2eb0182f81e>d0b7591758000fbc9bfabc84d7eb48920205fa76a38e7013729b226a9f357c28a</hashowl:d96ae2f3fda9f9cab51d1263bf8370ceda25e843006667b54fcaca2eb0182f81e>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="&hashowl;d368df8dd4939cd50196a1fe0da45c8a1c384659706e574dfa16df2fc8198ffd8">
+	<rdf:type rdf:resource="&hashowl;d368df8dd4939cd50196a1fe0da45c8a1c384659706e574dfa16df2fc8198ffd8"/>
+        <def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd>d11684d02da79baab7c6a0dd8d4b3f4e5c3d6119ea16c50c4d91dba8b047512aa</def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd>
+    </owl:NamedIndividual>
+   
+    <owl:NamedIndividual rdf:about="&hashowl;dc3b53c002fdffce3c6034e13b8b0664573b0c32edc3f9ccff272093f3661ef1c">
+        <rdf:type rdf:resource="&hashowl;dc3b53c002fdffce3c6034e13b8b0664573b0c32edc3f9ccff272093f3661ef1c"/>
+        <def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd>da4ed9910d036b90f6d997d7a5525c51463933fe1f29ce22e463694ea23325f88</def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="&hashowl;d9c257e7e2ff8a82081effdc03ce4d9b80ae5d148bb338b4d0bb7c575636b811b">
+	<rdf:type rdf:resource="&hashowl;d9c257e7e2ff8a82081effdc03ce4d9b80ae5d148bb338b4d0bb7c575636b811b"/>
+        <def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd>d113053d27940d853f62ed7f05dcb52d13000b33d46ca43ee29c359bc3da58efb</def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="&hashowl;d8a6be2bd7e40832406023f51ff5d393fec64338563bd7b03e1213a5e9009493b">
+        <rdf:type rdf:resource="&hashowl;d8a6be2bd7e40832406023f51ff5d393fec64338563bd7b03e1213a5e9009493b"/>
+        <def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd>da4ed9910d036b90f6d997d7a5525c51463933fe1f29ce22e463694ea23325f88</def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="&hashowl;d2542d87477ced4bb6ef4e768cfa2c3ee90b4ccf89102911a6208d52c2d8c455a">
+	<rdf:type rdf:resource="&hashowl;d2542d87477ced4bb6ef4e768cfa2c3ee90b4ccf89102911a6208d52c2d8c455a"/>
+        <def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd>db4e1535b86e1daca26fd2afdc366bff588c347dc2e51d5c19c38c803b7ef072c</def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="&hashowl;d8f908e070c881f2bf5d1fc27971eced11032a85f5f54c3e74866e5c86418f7cd">
+        <rdf:type rdf:resource="&hashowl;d8f908e070c881f2bf5d1fc27971eced11032a85f5f54c3e74866e5c86418f7cd"/>
+        <def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd>dc0f9a4ea5d72605dcae2727d2a2f896c5ff22be2259657a254a7f27e8467f679</def3146364d5c003c703a3f479c21fa44c4d59e4dce980409922cff2e41d400fd>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="&hashowl;d41a4b4186e8d4ee8271dfc3542b5d179be5483d188e5ae7e695e54dfdb9b6ebe">
+        <rdf:type rdf:resource="&hashowl;daa8cbfd2a5dac08e09f6cdf57012667f8328e1072bde1037f693c669aca7517f"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="&hashowl;d0e015df0b8cbbe6749163ba4b4cbbef84ec048890797255b774c0d49ae45a9bc">
+        <rdf:type rdf:resource="&hashowl;daa8cbfd2a5dac08e09f6cdf57012667f8328e1072bde1037f693c669aca7517f"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="&hashowl;d04c309896af26f379c7d86040f465c9c762319c2f0ad876aa3bfe7fec74e1b8f">
+        <rdf:type rdf:resource="&hashowl;daa8cbfd2a5dac08e09f6cdf57012667f8328e1072bde1037f693c669aca7517f"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="&hashowl;dde7f2e3ffccb8a967d24c6ffd2f613c2fb803b0607e93aa3dff113bf7a807692">
+        <rdf:type rdf:resource="&hashowl;daa8cbfd2a5dac08e09f6cdf57012667f8328e1072bde1037f693c669aca7517f"/>
+    </owl:NamedIndividual>    
+    <owl:NamedIndividual rdf:about="&hashowl;d995a66a6a1f3ca336a0cbb0f1a91b7897ce442b2df748a90dc985b405b91839b">
+        <rdf:type rdf:resource="&hashowl;daa8cbfd2a5dac08e09f6cdf57012667f8328e1072bde1037f693c669aca7517f"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="&hashowl;d9821587e1e3f89e178f58053514856427e2b8240047de383f0ecf539b3e49967">
+        <rdf:type rdf:resource="&hashowl;d93762c4550bbc262872ae90182abefc5879492fdbcfe51927fa1a2509734d621"/>
+        <d0cb910517fba0102d54d4c1473372212ed3609e087d8cb6e787abadea703c418 rdf:datatype="&xsd;string">d3be83ee4acee4146eabd0729aa64afdf53483a39aa8301081be646d77d947575</d0cb910517fba0102d54d4c1473372212ed3609e087d8cb6e787abadea703c418>
+    </owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;d4099c9b312bb61b5c9f02de93fd53517ebad25537892afa370f380d37a35f610">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;d6b80f3e7d2b9453aeb7ba56401d83b9f049c90fb08f7d0ad22bb311ed0006a6f">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;d1e5cf80ee76bdfd77a949b556abaa88c17e245024ec5e0b4698ebf8e012165ad">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;dbcf40787cfbf6ce2684dcfce066a4df733eb419aac263590c5c99dd3506ff83b">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;df86866a181ec50894673deabc1bdb67dbefea3a2aa296b6299a5148d02fe4194">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;d0245094d6cca1ba8c18b3984e5cc302898a678eab3fdb4f7bc90a4d19da953f0">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;d7534161b3de4a5327c128f43363cf66081411434a96a084c3bf1ccd82f64d876">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;df50fabbaec1b60533c07117a1bdcd6bf262f5e4c8f9380c9c46109edf952da38">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;df8d48fba54db472486a0a5ede6681a10878c49d85d34ff4e6745519f3a2bc233">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;d52123ccf928df31c1fc0c212c97fec582e5796c94d679c0ae0ae3f54fb2f9031">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;d2f7c425a1c871b1b076920db1c86c74da8f3e2eb25ef754b8659c1382eb1dd72">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;dbdedd06d458a7ee0c970a9f5acb78350d08cf6af221cc8d9148083a55489630b">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;db1ad907a25bd98248a280d63fe803115a3994eb1675a4530e89df8d5f4491908">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;db8aaa57c5a7bf575b78659149373372b068ec29fe0c0bd91da4e493276d24e88">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;d065b14d69c96d1d9a71c5b105988cb42f932e40a3737b7fc985524be209f8f07">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;d716fba5861c82e39ca620fd721d12f3f24371c3d4ebb9f6b4135cce5935d17ca">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;d14eddd4883ea33edb722e6e69a838e0a9780d2c7086736466557d7d3132b5f1c">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;d22224fff32cf809fc8c1ae39c846f627e3c8d5a56048392ff72d28963538d213">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;d703ac782ce7120ea81336947f57197e54ced7dbe2f737f102de95b1eaeb90657">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;d8c663d4cd12013035ed0226773e8dd75a3b2cb83f256745b3b139b61162d10ea">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;de4414b53b90099c87ac67ccd679c019864217342b220590b184ba8a4e7736396">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;dcf2651b35a7e570c57b1792e1b465859e97acf856d19b11ea466baaedab13ea6">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;d43d6393aa4b8265d1f6de4b31f2198de951ae1babda564a6fb9fa67e5ee5e9d2">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;dd9e8a7ee87bb8dfaa516a40d02f406c7cbd167c18e99b7525fc46eac1c507d3f">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+    
+	<owl:NamedIndividual rdf:about="&hashowl;d3bdcda1427baa38436f46b0f759b1ff8df92957a13d855f6d0feb8fa027b07a7">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;d0809688e277767d0311c4f9aab6d400b420414ea141647511f0bf5086acc89d6">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;dab93df74baf473800bfeefb5d61cf4ec48fba5b1f95a6de49c82ff1b5b36bcbb">
+		<rdf:type rdf:resource="&hashowl;d832dce7f740cbd5212996cdea9d3c8f9a54f047e1621ea02c390eb1edfd4856a"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;dec5d0cfd49102aee9e4b8ffbb0aca45c9985794f9206e246d5e20669662d49c9">
+		<rdf:type rdf:resource="&hashowl;d93cdb506884c11a4cba7ff76af360cec1b69409ad3e17546b6ca6e7355b869ac"/>
+		<d8564948d19956c6bf0d7db1047c6f9c1658836043a7926b45854e38ba427f4d1 rdf:datatype="&xsd;string">dec5d0cfd49102aee9e4b8ffbb0aca45c9985794f9206e246d5e20669662d49c9</d8564948d19956c6bf0d7db1047c6f9c1658836043a7926b45854e38ba427f4d1>
+		<d05c2d2f9511dbb3bb070cbd476a88a592f4ea25be1ade427c6f4a0f6a38b1b72 rdf:datatype="&xsd;string">d9bc4f4a5af77f4ec96f7486ef24aae54359e79fd6f080111140dfecaa6c15a76</d05c2d2f9511dbb3bb070cbd476a88a592f4ea25be1ade427c6f4a0f6a38b1b72>
+		<dc21bbac55d30fe8255bc099d09fa2e6cc89eb068d5e79c56905b9d6499292424 rdf:datatype="&xsd;string">d361f1a64b37ea7cbecc933f7c8e443ccd30985bd2beff56601dadb1816580032</dc21bbac55d30fe8255bc099d09fa2e6cc89eb068d5e79c56905b9d6499292424>
+		<dbf26fb810eb477d55bc1fff4563aa891a7a93d3bb01f10a374a96cb5982c4e7a rdf:datatype="&xsd;string">d972298791c9562378fa226e35db9bee55a1b2a4a3ec93f6d8c1e2331651795cd</dbf26fb810eb477d55bc1fff4563aa891a7a93d3bb01f10a374a96cb5982c4e7a>
+		<d614b537f5346caf887f6924557daf76bdb0f175a4f9f75be5882cbbefacd29ed rdf:datatype="&xsd;string">d972298791c9562378fa226e35db9bee55a1b2a4a3ec93f6d8c1e2331651795cd</d614b537f5346caf887f6924557daf76bdb0f175a4f9f75be5882cbbefacd29ed>
+		<de1100d036e914fe4ffb06fbef2c33feed3fa973360c0ab69412dab2f7052ee41 rdf:datatype="&xsd;string">d26ec97b0607c633604bf6747bf038b665e679daf7335e4ab197265f9093bc356</de1100d036e914fe4ffb06fbef2c33feed3fa973360c0ab69412dab2f7052ee41>
+		<def812e2fcf96082e2ad12dfccd94308af1ba8be76f954313d9495a82fe6bf762 rdf:datatype="&xsd;string">d8904a92cf56a2404f57c5c60da7eff94a4ffb59878d246dbc4d6d13661bec3b6</def812e2fcf96082e2ad12dfccd94308af1ba8be76f954313d9495a82fe6bf762>
+		<de29b34b22205513faf15b935e59aaba73cf3f0a00cea5adae4ce1cad92a41c06 rdf:datatype="&xsd;string">d24545fe75a7615524edf64beb8064081a6037d85865a84eee6347619e14770f3</de29b34b22205513faf15b935e59aaba73cf3f0a00cea5adae4ce1cad92a41c06>
+		<dec2f5abc4b16bcfaf9a590d949c0ec02255f62320e6831e49b21316e9a49bc33 rdf:datatype="&xsd;string">d98902142920f8740986aca235d1bfb17130ade540f15218647e7b5e268209c7e</dec2f5abc4b16bcfaf9a590d949c0ec02255f62320e6831e49b21316e9a49bc33>
+		<d6d5e62eefa1ef9421493ea61c81e720ec825ab6d72eb5e1021bafef3bac18a27 rdf:datatype="&xsd;string">dcc3bdf8b7b3bbf092464954be85b186bb9af1f6a99e6bc93b1a05f98ac895bc6</d6d5e62eefa1ef9421493ea61c81e720ec825ab6d72eb5e1021bafef3bac18a27>
+		<d882b029ea015ec71d3d145b73e49256f4c232c2c7cb5a26c2c2d649461d68b22 rdf:datatype="&xsd;string">de07f660e87879ea9232aed2df3e5f1e636d165d8a82fce9b4f02b80061563869</d882b029ea015ec71d3d145b73e49256f4c232c2c7cb5a26c2c2d649461d68b22>
+		<debf817c04d542d929aa705e7578e3565b79522ee6091dad06bca1893fd86a3a6 rdf:datatype="&xsd;string">d193c2637653cf7d16cbe868220d0525007c24965408133629927024afca0dd1e</debf817c04d542d929aa705e7578e3565b79522ee6091dad06bca1893fd86a3a6>
+		<dd7ae8a49447c10adfb3dd9d5cf5c47f8307c5e2eab1578953139671c66067720 rdf:resource="&hashowl;d9821587e1e3f89e178f58053514856427e2b8240047de383f0ecf539b3e49967"/>
+	</owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;da75ade806a84a22495d47158216b339a70213d2e5cb2bfd4f09f09e4fcd72f5e">
+		<rdf:type rdf:resource="&hashowl;d93cdb506884c11a4cba7ff76af360cec1b69409ad3e17546b6ca6e7355b869ac"/>
+		<d8564948d19956c6bf0d7db1047c6f9c1658836043a7926b45854e38ba427f4d1 rdf:datatype="&xsd;string">da75ade806a84a22495d47158216b339a70213d2e5cb2bfd4f09f09e4fcd72f5e</d8564948d19956c6bf0d7db1047c6f9c1658836043a7926b45854e38ba427f4d1>
+		<d05c2d2f9511dbb3bb070cbd476a88a592f4ea25be1ade427c6f4a0f6a38b1b72 rdf:datatype="&xsd;string">d397dc62dfe28992d9ce19d90c2393e1b319bb936c1738879360d4b2d2ba648ea</d05c2d2f9511dbb3bb070cbd476a88a592f4ea25be1ade427c6f4a0f6a38b1b72>
+		<dc21bbac55d30fe8255bc099d09fa2e6cc89eb068d5e79c56905b9d6499292424 rdf:datatype="&xsd;string">d361f1a64b37ea7cbecc933f7c8e443ccd30985bd2beff56601dadb1816580032</dc21bbac55d30fe8255bc099d09fa2e6cc89eb068d5e79c56905b9d6499292424>
+		<dbf26fb810eb477d55bc1fff4563aa891a7a93d3bb01f10a374a96cb5982c4e7a rdf:datatype="&xsd;string">d26ec97b0607c633604bf6747bf038b665e679daf7335e4ab197265f9093bc356</dbf26fb810eb477d55bc1fff4563aa891a7a93d3bb01f10a374a96cb5982c4e7a>
+		<d614b537f5346caf887f6924557daf76bdb0f175a4f9f75be5882cbbefacd29ed rdf:datatype="&xsd;string">d26ec97b0607c633604bf6747bf038b665e679daf7335e4ab197265f9093bc356</d614b537f5346caf887f6924557daf76bdb0f175a4f9f75be5882cbbefacd29ed>
+		<de1100d036e914fe4ffb06fbef2c33feed3fa973360c0ab69412dab2f7052ee41 rdf:datatype="&xsd;string">d26ec97b0607c633604bf6747bf038b665e679daf7335e4ab197265f9093bc356</de1100d036e914fe4ffb06fbef2c33feed3fa973360c0ab69412dab2f7052ee41>
+		<def812e2fcf96082e2ad12dfccd94308af1ba8be76f954313d9495a82fe6bf762 rdf:datatype="&xsd;string">dd04ad994a2a27383973ee3f3776f35cbfe55e0b989b970c6216bdeb800992ae2</def812e2fcf96082e2ad12dfccd94308af1ba8be76f954313d9495a82fe6bf762>
+		<de29b34b22205513faf15b935e59aaba73cf3f0a00cea5adae4ce1cad92a41c06 rdf:datatype="&xsd;string">dfca134b7e19fd5985b63b7b8c0799c46647ec0beb0faa7ff51f6b20c57448e3e</de29b34b22205513faf15b935e59aaba73cf3f0a00cea5adae4ce1cad92a41c06>
+		<dec2f5abc4b16bcfaf9a590d949c0ec02255f62320e6831e49b21316e9a49bc33 rdf:datatype="&xsd;string">d98902142920f8740986aca235d1bfb17130ade540f15218647e7b5e268209c7e</dec2f5abc4b16bcfaf9a590d949c0ec02255f62320e6831e49b21316e9a49bc33>
+		<d6d5e62eefa1ef9421493ea61c81e720ec825ab6d72eb5e1021bafef3bac18a27 rdf:datatype="&xsd;string">dcc3bdf8b7b3bbf092464954be85b186bb9af1f6a99e6bc93b1a05f98ac895bc6</d6d5e62eefa1ef9421493ea61c81e720ec825ab6d72eb5e1021bafef3bac18a27>
+		<d882b029ea015ec71d3d145b73e49256f4c232c2c7cb5a26c2c2d649461d68b22 rdf:datatype="&xsd;string">de32e5cc49944d55c8c0c0959b601e27113c04517f0e938305e4d81f500b1a2f6</d882b029ea015ec71d3d145b73e49256f4c232c2c7cb5a26c2c2d649461d68b22>
+		<debf817c04d542d929aa705e7578e3565b79522ee6091dad06bca1893fd86a3a6 rdf:datatype="&xsd;string">d338012fed2bee3a34477bfb651e637d64bc2c2022d5e028aafad64f5be415451</debf817c04d542d929aa705e7578e3565b79522ee6091dad06bca1893fd86a3a6>
+		<dd7ae8a49447c10adfb3dd9d5cf5c47f8307c5e2eab1578953139671c66067720 rdf:resource="&hashowl;dd0c20ea13a096795a0f557c37897d25148538dc5ffd58ab71e9d45b443ee6503"/>
+	</owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="&hashowl;dc11ecceb8f09387d8a43d9216e3fb5d506b9fefc27fe85d3980443d4ef79ef97">
+        <rdf:type rdf:resource="&hashowl;d10e0011da04bf19daa1219d832c756c6e387e49ebfbcf065323430c3fbcf8814"/>
+        <d5b6b51750158a9bab802b438c2b13e3fd9144f703a3531eaabebf5d502755af1>d77b5c9ada13a4888e140499cda7a2e3f239b5a512e5b1c764ae964551781bda9</d5b6b51750158a9bab802b438c2b13e3fd9144f703a3531eaabebf5d502755af1>
+    </owl:NamedIndividual>
+	<owl:NamedIndividual rdf:about="&hashowl;deb062ce5b1209807b9637c7af9f79c47961f4583caeb26f3b7bee7089e5c3f67">
+		<rdf:type rdf:resource="&hashowl;dc7309f6466e5e2967153956f7467f05be08bbb7917a1cbecdaaab6c1292e1e93"/>
+		<dbb54a139615eba8f6f0ffb5a867a2fc73c785ad50f42314d1361e7c524bb451e rdf:datatype="&xsd;string">d34fb39b8d1b2e0006ce8251d1837fdcd9d8fb7acfc8411a7b9f9a56ae3ea1d71</dbb54a139615eba8f6f0ffb5a867a2fc73c785ad50f42314d1361e7c524bb451e>
+		<df99bef8d27c788c16b9dbb8d2e08d3259ffbea565b7d60047b437031d1964fad rdf:datatype="&xsd;string">d7fd3c3f769e8f420f3e01e36562f7c1915d611a17f194cda99933e471ef4f2c6</df99bef8d27c788c16b9dbb8d2e08d3259ffbea565b7d60047b437031d1964fad>
+		<d2ead0cd4f4d82d06a0bc2c1f846317234240f942deef56a77d40d5638d2c92a8 rdf:datatype="&xsd;string">
+                    d658d67c55a2376daa234281cc56cf0b1940c477c4e34877f0c3c11da143d8871</d2ead0cd4f4d82d06a0bc2c1f846317234240f942deef56a77d40d5638d2c92a8>
+		<dd8ee60cb394d59df245937041decc662bdeda6786be69590f31e71b0585b4019 rdf:datatype="&xsd;string">
+                    dc83d3c1afb49934de49d353c68b59577a317f96ce8cc7087de6a0235e8f7097d</dd8ee60cb394d59df245937041decc662bdeda6786be69590f31e71b0585b4019>
+	</owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="&hashowl;d00a2f0f428dcf4656a7623ecee8edf7e29bd2b72bafbfcf6879f397d94d0a480">
+        <rdf:type rdf:resource="&hashowl;d0b1d444a654bee3f90ed3c28d11b326f45e4e3c332ea15d76e9a6e6d2625edac"/>
+        <dc7168dc2acdaf3ee5da8728d53151b4f30e11eed510fa5ac295fb6101ce1ad0b>d4652614c4d8778e57a970722f142d832798c133a14b1232a92ffe26a0e98919e</dc7168dc2acdaf3ee5da8728d53151b4f30e11eed510fa5ac295fb6101ce1ad0b>
+        <d063e165519da5ef065471bbb5dcc156d368731aa3ee31d48be651fa67c68bc1b>d4652614c4d8778e57a970722f142d832798c133a14b1232a92ffe26a0e98919e</d063e165519da5ef065471bbb5dcc156d368731aa3ee31d48be651fa67c68bc1b>
+	<ddd195c5962316582d6817ccff657969fed38cae4d480058c0f544287dab65f95>dbcdd37309d09299cf1c1842c49616f3836901842943ab56465c0fe6e1bc0e52b</ddd195c5962316582d6817ccff657969fed38cae4d480058c0f544287dab65f95>
+        <d4a6cd35e9748b5de0dbe35bf095eb9eabdc118094fcc51fe27c5b29d57531314 rdf:resource="&hashowl;dc11ecceb8f09387d8a43d9216e3fb5d506b9fefc27fe85d3980443d4ef79ef97"/>
+        <d5677a38a6e34e08beced48441de94742458cee9e4db705c9351febbe8e883045 rdf:resource="&hashowl;dc11ecceb8f09387d8a43d9216e3fb5d506b9fefc27fe85d3980443d4ef79ef97"/>
+        <d44b5b01e65e09f8e691eb535fd84dbecbe4f7e30822cf4bdd4d04b2b9038d226 rdf:resource="&hashowl;da75ade806a84a22495d47158216b339a70213d2e5cb2bfd4f09f09e4fcd72f5e"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="&hashowl;d6c3ab954f1dd28452f16f5d4425476079ce9ddcf4531e733f5cc45db3897e5ad">
+        <rdf:type rdf:resource="&hashowl;d0b1d444a654bee3f90ed3c28d11b326f45e4e3c332ea15d76e9a6e6d2625edac"/>
+        <dc7168dc2acdaf3ee5da8728d53151b4f30e11eed510fa5ac295fb6101ce1ad0b>dc0509a487a18b003ba05e505419ebb63e57a29158073e381f57160b5c5b86426</dc7168dc2acdaf3ee5da8728d53151b4f30e11eed510fa5ac295fb6101ce1ad0b>
+        <d063e165519da5ef065471bbb5dcc156d368731aa3ee31d48be651fa67c68bc1b>d809e63d5c8aa03af112d17361058d0d8955f6d8e1e7591487d593dad276f9757</d063e165519da5ef065471bbb5dcc156d368731aa3ee31d48be651fa67c68bc1b>
+	<ddd195c5962316582d6817ccff657969fed38cae4d480058c0f544287dab65f95>d6d9befd609c9e7283d4aa9b3e414756628a173a426c528f8e69fd71e1a6f894c</ddd195c5962316582d6817ccff657969fed38cae4d480058c0f544287dab65f95>
+        <d4a6cd35e9748b5de0dbe35bf095eb9eabdc118094fcc51fe27c5b29d57531314 rdf:resource="&hashowl;dc11ecceb8f09387d8a43d9216e3fb5d506b9fefc27fe85d3980443d4ef79ef97"/>
+        <d5677a38a6e34e08beced48441de94742458cee9e4db705c9351febbe8e883045 rdf:resource="&hashowl;dc11ecceb8f09387d8a43d9216e3fb5d506b9fefc27fe85d3980443d4ef79ef97"/>
+        <d44b5b01e65e09f8e691eb535fd84dbecbe4f7e30822cf4bdd4d04b2b9038d226 rdf:resource="&hashowl;dec5d0cfd49102aee9e4b8ffbb0aca45c9985794f9206e246d5e20669662d49c9"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
