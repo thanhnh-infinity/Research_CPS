@@ -242,7 +242,7 @@ class owlOntology:
     
     def loadOwlFile(self,filename):
         
-        self.owlReadyOntology = get_ontology("file://./" + filename).load() 
+        self.owlReadyOntology = get_ontology("file://./../../src/asklab/querypicker/QUERIES/BASE/" + filename).load() 
         self.owlName = str(filename)
     
     def constructIndividualArray(self):

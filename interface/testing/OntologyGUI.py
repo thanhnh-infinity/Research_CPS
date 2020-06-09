@@ -63,7 +63,7 @@ class OntologyGUI:
     
         self.input_owl_entry = Entry(self.input_frame, width = 30,borderwidth = 5,highlightbackground="white", fg = "#18453b",font = "Verdana 10 bold")
         self.input_owl_entry.pack()
-        self.input_owl_entry.insert(0,"cpsframework-v3-base-development-gui.owl")
+        self.input_owl_entry.insert(0,"cpsframework-v3-base-development.owl")
 
         #button to load ontology, calls function which handles loading
         self.loadOntology = tk.Button(self.input_frame, text = "Load Ontology",padx = 10, pady = 5, bg = "#18453b", fg = "white",borderwidth = 5,command = self.load_ontology)
@@ -78,7 +78,7 @@ class OntologyGUI:
         
         self.output_owl_entry = Entry(self.input_frame, width = 30,borderwidth = 5,highlightbackground="white", fg = "#18453b",font = "Verdana 10 bold")
         self.output_owl_entry.pack()
-        self.output_owl_entry.insert(2, "newConcern.owl")
+        self.output_owl_entry.insert(2, "cpsframework-v3-base-development.owl")
         
         #sets up button to call function which handles saving ontology
         self.saveOntology = tk.Button(self.input_frame, text = "Output Ontology",padx = 10, pady = 5, bg = "#18453b", fg = "white",borderwidth = 5,command = self.save_ontology)
@@ -719,7 +719,8 @@ class OntologyGUI:
     def save_ontology(self):
          
         output_file = self.output_owl_entry.get()
-        self.owlOntology.owlReadyOntology.save(file = output_file, format = "rdfxml")
+        
+        self.owlOntology.owlReadyOntology.save(file = "./../../src/asklab/querypicker/QUERIES/BASE/" + output_file, format = "rdfxml")
         
         
         self.process_file(output_file)
