@@ -207,20 +207,3 @@ def draw_ontology(ax,cps_onto,fs):
     #write_dot(T, "grid.dot")
 
     return xmin, xmax, ymin, ymax, sorted_concerns, pos
-
-#fig, ax = plt.subplots(figsize = (10,10))
-<<<<<<< HEAD
-
-#draw_ontology(ax,my_onto,8)
-=======
-
-#x, y, z, w, ww = draw_ontology(ax,my_onto,8)
-
-
-#G = Network()
-#G.from_nx(T)
-
-#G.toggle_physics(False)
-#G.toggle_drag_nodes(False)
-#G.show("willy.html")
->>>>>>> bcc18a15ff543ecef3bd4387fbb7db254e4af5d7
