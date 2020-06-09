@@ -67,7 +67,7 @@ class OntologyGUI:
         self.input_owl_entry.insert(0,"cpsframework-v3-base-development.owl")
 
         #button to load ontology, calls function which handles loading
-        self.loadOntology = tk.Button(self.input_frame, text = "Load Ontology",padx = 10, pady = 5, bg = "#18453b", fg = "white",borderwidth = 5,command = self.load_ontology)
+        self.loadOntology = tk.Button(self.input_frame, text = "Load Ontology",padx = 10, pady = 5, bg = "#18453b", fg = "black",borderwidth = 5,command = self.load_ontology)
         self.loadOntology.pack()
 
         self.add_space(self.input_frame,"white","medium")
@@ -82,7 +82,7 @@ class OntologyGUI:
         self.output_owl_entry.insert(2, "cpsframework-v3-base-development.owl")
 
         #sets up button to call function which handles saving ontology
-        self.saveOntology = tk.Button(self.input_frame, text = "Output Ontology",padx = 10, pady = 5, bg = "#18453b", fg = "white",borderwidth = 5,command = self.save_ontology)
+        self.saveOntology = tk.Button(self.input_frame, text = "Output Ontology",padx = 10, pady = 5, bg = "#18453b", fg = "black",borderwidth = 5,command = self.save_ontology)
         self.saveOntology.pack()
 
 
@@ -501,14 +501,14 @@ class OntologyGUI:
         self.indivNameEntry.pack()
         self.indivNameEntry.insert(1,"NewIndividual")
 
-        addConcern = tk.Button(self.buttonwindow, text = "Add SubConcern",padx = 10, pady = 5, bg = "#18453b", fg = "white",borderwidth = 5,command = self.add_concern)
+        addConcern = tk.Button(self.buttonwindow, text = "Add SubConcern",padx = 10, pady = 5, bg = "#18453b", fg = "black",borderwidth = 5,command = self.add_concern)
         addConcern.pack()
 
 
-        addProperty = tk.Button(self.buttonwindow, text = "Add Property",padx = 10, pady = 5, bg = "#18453b", fg = "white",borderwidth = 5,command = self.add_property)
+        addProperty = tk.Button(self.buttonwindow, text = "Add Property",padx = 10, pady = 5, bg = "#18453b", fg = "black",borderwidth = 5,command = self.add_property)
         addProperty.pack()
 
-        removeIndividualB = tk.Button(self.buttonwindow, text = "Remove Individual",padx = 10, pady = 5,  bg = "#18453b", fg = "white",borderwidth = 5,command = self.removeIndividual)
+        removeIndividualB = tk.Button(self.buttonwindow, text = "Remove Individual",padx = 10, pady = 5,  bg = "#18453b", fg = "black",borderwidth = 5,command = self.removeIndividual)
         removeIndividualB.pack()
 
     def leftclickWindowClose(self):
