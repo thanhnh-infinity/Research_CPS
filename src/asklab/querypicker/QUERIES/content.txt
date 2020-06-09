@@ -236,7 +236,7 @@ EX5-sr-lkas
 clingo (all models)
 FULL-SR-ER-01-02-00.txt
 *QUERY
-SR-RE-01: After cyberattack (Case 0)
+SR-RE-01: Check all concerns satisfaction (Case 0)
 EX5-sr-lkas
 clingo (all models)
 FULL-SR-ER-01-02-1-00.txt
