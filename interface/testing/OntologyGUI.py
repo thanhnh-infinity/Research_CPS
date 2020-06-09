@@ -719,7 +719,7 @@ class OntologyGUI:
     def save_ontology(self):
          
         output_file = self.output_owl_entry.get()
-        self.ontology.save(file = output_file, format = "rdfxml")
+        self.owlOntology.owlReadyOntology.save(file = output_file, format = "rdfxml")
         
         
         self.process_file(output_file)
@@ -826,10 +826,6 @@ class OntologyGUI:
 
         
         
-        
-         
-        
-
     
 root = Tk()
 

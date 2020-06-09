@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from networkx.drawing.nx_agraph import write_dot, graphviz_layout
 import numpy
 from owlready2 import *
-my_onto = get_ontology("file://./cpsframework-v3-base.owl").load()
+#my_onto = get_ontology("file://./cpsframework-v3-base.owl").load()
 
 
 
@@ -171,8 +171,8 @@ def draw_ontology(ax,cps_onto,fs):
     
     return xmin, xmax, ymin, ymax, sorted_concerns
     
-fig, ax = plt.subplots(figsize = (10,10))
+#fig, ax = plt.subplots(figsize = (10,10))
 
-draw_ontology(ax,my_onto,8)
+#draw_ontology(ax,my_onto,8)
 
 

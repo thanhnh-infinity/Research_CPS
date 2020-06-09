@@ -75,6 +75,8 @@ class owlOntology:
         
         self.setPositions()
         
+       
+        
         
         
     def addGraphNodes(self):
@@ -226,13 +228,13 @@ class owlOntology:
         nx.draw_networkx_edges(self.owlGraph, pos = self.graphPositions, edgelist = self.propertyEdges, arrows=False,style = "dashed",width = edge_width,edge_color = edge_color, alpha = edge_alpha)
     
    
-        nx.draw_networkx_edge_labels(self.owlGraph, pos = self.graphPositions, edge_labels=self.concernEdgeLabels,font_size = fs)
-        nx.draw_networkx_edge_labels(self.owlGraph, pos = self.graphPositions, edge_labels=self.propertyEdgeLabels,font_size = fs)
+        nx.draw_networkx_edge_labels(self.owlGraph, pos = self.graphPositions, edge_labels=self.concernEdgeLabels,font_size = fs*1.5)
+        nx.draw_networkx_edge_labels(self.owlGraph, pos = self.graphPositions, edge_labels=self.propertyEdgeLabels,font_size = fs*1.5)
         
-        nx.draw_networkx_labels(self.owlGraph,self.graphPositions,self.concernNodeLabels,font_size=fs,bbox=dict(facecolor=concern_color, boxstyle='square,pad=.3'),font_color = "white")   
+        nx.draw_networkx_labels(self.owlGraph,self.graphPositions,self.concernNodeLabels,font_size=fs*2,bbox=dict(facecolor=concern_color, boxstyle='square,pad=.3'),font_color = "white")   
  
    
-        nx.draw_networkx_labels(self.owlGraph,self.graphPositions,self.propertyNodeLabels,font_size=fs,bbox=dict(facecolor=property_color, boxstyle='round4,pad=.3'),font_color = "white")   
+        nx.draw_networkx_labels(self.owlGraph,self.graphPositions,self.propertyNodeLabels,font_size=fs*2,bbox=dict(facecolor=property_color, boxstyle='round4,pad=.3'),font_color = "white")   
         
         
         
@@ -248,9 +250,11 @@ class owlOntology:
         self.owlIndividualArray = np.array(()) 
         self.nodeArray = np.array(())
         
-        all_aspects = np.asarray(self.owlReadyOntology.search(type = self.owlReadyOntology.Aspect))
+        #all_aspects = np.asarray(self.owlReadyOntology.search(type = self.owlReadyOntology.Aspect))
         
-        #all_aspects = np.array((self.owlReadyOntology.Trustworthiness,self.owlReadyOntology.Boundaries))
+      
+        all_aspects = np.asarray(self.owlReadyOntology.search(iri = "*" + "Trustworthiness"))
+        #all_aspects = np.array((self.owlReadyOntology.Trustworthiness))
         
         for aspect in all_aspects:
            
@@ -318,7 +322,11 @@ class owlOntology:
                 print("bad list")
                 continue
             prop = ir.hasCondition[0].conditionProperty[0]
+            
+            if(remove_namespace(prop) == "Input1ConsistentReadingFreq" or remove_namespace(prop) == "Input1Modes"):
+                continue
             self.owlIndividualArray = np.append(self.owlIndividualArray,prop)
+            
             
             
             newOwlNode = owlNode()
@@ -397,10 +405,10 @@ class owlOntology:
         
         
         
-testOwlOntology = owlOntology("cpsframework-v3-base.owl")  
+#testOwlOntology = owlOntology("cpsframework-v3-base.owl")  
 
-for node in testOwlOntology.nodeArray:
-    print(node.name)
+#for node in testOwlOntology.nodeArray:
+#    print(node.name)
     
 #print("done\n\n")
     
@@ -409,14 +417,14 @@ for node in testOwlOntology.nodeArray:
 
 
 
-fig, ax = plt.subplots(figsize = (10,10))
-testOwlOntology.makeGraph()
+#fig, ax = plt.subplots(figsize = (10,10))
+#testOwlOntology.makeGraph()
 
-testOwlOntology.draw_graph(ax,8)      
+#testOwlOntology.draw_graph(ax,8)      
 
 #print(testOwlOntology.aspectConcernArray)
 
-print(testOwlOntology.propertyArray)  
+#print(testOwlOntology.propertyArray)  
 
 #print(testOwlOntology.subconcernEdges)
 #print(testOwlOntology.propertyEdges)
@@ -424,5 +432,7 @@ print(testOwlOntology.propertyArray)
 #print(testOwlOntology.owlIndividualArray)
 
 #testOwlOntology.printNumbers()
+        
+
         
 
