@@ -37,7 +37,7 @@ FILES="$REASONING/Integration/SR-RE-01-truthworthiness/ontology_driven.lp $REASO
 OUTPUT=FULL-SR-ER-01-02-00.txt
 cat $FILES > $OUTPUT
 
-FILES="$BASE/step1-BASE.lp $BASE/theory.lp $BASE/theory-maxint.lp output.lp $BASE/step1.lp $BASE/step2.lp"
+FILES="$REASONING/Integration/SR-RE-01-truthworthiness/ontology_driven.lp $REASONING/Integration/SR-RE-01-truthworthiness/ontology_init_0.lp $REASONING/Integration/SR-RE-01-truthworthiness/reasoning_2_2_onto.lp output_sr_re_01_02_all.lp"
 OUTPUT=FULL-SR-ER-01-02-1-00.txt
 cat $FILES > $OUTPUT
 
