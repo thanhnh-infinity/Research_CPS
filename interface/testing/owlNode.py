@@ -5,6 +5,7 @@ class owlNode:
         
        self.name = None
        self.type = None
+       self.owlreadyObject = None
        self.parent = None
        self.children = None
        self.relevantProperties = None
