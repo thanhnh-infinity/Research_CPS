@@ -114,7 +114,7 @@ class owlApplication:
                 
                 if(baseconcern == 0):
                     
-                    print("couldn't find concern " + remove_ir(concern) + " addressed by " + prop.name + " - ignoring it")
+                    #print("couldn't find concern " + remove_ir(concern) + " addressed by " + prop.name + " - ignoring it")
                     continue
                 
                 
@@ -142,59 +142,59 @@ class owlApplication:
                 
                 return node
         
-        print("couldnt find from app " + name)
+        #print("couldnt find from app " + name)
         return 0
     
     
     def getOwlNodeFromBase(self,name):
        
-        print("searching for " + name)
+        #print("searching for " + name)
         
         for node in self.owlBase.allConcerns_owlNode:
             
             if(node.name == name):
                 
                 return node
-        print("couldnt find from base " + name)
+        #print("couldnt find from base " + name)
         return 0
         
         
     
         
-testBase = owlBase("cpsframework-v3-base.owl")
+#testBase = owlBase("cpsframework-v3-base.owl")
 
-testBase.initializeOwlNodes()    
+#testBase.initializeOwlNodes()    
 
 
 
 
         
-testApp = owlApplication("cpsframework-v3-sr-Elevator-Configuration.owl",testBase)
+#testApp = owlApplication("cpsframework-v3-sr-Elevator-Configuration.owl",testBase)
     
     
-testApp.initializeOwlNodes()
+#testApp.initializeOwlNodes()
 
 
-print()
-print()
+#print()
+#print()
 
-for node in testApp.nodeArray:
+#for node in testApp.nodeArray:
 
-    print(node.name)
-    print(node.type)
+ #   print(node.name)
+  #  print(node.type)
     
-    print("children")
-    for child in node.children:
+   # print("children")
+    #for child in node.children:
        
-        print(child.name)
+     #   print(child.name)
         
         
-    print("parents")
-    for parent in node.parents:
+    #print("parents")
+    #for parent in node.parents:
         
-        print(parent.name)
+    #    print(parent.name)
     
-    print()
+    #print()
     
 #for node in testBase.allConcerns_owlNode:
     

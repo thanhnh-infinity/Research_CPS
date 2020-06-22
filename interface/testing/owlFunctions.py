@@ -33,7 +33,7 @@ def remove_ir(in_netx):
         return remove_namespace(in_netx)
     
     
-    print("reduced name from " + str(in_netx) + " to " + parsed_name)
+    #print("reduced name from " + str(in_netx) + " to " + parsed_name)
     return parsed_name
     
     

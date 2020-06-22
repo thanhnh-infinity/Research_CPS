@@ -16,11 +16,11 @@ class owlBase:
         self.owlName = None
         self.nodeArray = None
         self.concernArray = None
-        self.propertyArray = None
+      
         self.numNodes = None
         self.numAspects = None
         self.numConcerns = None
-        self.numProperties = None
+       
         self.numComponents = None
         self.numConditions = None
         self.numImpactRules = None
@@ -33,16 +33,16 @@ class owlBase:
         self.graphPositions = None
 
         self.aspectConcernArray = None
-        self.propertyArray = None
+       
         self.subconcernEdges = None
-        self.propertyEdges = None
+       
 
         self.concernEdgeLabels = None
-        self.propertyEdgeLabels = None
+        
 
         self.aspectNodeLabels = None
         self.concernNodeLabels = None
-        self.propertyNodeLabels = None
+        
 
 
         self.minX = None
@@ -170,61 +170,7 @@ class owlBase:
                 
         
 
-    def addAllProperties(self):
-
-        #print("called add all properties/n/n/n/n")
-        #print("")
-        #print("")
-
-        #print("")
-        #print("")
-        #print("")
-        #print("")
-        #print("")
-
-
-
-        impact_rules = np.asarray(self.owlReadyOntology.search(type = self.owlReadyOntology.ImpactRule))
-
-
-
-        for ir in impact_rules:
-
-
-            if(len(ir.hasCondition) == 0 or len(ir.hasCondition[0].conditionProperty) == 0):
-                print("bad list")
-                continue
-            prop = ir.hasCondition[0].conditionProperty[0]
-
-            #if(remove_namespace(prop) == "Input1ConsistentReadingFreq" or remove_namespace(prop) == "Input1Modes"):
-            #    continue
-            self.owlIndividualArray = np.append(self.owlIndividualArray,prop)
-
-
-
-            newOwlNode = owlNode()
-            newOwlNode.name = remove_namespace(prop)
-            newOwlNode.type = remove_namespace(prop.is_a[0])
-
-            #becaseu of this probs
-            newOwlNode.children = np.array(())
-
-
-            #need to add property as child of concern
-            if(len(ir.addressesConcern) == 0):
-                print("IR doesn't address anything")
-                continue
-            newOwlNode.parent = str(remove_namespace(ir.addressesConcern[0]))
-
-            parentNode = self.findNode(newOwlNode.parent)
-
-            parentNode.children = np.append(parentNode.children, newOwlNode.name)
-
-            print(newOwlNode.name)
-            newOwlNode.level = self.findNode(newOwlNode.parent).level + 1
-
-            self.nodeArray = np.append(self.nodeArray,newOwlNode)
-
+    
 
 
     def setNumbers(self):
@@ -232,8 +178,8 @@ class owlBase:
         #print("called set numbers")
         self.numAspects =  len(self.owlReadyOntology.search(type = self.owlReadyOntology.Aspect))
         self.numConcerns =  len(self.owlReadyOntology.search(type = self.owlReadyOntology.Concern))
-        self.numProperties =  len(self.owlReadyOntology.search(type = self.owlReadyOntology.Property))
-        self.numNodes = self.numAspects + self.numConcerns + self.numProperties
+        
+        self.numNodes = self.numAspects + self.numConcerns
 
         self.numComponents = 0
         self.numConditions = len(self.owlReadyOntology.search(type = self.owlReadyOntology.Condition))

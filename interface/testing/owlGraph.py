@@ -10,25 +10,29 @@ from owlready2 import *
 from networkx.drawing.nx_agraph import write_dot, graphviz_layout
 class owlGraph:
     
-    def __init__(self,baseOWL):
+    def __init__(self,baseOWL,appOWL = None):
         
         
         self.owlBase = baseOWL
+        self.owlApplication = appOWL
         
         self.graphPositions = None
 
         self.aspectConcernArray = None
         self.propertyArray = None
+        self.componentArray = None
         self.subconcernEdges = None
         self.propertyEdges = None
+        self.componentEdges = None
 
         self.concernEdgeLabels = None
         self.propertyEdgeLabels = None
+        self.componentEdgeLabels = None
 
         self.aspectNodeLabels = None
         self.concernNodeLabels = None
         self.propertyNodeLabels = None
-
+        self.componentNodeLabels = None
 
         self.minX = None
         self.maxX = None
@@ -58,6 +62,7 @@ class owlGraph:
 
         self.aspectConcernArray = np.array(())
         self.propertyArray = np.array(())
+        self.componentArray = np.array(())
 
         for node in self.owlBase.allConcerns_owlNode:
             
@@ -74,11 +79,28 @@ class owlGraph:
                 print("couldnt find type")
                 print(node.type)
                 
+        if(self.owlApplication != None):
+            
+            for node in self.owlApplication.nodeArray:
+                
+                self.netXGraph.add_node(node.name)
+                
+                if(str(node.type) == "Property"):
+                    #print("found property")
+                    self.propertyArray = np.append(self.propertyArray,node)
+                elif(str(node.type) == "Component"):
+                    self.componentArray = np.append(self.componentArray,node)
+                
+            else:
+                print("couldnt find type")
+                
+                
     def addGraphEdges(self):
 
 
         self.subconcernEdges = []
         self.propertyEdges = []
+        self.componentEdges = []
 
 
         for node in self.owlBase.allConcerns_owlNode:
@@ -94,30 +116,55 @@ class owlGraph:
                 if(child.type == "Concern"):
                     self.netXGraph.add_edge(node.name,child.name,length = 1)
                     self.subconcernEdges.append((node.name,child.name))
-
-
+                    
                 if(child.type == "Property"):
 
                     self.netXGraph.add_edge(node.name,child.name,length = 1)
                     self.propertyEdges.append((node.name,child.name))
+            
+            
+        if(self.owlApplication == None):
+             return
+                    
+        for node in self.owlApplication.nodeArray:
+
+            if len(node.children) == 0:
+                continue
+
+
+            for child in node.children:
+
+                #print(str(child) + " in edges")
+                
+                if(child.type == "Component"):
+                    self.netXGraph.add_edge(node.name,child.name,length = 1)
+                    self.componentEdges.append((node.name,child.name))
+
+
+                
                     
                     
     def addEdgeLabels(self):
 
         self.concernEdgeLabels = {}
         self.propertyEdgeLabels = {}
+        self.componentEdgeLabels = {}
 
         for edge in self.subconcernEdges:
             self.concernEdgeLabels[edge] = 'subconcern'
 
         for edge in self.propertyEdges:
             self.propertyEdgeLabels[edge] = 'addresses concern'
+        
+        for edge in self.componentEdges:
+            self.propertyEdgeLabels[edge] = "related to"
 
     def addNodeLabels(self):
 
         self.aspectNodeLabels = {}
         self.concernNodeLabels = {}
         self.propertyNodeLabels = {}
+        self.componentNodeLabels = {}
 
 
         for node in self.aspectConcernArray:
@@ -129,8 +176,19 @@ class owlGraph:
             else:
                 self.concernNodeLabels[node.name] = node.name
 
-        for myproperty in self.propertyArray:
-            self.propertyNodeLabels[myproperty] = myproperty
+        if(self.owlApplication == None):
+             return
+         
+        for node in self.owlApplication.nodeArray:
+            
+                if(node.type == "Component"):
+                
+                    self.componentNodeLabels[node.name] = node.name
+                
+                
+                if(node.type == "Property"):
+                
+                    self.propertyNodeLabels[node.name] = node.name
 
     def setPositions(self):
 
@@ -196,6 +254,7 @@ class owlGraph:
         aspect_color = "#000a7d"
         concern_color = "#800000"
         property_color = "#595858"
+        component_color = "pink"
         edge_color = "black"
         edge_width = 2
         edge_alpha = .8
@@ -206,14 +265,18 @@ class owlGraph:
 
         nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.subconcernEdges, arrows=False,style = "solid",width = edge_width,edge_color = edge_color,alpha = edge_alpha)
         nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.propertyEdges, arrows=False,style = "dashed",width = edge_width,edge_color = edge_color, alpha = edge_alpha)
+        nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.componentEdges, arrows=False,style = "dashed",width = edge_width,edge_color = edge_color, alpha = edge_alpha)
 
 
         nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.concernEdgeLabels,font_size = fs)
         nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.propertyEdgeLabels,font_size = fs)
+        nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.componentEdgeLabels,font_size = fs)
 
+    
         nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.aspectNodeLabels,font_size=fs,bbox=dict(facecolor=aspect_color, boxstyle='square,pad=.3'),font_color = "white")
         nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.concernNodeLabels,font_size=fs,bbox=dict(facecolor=concern_color, boxstyle='square,pad=.3'),font_color = "white")
         nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.propertyNodeLabels,font_size=fs,bbox=dict(facecolor=property_color, boxstyle='round4,pad=.3'),font_color = "white")
+        nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.componentNodeLabels,font_size=fs,bbox=dict(facecolor=component_color, boxstyle='round4,pad=.3'),font_color = "white")
 
 
     def findNode(self,name):
@@ -223,6 +286,13 @@ class owlGraph:
             if(node.name == name):
 
                 return node
+            
+        for node in self.owlApplication.nodeArray:
+            
+            if(node.name == name):
+
+                return node
+            
 
         print("couldn't find " + str(name))
         return 0

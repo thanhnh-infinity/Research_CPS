@@ -10,6 +10,7 @@ from tkinter import *
 from script_networkx import remove_namespace
 
 from owlBase import owlBase
+from owlApplication import owlApplication
 from owlGraph import owlGraph
 
 
@@ -329,8 +330,9 @@ class OntologyGUI:
             self.totalNodeText.set("Num Nodes - " + str(self.owlBase.numNodes))
             self.numAspectsText.set("Num Aspects - " + str(self.owlBase.numAspects))
             self.numConcernsText.set("Num Concerns - "  + str(self.owlBase.numConcerns))
-            self.numPropertiesText.set("Num Properties - " + str(self.owlBase.numProperties))
-            self.numComponentsText.set("Num Components - " + str(self.owlBase.numComponents))
+            
+            self.numPropertiesText.set("Num Properties - ")
+            self.numComponentsText.set("Num Components - ")
 
 
 
@@ -1163,6 +1165,8 @@ class OntologyGUI:
          self.owlBase.initializeOwlNodes()
          self.owlBase.setNumbers()
          
+         self.owlApplication.initializeOwlNodes()
+         
          self.constructGraph()
         
 
@@ -1179,6 +1183,8 @@ class OntologyGUI:
     def loadOntology(self):
 
         self.owlBase = owlBase(self.inputEntry.get())
+        
+        self.owlApplication = owlApplication("cpsframework-v3-sr-Elevator-Configuration.owl",self.owlBase)
 
         summary = "Loaded ontology " + "file://./" + self.inputEntry.get()
         self.printSummary(summary)
@@ -1190,7 +1196,7 @@ class OntologyGUI:
 
     def constructGraph(self):
         
-        self.owlTree = owlGraph(self.owlBase)
+        self.owlTree = owlGraph(self.owlBase,self.owlApplication)
 
 
     #updates the dropdowns containing the list of concerns, keeps whatever is currently select3ed
