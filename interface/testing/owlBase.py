@@ -3,7 +3,7 @@ import networkx as nx
 import numpy as np
 import matplotlib.pyplot as plt
 from owlNode import owlNode
-from script_networkx import remove_namespace
+from owlFunctions import remove_namespace
 from owlready2 import *
 from networkx.drawing.nx_agraph import write_dot, graphviz_layout
 from owlFunctions import is_asp_or_conc
