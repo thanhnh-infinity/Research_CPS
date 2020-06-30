@@ -519,7 +519,7 @@ def exportCSV(input_file_path,output_file_path):
     print("successfully exported")
         
        
-exportCSV("./SR01_inputs/use_case_2_LKAS_Case_3_after_cyberattack.txt","./SR01_outputs/usecase2_LKAS_case3.csv")
+#exportCSV("./SR01_inputs/use_case_2_LKAS_Case_3_after_cyberattack.txt","./SR01_outputs/usecase2_LKAS_case3.csv")
         
             
             
