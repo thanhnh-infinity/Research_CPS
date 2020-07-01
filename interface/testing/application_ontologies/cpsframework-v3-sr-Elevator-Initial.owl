@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.asklab.tk/ontologies/CPS-Framework#"
+     xml:base="http://www.asklab.tk/ontologies/CPS-Framework"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:CPS-Framework="http://www.asklab.tk/ontologies/CPS-Framework#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+     <owl:Ontology rdf:about="http://www.asklab.tk/ontologies/CPS-Framework"/>
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#activeToProperty -->
+    <owl:ObjectProperty rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#activeToProperty">
+        <rdfs:domain rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ActiveComponentProperty"/>
+        <rdfs:range rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
+    </owl:ObjectProperty>
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#setUpForComponent -->
+    <owl:ObjectProperty rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#setUpForComponent">
+        <rdfs:domain rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ActiveComponentProperty"/>
+        <rdfs:range rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component"/>
+    </owl:ObjectProperty>
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#obsFalse -->
+    <owl:ObjectProperty rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#obsFalse">
+        <rdfs:domain rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InitialConfiguration"/>
+        <rdfs:range rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component"/>
+    </owl:ObjectProperty>
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#includesActivation -->
+    <owl:ObjectProperty rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#includesActivation">
+        <rdfs:domain rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InititalActiveComponentsProperties"/>
+        <rdfs:range rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ActiveComponentProperty"/>
+    </owl:ObjectProperty>
+
+    <!-- Consider Case for active -->
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#ele_sr_er_01_active_component_properties_case_0">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InititalActiveComponentsProperties"/>
+        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ele_sr_er_01_CP_activations_0"/>
+        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ele_sr_er_01_ER_activations_0"/>
+        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ele_sr_er_01_PF_activations_0"/>
+        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ele_sr_er_01_EC_activations_0"/>
+        <includesActivation rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ele_sr_er_01_ESCam_activations_0"/>
+    </owl:NamedIndividual>
+  	
+
+    <!-- Case 0 -->
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#ele_sr_er_01_CP_activations_0">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ActiveComponentProperty"/>
+        <setUpForComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#CP"/>
+        <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Maintenance_Regularly"/>
+        <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Communicate_With_Other_Component"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#ele_sr_er_01_ER_activations_0">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ActiveComponentProperty"/>
+        <setUpForComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ER"/>     
+        <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Control_Speed"/>
+        <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Send_Actions"/>
+        <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Communicate_With_Other_Component"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#ele_sr_er_01_PF_activations_0">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ActiveComponentProperty"/>
+        <setUpForComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#PF"/>
+        <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Maintenance_Regularly"/>
+        <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Control_Speed"/> 
+        <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Control_Pulley"/>  
+        <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Pulley_Release"/> 
+        <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Pulley_Clench"/>
+        <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Communicate_With_Other_Component"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#ele_sr_er_01_EC_activations_0">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ActiveComponentProperty"/>
+        <setUpForComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#EC"/>
+        <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Maintenance_Regularly"/>
+        <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Halting"/> 
+        <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Moving_Down"/>  
+        <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Moving_Up"/> 
+        <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Control_Moving"/>
+        <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Communicate_With_Other_Component"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#ele_sr_er_01_ESCam_activations_0">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ActiveComponentProperty"/>
+        <setUpForComponent rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ESCam"/>     
+        <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Flash_Warning"/>
+        <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Detect_Up_11"/>
+        <activeToProperty rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Communicate_With_Other_Component"/>
+    </owl:NamedIndividual>
+
+    <!-- Properties Observation -->
+
+    <!-- Case SR-ER-01 0 -->
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#ele_sr_er_01_initial_conf_0">
+        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#InitialConfiguration"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Control_Speed"/>
+        <obsFalse rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Detect_Up_11"/>
+    </owl:NamedIndividual>
+    
+    
+</rdf:RDF>
