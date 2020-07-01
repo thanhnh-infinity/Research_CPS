@@ -28,12 +28,12 @@ class csvNode:
 class ASPExporter:
     
     #takes a filepath as input, does all operations up to actual exportation
-    def __init__(self,filename):
+    def __init__(self,encodingstr):
         
         self.file = None
         self.allLines = None
         
-        self.encodingLine = None
+        self.encodingLine = encodingstr
         
         
         self.allNodes = []
@@ -47,7 +47,7 @@ class ASPExporter:
         
         self.maxLevel = 0
         
-        self.loadFile(filename)    
+        #self.loadFile(filename)    
         
         self.addAllNodes()
         
@@ -56,7 +56,7 @@ class ASPExporter:
         self.removeRelationless()
          
     
-    #loads the file in, assigns the line which we need to parse
+    #loads the file in, assigns the line which we need to parse, not used anymore 
     def loadFile(self,filename):
         
         self.file = open(filename,mode = "r")
@@ -505,22 +505,23 @@ class ASPExporter:
         
         
 #driver function which inputs given ASP file, outputs CSV with given filepath
-def exportCSV(input_file_path,output_file_path):
+def exportCSV(input_encoding_str,output_file_path):
     
-    print("loading from ", input_file_path)
-    exporter = ASPExporter(input_file_path)
+    print("loading from ")
+    exporter = ASPExporter(input_encoding_str)
     print("successfully loaded")
-    #exporter.assignDataMembers()
-    #exporter.removeRelationless()
-  
-    #exporter.assignDataMembers()
+   
     print("exporting to ", output_file_path)
     exporter.doOutput(output_file_path)
     print("successfully exported")
         
+    
+#filename = "./SR01_inputs/use_case_2_LKAS_Case_3_after_cyberattack.txt"   
+#file = open(filename,mode = "r")   
+#allLines = file.readlines()
+#input_str = ''.join(allLines)
        
-#exportCSV("./SR01_inputs/use_case_2_LKAS_Case_3_after_cyberattack.txt","./SR01_outputs/usecase2_LKAS_case3.csv")
-        
+#exportCSV(input_str,"./SR01_outputs/usecase2_LKAS_case3_strtest.csv")        
             
             
             
