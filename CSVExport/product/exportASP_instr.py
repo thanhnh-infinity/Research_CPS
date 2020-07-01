@@ -29,12 +29,12 @@ class csvNode:
 class ASPExporter:
     
     #takes a filepath as input, does all operations up to actual exportation
-    def __init__(self,filename):
+    def __init__(self,encodingstr):
         
         self.file = None
         self.allLines = None
         
-        #self.encodingLine = encodingstr
+        self.encodingLine = encodingstr
         
         
         self.allNodes = []
@@ -48,7 +48,7 @@ class ASPExporter:
         
         self.maxLevel = 0
         
-        self.loadFile(filename)    
+        #self.loadFile(filename)    
         
         self.addAllNodes()
         
@@ -278,9 +278,11 @@ class ASPExporter:
         if(len(node.parents) == 0):
             return
         
+        if(node.parents[0].name == ""):
+            return
         
         else:
-            
+            print(node.parents[0].name)
             ognode.level += 1   
             self.assignLevel(ognode,node.parents[0])
     
@@ -304,6 +306,8 @@ class ASPExporter:
             ognode.sum = ognode.sum + 1
             return 
     
+        if(currentnode.parents[0].name == ""):
+            return
     
         for child in currentnode.children:
         
@@ -319,6 +323,8 @@ class ASPExporter:
     
             return
         
+        if(node.parents[0].name == ""):
+            return
     
         self.assignLineage(ognode,node.parents[0])
         
@@ -330,7 +336,9 @@ class ASPExporter:
             ognode.aspectTree = node
             
             return
-    
+        
+        if(node.parents[0].name == ""):
+            return
         
         else:
             
@@ -529,21 +537,21 @@ if __name__ == "__main__":
     
     parser = argparse.ArgumentParser()
     
-    parser.add_argument("ASP_input_filename",type = str)
-    parser.add_argument("CSV_output_filename",type = str)
+    parser.add_argument("ASP_input_str",type = str)
+    parser.add_argument("CSVOutputFileName",type = str)
     
     args = parser.parse_args()
     
     print("ARGUMENTS:")
-    print("first = ", args.ASP_input_filename)
-    print("second = ", args.CSV_output_filename)
+    print("first = ", args.ASP_input_str)
+    print("second = ", args.CSVOutputFileName)
     print()
     
-    exportCSV(args.ASP_input_filename,args.CSV_output_filename)
+    exportCSV(args.ASP_input_str,args.CSVOutputFileName)
     
     
     
-
+#main("tim","bob")
 #filename = "./SR01_inputs/use_case_2_LKAS_Case_3_after_cyberattack.txt"   
 #file = open(filename,mode = "r")   
 #allLines = file.readlines()
