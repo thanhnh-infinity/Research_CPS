@@ -239,11 +239,11 @@ public class QueryPicker {
 	final String sparqlFile = pkgPath("dump.sparql");
 	final String dataDir = pkgPath("QUERIES/");
 	final String contentFile = dataDir + "content.txt";
-	
+
 	public final static String config_ASP_result_file = "./Integration/ASP/tmpASPoutput.txt";
 	public final static String config_CSV_file = "./Integration/CSV/out.csv";
 	public final static String CSV_Expoter_Script = "./CSVExport/product/exportASP.py";
-	public final static String PYTHON_COMMAND = "python3";
+	public final static String PYTHON_COMMAND = "/anaconda3/bin/python";
 
 	public static void main(String[] args) {
 		new QueryPicker();
@@ -311,28 +311,40 @@ public class QueryPicker {
 							+ ". Defaulting to " + solverStrings[solverIndex]);
 				}
 
-				taQs.add(createQueryButton(title, sparqlFile, dataDir + "/BASE", dataDir + subdir, aspfile, progressBar, solverConst[solverIndex], taRes));
-				// taQs.add(createQueryButton(title, sparqlFile, dataDir + "/Phylotastic", dataDir + subdir, aspfile, progressBar,solverConst[solverIndex], taRes));
+				taQs.add(createQueryButton(title, sparqlFile, dataDir + "/BASE", dataDir + subdir, aspfile, progressBar,
+						solverConst[solverIndex], taRes));
+				// taQs.add(createQueryButton(title, sparqlFile, dataDir + "/Phylotastic",
+				// dataDir + subdir, aspfile, progressBar,solverConst[solverIndex], taRes));
 			} else
 				throw (new IOException("Unexpected tag \"" + line + "\"+in file " + contentFile));
 		}
 	}
-	
+
 	public static String executeCommand(String[] command) {
 		StringBuffer output = new StringBuffer();
 
+
 		try {
+
 			Process p;
 			p = Runtime.getRuntime().exec(command);
 			p.waitFor();
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
-					p.getInputStream()));
+
+			BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
 			String line = "";
+
 			while ((line = reader.readLine()) != null) {
+
 				output.append(line + "\n");
+
 			}
 
+			p.destroy();
+
 		} catch (Exception e) {
+
+			System.out.println("In exception");
 			e.printStackTrace();
 		}
 
@@ -374,7 +386,7 @@ public class QueryPicker {
 		JTextArea taRes = new JTextArea();
 		taRes.setEditable(true);
 		taRes.setFont(new Font("monospaced", Font.PLAIN, 12));
-		//((DefaultCaret) taRes.getCaret()).setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+		// ((DefaultCaret) taRes.getCaret()).setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
 		JScrollPane spRes = new JScrollPane(taRes);
 
 		JPanel taQs = new JPanel();
@@ -411,15 +423,16 @@ public class QueryPicker {
 				System.exit(0);
 			}
 		});
-		
+
 		JButton exportCSV = new JButton("Export CSV");
 		exportCSV.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {			
-				System.out.println("Export Answert to CSV");				
-				String[] command = new String[] {PYTHON_COMMAND,CSV_Expoter_Script,config_ASP_result_file,config_CSV_file};
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Export Answert to CSV");
+				String[] command = new String[] { PYTHON_COMMAND, CSV_Expoter_Script, config_ASP_result_file,
+						config_CSV_file };
 				String s = executeCommand(command);
 				System.out.print(s);
-				
+
 				if (s.contains("successfully")) {
 					JOptionPane.showMessageDialog(null, "CSV File is ready to use");
 				} else {
@@ -427,7 +440,7 @@ public class QueryPicker {
 				}
 			}
 		});
-		
+
 		JButton exportJSON = new JButton("Export JSON");
 		exportJSON.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -448,7 +461,6 @@ public class QueryPicker {
 		pan.add(exportJSON);
 		pan.add(new JLabel(" "));
 		pan.add(quitB);
-		
 
 		rightpan.add(pan);
 //		rightpan.add(GUIHelper.makeBorder(spRes,"Result"));
