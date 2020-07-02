@@ -85,6 +85,8 @@ public class CPSReasoner {
 			out = runCmd(cmd);
 
 			//System.out.println("---ThanhNH : " + out);
+			/* Write Raw output to file using to export CSV */
+			writeToFile("./Integration/ASP/tmpASPoutput.txt",out);
 
 			/* convert output to one-literal-per-line */
 			cmd = mkatomsCmd();
@@ -116,6 +118,7 @@ public class CPSReasoner {
 		return (res);
 	}
 
+	
 	static String pkgPath(String p) {
 		if (CPSReasoner.class.getResource(p) == null) {
 			System.out.println("ERROR: path does not exist: " + p);

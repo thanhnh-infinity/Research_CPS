@@ -1081,372 +1081,126 @@ input("cpsf:Storage","rdf:type","owl:NamedIndividual").
 input("cpsf:g4","cpsf:addressToFunc","cpsf:Sign_In_Func").
 input("cpsf:g4","rdf:type","cpsf:Formulas").
 input("cpsf:g4","rdf:type","owl:NamedIndividual").
-%-------The Ontology---------------------
-% concern 
-aspect(trustworthiness).
+%-----------The CPS ontology -----------------
+% aspect
+property(P)     :- input(P,"rdf:type","cpsf:Property").
+descr(P,D)      :- input(P,"rdfs:comment",D).
+concern(C)      :- input(C,"rdf:type","cpsf:Concern").
+aspect(A)       :- input(A,"rdf:type","cpsf:Aspect").
+subconcern(S,O) :- input(S,"cpsf:includesConcern",O).
 
+% every aspect is a concern
+concern(A) :- aspect(A).
+
+% meta-aspect "all", which is a parent of every aspect
 concern(all).
-concern(trustworthiness).
-concern(safety).
-concern(reliability).
-concern(security).
-concern(resilience).
-concern(privacy).
+subconcern(all,A) :- aspect(A).
 
-concern(functional_safety).
-concern(cyber_security).
-concern(physical_security).
-concern(predictability).
-concern(manageability).
-concern(dissociability).
+% Property addresses a concern
+addressedBy(C,P) :- property(P), concern(C), 
+                    input(P,"cpsf:addConcern",C).
 
-concern(severity).
-concern(controllability).
-concern(frequency).
-concern(confidentiality).
-concern(integrity).
-concern(availability).
-concern(controls).
-concern(transparency).
-concern(innovation).
-concern(ultility).
-
-concern(encryption).
-concern(verification).
-concern(authorization).
-concern(authentication).
-
-% subconcern relation
-subconcern(all,trustworthiness).
-
-subconcern(trustworthiness,safety).
-subconcern(trustworthiness,reliability).
-subconcern(trustworthiness,security).
-subconcern(trustworthiness,resilience).
-subconcern(trustworthiness,privacy).
-
-subconcern(safety,functional_safety).
-
-subconcern(security,cyber_security).
-subconcern(security,physical_security).
-
-subconcern(privacy,predictability).
-subconcern(privacy,manageability).
-subconcern(privacy,dissociability).
-
-subconcern(functional_safety,severity).
-subconcern(functional_safety,frequency).
-subconcern(functional_safety,controllability).
-
-subconcern(cyber_security,confidentiality).
-subconcern(cyber_security,integrity).
-subconcern(cyber_security,availability).
-
-subconcern(physical_security,ultility).
-
-subconcern(predictability,controls).
-subconcern(predictability,transparency).
-subconcern(predictability,innovation).
-
-subconcern(confidentiality,encryption).
-subconcern(confidentiality,verification).
-
-
-subconcern(controls,authorization).
-subconcern(controls,authentication).
-
-% Property
-
-property(data_encrypted).
-property(conn_encrypted).
-property(protocol_encrypted).
-
-property(algo_AES).
-property(algo_RSA).
-property(algo_DES).
-
-property(firewall_setup).
-property(ip_filtering).
-property(mac_check).
-
-property(secure_boot).
-
-
-property(finger_printing).
-property(two_factors).
-property(iris_scan).
-property(oauth).
-property(opt_code).
-property(email_verify).
-property(ip_check).
-
-property(trusted_auth_device).
-property(trusted_environment).
-
-property(advanced_mode).
-property(basic_mode).
-
-property(saving_mode).
-property(powerful_mode).
-property(normal_mode).
-
-
-
-% Addressed : Relation Properties-Concerns
-addressedBy(encryption,data_encrypted).
-addressedBy(encryption,conn_encrypted).
-addressedBy(encryption,protocol_encrypted).
-addressedBy(encryption,algo_AES).
-addressedBy(encryption,algo_RSA).
-addressedBy(encryption,algo_DES).
-
-addressedBy(verification,firewall_setup).
-addressedBy(verification,ip_filtering).
-addressedBy(verification,mac_check).
-
-addressedBy(integrity,secure_boot).
-addressedBy(integrity,advanced_mode).
-addressedBy(integrity,basic_mode).
-
-addressedBy(integrity,saving_mode).
-addressedBy(integrity,powerful_mode).
-addressedBy(integrity,normal_mode).
-
-
-
-addressedBy(authorization,finger_printing).
-addressedBy(authorization,two_factors).
-addressedBy(authorization,iris_scan).
-addressedBy(authorization,oauth).
-addressedBy(authorization,opt_code).
-addressedBy(authorization,email_verify).
-addressedBy(authorization,ip_check).
-
-addressedBy(authorization,trusted_auth_device).
-addressedBy(authorization,trusted_environment).
 
 % Formulas
-formulas(1..10).
+formulas(For)    :- input(For,"rdf:type","cpsf:Formulas").
 
-member(finger_printing,1).
-member(two_factors,2).
-member(iris_scan,3).
-member(oauth,4).
-member(opt_code,4).
-member(oauth,5).
-member(email_verify,5).
-member(ip_check,5).
+% Properties memeber of formulas
+member(P,For)    :- property(P), formulas(For),
+                    input(P,"cpsf:memberOf",For).
 
-member(advanced_mode,6).
-member(basic_mode,7).
+% Decompostion Function
+decomposition(DF)       :- input(DF,"rdf:type","cpsf:DecompositionFunction"). 
+func_dec(DF,C)          :- decomposition(DF), concern(C),
+                           input(DF,"cpsf:decomposition_function_of",C).
+add_func(For,DF)        :- decomposition(DF), formulas(For),
+                           input(For,"cpsf:addressToFunc",DF).
+addressToFunc(C,DF,For) :- concern(C), decomposition(DF), formulas(For),
+                           func_dec(DF,C), add_func(For,DF).
 
-member(saving_mode,8).
-member(powerful_mode,9).
-member(normal_mode,10).
-
-func_dec(sign_in_func,authorization).
-func_dec(operation_func,integrity).
-func_dec(energy_func,integrity).
-
-addressToFunc(authorization,sign_in_func,1).
-addressToFunc(authorization,sign_in_func,2).
-addressToFunc(authorization,sign_in_func,3).
-addressToFunc(authorization,sign_in_func,4).
-addressToFunc(authorization,sign_in_func,5).
-
-%--- For Operation_Mode
-addressToFunc(integrity,operation_func,6).
-addressToFunc(integrity,operation_func,7).
-
-%--- For Energy_Mode
-addressToFunc(integrity,energy_func,8).
-addressToFunc(integrity,energy_func,9).
-addressToFunc(integrity,energy_func,10).
 
 %=============================================================
 %==================EXTENED ONTOLOGY===========================
 %=============================================================
 
-% ====Component
-%---- Define component ----
-component(sam).
-component(cam).
-component(battery).
+% Component
+component(Co)           :- input(Co,"rdf:type","cpsf:Component").
 
-%---- Possible Relations Between Componentns and Properties ----
-% Possible relation cam
-relation(cam,algo_AES).
-relation(cam,algo_RSA).
-relation(cam,algo_DES).
-relation(cam,conn_encrypted).
-relation(cam,data_encrypted).
-relation(cam,protocol_encrypted).
-relation(cam,ip_filtering).
-relation(cam,mac_check).
-relation(cam,advanced_mode).
-relation(cam,basic_mode).
-relation(cam,secure_boot).
-relation(cam,trusted_auth_device).
-relation(cam,trusted_environment).
-relation(cam,iris_scan).
-
-% Possible relation sam
-relation(sam,algo_AES).
-relation(sam,algo_RSA).
-relation(sam,algo_DES).
-relation(sam,conn_encrypted).
-relation(sam,data_encrypted).
-relation(sam,protocol_encrypted).
-relation(sam,ip_filtering).
-relation(sam,firewall_setup).
-relation(sam,mac_check).
-relation(sam,advanced_mode).
-relation(sam,basic_mode).
-relation(sam,secure_boot).
-relation(sam,finger_printing).
-relation(sam,two_factors).
-relation(sam,iris_scan).
-relation(sam,oauth).
-relation(sam,opt_code).
-relation(sam,email_verify).
-relation(sam,ip_check).
-relation(sam,trusted_environment).
-
-% Possible relation battery
-relation(battery,powerful_mode).
-relation(battery,normal_mode).
-relation(battery,saving_mode).
-relation(battery,trusted_environment).
-
-%---- Define Possible Positive Impact Relation of each component
-% possible pos impact sam
-possible_impacts_pos(sam,data_encrypted,encryption).
-possible_impacts_pos(sam,conn_encrypted,encryption).
-possible_impacts_pos(sam,protocol_encrypted,encryption).
-possible_impacts_pos(sam,algo_RSA,encryption).
-possible_impacts_pos(sam,algo_AES,encryption).
-possible_impacts_pos(sam,firewall_setup,verification).
-possible_impacts_pos(sam,mac_check,verification).
-possible_impacts_pos(sam,secure_boot,integrity).
-possible_impacts_pos(sam,advanced_mode,integrity).
-possible_impacts_pos(sam,iris_scan,authorization).
-possible_impacts_pos(sam,two_factors,authorization).
-possible_impacts_pos(sam,finger_printing,authorization).
-possible_impacts_pos(sam,trusted_environment,authorization).
-
-% possible pos impact cam
-possible_impacts_pos(cam,algo_RSA,encryption).
-possible_impacts_pos(cam,data_encrypted,encryption).
-possible_impacts_pos(cam,conn_encrypted,encryption).
-possible_impacts_pos(cam,protocol_encrypted,encryption).
-possible_impacts_pos(cam,mac_check,verification).
-possible_impacts_pos(cam,secure_boot,integrity).
-possible_impacts_pos(cam,advanced_mode,integrity).
-possible_impacts_pos(cam,trusted_auth_device,authorization).
-possible_impacts_pos(cam,trusted_environment,authorization).
-
-% possible pos impact bat
-possible_impacts_pos(battery,powerful_mode,integrity).
-possible_impacts_pos(battery,trusted_environment,authorization).
-%=============================================================%==================INITIAL OBSERVATION===========================
-obs(data_encrypted,true).
-obs(conn_encrypted,true).
-obs(protocol_encrypted,true).
-obs(algo_AES,true).
-obs(algo_RSA,true).
-obs(algo_DES,true).
-obs(firewall_setup,true).
-obs(ip_filtering,true).
-obs(secure_boot,true).
-obs(trusted_auth_device,true).
-obs(trusted_environment,true).
-obs(finger_printing,false).
-obs(two_factors,false).
-obs(iris_scan,false).
-obs(oauth,false).
-obs(opt_code,true).
-obs(email_verify,true).
-obs(ip_check,true).
-obs(advanced_mode,true).
-obs(basic_mode,true).
-obs(saving_mode,false).
-obs(powerful_mode,false).
-obs(normal_mode,false).
-
-%========== Current Active Between Components and Properties ==========
-active(sam,data_encrypted).
-active(sam,algo_RSA).
-active(sam,firewall_setup).
-active(sam,secure_boot).
-active(sam,trusted_environment).
-
-active(cam,ip_filtering).
-active(cam,data_encrypted).
-active(cam,conn_encrypted).
-active(cam,secure_boot).
-active(cam,trusted_auth_device).
+% Possible Relations between Components and Properties
+relation(Co,P)          :- component(Co), property(P),
+                           input(Co,"cpsf:relateToProperty",P).
 
 
-% Change to see the different of LoS values
-active(sam,finger_printing).
-active(sam,advanced_mode).
-active(cam,advanced_mode).
+% Possible Positive Impacts Component-Property to Concern
+component_property(CP)        :- input(CP,"rdf:type","cpsf:Component_Property").
+confComponent(CP,CO)          :- component_property(CP), component(CO),
+                                 input(CP,"cpsf:confComponent",CO).
+confProperty(CP,P)            :- component_property(CP), property(P),
+                                 input(CP,"cpsf:confProperty",P).
+positiveImpactTo(CP,C)        :- component_property(CP), concern(C),
+                                 input(CP,"cpsf:positiveImpactTo",C).
+possible_impacts_pos(CO,P,C)  :- component(CO), concern(C), property(P), 
+                                 component_property(CP), confComponent(CP,CO),
+                                 confProperty(CP,P), positiveImpactTo(CP,C).                              
 
-active(battery,saving_mode).
-active(battery,trusted_environment).
+%=============================================================
+%==================INITIAL CONFIGURATION======================
+%=============================================================
+init_active_com_pro(IACP)     :- input(IACP,"rdf:type","cpsf:InititalActiveComponentsProperties").
+active_com_pro(ACP)           :- input(ACP,"rdf:type","cpsf:ActiveComponentProperty").
+includesActivation(IACP,ACP)  :- init_active_com_pro(IACP), active_com_pro(ACP),
+                                 input(IACP,"cpsf:includesActivation",ACP).
+
+init_active_com(ACP)          :- init_active_com_pro(IACP), inital_active_select(IACP),
+                                 active_com_pro(ACP), includesActivation(IACP,ACP).           
 
 
-%==============================================
+setUpForComponent(IAC,CO)     :- init_active_com(IAC), component(CO),
+                                 input(IAC,"cpsf:setUpForComponent",CO).
+activeToProperty(IAC,P)       :- init_active_com(IAC), property(P),
+                                 input(IAC,"cpsf:activeToProperty",P).
+active(CO,P)                  :- component(CO), property(P), init_active_com(IAC),
+                                 setUpForComponent(IAC,CO), activeToProperty(IAC,P).
+
+% Set up case for Properties Observation
+initial_configuration(IC)     :- input(IC,"rdf:type","cpsf:InitialConfiguration").
+obsFalse(IC,P)                :- initial_configuration(IC), property(P),
+                                 intial_conf_select(IC), input(IC,"cpsf:obsFalse",P).
+obs(P,false)                  :- obsFalse(IC,P), initial_configuration(IC), 
+                                 property(P), intial_conf_select(IC).
+obs(P,true)                   :- not obs(P,false), property(P).
+%=============================================================
+%#show obs/1.% Input Changes
+intial_conf_select("cpsf:lkas_sr_er_01_initial_conf_0").
+inital_active_select("cpsf:lkas_sr_er_01_active_component_properties_case_0").
+obs(availablePatch("cpsf:Two_Factors"),true).
+obs(availablePatch("cpsf:Firewall_Setup"),true).
+%===========================================================================%=================================
 step(0).
-
-%%%%%%%
-% Satisfaction Theory + Positive Impacts Degree
-%%%%%%%
-
-%--- Reasoning first step -----------
-h(use(C,P),0) :- property(P), component(C), step(0), active(C,P).
-
-%---- Reasoning Property Satisfaction by observation -----
-h(P,0) :- obs(P,true), property(P).
+%=====Satisfaction Reasoning======
+h(P,0)  :- obs(P,true), property(P).
 -h(P,0) :- obs(P,false), property(P).
-h(P,0) :- property(P), not obs(P,false).
+h(P,0)  :- property(P), not obs(P,false).
 
-%---- Reasoning Concern Satisfaction by Formulae of properties -----
--sat_formulas(C,F,G,T) :- concern(C), property(P), formulas(G), 
-                          func_dec(F,C), addressedBy(C,P), member(P,G), addressToFunc(C,F,G),
-                          not h(P,T), step(T).
-sat_formulas(C,F,G,T) :- concern(C), formulas(G), func_dec(F,C), addressToFunc(C,F,G),
-                         not -sat_formulas(C,F,G,T), step(T).
--h(sat(C,F),T) :- concern(C), func_dec(F,C), step(T), not sat_formulas(C,F,_,T).
-h(sat(C,F),T)  :- not -h(sat(C,F),T), step(T), func_dec(F,C).
--h(sat(C),T)   :- concern(C), func_dec(F,C), not h(sat(C,F),T), step(T).
--h(sat(C),T)   :- concern(C), func_dec(F,C), -h(sat(C,F),T), step(T).
+-h(sat(C),T)   :- -h(P,T), property(P), step(T), 
+                  addressedBy(C,P).
+-h(sat(X),T)   :- concern(X), concern(Y), 
+                  subconcern(X,Y), not h(sat(Y),T), step(T).
+-h(sat(X),T)   :- concern(X), concern(Y), 
+                  subconcern(X,Y), -h(sat(Y),T), step(T).
+h(sat(C),T)    :- not -h(sat(C),T), concern(C), step(T).
 
-%---- Traditiona Reasoning about Concern Satisfaction ---                       
--h(sat(C),T) :- -h(P,T), property(P), step(T),  addressedBy(C,P), 
-                 not member(P,_).
--h(sat(X),T) :- concern(X), concern(Y), subconcern(X,Y), not h(sat(Y),T), step(T).
--h(sat(X),T) :- concern(X), concern(Y), subconcern(X,Y), -h(sat(Y),T), step(T).
-h(sat(C),T) :- not -h(sat(C),T), concern(C), step(T).
+%-h(sat(all),T) :- 1{-h(sat(trustworthiness),T); not h(sat(trustworthiness),T)}, step(T).
+-h(sat(all),T) :- -h(sat(A),T), aspect(A), step(T).
+h(sat(all),T)  :- not -h(sat(all),T), step(T).
+% ---------------------------------------------
 
-%=============================
-%#show -h/2.% ------ Output Interface ------
+% ------ Output Interface ------
 
-output_headings("Unsatisfied concern/aspect/property","Type","Decomposition Function","Step").
+output_headings("Concern","Satisfied","Step").
 
 % Support : Identify the last step in the input
 last_step(S) :- step(S), S2=S+1, not step(S2).
 
-output(C,concern,"-",S) :- last_step(S), -h(sat(C),S), concern(C).
-output(C,aspect,"-",S) :- last_step(S), -h(sat(C),S), aspect(C).
-output(C,concern,F,S) :- last_step(S), -h(sat(C,F),S),concern(C), not aspect(C), C!=all.
-output(C,aspect,F,S) :- last_step(S), -h(sat(C,F),S), aspect(C).
-output("concern-tree",tree,F,S) :- last_step(S), -h(sat(all,F),S).
-output("concern-tree",tree,"-",S) :- last_step(S), -h(sat(all),S).
 
-output(P,property,"-",S) :- last_step(S), -h(P,S), property(P).
-
-
-% ====== SHOW ========
-%#show output_headings/6.
-%#show output/6.
+output(C,"No",S) :- last_step(S), -h(sat(C),S), concern(C).
+output(C,"Yes",S) :- last_step(S), h(sat(C),S), concern(C). 

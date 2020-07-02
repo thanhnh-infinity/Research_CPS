@@ -239,6 +239,11 @@ public class QueryPicker {
 	final String sparqlFile = pkgPath("dump.sparql");
 	final String dataDir = pkgPath("QUERIES/");
 	final String contentFile = dataDir + "content.txt";
+	
+	public final static String config_ASP_result_file = "./Integration/ASP/tmpASPoutput.txt";
+	public final static String config_CSV_file = "./Integration/CSV/out.csv";
+	public final static String CSV_Expoter_Script = "./CSVExport/product/exportASP.py";
+	public final static String PYTHON_COMMAND = "python3";
 
 	public static void main(String[] args) {
 		new QueryPicker();
@@ -311,6 +316,27 @@ public class QueryPicker {
 			} else
 				throw (new IOException("Unexpected tag \"" + line + "\"+in file " + contentFile));
 		}
+	}
+	
+	public static String executeCommand(String[] command) {
+		StringBuffer output = new StringBuffer();
+
+		try {
+			Process p;
+			p = Runtime.getRuntime().exec(command);
+			p.waitFor();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					p.getInputStream()));
+			String line = "";
+			while ((line = reader.readLine()) != null) {
+				output.append(line + "\n");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return output.toString();
 	}
 
 	public QueryPicker() {
@@ -386,11 +412,19 @@ public class QueryPicker {
 			}
 		});
 		
-		
 		JButton exportCSV = new JButton("Export CSV");
 		exportCSV.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Export everything to CSV");
+			public void actionPerformed(ActionEvent e) {			
+				System.out.println("Export Answert to CSV");				
+				String[] command = new String[] {PYTHON_COMMAND,CSV_Expoter_Script,config_ASP_result_file,config_CSV_file};
+				String s = executeCommand(command);
+				System.out.print(s);
+				
+				if (s.contains("successfully")) {
+					JOptionPane.showMessageDialog(null, "CSV File is ready to use");
+				} else {
+					JOptionPane.showMessageDialog(null, "Please check ! File has not created yet");
+				}
 			}
 		});
 		
