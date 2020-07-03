@@ -46,6 +46,8 @@ class OntologyGUI:
         
 
         self.master = master
+        
+        self.buttonFontColor = "black"
 
 
         self.master.bind("<Button-4>", self.handleZoom)
@@ -84,7 +86,7 @@ class OntologyGUI:
         self.inputBaseEntry.insert(0,"cpsframework-v3-base.owl")
 
         #button to load ontology, calls function which handles loading
-        self.loadBaseOntologyB = tk.Button(self.leftControlFrame, text = "Load Base Ontology",padx = 10, pady = 5, bg = "#18453b", fg = "white",borderwidth = 5,font = buttonFont,command = self.loadBaseOntology)
+        self.loadBaseOntologyB = tk.Button(self.leftControlFrame, text = "Load Base Ontology",padx = 10, pady = 5, bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5,font = buttonFont,command = self.loadBaseOntology)
         self.loadBaseOntologyB.pack()
     
         self.addSpace(self.leftControlFrame,"white","tiny")
@@ -97,7 +99,7 @@ class OntologyGUI:
         self.inputAppEntry.insert(0,"cpsframework-v3-sr-Elevator-Configuration.owl")
 
         #button to load ontology, calls function which handles loading
-        self.loadAppOntologyB = tk.Button(self.leftControlFrame, text = "Load Application Ontology",padx = 10, pady = 5, bg = "#18453b", fg = "white",borderwidth = 5,font = buttonFont,command = self.loadAppOntology)
+        self.loadAppOntologyB = tk.Button(self.leftControlFrame, text = "Load Application Ontology",padx = 10, pady = 5, bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5,font = buttonFont,command = self.loadAppOntology)
         self.loadAppOntologyB.pack()
 
         self.unloadAppOntologyB = tk.Button(self.leftControlFrame, text = "Unload Application Ontology")
@@ -114,12 +116,12 @@ class OntologyGUI:
         self.outputEntry.insert(2, "cpsframework-v3-base.owl")
 
         #sets up button to call function which handles saving ontology
-        self.saveOntologyB = tk.Button(self.leftControlFrame, text = "Output Ontology",padx = 10, pady = 5, bg = "#18453b", fg = "white",borderwidth = 5,font = buttonFont, command = self.saveOntology)
+        self.saveOntologyB = tk.Button(self.leftControlFrame, text = "Output Ontology",padx = 10, pady = 5, bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5,font = buttonFont, command = self.saveOntology)
         self.saveOntologyB.pack()
         
         self.addSpace(self.leftControlFrame,"white","tiny")
         
-        self.saveOntologyLaunchASPB = tk.Button(self.leftControlFrame, text = "Output Ontology and Run ASP", padx = 10, pady = 5, bg = "#18453b",fg = "white",borderwidth = 5, font = buttonFont, command = self.outputAndLaunchASP)
+        self.saveOntologyLaunchASPB = tk.Button(self.leftControlFrame, text = "Output Ontology and Run ASP", padx = 10, pady = 5, bg = "#18453b",fg = self.buttonFontColor,borderwidth = 5, font = buttonFont, command = self.outputAndLaunchASP)
         self.saveOntologyLaunchASPB.pack()
         self.addSpace(self.leftControlFrame,"white","tiny")
         #sets up gray box for information window
@@ -266,13 +268,13 @@ class OntologyGUI:
         self.relationButtonFrame = tk.Frame(self.treeFrame,bg = "white")
         self.relationButtonFrame.place(relwidth = .10, relheight = .05, relx = .01, rely = .01)
         
-        self.relationB = tk.Button(self.relationButtonFrame, text = "Relations",padx = 10, pady = 5, bg = spartangreen, fg = "white",borderwidth = 5, font = buttonFont, command = self.onRelationButton)
+        self.relationB = tk.Button(self.relationButtonFrame, text = "Relations",padx = 10, pady = 5, bg = spartangreen, fg = self.buttonFontColor,borderwidth = 5, font = buttonFont, command = self.onRelationButton)
         self.relationB.pack()
         
         self.remremoveChildrenFrame = tk.Frame(self.treeFrame,bg = "white")
         self.remremoveChildrenFrame.place(relwidth = .10, relheight = .05, relx = .89, rely = .01)
     
-        self.removeremoveChildrenB = tk.Button(self.remremoveChildrenFrame, text = "Remove Floaters",padx = 10, pady = 5, bg = spartangreen, fg = "white",borderwidth = 5, font = buttonFont,  command = self.removeFloaters)
+        self.removeremoveChildrenB = tk.Button(self.remremoveChildrenFrame, text = "Remove Floaters",padx = 10, pady = 5, bg = spartangreen, fg = self.buttonFontColor,borderwidth = 5, font = buttonFont,  command = self.removeFloaters)
         self.removeremoveChildrenB.pack()
     
 
@@ -629,7 +631,7 @@ class OntologyGUI:
         self.rcIndivNameEntry.insert(1,"NewAspect")
         
         #add button to call function to add new aspect
-        addAspectB = tk.Button(self.rcButtonFrame, text = "Add Aspect",padx = 10, pady = 5, bg = "#18453b", fg = "white",borderwidth = 5, font = buttonFont, command = self.addAspect)
+        addAspectB = tk.Button(self.rcButtonFrame, text = "Add Aspect",padx = 10, pady = 5, bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5, font = buttonFont, command = self.addAspect)
         addAspectB.pack()
         
         self.addSpace(self.rcButtonFrame,"white","tiny")
@@ -639,7 +641,7 @@ class OntologyGUI:
         if(self.owlAppLoaded == True):
             
         
-            addComponentB = tk.Button(self.rcButtonFrame,text = "Add Component", padx = 10, pady = 5, bg = "#18453b", fg = "white", borderwidth = 5, font = buttonFont, command = self.addComponent)
+            addComponentB = tk.Button(self.rcButtonFrame,text = "Add Component", padx = 10, pady = 5, bg = "#18453b", fg = self.buttonFontColor, borderwidth = 5, font = buttonFont, command = self.addComponent)
             addComponentB.pack()
             
             self.rcIndivNameEntry.delete(0,END)
@@ -694,7 +696,7 @@ class OntologyGUI:
         
         self.addSpace(self.relationButtonFrame,"white","tiny")
         #add buttons for adding subconcern, addresses, remove relation
-        addRelationB = tk.Button(self.relationButtonFrame, text = "Add Relation",padx = 10, height = 1, width = 25, bg = "#18453b", fg = "white",borderwidth = 5, font = buttonFont, command = self.addRelation)
+        addRelationB = tk.Button(self.relationButtonFrame, text = "Add Relation",padx = 10, height = 1, width = 25, bg = "#18453b",fg = self.buttonFontColor,borderwidth = 5, font = buttonFont, command = self.addRelation)
         addRelationB.pack()
         
         self.addSpace(self.relationButtonFrame,"white","tiny")
@@ -703,7 +705,7 @@ class OntologyGUI:
         #addAddressesConcernRelationB.pack()
         #self.addSpace(self.relationButtonFrame,"white","tiny")
         
-        removeRelationB = tk.Button(self.relationButtonFrame, text = "Remove Relation",padx = 10, height = 1, width = 25, bg = "#18453b", fg = "white",borderwidth = 5, font = buttonFont, command = self.removeRelation)
+        removeRelationB = tk.Button(self.relationButtonFrame, text = "Remove Relation",padx = 10, height = 1, width = 25, bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5, font = buttonFont, command = self.removeRelation)
         removeRelationB.pack()
         
         
@@ -1055,17 +1057,17 @@ class OntologyGUI:
         self.addSpace(self.lcButtonFrame,"white","tiny")
 
         #set up buttons for operations
-        addParentB = tk.Button(self.lcButtonFrame, text = "Add Parent Property",padx = 5, bg = "#18453b", fg = "white",borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.addParentProperty)
+        addParentB = tk.Button(self.lcButtonFrame, text = "Add Parent Property",padx = 5, bg = "#18453b",fg = self.buttonFontColor,borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.addParentProperty)
         addParentB.pack()
         
         self.addSpace(self.lcButtonFrame,"white","tiny")
         
-        editNameB = tk.Button(self.lcButtonFrame, text = "Edit Name",padx = 5, bg = "#18453b", fg = "white",borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.editComponent)
+        editNameB = tk.Button(self.lcButtonFrame, text = "Edit Name",padx = 5, bg = "#18453b",fg = self.buttonFontColor,borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.editComponent)
         editNameB.pack()
         
         self.addSpace(self.lcButtonFrame,"white","tiny")
         
-        removeComponentB = tk.Button(self.lcButtonFrame, text = "Delete",padx = 5, bg = "#18453b", fg = "white",borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.removeConcern)
+        removeComponentB = tk.Button(self.lcButtonFrame, text = "Delete",padx = 5, bg = "#18453b",fg = self.buttonFontColor,borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.removeConcern)
         removeComponentB.pack()
         
         self.addSpace(self.lcButtonFrame,"white","tiny")
@@ -1105,22 +1107,22 @@ class OntologyGUI:
         self.addSpace(self.lcButtonFrame,"white","tiny")
 
         #set up buttons for operations
-        addParent = tk.Button(self.lcButtonFrame, text = "Add Parent Concern",padx = 5, bg = "#18453b", fg = "white",borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.addParent)
+        addParent = tk.Button(self.lcButtonFrame, text = "Add Parent Concern",padx = 5, bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.addParent)
         addParent.pack()
         
         self.addSpace(self.lcButtonFrame,"white","tiny")
         
-        addChildComp = tk.Button(self.lcButtonFrame, text = "Add Child Component",padx = 5, bg = "#18453b", fg = "white",borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.addChildComp)
+        addChildComp = tk.Button(self.lcButtonFrame, text = "Add Child Component",padx = 5, bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.addChildComp)
         addChildComp.pack()
         
         self.addSpace(self.lcButtonFrame,"white","tiny")
         
-        editName = tk.Button(self.lcButtonFrame, text = "Edit Name",padx = 5, bg = "#18453b", fg = "white",borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.editPropertyName)
+        editName = tk.Button(self.lcButtonFrame, text = "Edit Name",padx = 5, bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.editPropertyName)
         editName.pack()
         
         self.addSpace(self.lcButtonFrame,"white","tiny")
         
-        removeConcernB = tk.Button(self.lcButtonFrame, text = "Delete",padx = 5, bg = "#18453b", fg = "white",borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.removeConcern)
+        removeConcernB = tk.Button(self.lcButtonFrame, text = "Delete",padx = 5, bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.removeConcern)
         removeConcernB.pack()
         
         self.addSpace(self.lcButtonFrame,"white","tiny")
@@ -1220,27 +1222,27 @@ class OntologyGUI:
         self.addSpace(self.lcButtonFrame,"white","tiny")
 
         #set up buttons for operations
-        addConcern = tk.Button(self.lcButtonFrame, text = "Add Subconcern",padx = 5, bg = "#18453b", fg = "white",borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.addConcern)
+        addConcern = tk.Button(self.lcButtonFrame, text = "Add Subconcern",padx = 5, bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.addConcern)
         addConcern.pack()
         
         self.addSpace(self.lcButtonFrame,"white","tiny")
 
-        addParent = tk.Button(self.lcButtonFrame, text = "Add Parent Concern",padx = 5, bg = "#18453b", fg = "white",borderwidth = 5, height = 1, width = 15 ,font = buttonFont, command = self.addParent)
+        addParent = tk.Button(self.lcButtonFrame, text = "Add Parent Concern",padx = 5, bg = "#18453b",fg = self.buttonFontColor,borderwidth = 5, height = 1, width = 15 ,font = buttonFont, command = self.addParent)
         addParent.pack()
         
         self.addSpace(self.lcButtonFrame,"white","tiny")
 
-        addPropertyB = tk.Button(self.lcButtonFrame, text = "Add Property",padx = 5, bg = "#18453b", fg = "white",borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.addPropertyAsChild)
+        addPropertyB = tk.Button(self.lcButtonFrame, text = "Add Property",padx = 5, bg = "#18453b",fg = self.buttonFontColor,borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.addPropertyAsChild)
         addPropertyB.pack()
         
         self.addSpace(self.lcButtonFrame,"white","tiny")
      
-        editName = tk.Button(self.lcButtonFrame, text = "Edit Name",padx = 5, bg = "#18453b", fg = "white",borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.editConcern)
+        editName = tk.Button(self.lcButtonFrame, text = "Edit Name",padx = 5, bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.editConcern)
         editName.pack()
         
         self.addSpace(self.lcButtonFrame,"white","tiny")
         
-        removeConcernB = tk.Button(self.lcButtonFrame, text = "Delete",padx = 5, bg = "#18453b", fg = "white",borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.removeConcern)
+        removeConcernB = tk.Button(self.lcButtonFrame, text = "Delete",padx = 5, bg = "#18453b",fg = self.buttonFontColor,borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.removeConcern)
         removeConcernB.pack()
         
         self.addSpace(self.lcButtonFrame,"white","tiny")
@@ -1368,16 +1370,16 @@ class OntologyGUI:
             
             self.addSpace(self.removeChildrenButtonFrame,"white","tiny")
             
-            deleteSelectedB = tk.Button(self.removeChildrenButtonFrame, text = "Delete Selected Only", bg = "#18453b", fg = "white",borderwidth = 5, padx = 5, height = 1, width = 40,font = buttonFont, command = self.removeSingleConcern)
+            deleteSelectedB = tk.Button(self.removeChildrenButtonFrame, text = "Delete Selected Only", bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5, padx = 5, height = 1, width = 40,font = buttonFont, command = self.removeSingleConcern)
             deleteSelectedB.pack() 
             self.addSpace(self.removeChildrenButtonFrame,"white","tiny")
             
-            deleteSelectedRelationlessChildrenB = tk.Button(self.removeChildrenButtonFrame, text = "Delete Selected + Resulting Relationless Children",padx = 5, height = 1, width = 40, bg = "#18453b", fg = "white",borderwidth = 5, font = buttonFont, command = self.handleRemoveIndAndRelationless)
+            deleteSelectedRelationlessChildrenB = tk.Button(self.removeChildrenButtonFrame, text = "Delete Selected + Resulting Relationless Children",padx = 5, height = 1, width = 40, bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5, font = buttonFont, command = self.handleRemoveIndAndRelationless)
             deleteSelectedRelationlessChildrenB.pack()
             
             self.addSpace(self.removeChildrenButtonFrame,"white","tiny")      
             
-            deleteSelectedAllChildrenB = tk.Button(self.removeChildrenButtonFrame, text = "Delete Selected + All Children", bg = "#18453b",padx = 5, height = 1, width = 40, fg = "white",borderwidth = 5, font = buttonFont, command = self.handleRemoveAllChildren)
+            deleteSelectedAllChildrenB = tk.Button(self.removeChildrenButtonFrame, text = "Delete Selected + All Children", bg = "#18453b",padx = 5, height = 1, width = 40, fg = self.buttonFontColor,borderwidth = 5, font = buttonFont, command = self.handleRemoveAllChildren)
             deleteSelectedAllChildrenB.pack() 
           
             self.addSpace(self.removeChildrenButtonFrame,"white","tiny")  
@@ -1385,7 +1387,7 @@ class OntologyGUI:
             #deleteIndB = tk.Button(self.removeChildrenButtonFrame, text = "Delete Concern",padx = 10, pady = 5, bg = "#18453b", fg = "white",borderwidth = 5, font = buttonFont, command = self.removeSingleConcern)
             #deleteIndB.pack() 
             
-            cancelB = tk.Button(self.removeChildrenButtonFrame, text = "Cancel",padx = 5, height = 1, bg = "#18453b", fg = "white",borderwidth = 5, font = buttonFont, command = self.cancelDelete)
+            cancelB = tk.Button(self.removeChildrenButtonFrame, text = "Cancel",padx = 5, height = 1, bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5, font = buttonFont, command = self.cancelDelete)
             cancelB.pack()
             
             self.addSpace(self.removeChildrenButtonFrame,"white","tiny")
@@ -1464,11 +1466,11 @@ class OntologyGUI:
         
         self.addSpace(self.removeConfirmationButtonFrame,"white","tiny")
         
-        yesB = tk.Button(self.removeConfirmationButtonFrame, text = "Yes",padx = 10, pady = 5, width = 10, bg = "#18453b", fg = "white",borderwidth = 5, font = buttonFont, command = self.removeAllChildren)
+        yesB = tk.Button(self.removeConfirmationButtonFrame, text = "Yes",padx = 10, pady = 5, width = 10, bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5, font = buttonFont, command = self.removeAllChildren)
         yesB.pack()
         
         self.addSpace(self.removeConfirmationButtonFrame,"white","tiny")
-        noB = tk.Button(self.removeConfirmationButtonFrame, text = "No",padx = 10, pady = 5, width = 10, bg = "#18453b", fg = "white",borderwidth = 5, font = buttonFont, command = self.removeConfirmationWindowClose)
+        noB = tk.Button(self.removeConfirmationButtonFrame, text = "No",padx = 10, pady = 5, width = 10, bg = "#18453b",fg = self.buttonFontColor,borderwidth = 5, font = buttonFont, command = self.removeConfirmationWindowClose)
         noB.pack()
             
     
@@ -1550,10 +1552,10 @@ class OntologyGUI:
         self.removeConfirmationQuestionLabel = Label(self.removeConfirmationButtonFrame,text = "Would you like to Remove these?")
         self.removeConfirmationQuestionLabel.pack()
         
-        yesB = tk.Button(self.removeConfirmationButtonFrame, text = "Yes",padx = 10, pady = 5, bg = "#18453b", fg = "white",borderwidth = 5, font = buttonFont, command = self.removeIndAndRelationless)
+        yesB = tk.Button(self.removeConfirmationButtonFrame, text = "Yes",padx = 10, pady = 5, bg = "#18453b",fg = self.buttonFontColor,borderwidth = 5, font = buttonFont, command = self.removeIndAndRelationless)
         yesB.pack()
         
-        noB = tk.Button(self.removeConfirmationButtonFrame, text = "No",padx = 10, pady = 5, bg = "#18453b", fg = "white",borderwidth = 5, font = buttonFont, command = self.removeConfirmationWindowClose)
+        noB = tk.Button(self.removeConfirmationButtonFrame, text = "No",padx = 10, pady = 5, bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5, font = buttonFont, command = self.removeConfirmationWindowClose)
         noB.pack()
         
         
