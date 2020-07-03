@@ -8,6 +8,8 @@ from owlNode import owlNode
 from script_networkx import remove_namespace
 from owlready2 import *
 from networkx.drawing.nx_agraph import write_dot, graphviz_layout
+
+from owlFunctions import graphviz_layout_with_rank
 class owlGraph:
     
     def __init__(self,baseOWL,appOWL = None):
@@ -19,6 +21,7 @@ class owlGraph:
         self.graphPositions = None
 
         self.aspectConcernArray = None
+        self.aspectNameList = None
         self.propertyArray = None
         self.componentArray = None
         self.subconcernEdges = None
@@ -40,6 +43,7 @@ class owlGraph:
         self.maxY = None
         self.totalX = None
         self.totalY = None
+        self.XYRatio = None
         
         self.makeGraph()
         
@@ -61,6 +65,7 @@ class owlGraph:
     def addGraphNodes(self):
 
         self.aspectConcernArray = np.array(())
+        self.aspectNameList = [[]]
         self.propertyArray = np.array(())
         self.componentArray = np.array(())
 
@@ -72,9 +77,11 @@ class owlGraph:
                 #print("found concern or aspect")
                 #print(node.type)
                 self.aspectConcernArray = np.append(self.aspectConcernArray,node)
-            elif(str(node.type) == "Property"):
-                #print("found property")
-                self.propertyArray = np.append(self.propertyArray,node)
+                
+                if(str(node.type) == "Aspect"):
+                    
+                    self.aspectNameList[0].append(node.name)
+    
             else:
                 print("couldnt find type")
                 print(node.type)
@@ -87,6 +94,7 @@ class owlGraph:
                 
                 if(str(node.type) == "Property"):
                     #print("found property")
+                    #print("found property " + node.name)
                     self.propertyArray = np.append(self.propertyArray,node)
                 elif(str(node.type) == "Component"):
                     self.componentArray = np.append(self.componentArray,node)
@@ -194,8 +202,9 @@ class owlGraph:
 
 
         #print(list(self.netXGraph.nodes))
-        self.graphPositions = graphviz_layout(self.netXGraph, prog='dot')
+        #self.graphPositions = graphviz_layout(self.netXGraph, prog='dot')
 
+        self.graphPositions = graphviz_layout_with_rank(self.netXGraph, prog='dot',sameRank=self.aspectNameList)
         #don't want negative position values, so add 500 to all x's, 100 to all y's
         for x in self.graphPositions:
 
@@ -245,6 +254,9 @@ class owlGraph:
         self.totalY = self.maxY - self.minY
 
 
+        self.XYRatio = self.totalX/self.totalY
+        print(self.totalX)
+        print(self.totalY)
 
 
 
@@ -259,13 +271,16 @@ class owlGraph:
         edge_width = 2
         edge_alpha = .8
 
+        
+      
+
         plt.tight_layout()
 
         nx.draw_networkx_nodes(self.netXGraph, pos = self.graphPositions, with_labels=False, arrows=False, ax = ax, node_size = .1,scale = 1)
 
         nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.subconcernEdges, arrows=False,style = "solid",width = edge_width,edge_color = edge_color,alpha = edge_alpha)
         nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.propertyEdges, arrows=False,style = "dashed",width = edge_width,edge_color = edge_color, alpha = edge_alpha)
-        nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.componentEdges, arrows=False,style = "dashed",width = edge_width,edge_color = edge_color, alpha = edge_alpha)
+        nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.componentEdges, arrows=False,style = "dotted",width = edge_width,edge_color = edge_color, alpha = edge_alpha)
 
 
         nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.concernEdgeLabels,font_size = fs)
@@ -276,7 +291,7 @@ class owlGraph:
         nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.aspectNodeLabels,font_size=fs,bbox=dict(facecolor=aspect_color, boxstyle='square,pad=.3'),font_color = "white")
         nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.concernNodeLabels,font_size=fs,bbox=dict(facecolor=concern_color, boxstyle='square,pad=.3'),font_color = "white")
         nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.propertyNodeLabels,font_size=fs,bbox=dict(facecolor=property_color, boxstyle='round4,pad=.3'),font_color = "white")
-        nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.componentNodeLabels,font_size=fs,bbox=dict(facecolor=component_color, boxstyle='round4,pad=.3'),font_color = "white")
+        nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.componentNodeLabels,font_size=fs,bbox=dict(facecolor=component_color, boxstyle='round,pad=.3'),font_color = "white")
 
 
     def findNode(self,name):
@@ -296,6 +311,8 @@ class owlGraph:
 
         print("couldn't find " + str(name))
         return 0
+
+
 
 #testOwlOntology = owlBase("cpsframework-v3-base.owl")
 
