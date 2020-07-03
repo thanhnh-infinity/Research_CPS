@@ -1,5 +1,5 @@
 #include "./ontology_LKAS.lp".
-#include "./obs_init_state_LKAS_4.lp".
+#include "./obs_init_state_LKAS_5.lp".
 
 %==============================================
 step(0).
