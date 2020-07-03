@@ -24,7 +24,7 @@ class OntologyGUI:
 
         self.zoom = 1
         self.zoomIndex = 105
-        self.fontsize = 8
+        self.fontsize = 8.5
 
         self.lcWindowOpen = False
         self.rcWindowOpen = False
@@ -34,7 +34,15 @@ class OntologyGUI:
         
 
         self.hoveredNode = None
-        self.owlLoaded = False
+        self.eventX = None
+        self.eventY = None
+        
+        
+        self.owlBaseLoaded = False
+        self.owlAppLoaded = False
+        self.owlApplication = None
+        
+        self.allTreeNodes = None
         
 
         self.master = master
@@ -68,18 +76,33 @@ class OntologyGUI:
         self.leftControlFrame.place(relwidth = .2, relheight = .8, relx = .01, rely = 0.1)
 
         #set up prompt/entry for input ontology
-        self.inputPrompt = Label(self.leftControlFrame, text = "Input ontology", font = promptFont,fg= "#747780",bg = "white")
-        self.inputPrompt.pack()
+        self.inputBasePrompt = Label(self.leftControlFrame, text = "Input base ontology", font = promptFont,fg= "#747780",bg = "white")
+        self.inputBasePrompt.pack()
 
-        self.inputEntry = Entry(self.leftControlFrame, width = 30,borderwidth = 5,highlightbackground="white", fg = "#18453b",font = entryFont)
-        self.inputEntry.pack()
-        self.inputEntry.insert(0,"cpsframework-v3-base.owl")
+        self.inputBaseEntry = Entry(self.leftControlFrame, width = 30,borderwidth = 5,highlightbackground="white", fg = "#18453b",font = entryFont)
+        self.inputBaseEntry.pack()
+        self.inputBaseEntry.insert(0,"cpsframework-v3-base.owl")
 
         #button to load ontology, calls function which handles loading
-        self.loadOntologyB = tk.Button(self.leftControlFrame, text = "Load Ontology",padx = 10, pady = 5, bg = "#18453b", fg = "white",borderwidth = 5,font = buttonFont,command = self.loadOntology)
-        self.loadOntologyB.pack()
+        self.loadBaseOntologyB = tk.Button(self.leftControlFrame, text = "Load Base Ontology",padx = 10, pady = 5, bg = "#18453b", fg = "white",borderwidth = 5,font = buttonFont,command = self.loadBaseOntology)
+        self.loadBaseOntologyB.pack()
+    
+        self.addSpace(self.leftControlFrame,"white","tiny")
+        
+        self.inputAppPrompt = Label(self.leftControlFrame, text = "Input application ontology", font = promptFont,fg= "#747780",bg = "white")
+        self.inputAppPrompt.pack()
 
-        self.addSpace(self.leftControlFrame,"white","medium")
+        self.inputAppEntry = Entry(self.leftControlFrame, width = 30,borderwidth = 5,highlightbackground="white", fg = "#18453b",font = entryFont)
+        self.inputAppEntry.pack()
+        self.inputAppEntry.insert(0,"cpsframework-v3-sr-Elevator-Configuration.owl")
+
+        #button to load ontology, calls function which handles loading
+        self.loadAppOntologyB = tk.Button(self.leftControlFrame, text = "Load Application Ontology",padx = 10, pady = 5, bg = "#18453b", fg = "white",borderwidth = 5,font = buttonFont,command = self.loadAppOntology)
+        self.loadAppOntologyB.pack()
+
+        self.unloadAppOntologyB = tk.Button(self.leftControlFrame, text = "Unload Application Ontology")
+
+        self.addSpace(self.leftControlFrame,"white","tiny")
 
 
         #sets up prompt/entry for name of output owl file
@@ -93,31 +116,38 @@ class OntologyGUI:
         #sets up button to call function which handles saving ontology
         self.saveOntologyB = tk.Button(self.leftControlFrame, text = "Output Ontology",padx = 10, pady = 5, bg = "#18453b", fg = "white",borderwidth = 5,font = buttonFont, command = self.saveOntology)
         self.saveOntologyB.pack()
-
-
+        
+        self.addSpace(self.leftControlFrame,"white","tiny")
+        
+        self.saveOntologyLaunchASPB = tk.Button(self.leftControlFrame, text = "Output Ontology and Run ASP", padx = 10, pady = 5, bg = "#18453b",fg = "white",borderwidth = 5, font = buttonFont, command = self.outputAndLaunchASP)
+        self.saveOntologyLaunchASPB.pack()
+        self.addSpace(self.leftControlFrame,"white","tiny")
         #sets up gray box for information window
 
         self.infoFrame = Frame(self.leftControlFrame, bg = "#747780", bd = 5 )
-        self.infoFrame.place(relwidth = .8, relheight = .58, relx = .1, rely = .25)
+        self.infoFrame.place(relwidth = .8, relheight = .50, relx = .1, rely = .44)
 
         self.infoFrameHeaderLabel = Label(self.infoFrame,text = "Ontology Information", font = headerFont, fg = "white", bg = "#747780")
         self.infoFrameHeaderLabel.pack()
 
         self.owlInfoFrame = Frame(self.infoFrame, bg = spartangreen, bd = 5)
-        self.owlInfoFrame.place(relwidth = .9, relheight = .3, relx = .05, rely = .05)
+        self.owlInfoFrame.place(relwidth = .9, relheight = .4, relx = .05, rely = .05)
 
         self.indInfoHeaderFrame = Frame(self.infoFrame, bg = "#747780",bd = 5)
-        self.indInfoHeaderFrame.place(relwidth = .9, relheight = .07, relx  = .05, rely = .355)
+        self.indInfoHeaderFrame.place(relwidth = .9, relheight = .07, relx  = .05, rely = .415)
 
-        self.indInfoHeaderLabel = Label(self.indInfoHeaderFrame,text = "Concern Information", font = headerFont, fg = "white", bg = "#747780")
+        self.indInfoHeaderLabel = Label(self.indInfoHeaderFrame,text = "Hovered Information", font = headerFont, fg = "white", bg = "#747780")
         self.indInfoHeaderLabel.pack()
 
         self.indInfoFrame = Frame(self.infoFrame,  bg = spartangreen, bd = 5)
-        self.indInfoFrame.place(relwidth = .9, relheight = .55, relx = .05, rely = .41)
+        self.indInfoFrame.place(relwidth = .9, relheight = .50, relx = .05, rely = .48)
 
 
-        self.owlNameText = tk.StringVar()
-        self.owlNameText.set("Owl Name")
+        self.owlBaseNameText = tk.StringVar()
+        self.owlBaseNameText.set("Owl Base")
+        
+        self.owlAppNameText = tk.StringVar()
+        self.owlAppNameText.set("Owl App")
 
         self.totalNodeText = tk.StringVar()
         self.totalNodeText.set("Total Nodes")
@@ -135,8 +165,11 @@ class OntologyGUI:
         self.numComponentsText.set("Num Components")
 
 
-        self.owlNameInfo = Label(self.owlInfoFrame, textvariable =  self.owlNameText, font = infoFont,fg= "white",bg = spartangreen)
-        self.owlNameInfo.pack()
+        self.owlBaseNameInfo = Label(self.owlInfoFrame, textvariable =  self.owlBaseNameText, font = infoFont,fg= "white",bg = spartangreen)
+        self.owlBaseNameInfo.pack()
+        
+        self.owlAppNameInfo = Label(self.owlInfoFrame, textvariable =  self.owlAppNameText, font = infoFont,fg= "white",bg = spartangreen)
+        self.owlAppNameInfo.pack()
 
         self.numNodesInfo = Label(self.owlInfoFrame, textvariable =  self.totalNodeText, font = infoFont,fg= "white",bg = spartangreen)
         self.numNodesInfo.pack()
@@ -187,7 +220,14 @@ class OntologyGUI:
 
         #sets up gray box to put text to show what is going on
         self.textBoxFrame = Frame(self.leftControlFrame,bg = "#747780", bd = 5)
-        self.textBoxFrame.place(relwidth = .8, relheight = .14, relx = .1, rely = .85)
+        self.textBoxFrame.place(relwidth = .8, relheight = .04, relx = .1, rely = .95)
+        
+        
+        self.summaryText = tk.StringVar()
+        self.summaryText.set("")
+        
+        self.summaryLabel = Label(self.textBoxFrame, textvariable = self.summaryText, font = summaryFont,fg= "white",bg = "#747780")
+        self.summaryLabel.pack()
 
         #sets up frame for ontology tree to exist
         self.treeFrame = tk.Frame(self.master, bg="white")
@@ -244,7 +284,8 @@ class OntologyGUI:
         
         summary = "Removed all concerns with no relations"
         
-        self.printSummary(summary)
+        
+        self.summaryText.set(summary)
         
     #gets the accturate OWL Object via searching the ontology for the passed name
     def getOWLObject(self,name):
@@ -267,10 +308,24 @@ class OntologyGUI:
         
         return obj
 
+    def setAllTreeNodes(self):
+        
+        if(self.owlBaseLoaded == True):
+            
+            self.allTreeNodes = self.owlBase.allConcerns_owlNode
+        
+        if(self.owlAppLoaded == True):
+            
+         
+            
+            self.allTreeNodes.extend(self.owlApplication.nodeArray)
+            
+       
+
     #handles mouse hovering, throws away nonsense events, updates concern info window
     def handleHover(self,event):
 
-        if(self.owlLoaded == False):
+        if(self.owlBaseLoaded == False):
             return
 
         NoneType = type(None)
@@ -280,6 +335,29 @@ class OntologyGUI:
             return
 
         nearest_node = self.getNearest(event)
+        
+        if(nearest_node == None):
+            
+            
+            self.indNameText.set("Name")
+    
+           
+            self.indTypeText.set("Type")
+    
+           
+            self.indParentText.set("Parent Name")
+    
+            
+            self.indChildrenText.set("Children")
+    
+          
+            self.indRelPropertiesText.set("Relevant Properties")
+            
+            self.hoveredNode = None
+            
+            return
+            
+            
 
         if(nearest_node != self.hoveredNode):
 
@@ -326,13 +404,22 @@ class OntologyGUI:
     #updates the global ontology stats according to numbers stored in owlBase
     def updateOwlStats(self):
 
-            self.owlNameText.set("Owl Name - " + str(self.owlBase.owlName))
-            self.totalNodeText.set("Num Nodes - " + str(self.owlBase.numNodes))
+            self.totalNodes = self.owlBase.numNodes
+            self.owlBaseNameText.set("Base - " + str(self.owlBase.owlName))
+            
+    
             self.numAspectsText.set("Num Aspects - " + str(self.owlBase.numAspects))
             self.numConcernsText.set("Num Concerns - "  + str(self.owlBase.numConcerns))
             
-            self.numPropertiesText.set("Num Properties - ")
-            self.numComponentsText.set("Num Components - ")
+            if(self.owlAppLoaded == True):
+                
+                self.owlAppNameText.set("App - " + str(self.owlApplication.owlName))
+                self.numPropertiesText.set("Num Properties - " + str(self.owlApplication.numProperties))
+                self.numComponentsText.set("Num Components - " + str(self.owlApplication.numComponents))
+                
+                self.totalNodes = self.totalNodes + self.owlApplication.numNodes
+                
+            self.totalNodeText.set("Num Nodes - " + str(self.totalNodes))
 
 
 
@@ -344,14 +431,8 @@ class OntologyGUI:
         new_concern_name = self.indivNameEntry.get()
 
         #handle error message, if new concern with name already exists, don't add another
-        if(self.check_existence(new_concern_name) == True):
-           print("concern already exists")
-           if(self.errorDisplayed == True):
-               self.error_message.destroy()
-           self.error_message = Label(self.lcButtonFrame, text = "Concern Already Exists", font = "Helvetica 8 bold italic",fg= "red",bg = "white")
-           self.error_message.pack()
-           self.errorDisplayed = True
-           return
+        if (self.handleErrorMessage(new_concern_name,"lc") == 0):
+            return
 
       
         self.owlBase.addNewConcern(new_concern_name,self.leftClicked.name)
@@ -359,49 +440,132 @@ class OntologyGUI:
         #prints text in textBoxFrame to tell what happend
         summary = "Added concern " + new_concern_name + " to ontology"
         
-        self.printSummary(summary)
+        self.summaryText.set(summary)
         
         #refresh the tree and owlBase
         self.updateTree()
 
         #reset the error message because we just did a successful operation
-        if(self.errorDisplayed == True):
-            self.error_message.destroy()
-            self.errorDisplayed == False
-
+        self.handleErrorMessageDeletion("lc")
         print("added concern")
 
     #checks if an concern with the passed name exists
-    def check_existence(self,concern):
+    def check_existence(self,name):
 
-        #print("checking existence")
-        ind_search = self.owlBase.owlReadyOntology.search(iri = "*" + concern)
+        for node in self.allTreeNodes:
+            
+            if(node.name == name):
+                return True
+        
+        return False
 
-        if(len(ind_search) == 0):
-            return False
-        else:
-            return True
 
+    def getDistance(self,node):
+        
+         #print("sorting ",node.name)
+        
+         nodepos = self.owlTree.graphPositions[node.name]
+         
+         nodeposx = nodepos[0]
+         nodeposy = nodepos[1]*1.0
+         
+         distance = np.sqrt((self.eventX - nodeposx)**2 + ((self.eventY - nodeposy)*self.XYRatio)**2)
+         
+         return distance
+        
 
     #takes a mouse event, returns the closest node to the mouse event
     def getNearest(self,event):
 
-        NoneType = type(None)
-        (x,y) = (event.xdata, event.ydata)
-       
-        smallestdistance = np.inf
-        closestnode = None
-       
-        for node in self.owlBase.allConcerns_owlNode:
-
-            nodepos = self.owlTree.graphPositions[node.name]
+        self.eventX = event.xdata
+        self.eventY = event.ydata
         
-            distance = np.sqrt((x - nodepos[0])**2 + (y - nodepos[1])**2)
-            if(distance < smallestdistance):
-                closestnode = node
-                smallestdistance = distance
+        
+        
+        self.allTreeNodes.sort(key = self.getDistance)
+          
        
-        return closestnode
+       
+        closest = self.allTreeNodes[0]
+        secondclosest = self.allTreeNodes[1]
+        thirdclosest = self.allTreeNodes[2]
+     
+        
+       
+        closestx = np.abs(self.owlTree.graphPositions[closest.name][0] - self.eventX)
+        closesty = np.abs(self.owlTree.graphPositions[closest.name][1] - self.eventY)*self.XYRatio
+        
+        secondclosestx = np.abs(self.owlTree.graphPositions[secondclosest.name][0] - self.eventX)
+        secondclosesty = np.abs( self.owlTree.graphPositions[secondclosest.name][1] - self.eventY)*self.XYRatio
+        
+        thirdclosestx = np.abs(self.owlTree.graphPositions[thirdclosest.name][0] - self.eventX)
+        thirdclosesty = np.abs(self.owlTree.graphPositions[thirdclosest.name][1] - self.eventY)*self.XYRatio
+        
+        
+        
+        print("closest = ", closest.name, closestx, ",",closesty,",",)
+        print("secondclosest = ", secondclosest.name,",",secondclosestx,",",secondclosesty)
+        print("thirdclosest = ", thirdclosest.name,",",thirdclosestx,",",thirdclosesty)
+        
+        print()
+        
+        
+        if(closestx < self.getXLimit(closest.name) and closesty < self.getYLimit()):
+            
+            print("returning from first ", closest.name)
+            return closest
+        
+        elif(secondclosestx < self.getXLimit(secondclosest.name) and secondclosesty < self.getYLimit()):
+            
+            print("returning from second ",secondclosest.name)
+            return secondclosest
+        
+        elif(thirdclosestx < self.getXLimit(thirdclosest.name) and thirdclosesty < self.getYLimit()):
+            
+            print("returning from third ",thirdclosest.name)
+            return thirdclosest
+        
+        
+        
+        else:
+            
+            print("returning none")
+            return None
+        
+   
+    def getYLimit(self):
+        
+        if(self.zoom == .5):
+            return 35
+        elif(self.zoom == 1):
+            return 20
+        elif(self.zoom == 2):
+            return 18
+        elif(self.zoom == 3):
+            return 12
+        
+
+    def getXLimit(self,name):
+        
+        base = 4.20*len(name) + 8.6
+        
+        if(self.zoom == .5):    
+            return base*1.95
+        
+        elif(self.zoom == 1):
+            
+            return base
+        
+        elif(self.zoom == 2):
+            
+            return base * (.90)
+        
+        elif(self.zoom == 3):
+            
+            return base * (.75)
+        
+        
+        
 
     #returns the type of node with passed name, returns string
     def getType(self,name):
@@ -428,7 +592,7 @@ class OntologyGUI:
     def onRightClick(self,event):
 
     
-        if(self.owlLoaded == False or self.rcWindowOpen == True):
+        if(self.owlBaseLoaded == False or self.rcWindowOpen == True):
             return
 
         #set up windows and frames
@@ -445,25 +609,46 @@ class OntologyGUI:
         self.rcButtonFrame.place(relwidth = .7, relheight = .7, relx = .15, rely = .15)
         
         self.rcWindowHeaderFrame = tk.Frame(self.rcWindow,bg = spartangreen)
-        self.rcWindowHeaderFrame.place(relwidth = .7, relheight = .05, relx = .15, rely = .01)
+        self.rcWindowHeaderFrame.place(relwidth = .7, relheight = .15, relx = .15, rely = .01)
         
-        showtext = "Add New Parent Concern or Aspect"
+        showtext = tk.StringVar()
+        showtext.set("Add New Aspect")
 
-        self.rclcWindowHeaderLabel = Label(self.rcWindowHeaderFrame, text =  showtext,fg= "white",bg = spartangreen,font = headerFont)
+        self.rclcWindowHeaderLabel = Label(self.rcWindowHeaderFrame, textvariable =  showtext,fg= "white",bg = spartangreen,font = headerFont)
         self.rclcWindowHeaderLabel.pack()
         
         #set up prompt for new aspect name
-        self.rcIndivNamePrompt = Label(self.rcButtonFrame, text = "Name of New Aspect", font = promptFont,fg= "#747780",bg = "white")
+        
+        rcNamePromptText = tk.StringVar()
+        rcNamePromptText.set("Name of New Aspect")
+        self.rcIndivNamePrompt = Label(self.rcButtonFrame, textvariable = rcNamePromptText, font = promptFont,fg= "#747780",bg = "white")
         self.rcIndivNamePrompt.pack()
         
         self.rcIndivNameEntry = Entry(self.rcButtonFrame, width = 30,borderwidth = 5,highlightbackground="white", fg = "#18453b",font = entryFont)
         self.rcIndivNameEntry.pack()
-        self.rcIndivNameEntry.insert(1,"NewConcern")
+        self.rcIndivNameEntry.insert(1,"NewAspect")
         
         #add button to call function to add new aspect
         addAspectB = tk.Button(self.rcButtonFrame, text = "Add Aspect",padx = 10, pady = 5, bg = "#18453b", fg = "white",borderwidth = 5, font = buttonFont, command = self.addAspect)
         addAspectB.pack()
-       
+        
+        self.addSpace(self.rcButtonFrame,"white","tiny")
+        
+        
+        
+        if(self.owlAppLoaded == True):
+            
+        
+            addComponentB = tk.Button(self.rcButtonFrame,text = "Add Component", padx = 10, pady = 5, bg = "#18453b", fg = "white", borderwidth = 5, font = buttonFont, command = self.addComponent)
+            addComponentB.pack()
+            
+            self.rcIndivNameEntry.delete(0,END)
+            self.rcIndivNameEntry.insert(0,"NewAspect_Component")
+            showtext.set("Add New Aspect \n or Component")
+            rcNamePromptText.set("Name of New Aspect or Component")
+            
+            
+            
     #function to handle when you click Relations button, opens up window where you can do relation operations   
     def onRelationButton(self):
         
@@ -509,13 +694,14 @@ class OntologyGUI:
         
         self.addSpace(self.relationButtonFrame,"white","tiny")
         #add buttons for adding subconcern, addresses, remove relation
-        addSubConcernRelationB = tk.Button(self.relationButtonFrame, text = "Add Subconcern Relation",padx = 10, height = 1, width = 25, bg = "#18453b", fg = "white",borderwidth = 5, font = buttonFont, command = self.addSubConcernRelation)
-        addSubConcernRelationB.pack()
+        addRelationB = tk.Button(self.relationButtonFrame, text = "Add Relation",padx = 10, height = 1, width = 25, bg = "#18453b", fg = "white",borderwidth = 5, font = buttonFont, command = self.addRelation)
+        addRelationB.pack()
+        
         self.addSpace(self.relationButtonFrame,"white","tiny")
         
-        addAddressesConcernRelationB = tk.Button(self.relationButtonFrame, text = "Add Property Addresses Relation",padx = 10, height = 1, width = 25, bg = "#18453b", fg = "white",borderwidth = 5, font = buttonFont, command = self.addAddressesConcernRelation)
-        addAddressesConcernRelationB.pack()
-        self.addSpace(self.relationButtonFrame,"white","tiny")
+        #addAddressesConcernRelationB = tk.Button(self.relationButtonFrame, text = "Add Property Addresses Relation",padx = 10, height = 1, width = 25, bg = "#18453b", fg = "white",borderwidth = 5, font = buttonFont, command = self.addAddressesConcernRelation)
+        #addAddressesConcernRelationB.pack()
+        #self.addSpace(self.relationButtonFrame,"white","tiny")
         
         removeRelationB = tk.Button(self.relationButtonFrame, text = "Remove Relation",padx = 10, height = 1, width = 25, bg = "#18453b", fg = "white",borderwidth = 5, font = buttonFont, command = self.removeRelation)
         removeRelationB.pack()
@@ -527,6 +713,12 @@ class OntologyGUI:
       
     #handles clicks to set up relations, sets either parent or child node
     def handleRelationLeftClick(self,event):
+        
+        closestnode = self.getNearest(event)
+        
+        if(closestnode == None):
+            return
+        
         
         #if we are selecting parent, make click select parent, then have it select child next
         if(self.relationClickSelecting == "Parent"):
@@ -553,42 +745,60 @@ class OntologyGUI:
             self.readyForRelationButton = True
 
     
-    #adds a property addressesConcern relation, not functional at the moment
-    def addAddressesConcernRelation(self):
-    
-        return
+            
+        
+    def addRelation(self):   
+        
         if(self.readyForRelationButton == False):
             print("not ready for relation yet")
             return 
         
-        parent_relation = self.getOWLObject(self.relationParent.name)
-        child_relation = self.getOWLObject(self.relationChild.name)
-        
-        child_type = remove_namespace(child_relation.is_a[0])
-        parent_type = remove_namespace(parent_relation.is_a[0])
-        
-        if(is_asp_or_conc(child_type) == True and is_asp_or_conc(parent_type) == True):
-            print("Neither node is a property")
+        if(is_asp_or_conc(self.relationParent.type) == True and is_asp_or_conc(self.relationChild.type) == True):
+            
+            self.addSubConcernRelation()
+            
+        elif(self.relationParent.type == "Concern" and self.relationChild.type == "Property"):
+            
+            self.addAddressesConcernRelation()
+            
+        elif(self.relationParent.type == "Property" and self.relationChild.type == "Component"):
+            
+            self.addRelatedToRelation()
+            
+        else:
+            
+            print("Parent and child don't make sense")
             return
         
-        print("trying to add addresses relation")
+    def addRelatedToRelation(self):
         
-        summary = "Added addressesConcern relation from " + self.relationParent.name + " to " + self.relationChild.name
+        self.owlApplication.addNewRelatedToRelation(self.relationParent,self.relationChild)
         
-        self.printSummary(summary)
+        self.updateTree()
+
+        summary = "Added related to relation from " + self.relationParent.name + " to " + self.relationChild.name
         
+        self.summaryText.set(summary)
         
+    
+    def addAddressesConcernRelation(self):
+        
+     
+     
+        self.owlApplication.addNewAddressesConcernRelation(self.relationParent,self.relationChild)
+ 
+    
+        self.updateTree()
+
+        summary = "Added related to relation from " + self.relationParent.name + " to " + self.relationChild.name
+        
+        self.summaryText.set(summary)
+    
         
     #adds a subconcern relation between selected parent and child
     def addSubConcernRelation(self):
-        
-        if(self.readyForRelationButton == False):
-            print("not ready for relation yet")
-            return 
-        
-        if(is_asp_or_conc(self.relationParent.type) == False or is_asp_or_conc(self.relationChild.type) == False):
-            print("Either parent or child is not a concern")
-            return
+            
+    
         
         self.owlBase.addNewSubConcernRelation(self.relationParent,self.relationChild)
         
@@ -596,7 +806,7 @@ class OntologyGUI:
         
         summary = "Added subconcern relation from " + self.relationParent.name + " to " + self.relationChild.name
         
-        self.printSummary(summary)
+        self.summaryText.set(summary)
         
     #removes the selected relation, at the moment just handles subconcern relation
     def removeRelation(self):
@@ -605,22 +815,94 @@ class OntologyGUI:
             print("not ready for button yet")
             return 
         
-        if(is_asp_or_conc(self.relationParent.type) == False or is_asp_or_conc(self.relationParent.type) == False):
-            print("One node is not a concern")
+        if(is_asp_or_conc(self.relationParent.type) == True and is_asp_or_conc(self.relationChild.type) == True):
+            
+            self.removeSubConcernRelation()
+            
+        elif(self.relationParent.type == "Concern" and self.relationChild.type == "Property"):
+            
+            self.removeAddressesConcernRelation()
+            
+        elif(self.relationParent.type == "Property" and self.relationChild.type == "Component"):
+            
+            self.removeRelatedToRelation()
+            
+        else:
+            
+            print("Parent and child don't make sense")
             return
         
-        self.owlBase.removeSubConcernRelation(self.relationParent,self.relationChild)
+        
+      
         self.updateTree() 
         
         summary = "Removed relation between" + self.relationParent.name + " and " + self.relationChild.name
         
-        self.printSummary(summary)
+        self.summaryText.set(summary)
+    
+    def removeSubConcernRelation(self):
+        
+        self.owlBase.removeSubConcernRelation(self.relationParent,self.relationChild)
+        
+    def removeAddressesConcernRelation(self):
+        
+        self.owlApplication.removeAddressesConcernRelation(self.relationParent,self.relationChild)
+        
+    def removeRelatedToRelation(self):
+        
+        self.owlApplication.removeRelatedToRelation(self.relationParent,self.relationChild)
+        
+        
         
     #handles closing relations window    
     def relationWindowClose(self):
         
         self.relationWindow.destroy()
         self.relationWindowOpen = False
+        
+    def handleErrorMessage(self,new_name,frame):
+        
+        if(frame == "lc"):
+            
+            if(self.check_existence(new_name) == True):
+               print("Individual Already Exists\n in Ontology")
+               if(self.errorDisplayed == True):
+                   self.error_message.destroy()
+               self.error_message = Label(self.lcButtonFrame, text = "Individual Already Exists\n in Ontology", font = "Helvetica 8 bold italic",fg= "red",bg = "white")
+               self.error_message.pack()
+               self.errorDisplayed = True
+               return 0
+           
+        if(frame == "rc"):
+            if(self.check_existence(new_name) == True):
+               print("Individual Already Exists\n in Ontology")
+               if(self.rcErrorDisplayed == True):
+                   self.rcerror_message.destroy()
+               self.rcerror_message = Label(self.rcButtonFrame, text = "Individual Already Exists\n in Ontology", font = "Helvetica 8 bold italic",fg= "red",bg = "white")
+               self.rcerror_message.pack()
+               self.rcErrorDisplayed = True
+               return 0
+            
+            
+           
+    def handleErrorMessageDeletion(self,frame):
+        
+        if(frame == "lc"):
+            
+            if(self.errorDisplayed == True):
+                self.error_message.destroy()
+                self.errorDisplayed == False
+                
+        if(frame == "rc"):
+            if(self.rcErrorDisplayed == True):
+                self.rcerror_message.destroy()
+                self.rcErrorDisplayed == False
+            
+                
+            
+ 
+       
+        
         
     #function to add parent to clicked node
     def addParent(self):
@@ -629,19 +911,15 @@ class OntologyGUI:
         new_parent_name = self.indivNameEntry.get()
         
         #handle error message, if new concern with name already exists, don't add another
-        if(self.check_existence(new_parent_name) == True):
-           print("concern already exists")
-           if(self.errorDisplayed == True):
-               self.error_message.destroy()
-           self.error_message = Label(self.lcButtonFrame, text = "Concern Already Exists", font = "Helvetica 8 bold italic",fg= "red",bg = "white")
-           self.error_message.pack()
-           self.errorDisplayed = True
-           return
+        if (self.handleErrorMessage(new_parent_name,"lc") == 0):
+            return
       
         self.owlBase.addConcernAsParent(new_parent_name,self.leftClicked.name)
         
         summary = "Added " + new_parent_name + " as Parent of " + self.leftClicked.name 
-        self.printSummary(summary)
+        self.summaryText.set(summary)
+        
+        self.handleErrorMessageDeletion("lc")
         
         self.updateTree()
         
@@ -652,14 +930,8 @@ class OntologyGUI:
         new_aspect_name = self.rcIndivNameEntry.get()
 
         #handle error message, if new concern with name already exists, don't add another
-        if(self.check_existence(new_aspect_name) == True):
-           print("concern already exists")
-           if(self.rcErrorDisplayed == True):
-               self.rcerror_message.destroy()
-           self.rcerror_message = Label(self.rcButtonFrame, text = "Concern Already Exists", font = "Helvetica 8 bold italic",fg= "red",bg = "white")
-           self.rcerror_message.pack()
-           self.rcErrorDisplayed = True
-           return
+        if(self.handleErrorMessage(new_aspect_name,"rc") == 0):
+            return
         
         #instantiate new aspect object
         self.owlBase.addNewAspect(new_aspect_name)
@@ -667,31 +939,67 @@ class OntologyGUI:
         #prints text in textBoxFrame to tell what happend
         summary = "Added Aspect " + new_aspect_name + " to ontology"
 
-        self.printSummary(summary)
+        self.summaryText.set(summary)
 
         self.updateTree()
 
-        if(self.rcErrorDisplayed == True):
-            self.rcerror_message.destroy()
-            self.rcErrorDisplayed == False
+        self.handleErrorMessageDeletion("rc")
 
         print("added aspect")
+        
+        self.rcWindowClose()
+        
+    def addComponent(self):
+        
+        if(self.owlAppLoaded == False):
+            return
+         
+        
+         
+        #get name of new aspect from entry
+        new_component_name = self.rcIndivNameEntry.get()
+
+        #handle error message, if new concern with name already exists, don't add another
+        if(self.handleErrorMessage(new_component_name,"rc") == 0):
+            return
+        
+        #instantiate new aspect object
+        self.owlApplication.addNewComponent(new_component_name)
+
+        #prints text in textBoxFrame to tell what happend
+        summary = "Added Component " + new_component_name + " to ontology"
+
+        self.summaryText.set(summary)
+
+        self.updateTree()
+
+        self.handleErrorMessageDeletion("rc")
+
+        print("added component")
+        
+        self.rcWindowClose()
 
 
     #handles opening left click window, where you can edit clicked concerns
     def onLeftClick(self,event):
 
-        if(self.lcWindowOpen == True or self.owlLoaded == False):
+            
+        
+        if(self.lcWindowOpen == True or self.owlBaseLoaded == False):
             return
-
+        
         self.errorDisplayed = False
 
         #get the node you just clicked on
         closestnode = self.getNearest(event)
         
-        #set global "parent" variable which is essentially the selected node which will be used by other functions
+        if(closestnode == None):
+            return
+        
         self.leftClicked = closestnode
         
+        
+          
         #open up window and frames
         self.lcWindow = tk.Toplevel(height = 400, width = 300,bg = spartangreen )
         self.lcWindow.transient(master = self.master)
@@ -707,7 +1015,7 @@ class OntologyGUI:
         self.lcButtonFrame = tk.Frame(self.lcWindow, bg = "white")
         self.lcButtonFrame.place(relwidth = .7, relheight = .7, relx = .15, rely = .15)
 
-        type_item = closestnode.type
+        type_item = self.leftClicked.type
     
     
         self.lcWindowHeaderText = tk.StringVar()
@@ -716,13 +1024,198 @@ class OntologyGUI:
 
         self.lcWindowHeaderLabel = Label(self.lcWindowHeaderFrame, textvariable = self.lcWindowHeaderText ,fg= "white",bg = spartangreen,font = headerFont)
         self.lcWindowHeaderLabel.pack()
-
-        self.indivNamePrompt = Label(self.lcButtonFrame, text = "Name of New Concern", font = promptFont,fg= "#747780",bg = "white")
+        
+        if(is_asp_or_conc(self.leftClicked.type) == True):
+            
+            self.concernLeftClick(event)
+    
+        elif(self.leftClicked.type == "Component"):
+            
+            self.componentLeftClick(event)
+            
+        elif(self.leftClicked.type == "Property"):
+            
+            self.propertyLeftClick(event)
+            
+        else:
+            
+            print("Not sure what type that was")
+            
+            return
+        
+    def componentLeftClick(self,event):
+        
+        self.indivNamePrompt = Label(self.lcButtonFrame, text = "Name of Entry", font = promptFont,fg= "#747780",bg = "white")
         self.indivNamePrompt.pack()
 
         self.indivNameEntry = Entry(self.lcButtonFrame, width = 30,borderwidth = 5,highlightbackground="white", fg = "#18453b",font = entryFont)
         self.indivNameEntry.pack()
-        self.indivNameEntry.insert(1,"NewConcern")
+        self.indivNameEntry.insert(1,"NewEntry")
+        
+        self.addSpace(self.lcButtonFrame,"white","tiny")
+
+        #set up buttons for operations
+        addParentB = tk.Button(self.lcButtonFrame, text = "Add Parent Property",padx = 5, bg = "#18453b", fg = "white",borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.addParentProperty)
+        addParentB.pack()
+        
+        self.addSpace(self.lcButtonFrame,"white","tiny")
+        
+        editNameB = tk.Button(self.lcButtonFrame, text = "Edit Name",padx = 5, bg = "#18453b", fg = "white",borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.editComponent)
+        editNameB.pack()
+        
+        self.addSpace(self.lcButtonFrame,"white","tiny")
+        
+        removeComponentB = tk.Button(self.lcButtonFrame, text = "Delete",padx = 5, bg = "#18453b", fg = "white",borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.removeConcern)
+        removeComponentB.pack()
+        
+        self.addSpace(self.lcButtonFrame,"white","tiny")
+        
+        
+        
+        print("component left click")
+        
+    def addParentProperty(self):
+        
+        new_parent_name = self.indivNameEntry.get()
+        
+        #handle error message, if new concern with name already exists, don't add another
+        if (self.handleErrorMessage(new_parent_name,"lc") == 0):
+            return
+      
+        self.owlApplication.addPropertyAsParent(new_parent_name,self.leftClicked)
+        
+        summary = "Added " + new_parent_name + " as Parent of " + self.leftClicked.name 
+        self.summaryText.set(summary)
+        
+        self.handleErrorMessageDeletion("lc")
+        
+        self.updateTree()
+        
+
+    
+    def propertyLeftClick(self,event):
+        
+        self.indivNamePrompt = Label(self.lcButtonFrame, text = "Name of Entry", font = promptFont,fg= "#747780",bg = "white")
+        self.indivNamePrompt.pack()
+
+        self.indivNameEntry = Entry(self.lcButtonFrame, width = 30,borderwidth = 5,highlightbackground="white", fg = "#18453b",font = entryFont)
+        self.indivNameEntry.pack()
+        self.indivNameEntry.insert(1,"NewEntry")
+        
+        self.addSpace(self.lcButtonFrame,"white","tiny")
+
+        #set up buttons for operations
+        addParent = tk.Button(self.lcButtonFrame, text = "Add Parent Concern",padx = 5, bg = "#18453b", fg = "white",borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.addParent)
+        addParent.pack()
+        
+        self.addSpace(self.lcButtonFrame,"white","tiny")
+        
+        addChildComp = tk.Button(self.lcButtonFrame, text = "Add Child Component",padx = 5, bg = "#18453b", fg = "white",borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.addChildComp)
+        addChildComp.pack()
+        
+        self.addSpace(self.lcButtonFrame,"white","tiny")
+        
+        editName = tk.Button(self.lcButtonFrame, text = "Edit Name",padx = 5, bg = "#18453b", fg = "white",borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.editPropertyName)
+        editName.pack()
+        
+        self.addSpace(self.lcButtonFrame,"white","tiny")
+        
+        removeConcernB = tk.Button(self.lcButtonFrame, text = "Delete",padx = 5, bg = "#18453b", fg = "white",borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.removeConcern)
+        removeConcernB.pack()
+        
+        self.addSpace(self.lcButtonFrame,"white","tiny")
+      
+    def editComponent(self):
+        
+        new_name = self.indivNameEntry.get()
+        old_name = self.leftClicked.name
+        ind_type = self.leftClicked.type
+
+        if (self.handleErrorMessage(new_name,"lc") == 0):
+            return
+
+        #change name of olwready object
+        
+        self.owlApplication.editComponentName(self.leftClicked,new_name)
+  
+
+    
+        summary = "Changed name of " + old_name + " to " + new_name
+        self.summaryText.set(summary)
+        
+        
+        self.updateTree()
+        
+        
+        self.lcWindowHeaderText.set(ind_type + " - " + new_name)
+        
+        self.handleErrorMessageDeletion("lc")
+
+        
+        
+        
+    def editPropertyName(self):
+        
+        new_name = self.indivNameEntry.get()
+        old_name = self.leftClicked.name
+        ind_type = self.leftClicked.type
+
+        if (self.handleErrorMessage(new_name,"lc") == 0):
+            return
+
+        #change name of olwready object
+        
+        self.owlApplication.editPropertyName(self.leftClicked,new_name)
+  
+
+    
+        summary = "Changed name of " + old_name + " to " + new_name
+        self.summaryText.set(summary)
+        
+        
+        self.updateTree()
+        
+        self.handleErrorMessageDeletion("lc")
+        
+        self.lcWindowHeaderText.set(ind_type + " - " + new_name)
+
+        
+        
+        
+    def addChildComp(self):
+        
+        
+        new_component_name = self.indivNameEntry.get()
+
+        #handle error message, if new concern with name already exists, don't add another
+        if (self.handleErrorMessage(new_component_name,"lc") == 0):
+            return
+       
+        
+        #instantiate new aspect object
+        self.owlApplication.addNewComponentAsChild(new_component_name,self.leftClicked)
+
+        #prints text in textBoxFrame to tell what happend
+        summary = "Added Component " + new_component_name + " to ontology"
+
+        self.summaryText.set(summary)
+
+        self.updateTree()
+
+        self.handleErrorMessageDeletion("lc")
+
+        print("added component")
+
+        
+    def concernLeftClick(self,event):
+
+        
+        self.indivNamePrompt = Label(self.lcButtonFrame, text = "Name of New Node", font = promptFont,fg= "#747780",bg = "white")
+        self.indivNamePrompt.pack()
+
+        self.indivNameEntry = Entry(self.lcButtonFrame, width = 30,borderwidth = 5,highlightbackground="white", fg = "#18453b",font = entryFont)
+        self.indivNameEntry.pack()
+        self.indivNameEntry.insert(1,"NewNode")
         
         self.addSpace(self.lcButtonFrame,"white","tiny")
 
@@ -737,7 +1230,7 @@ class OntologyGUI:
         
         self.addSpace(self.lcButtonFrame,"white","tiny")
 
-        addPropertyB = tk.Button(self.lcButtonFrame, text = "Add Property",padx = 5, bg = "#18453b", fg = "white",borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.addProperty)
+        addPropertyB = tk.Button(self.lcButtonFrame, text = "Add Property",padx = 5, bg = "#18453b", fg = "white",borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.addPropertyAsChild)
         addPropertyB.pack()
         
         self.addSpace(self.lcButtonFrame,"white","tiny")
@@ -760,14 +1253,8 @@ class OntologyGUI:
         old_name = self.leftClicked.name
         ind_type = self.leftClicked.type
 
-        if(self.check_existence(new_name) == True):
-           print("concern already exists")
-           if(self.errorDisplayed == True):
-               self.error_message.destroy()
-           self.error_message = Label(self.lcButtonFrame, text = "Concern Already Exists", font = "Helvetica 8 bold italic",fg= "red",bg = "white")
-           self.error_message.pack()
-           self.errorDisplayed = True
-           return
+        if (self.handleErrorMessage(new_name,"lc") == 0):
+            return
 
         #change name of olwready object
         
@@ -776,13 +1263,15 @@ class OntologyGUI:
 
     
         summary = "Changed name of " + old_name + " to " + new_name
-        self.printSummary(summary)
+        self.summaryText.set(summary)
         
         
         self.updateTree()
         
         
         self.lcWindowHeaderText.set(ind_type + " - " + new_name)
+        
+        self.handleErrorMessageDeletion("lc")
 
     #handles closing concern editor window
     def leftclickWindowClose(self):
@@ -846,7 +1335,7 @@ class OntologyGUI:
             
             
             summary = "Removed " + self.leftClicked.name
-            self.printSummary(summary)
+            self.summaryText.set(summary)
             self.leftclickWindowClose()
          
         #if deletion would create removeChildren, ask if they want to delete all of the removeChildren
@@ -1068,6 +1557,29 @@ class OntologyGUI:
         noB.pack()
         
         
+    def addPropertyAsChild(self):
+        
+        if(self.owlAppLoaded == False):
+            return
+        
+        
+        new_property_name = self.indivNameEntry.get()
+
+        #handle error message, if new concern with name already exists, don't add another
+        if (self.handleErrorMessage(new_property_name,"lc") == 0):
+            return
+
+        self.owlApplication.addPropertyAsChild(new_property_name,self.leftClicked)
+
+        
+        summary = "Added property " + new_property_name + " to ontology"
+
+        self.summaryText.set(summary)
+
+        self.updateTree()
+
+        self.handleErrorMessageDeletion("lc")        
+        
     #adds a property to the ontology, uses gui for inputs, updates tree afterwards
     def addProperty(self):
 
@@ -1075,14 +1587,8 @@ class OntologyGUI:
         new_property_name = self.indivNameEntry.get()
 
         #handle error message, if new concern with name already exists, don't add another
-        if(self.check_existence(new_property_name) == True):
-           print("concern already exists")
-           if(self.errorDisplayed == True):
-               self.error_message.destroy()
-           self.error_message = Label(self.lcButtonFrame, text = "Concern Already Exists", font = "Helvetica 8 bold italic",fg= "red",bg = "white")
-           self.error_message.pack()
-           self.errorDisplayed = True
-           return
+        if (self.handleErrorMessage(new_property_name,"lc") == 0):
+            return
 
       
         #instantiate the new property given the new name
@@ -1117,13 +1623,11 @@ class OntologyGUI:
         #prints text in text box
         summary = "Added property " + new_property_name + " to ontology"
 
-        self.printSummary(summary)
+        self.summaryText.set(summary)
 
         self.updateTree()
 
-        if(self.errorDisplayed == True):
-            self.error_message.destroy()
-            self.errorDisplayed == False
+        self.handleErrorMessageDeletion("lc")
 
     #returns the suitable ir name given how many already exist
     def getIRName(self):
@@ -1165,7 +1669,9 @@ class OntologyGUI:
          self.owlBase.initializeOwlNodes()
          self.owlBase.setNumbers()
          
-         self.owlApplication.initializeOwlNodes()
+         if(self.owlApplication != None):
+             self.owlApplication.initializeOwlNodes()
+             self.owlApplication.setNumbers()
          
          self.constructGraph()
         
@@ -1177,22 +1683,38 @@ class OntologyGUI:
          self.treeChart.draw()
 
          self.updateOwlStats()
+         self.setAllTreeNodes()
 
 
     #loads the specified ontology file in
-    def loadOntology(self):
+    def loadBaseOntology(self):
 
-        self.owlBase = owlBase(self.inputEntry.get())
+        self.owlBase = owlBase(self.inputBaseEntry.get())
         
-        self.owlApplication = owlApplication("cpsframework-v3-sr-Elevator-Configuration.owl",self.owlBase)
+        #self.owlApplication = owlApplication("cpsframework-v3-sr-Elevator-Configuration.owl",self.owlBase)
 
-        summary = "Loaded ontology " + "file://./" + self.inputEntry.get()
-        self.printSummary(summary)
+        summary = "Loaded base ontology " + "file://./" + self.inputBaseEntry.get()
+        self.summaryText.set(summary)
 
+
+        self.owlBaseLoaded = True
         self.updateTree()
 
-        self.owlLoaded = True
+        
 
+    def loadAppOntology(self):
+        
+        self.owlApplication = owlApplication(self.inputAppEntry.get(),self.owlBase)
+        
+        summary = "Loaded application ontology " + "file://./" + self.inputAppEntry.get()
+       
+        self.summaryText.set(summary)
+
+
+        self.owlAppLoaded = True
+        self.updateTree()
+
+        
 
     def constructGraph(self):
         
@@ -1247,7 +1769,7 @@ class OntologyGUI:
 
         elif(self.zoomIndex >= 100 and self.zoomIndex < 110):
             self.zoom = 1
-            self.fontsize = 8
+            self.fontsize = 8.5
 
         elif(self.zoomIndex >= 110 and self.zoomIndex < 120):
             self.zoom = 2
@@ -1269,8 +1791,13 @@ class OntologyGUI:
 
         self.processFile(output_file)
 
+
+        if(self.owlApplication != None):
+            self.owlApplication.owlReadyOntology.save(file = "app_" + output_file, format = "rdfxml")
+            self.processFile("app_" + output_file)
+    
         summary = "Outputted ontology to file: " + output_file
-        self.printSummary(summary)
+        self.summaryText.set(summary)
 
     #changes the portion of axis we view according to zoom level, slider position
     def scale_tree(self,var):
@@ -1307,6 +1834,15 @@ class OntologyGUI:
 
 
          self.treeAxis.set(xlim=(leftmostx, rightmostx), ylim=(leftmosty, rightmosty))
+         
+         rmx = rightmostx - leftmostx 
+         rmy = rightmosty - leftmosty
+         
+       
+         
+         self.XYRatio = rmx/rmy
+         print(self.XYRatio)
+         
          self.treeChart.draw()
 
 
@@ -1354,6 +1890,30 @@ class OntologyGUI:
         fin.write(data)
         #close the file
         fin.close()
+    
+    def outputAndLaunchASP(self):
+         
+        return
+    
+        output_file = self.outputEntry.get()
+
+        #self.owlBase.owlReadyOntology.save(file = "./../../src/asklab/querypicker/QUERIES/BASE/" + output_file, format = "rdfxml")
+        self.owlBase.owlReadyOntology.save(file = output_file, format = "rdfxml")
+
+        self.processFile(output_file)
+
+
+        if(self.owlApplication != None):
+            self.owlApplication.owlReadyOntology.save(file = "app_" + output_file, format = "rdfxml")
+            self.processFile("app_" + output_file)
+    
+        summary = "Outputted ontology to file: " + output_file
+        self.summaryText.set(summary)
+        
+        
+        
+        return
+    
 
     def remove_namespace(in_netx):
 

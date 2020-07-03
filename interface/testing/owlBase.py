@@ -16,6 +16,7 @@ class owlBase:
         self.owlName = None
         self.nodeArray = None
         self.concernArray = None
+        self.owlApplication = None
       
         self.numNodes = None
         self.numAspects = None
@@ -78,99 +79,7 @@ class owlBase:
         self.owlReadyOntology = get_ontology("file://./" + filename).load()
         self.owlName = str(filename)
 
-    def constructIndividualArrayx(self):
 
-        self.owlIndividualArray = np.array(())
-        self.nodeArray = np.array(())
-
-        all_aspects = np.asarray(self.owlReadyOntology.search(type = self.owlReadyOntology.Aspect))
-
-
-        #all_aspects = np.asarray(self.owlReadyOntology.search(iri = "*" + "Trustworthiness"))
-        #all_aspects = np.array((self.owlReadyOntology.Trustworthiness))
-
-        for aspect in all_aspects:
-
-
-           self.addAllConcernsFromParent(aspect,"None",0)
-
-        self.addDanglingParentConcerns()
-       # self.addAllProperties()
-
-
-
-    def addAllConcernsFromParentx(self,concern,parent,level):
-
-        #print("called")
-
-        #appends to the total concern list
-        self.owlIndividualArray = np.append(self.owlIndividualArray,concern)
-
-        newOwlNode = owlNode()
-        newOwlNode.name = remove_namespace(concern)
-        newOwlNode.type = remove_namespace(concern.is_a[0])
-        newOwlNode.parent = remove_namespace(parent)
-        newOwlNode.children = np.array(())
-        newOwlNode.level = level
-
-        
-
-    
-        for child in concern.includesConcern:
-
-            newOwlNode.children = np.append(newOwlNode.children,remove_namespace(child))
-
-
-        if(newOwlNode.type == "Aspect"):
-            newOwlNode.parent = "None"
-
-
-
-        self.nodeArray = np.append(self.nodeArray,newOwlNode)
-
-        level = level + 1
-        #recursively calls subconcerns
-        for subconcern in concern.includesConcern:
-
-            self.addAllConcernsFromParent(subconcern,concern,level)
-        
-    
-    
-    def addDanglingParentConcerns(self):
-        
-        all_concerns = np.asarray(self.owlReadyOntology.search(type = self.owlReadyOntology.Concern))
-        
-        
-        #print("ALL CONCERNS IN DANGLING PARENT")
-        #print(all_concerns)
-        
-        for concern in all_concerns:
-            print("concern in loop is " + remove_namespace(concern))
-            
-            if(self.checkAddedToArray(remove_namespace(concern)) == False):
-                
-                #print("adding dangling parent = " + remove_namespace(concern))
-                
-                self.owlIndividualArray = np.append(self.owlIndividualArray,concern)
-                
-                newOwlNode = owlNode()
-                newOwlNode.name = remove_namespace(concern)
-                newOwlNode.type = remove_namespace(concern.is_a[0])
-                newOwlNode.children = np.array(())
-                newOwlNode.parent = "None"
-                
-                for child in concern.includesConcern:
-
-                    newOwlNode.children = np.append(newOwlNode.children,remove_namespace(child))
-                
-                self.nodeArray = np.append(self.nodeArray,newOwlNode)
-                
-                
-                
-                
-        
-
-    
 
 
     def setNumbers(self):
@@ -180,10 +89,6 @@ class owlBase:
         self.numConcerns =  len(self.owlReadyOntology.search(type = self.owlReadyOntology.Concern))
         
         self.numNodes = self.numAspects + self.numConcerns
-
-        self.numComponents = 0
-        self.numConditions = len(self.owlReadyOntology.search(type = self.owlReadyOntology.Condition))
-        self.numImpactRules =  len(self.owlReadyOntology.search(type = self.owlReadyOntology.ImpactRule))
 
         #self.printNumbers()
 
@@ -242,6 +147,16 @@ class owlBase:
             if(node.name == name):
                 
                 return node
+            
+        if(self.owlApplication != None):
+            
+            for node in self.owlApplication.nodeArray:
+            
+                if(node.name == name):
+                
+                    return node
+            
+            
         
         return 0
     
@@ -285,6 +200,8 @@ class owlBase:
          if(is_asp_or_conc(child.type) == False or is_asp_or_conc(parent.type) == False):
             print("One node is not a concern")
             return
+        
+         print("removing relation between " + parent.name + " and " + child.name)
         
          parent.owlreadyObj.includesConcern.remove(child.owlreadyObj)
          
@@ -391,9 +308,9 @@ class owlBase:
 
 
 
-testOwlOntology = owlBase("cpsframework-v3-base.owl")
+#testOwlOntology = owlBase("cpsframework-v3-base.owl")
 
-testOwlOntology.initializeOwlNodes()
+#testOwlOntology.initializeOwlNodes()
 
 
 #for i in range (len(testOwlOntology.allConcerns_owlNode)):

@@ -44,7 +44,7 @@ class owlApplication:
         self.addProperties()
         self.handleRelateToProperty()
         self.handleAddConcern()
-        #self.assignParentsFromChildren()
+        
         
     
     def addComponents(self):
@@ -70,9 +70,16 @@ class owlApplication:
         
         self.allProperties_owlNode = []
         
-        all_properties = np.asarray(self.owlReadyOntology.search(type = self.owlReadyOntology.Property))
+        #all_inds = np.asarray(self.owlReadyOntology.search(type = self.owlReadyOntology.Property))
+        all_inds = list(self.owlReadyOntology.individuals())
         
-        for prop in all_properties:
+        
+        for prop in all_inds:
+            
+            if(prop.is_a[0] != self.owlReadyOntology.Property):
+                continue
+            
+            #print("found " + remove_namespace(prop) + " in addProperties app")
             
             newOwlNode = owlNode()
             newOwlNode.name = remove_namespace(prop)
@@ -101,6 +108,33 @@ class owlApplication:
                 prop_owlNode.children.append(comp)
                 comp.parents.append(prop_owlNode)
                 
+    def addPropertyAsParent(self,new_name,parent):
+        
+        new_property = self.owlReadyOntology.Property(new_name,ontology = self.owlReadyOntology)
+        
+        parent.owlreadyObj.relateToProperty.append(new_property)
+        
+    def addPropertyAsChild(self,new_name,parent):
+        
+        print("called add property in owlapplication ")
+        print("new name is " + new_name)
+        print("concern is " + parent.name)
+        new_property = self.owlReadyOntology.Property(new_name,ontology = self.owlReadyOntology)
+        
+        new_property.addConcern.append(self.owlReadyOntology.Concern(parent.name,ontology = self.owlReadyOntology))
+                
+    def editPropertyName(self,node,new_name):
+        
+        node.owlreadyObj.name = new_name
+        
+        
+        
+    def editComponentName(self,node,new_name):
+        
+        node.owlreadyObj.name = new_name
+        
+        
+                
     def handleAddConcern(self):
         
         for prop in self.allProperties_owlNode:
@@ -123,8 +157,43 @@ class owlApplication:
                 prop.parents.append(baseconcern)
             
             
-                
-                
+    def addNewComponent(self,new_name):
+        
+        new_component = self.owlReadyOntology.Component(new_name,ontology = self.owlReadyOntology)
+    
+    def addNewComponentAsChild(self,new_name,parent):
+        
+        new_component = self.owlReadyOntology.Component(new_name,ontology = self.owlReadyOntology)
+         
+        new_component.relateToProperty.append(parent.owlreadyObj)
+         
+        
+        
+        
+
+    def addNewRelatedToRelation(self,parent,child):
+        
+        child.owlreadyObj.relateToProperty.append(parent.owlreadyObj)
+        
+    def addNewAddressesConcernRelation(self,parent,child):
+        
+        
+        child.owlreadyObj.addConcern.append(self.owlReadyOntology.Concern(parent.name,ontology = self.owlReadyOntology))
+      
+
+    def removeAddressesConcernRelation(self,parent,child):
+        
+    
+        
+        child.owlreadyObj.addConcern.remove(self.owlReadyOntology.Concern(parent.name,ontology = self.owlReadyOntology))
+        
+    def removeRelatedToRelation(self,parent,child):
+        
+        
+        child.owlreadyObj.relateToProperty.remove(parent.owlreadyObj)
+        
+
+          
     def assignParentsFromChildren(self):
         
         for node in self.nodeArray:
@@ -132,6 +201,8 @@ class owlApplication:
             for child in node.children:
                 
                 child.parents.append(node)
+                
+ 
                 
                 
     def getOwlNode(self,name):
@@ -157,6 +228,13 @@ class owlApplication:
                 return node
         #print("couldnt find from base " + name)
         return 0
+    
+    def setNumbers(self):
+        
+        
+        self.numComponents = len(self.allComponents_owlNode)
+        self.numProperties = len(self.allProperties_owlNode)
+        self.numNodes = self.numComponents + self.numProperties
         
         
     
