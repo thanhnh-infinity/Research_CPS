@@ -12,7 +12,7 @@ from script_networkx import remove_namespace
 from owlBase import owlBase
 from owlApplication import owlApplication
 from owlGraph import owlGraph
-
+import platform
 
 from owlready2 import *
 pressed = False
@@ -24,7 +24,7 @@ class OntologyGUI:
 
         self.zoom = 1
         self.zoomIndex = 105
-        self.fontsize = 8.5
+        
 
         self.lcWindowOpen = False
         self.rcWindowOpen = False
@@ -46,8 +46,42 @@ class OntologyGUI:
 
 
         self.master = master
+        self.operatingSystem = platform.system()
 
-        self.buttonFontColor = "black"
+        
+        
+        if(self.operatingSystem == "Windows"):
+            
+            print("Dealing with Windows")
+            
+            self.fontsize = 13
+            
+            self.fontsize_0_5 = 6
+            self.fontsize_1 = 13
+            self.fontsize_2 = 26
+            self.fontsize_3 = 34
+        
+
+            self.buttonFontColor = "white"
+            self.buttonBGColor = spartangreen
+    
+        else:
+            
+            print("Dealing with Non-Windows OS")
+            
+            self.fontsize = 8.5
+            
+            self.fontsize_0_5 = 6
+            self.fontsize_1 = 8.5
+            self.fontsize_2 = 16
+            self.fontsize_3 = 24
+        
+
+            self.buttonFontColor = "black"
+            self.buttonBGColor = "grey"
+            
+            
+        
 
 
         self.master.bind("<Button-4>", self.handleZoom)
@@ -509,7 +543,7 @@ class OntologyGUI:
         #print("secondclosest = ", secondclosest.name,",",secondclosestx,",",secondclosesty)
         #print("thirdclosest = ", thirdclosest.name,",",thirdclosestx,",",thirdclosesty)
 
-        print()
+        #print()
 
 
         if(closestx < self.getXLimit(closest.name) and closesty < self.getYLimit()):
@@ -1767,19 +1801,19 @@ class OntologyGUI:
 
         if(self.zoomIndex >= 90 and self.zoomIndex < 100):
             self.zoom = .5
-            self.fontsize = 6
+            self.fontsize = self.fontsize_0_5 
 
         elif(self.zoomIndex >= 100 and self.zoomIndex < 110):
             self.zoom = 1
-            self.fontsize = 8.5
+            self.fontsize = self.fontsize_1
 
         elif(self.zoomIndex >= 110 and self.zoomIndex < 120):
             self.zoom = 2
-            self.fontsize = 16
+            self.fontsize = self.fontsize_2
 
         elif(self.zoomIndex >= 120 and self.zoomIndex < 130):
             self.zoom = 3
-            self.fontsize = 24
+            self.fontsize = self.fontsize_3
 
         if(original_zoom != self.zoom):
             self.updateTree()
@@ -1931,6 +1965,8 @@ class OntologyGUI:
         return in_str[(period + 1):]
 
 root = Tk()
+
+root.state("zoomed")
 
 fontStyle = tkFont.Font(family="Lucida Grande", size=8, weight = "bold")
 
