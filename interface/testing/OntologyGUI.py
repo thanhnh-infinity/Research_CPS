@@ -120,7 +120,7 @@ class OntologyGUI:
         self.addSpace(self.leftControlFrame,"white","tiny")
         
         self.saveOntologyLaunchASPB = tk.Button(self.leftControlFrame, text = "Output Ontology and Run ASP", padx = 10, pady = 5, bg = "#18453b",fg = "white",borderwidth = 5, font = buttonFont, command = self.outputAndLaunchASP)
-        self.saveOntologyLaunchASPB.pack()
+        #self.saveOntologyLaunchASPB.pack()
         self.addSpace(self.leftControlFrame,"white","tiny")
         #sets up gray box for information window
 
@@ -272,7 +272,7 @@ class OntologyGUI:
         self.remremoveChildrenFrame = tk.Frame(self.treeFrame,bg = "white")
         self.remremoveChildrenFrame.place(relwidth = .10, relheight = .05, relx = .89, rely = .01)
     
-        self.removeremoveChildrenB = tk.Button(self.remremoveChildrenFrame, text = "Remove Floaters",padx = 10, pady = 5, bg = spartangreen, fg = "white",borderwidth = 5, font = buttonFont,  command = self.removeFloaters)
+        self.removeremoveChildrenB = tk.Button(self.remremoveChildrenFrame, text = "Rem Relationless",padx = 10, pady = 5, bg = spartangreen, fg = "white",borderwidth = 5, font = buttonFont,  command = self.removeFloaters)
         self.removeremoveChildrenB.pack()
     
 
@@ -413,7 +413,8 @@ class OntologyGUI:
             
             if(self.owlAppLoaded == True):
                 
-                self.owlAppNameText.set("App - " + str(self.owlApplication.owlName))
+                #self.owlAppNameText.set("App - " + str(self.owlApplication.owlName))
+                self.owlAppNameText.set("App - cpsframework-v3-Elevator.owl")
                 self.numPropertiesText.set("Num Properties - " + str(self.owlApplication.numProperties))
                 self.numComponentsText.set("Num Components - " + str(self.owlApplication.numComponents))
                 
@@ -1001,7 +1002,7 @@ class OntologyGUI:
         
           
         #open up window and frames
-        self.lcWindow = tk.Toplevel(height = 400, width = 300,bg = spartangreen )
+        self.lcWindow = tk.Toplevel(height = 450, width = 300,bg = spartangreen )
         self.lcWindow.transient(master = self.master)
 
         self.lcWindowOpen = True
@@ -1341,7 +1342,7 @@ class OntologyGUI:
         #if deletion would create removeChildren, ask if they want to delete all of the removeChildren
         else:
             
-            self.removeChildrenWindow = tk.Toplevel(height = 200, width = 600, bg = spartangreen)
+            self.removeChildrenWindow = tk.Toplevel(height = 250, width = 600, bg = spartangreen)
             #self.removeChildrenWindow.transient(master = self.lcWindow)
             self.lcWindow.withdraw()
            
@@ -1547,7 +1548,7 @@ class OntologyGUI:
             toDeleteLabel.pack()
             
             
-        self.removeConfirmationQuestionLabel = Label(self.removeConfirmationButtonFrame,text = "Would you like to Remove these?")
+        self.removeConfirmationQuestionLabel = Label(self.removeConfirmationButtonFrame,text = "Would you like to Remove these?", font = promptFont)
         self.removeConfirmationQuestionLabel.pack()
         
         yesB = tk.Button(self.removeConfirmationButtonFrame, text = "Yes",padx = 10, pady = 5, bg = "#18453b", fg = "white",borderwidth = 5, font = buttonFont, command = self.removeIndAndRelationless)
@@ -1933,11 +1934,11 @@ root = Tk()
 fontStyle = tkFont.Font(family="Lucida Grande", size=8, weight = "bold")
 
 headerFont = tkFont.Font(family = "Helvetica",size = 12, weight = "bold")
-promptFont = tkFont.Font(family = "Lucida Grande", size = 8, weight = "bold")
+promptFont = tkFont.Font(family = "Lucida Grande", size = 10, weight = "bold")
 infoFont = tkFont.Font(family = "lucida Grande", size = 8, weight = "bold")
-entryFont = tkFont.Font(family = "Verdana", size = 10, weight = "bold")
-buttonFont = tkFont.Font(family = "Helvetica", size = 8, weight = "normal")
-summaryFont = tkFont.Font(family = "Lucida Grande", size = 8, weight = "bold")
+entryFont = tkFont.Font(family = "Verdana", size = 12, weight = "bold")
+buttonFont = tkFont.Font(family = "Helvetica", size = 12, weight = "normal")
+summaryFont = tkFont.Font(family = "Lucida Grande", size = 6, weight = "bold")
 
 tiny = tkFont.Font(family="Lucida Grande", size=1, weight = "bold")
 small = tkFont.Font(family="Lucida Grande", size=6, weight = "bold")

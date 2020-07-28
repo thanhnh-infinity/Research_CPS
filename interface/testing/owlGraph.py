@@ -266,7 +266,7 @@ class owlGraph:
         aspect_color = "#000a7d"
         concern_color = "#800000"
         property_color = "#595858"
-        component_color = "pink"
+        component_color = "purple"
         edge_color = "black"
         edge_width = 2
         edge_alpha = .8
@@ -291,7 +291,7 @@ class owlGraph:
         nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.aspectNodeLabels,font_size=fs,bbox=dict(facecolor=aspect_color, boxstyle='square,pad=.3'),font_color = "white")
         nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.concernNodeLabels,font_size=fs,bbox=dict(facecolor=concern_color, boxstyle='square,pad=.3'),font_color = "white")
         nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.propertyNodeLabels,font_size=fs,bbox=dict(facecolor=property_color, boxstyle='round4,pad=.3'),font_color = "white")
-        nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.componentNodeLabels,font_size=fs,bbox=dict(facecolor=component_color, boxstyle='round,pad=.3'),font_color = "white")
+        nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.componentNodeLabels,font_size=fs*1.25,bbox=dict(facecolor=component_color, boxstyle='round,pad=.3'),font_color = "white")
 
 
     def findNode(self,name):
