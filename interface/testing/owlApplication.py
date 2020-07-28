@@ -9,6 +9,10 @@ class owlApplication:
     
     def __init__(self,filename,base):
         
+        
+        self.handleProperties = True
+        self.handleComponents = False
+        
         self.owlReadyOntology = None
         self.owlBase = base 
         
@@ -33,17 +37,36 @@ class owlApplication:
         
     def loadOwlFile(self,filename):
         
-        self.owlReadyOntology = get_ontology("file://./application_ontologies/" + filename).load()
+        self.owlReadyOntology = get_ontology("file://./" + filename).load()
         self.owlName = str(filename)
         
     def initializeOwlNodes(self):
         
         self.nodeArray = []
         
-        self.addComponents()
-        self.addProperties()
-        self.handleRelateToProperty()
-        self.handleAddConcern()
+        
+        
+        if(self.handleComponents == True):
+            self.addComponents()
+            
+        if(self.handleProperties == True):
+            
+            self.addProperties()
+            self.addConditions()
+            self.addImpactRules()
+            
+            
+        if(self.handleComponents == True):
+            
+            self.handleRelateToProperty()
+            
+        if(self.handleProperties == True):
+            
+            self.handleAddressesConcern()
+            self.handleConditionProperty()
+            self.handleHasCondition()
+            
+        
         
         
     
@@ -91,6 +114,94 @@ class owlApplication:
             
             self.allProperties_owlNode.append(newOwlNode)
             self.nodeArray.append(newOwlNode)
+            
+    def addConditions(self):
+        
+        self.allConditions_owlNode = []
+        
+        all_conditions = np.asarray(self.owlReadyOntology.search(type = self.owlReadyOntology.Condition))
+        
+        
+        for condition in all_conditions:
+            
+            newOwlNode = owlNode()
+            newOwlNode.name = remove_namespace(condition)
+            newOwlNode.type = remove_namespace(condition.is_a[0])
+            newOwlNode.children = []
+            newOwlNode.parents = []
+            newOwlNode.owlreadyObj = condition
+            newOwlNode.polarity = remove_namespace(condition.conditionPolarity[0])
+            
+            self.allConditions_owlNode.append(newOwlNode)
+            self.nodeArray.append(newOwlNode)
+            
+    def addImpactRules(self):
+        
+        self.allImpactRules_owlNode = []
+        
+        all_impact_rules = np.asarray(self.owlReadyOntology.search(type = self.owlReadyOntology.ImpactRule))
+        
+        
+        for impact_rule in all_impact_rules:
+            
+            newOwlNode = owlNode()
+            newOwlNode.name = remove_namespace(impact_rule)
+            newOwlNode.type = remove_namespace(impact_rule.is_a[0])
+            newOwlNode.children = []
+            newOwlNode.parents = []
+            newOwlNode.owlreadyObj = impact_rule
+            newOwlNode.polarity = remove_namespace(impact_rule.addressesPolarity[0])
+            
+            self.allImpactRules_owlNode.append(newOwlNode)
+            self.nodeArray.append(newOwlNode)
+            
+    def handleConditionProperty(self):
+        
+        for cond in self.allConditions_owlNode:
+            
+            condition_property = cond.owlreadyObj.conditionProperty[0]
+            
+            cp_owlnode = self.getOwlNode(remove_namespace(condition_property))
+            
+            cond.children.append(cp_owlnode)
+            cp_owlnode.parents.append(cond)
+            
+    def handleAddressesConcern(self):
+        
+        
+        for ir in self.allImpactRules_owlNode:
+            
+           
+            
+            addressed_concern = ir.owlreadyObj.addressesConcern[0] 
+            ac_owlnode = self.getOwlNodeFromBase(remove_namespace(addressed_concern))
+            
+            ac_owlnode.children.append(ir)
+            ir.parents.append(ac_owlnode) 
+            
+            
+    def handleHasCondition(self):
+        
+         
+         for ir in self.allImpactRules_owlNode:
+             
+            
+            
+             
+             for had_condition in ir.owlreadyObj.hasCondition:
+                 
+              
+             
+                 hc_owlnode = self.getOwlNode(remove_namespace(had_condition))
+                 
+                 hc_owlnode.parents.append(ir)
+                 ir.children.append(hc_owlnode)
+                 
+             
+             
+         
+            
+            
     
     def handleRelateToProperty(self):
         
@@ -198,6 +309,8 @@ class owlApplication:
         
         for node in self.nodeArray:
             
+            
+            
             for child in node.children:
                 
                 child.parents.append(node)
@@ -231,15 +344,22 @@ class owlApplication:
     
     def setNumbers(self):
         
-        
-        self.numComponents = len(self.allComponents_owlNode)
-        self.numProperties = len(self.allProperties_owlNode)
+        try:
+            self.numComponents = len(self.allComponents_owlNode)
+        except:
+            
+            self.numComponents = 0
+            
+        try:
+            self.numProperties = len(self.allProperties_owlNode)
+        except:
+            self.numProperties = 0
         self.numNodes = self.numComponents + self.numProperties
         
         
     
         
-#testBase = owlBase("cpsframework-v3-base.owl")
+#testBase = owlBase("cpsframework-v3-base-dependencies.owl")
 
 #testBase.initializeOwlNodes()    
 
@@ -247,21 +367,20 @@ class owlApplication:
 
 
         
-#testApp = owlApplication("cpsframework-v3-sr-Elevator-Configuration.owl",testBase)
+#testApp = owlApplication("cpsframework-v3-sr-Elevator-Configuration-dependency.owl",testBase)
     
     
 #testApp.initializeOwlNodes()
 
 
-#print()
-#print()
 
 #for node in testApp.nodeArray:
 
- #   print(node.name)
-  #  print(node.type)
+    #print(node.name)
+    #print(node.type)
+    #print(node.polarity)
     
-   # print("children")
+    #print("children")
     #for child in node.children:
        
      #   print(child.name)
@@ -281,7 +400,7 @@ class owlApplication:
   #  for child in node.children:
    #     print(child.name)
         
-   # print()
+    #print()
 
 
 

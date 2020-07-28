@@ -9,6 +9,7 @@ from tkinter import *
 
 from script_networkx import remove_namespace
 
+from dependencyCalculatorEntry import dependencyCalculatorEntry
 from owlBase import owlBase
 from owlApplication import owlApplication
 from owlGraph import owlGraph
@@ -22,6 +23,9 @@ class OntologyGUI:
 
     def __init__(self,master):
 
+        
+        self.fontStyleTest = tkFont.Font(family="Lucida Grande", size=80, weight = "bold")
+        
         self.zoom = 1
         self.zoomIndex = 105
         
@@ -29,6 +33,7 @@ class OntologyGUI:
         self.lcWindowOpen = False
         self.rcWindowOpen = False
         self.relationWindowOpen = False
+        self.dependencyWindowOpen = False
         self.removeConfirmationWindowOpen = False
         self.removeChildrenWindowOpen = False
 
@@ -54,11 +59,11 @@ class OntologyGUI:
             
             print("Dealing with Windows")
             
-            self.fontsize = 13
+            self.fontsize = 12
             
             self.fontsize_0_5 = 6
-            self.fontsize_1 = 13
-            self.fontsize_2 = 26
+            self.fontsize_1 = 12
+            self.fontsize_2 = 22
             self.fontsize_3 = 34
         
 
@@ -117,7 +122,7 @@ class OntologyGUI:
 
         self.inputBaseEntry = Entry(self.leftControlFrame, width = 30,borderwidth = 5,highlightbackground="white", fg = "#18453b",font = entryFont)
         self.inputBaseEntry.pack()
-        self.inputBaseEntry.insert(0,"cpsframework-v3-base-development.owl")
+        self.inputBaseEntry.insert(0,"cpsframework-v3-base-dependencies.owl")
 
         #button to load ontology, calls function which handles loading
         self.loadBaseOntologyB = tk.Button(self.leftControlFrame, text = "Load Base Ontology",padx = 10, pady = 5, bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5,font = buttonFont,command = self.loadBaseOntology)
@@ -130,7 +135,7 @@ class OntologyGUI:
 
         self.inputAppEntry = Entry(self.leftControlFrame, width = 30,borderwidth = 5,highlightbackground="white", fg = "#18453b",font = entryFont)
         self.inputAppEntry.pack()
-        self.inputAppEntry.insert(0,"cpsframework-v3-sr-Elevator-Configuration.owl")
+        self.inputAppEntry.insert(0,"cpsframework-v3-sr-Elevator-Configuration-dependency.owl")
 
         #button to load ontology, calls function which handles loading
         self.loadAppOntologyB = tk.Button(self.leftControlFrame, text = "Load Application Ontology",padx = 10, pady = 5, bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5,font = buttonFont,command = self.loadAppOntology)
@@ -156,18 +161,25 @@ class OntologyGUI:
         self.addSpace(self.leftControlFrame,"white","tiny")
 
         self.saveOntologyLaunchASPB = tk.Button(self.leftControlFrame, text = "Output Ontology and Run ASP", padx = 10, pady = 5, bg = "#18453b",fg = self.buttonFontColor,borderwidth = 5, font = buttonFont, command = self.outputAndLaunchASP)
-        self.saveOntologyLaunchASPB.pack()
+        #self.saveOntologyLaunchASPB.pack()
         self.addSpace(self.leftControlFrame,"white","tiny")
         #sets up gray box for information window
 
         self.infoFrame = Frame(self.leftControlFrame, bg = "#747780", bd = 5 )
-        self.infoFrame.place(relwidth = .8, relheight = .50, relx = .1, rely = .44)
+        self.infoFrame.place(relwidth = .9, relheight = .50, relx = .05, rely = .44)
+        
+       
+        
 
         self.infoFrameHeaderLabel = Label(self.infoFrame,text = "Ontology Information", font = headerFont, fg = "white", bg = "#747780")
         self.infoFrameHeaderLabel.pack()
 
         self.owlInfoFrame = Frame(self.infoFrame, bg = spartangreen, bd = 5)
-        self.owlInfoFrame.place(relwidth = .9, relheight = .45, relx = .05, rely = .06)
+        self.owlInfoFrame.place(relwidth = .94, relheight = .45, relx = .03, rely = .06)
+
+        self.owlInfoFrame.update()
+        
+        print(self.owlInfoFrame.winfo_width())
 
         self.indInfoHeaderFrame = Frame(self.infoFrame, bg = "#747780",bd = 5)
         self.indInfoHeaderFrame.place(relwidth = .9, relheight = .07, relx  = .05, rely = .525)
@@ -176,14 +188,14 @@ class OntologyGUI:
         self.indInfoHeaderLabel.pack()
 
         self.indInfoFrame = Frame(self.infoFrame,  bg = spartangreen, bd = 5)
-        self.indInfoFrame.place(relwidth = .9, relheight = .41, relx = .05, rely = .58)
+        self.indInfoFrame.place(relwidth = .94, relheight = .41, relx = .03, rely = .58)
 
 
         self.owlBaseNameText = tk.StringVar()
-        self.owlBaseNameText.set("Owl Base")
+        self.owlBaseNameText.set("Base")
 
         self.owlAppNameText = tk.StringVar()
-        self.owlAppNameText.set("Owl App")
+        self.owlAppNameText.set("App")
 
         self.totalNodeText = tk.StringVar()
         self.totalNodeText.set("Total Nodes")
@@ -201,10 +213,11 @@ class OntologyGUI:
         self.numComponentsText.set("Num Components")
 
 
-        self.owlBaseNameInfo = Label(self.owlInfoFrame, textvariable =  self.owlBaseNameText, font = infoFont,fg= "white",bg = spartangreen)
+        self.owlBaseNameInfo = Label(self.owlInfoFrame, textvariable =  self.owlBaseNameText, font = "Monaco 12 bold" ,fg= "white",bg = spartangreen)
         self.owlBaseNameInfo.pack()
+        
 
-        self.owlAppNameInfo = Label(self.owlInfoFrame, textvariable =  self.owlAppNameText, font = infoFont,fg= "white",bg = spartangreen)
+        self.owlAppNameInfo = Label(self.owlInfoFrame, textvariable =  self.owlAppNameText, font = "Monaco 12 bold",fg= "white",bg = spartangreen)
         self.owlAppNameInfo.pack()
 
         self.numNodesInfo = Label(self.owlInfoFrame, textvariable =  self.totalNodeText, font = infoFont,fg= "white",bg = spartangreen)
@@ -247,7 +260,7 @@ class OntologyGUI:
         self.indParentInfo = Label(self.indInfoFrame, textvariable =  self.indParentText,fg= "white",bg = spartangreen,font = infoFont)
         self.indParentInfo.pack()
 
-        self.indChildInfo = Label(self.indInfoFrame, textvariable =  self.indChildrenText,fg= "white",bg = spartangreen,font = infoFont)
+        self.indChildInfo = Label(self.indInfoFrame, textvariable =  self.indChildrenText,fg= "white",bg = spartangreen,font = "Monaco 12 bold")
         self.indChildInfo.pack()
 
         self.indPropertyInfo = Label(self.indInfoFrame, textvariable =  self.indRelPropertiesText,fg= "white",bg = spartangreen,font = infoFont)
@@ -256,7 +269,7 @@ class OntologyGUI:
 
         #sets up gray box to put text to show what is going on
         self.textBoxFrame = Frame(self.leftControlFrame,bg = "#747780", bd = 5)
-        self.textBoxFrame.place(relwidth = .8, relheight = .04, relx = .1, rely = .95)
+        self.textBoxFrame.place(relwidth = .9, relheight = .04, relx = .05 ,rely = .95)
 
 
         self.summaryText = tk.StringVar()
@@ -300,15 +313,21 @@ class OntologyGUI:
 
 
         self.relationButtonFrame = tk.Frame(self.treeFrame,bg = "white")
-        self.relationButtonFrame.place(relwidth = .10, relheight = .05, relx = .01, rely = .01)
+        self.relationButtonFrame.place(relwidth = .08, relheight = .05, relx = .01, rely = .01)
 
-        self.relationB = tk.Button(self.relationButtonFrame, text = "Relations",padx = 10, pady = 5, bg = spartangreen, fg = self.buttonFontColor,borderwidth = 5, font = buttonFont, command = self.onRelationButton)
+        self.relationB = tk.Button(self.relationButtonFrame, text = "Relations",width = 10, padx = 10, pady = 5, bg = spartangreen, fg = self.buttonFontColor,borderwidth = 5, font = buttonFont, command = self.onRelationButton)
         self.relationB.pack()
+        
+        self.dependenciesButtonFrame = tk.Frame(self.treeFrame, bg = "white")
+        self.dependenciesButtonFrame.place(relwidth = .08, relheight = .05, relx = .01, rely = .07)
+
+        self.dependenciesB = tk.Button(self.dependenciesButtonFrame, text = "Dependencies", width = 10, padx = 10, pady = 5, bg = spartangreen, fg = self.buttonFontColor,borderwidth = 5, font = buttonFont, command = self.onDependencyButton)
+        self.dependenciesB.pack()
 
         self.remremoveChildrenFrame = tk.Frame(self.treeFrame,bg = "white")
         self.remremoveChildrenFrame.place(relwidth = .10, relheight = .05, relx = .89, rely = .01)
 
-        self.removeremoveChildrenB = tk.Button(self.remremoveChildrenFrame, text = "Remove Floaters",padx = 10, pady = 5, bg = spartangreen, fg = self.buttonFontColor,borderwidth = 5, font = buttonFont,  command = self.removeFloaters)
+        self.removeremoveChildrenB = tk.Button(self.remremoveChildrenFrame, text = "Rem Relationless",padx = 10, pady = 5, bg = spartangreen, fg = self.buttonFontColor,borderwidth = 5, font = buttonFont,  command = self.removeFloaters)
         self.removeremoveChildrenB.pack()
 
 
@@ -421,35 +440,112 @@ class OntologyGUI:
 
             childString = "Children -"
 
+            nchildren = len(self.hoveredNode.children)
+            
+            if(nchildren >= 10):
+                divisor = 3
+            else:
+                divisor = 2
 
             i = 1
             for child in self.hoveredNode.children:
-
-                if(i%2 == 0):
+ 
+                print(child.name)
+                print(len(child.name))
+                print()
+                
+                if(len(child.name) >= 25):
+                    
+                    print("long one")
+                    childString = childString + "\n" + child.name + "\n"
+                    
+                
+                elif(i % divisor == 0):
                     childString = childString + "\n" + child.name
 
                 else:
                     childString = childString + " " + child.name
 
                 i = i + 1
+                
+                
 
+            self.indChildInfo.configure(font = "Monaco " + str(self.getChildFS(nchildren)) + " bold")
             self.indChildrenText.set(childString)
             self.indRelPropertiesText.set("Relevant Properties - ")
+           
+    def getChildFS(self,n):
+        
+        if(n >= 10):
+            return 7
+        
+        elif(n >= 8):
+            return 9
+        
+        elif(n >= 6):
+            return 10
+        elif(n >= 4):
+            return 11
+        else:
+            return 12
+
+                
+            
+    def getCorrFS(self,text):
+        
+     
+        n = len(text)
+        
+        if (n > 43):
+            return 7
+        elif (n > 37):
+            return 9
+        elif (n > 33):
+            return 10
+        elif (n > 30):
+            return 11
+        else:
+            return 12
+        
 
 
     #updates the global ontology stats according to numbers stored in owlBase
     def updateOwlStats(self):
 
             self.totalNodes = self.owlBase.numNodes
-            self.owlBaseNameText.set("Base - " + str(self.owlBase.owlName))
+            
+            #text = "TESTING_THE_UNIFORM_WIDTH_OF_FONT_XD"
+            
+            text = "Base-" + str(self.owlBase.owlName)
+            
+            basefs = self.getCorrFS(text)
+            
+            
+            
+            
+            self.owlBaseNameInfo.configure(font = "Monaco " + str(basefs) + " bold")
+            self.owlBaseNameText.set(text)
+            
+            
+            
+            #print(len("a" + str(self.owlBase.owlName)))
 
+            print(len(text))
 
             self.numAspectsText.set("Num Aspects - " + str(self.owlBase.numAspects))
             self.numConcernsText.set("Num Concerns - "  + str(self.owlBase.numConcerns))
 
             if(self.owlAppLoaded == True):
 
-                self.owlAppNameText.set("App - " + str(self.owlApplication.owlName))
+                textapp = "App-" + str(self.owlApplication.owlName)
+                
+                appfs = self.getCorrFS(textapp)
+                
+                self.owlAppNameInfo.configure(font = "Monaco " + str(appfs) + " bold")
+                
+                self.owlAppNameText.set(textapp)
+                
+                
                 self.numPropertiesText.set("Num Properties - " + str(self.owlApplication.numProperties))
                 self.numComponentsText.set("Num Components - " + str(self.owlApplication.numComponents))
 
@@ -458,6 +554,7 @@ class OntologyGUI:
             self.totalNodeText.set("Num Nodes - " + str(self.totalNodes))
 
 
+    
 
     #adds a concern to the ontology, uses gui entries for inputs, updates tree afterwards
     def addConcern(self):
@@ -599,6 +696,19 @@ class OntologyGUI:
         elif(self.zoom == 3):
 
             return base * (.75)
+        
+    def getFS9Pixels(length):
+        
+        m = 6.14173
+        b = 19.9527
+        
+        
+        return m*length + b
+    
+    def getFS10Pixels(length):
+        
+        m = 9.331
+        b = -80.11
 
 
 
@@ -632,7 +742,7 @@ class OntologyGUI:
             return
 
         #set up windows and frames
-        self.rcWindow = tk.Toplevel(height = 400, width = 300, bg = spartangreen)
+        self.rcWindow = tk.Toplevel(height = 500, width = 400, bg = spartangreen)
         self.rcWindow.title("Add New Aspect")
         self.rcWindow.protocol("WM_DELETE_WINDOW", self.rcWindowClose)
 
@@ -683,8 +793,59 @@ class OntologyGUI:
             showtext.set("Add New Aspect \n or Component")
             rcNamePromptText.set("Name of New Aspect or Component")
 
+    def onDependencyButton(self):
+        
+        if(self.dependencyWindowOpen == True):
+             return
+        
+        
+        self.dependencyWindow = tk.Toplevel(height = 400, width = 1000, bg = spartangreen)
+        self.dependencyWindow.transient(master = self.master)
+        self.dependencyWindow.title("Add New Relation")
+        
+        self.dependencyWindowOpen = True 
+        self.readyForDependency = False
+        
+        
+        self.dependencyWindowHeaderFrame = tk.Frame(self.dependencyWindow,bg = spartangreen)
+        self.dependencyWindowHeaderFrame.place(relwidth = .8, relheight = .10, relx = .10, rely = .01)
+        
+        showtext = "Add New Dependency"
+        
+        self.dependencyWindowHeader = Label(self.dependencyWindowHeaderFrame, text = showtext, fg = "white",bg = spartangreen, font = headerFont)
+        self.dependencyWindowHeader.pack()
+        
+        self.dependencyWindowButtonFrame = tk.Frame(self.dependencyWindow,bg = "white")
+        self.dependencyWindowButtonFrame.place(relwidth = .8, relheight = .80, relx = .10, rely = .11)
+        
+        
+        self.dependencyEntryFrame = tk.Frame(self.dependencyWindowButtonFrame,bg = spartangreen)
+        self.dependencyEntryFrame.place(relwidth = .9, relheight = .50, relx = .05, rely = .05)
+        
+        
+  
+        
+     
+        
+        self.DCE = dependencyCalculatorEntry(self.dependencyEntryFrame, self.owlBase, self.owlApplication)
+        
+        
+       
+        
+      
+        
+        
+        
+        self.dependencyWindow.protocol("WM_DELETE_WINDOW",self.dependencyWindowClose)
+        
+        print (4)
 
-
+    def printText(self):
+        
+        text = self.DCE.LHSEntry.get(1.0,END)
+        
+        print(text)
+    
     #function to handle when you click Relations button, opens up window where you can do relation operations
     def onRelationButton(self):
 
@@ -692,7 +853,7 @@ class OntologyGUI:
             return
 
         #set up window and frames
-        self.relationWindow = tk.Toplevel(height = 400, width = 300, bg = spartangreen)
+        self.relationWindow = tk.Toplevel(height = 500, width = 400, bg = spartangreen)
         self.relationWindow.transient(master = self.master)
         self.relationWindow.title("Add New Relation")
 
@@ -889,7 +1050,12 @@ class OntologyGUI:
         self.owlApplication.removeRelatedToRelation(self.relationParent,self.relationChild)
 
 
-
+    def dependencyWindowClose(self):
+        
+        self.dependencyWindow.destroy()
+        self.dependencyWindowOpen = False
+        
+    
     #handles closing relations window
     def relationWindowClose(self):
 
@@ -1037,7 +1203,7 @@ class OntologyGUI:
 
 
         #open up window and frames
-        self.lcWindow = tk.Toplevel(height = 400, width = 300,bg = spartangreen )
+        self.lcWindow = tk.Toplevel(height = 500, width = 400,bg = spartangreen )
         self.lcWindow.transient(master = self.master)
 
         self.lcWindowOpen = True
@@ -1459,7 +1625,7 @@ class OntologyGUI:
 
         all_node_children = self.owlBase.getChildren(self.leftClicked)
 
-        self.removeConfirmationWindow = tk.Toplevel(height = 600, width = 400, bg = spartangreen)
+        self.removeConfirmationWindow = tk.Toplevel(height = 700, width = 400, bg = spartangreen)
         #self.removeConfirmationWindow.transient(master = self.removeChildrenWindow)
 
         self.lcWindow.withdraw()
@@ -1729,7 +1895,9 @@ class OntologyGUI:
 
         #self.owlApplication = owlApplication("cpsframework-v3-sr-Elevator-Configuration.owl",self.owlBase)
 
-        summary = "Loaded base ontology " + "file://./../../src/asklab/querypicker/QUERIES/BASE/" + self.inputBaseEntry.get()
+        #summary = "Loaded base ontology " + "file://./../../src/asklab/querypicker/QUERIES/BASE/" + self.inputBaseEntry.get()
+        
+        summary = "Loaded base ontology " + "file://./" + self.inputBaseEntry.get()
         self.summaryText.set(summary)
 
 
@@ -1822,7 +1990,7 @@ class OntologyGUI:
 
         output_file = self.outputEntry.get()
 
-        self.owlBase.owlReadyOntology.save(file = "./../../src/asklab/querypicker/QUERIES/BASE/" + output_file, format = "rdfxml")
+        self.owlBase.owlReadyOntology.save(file = "./" + output_file, format = "rdfxml")
         #self.owlBase.owlReadyOntology.save(file = output_file, format = "rdfxml")
 
         self.processFile(output_file)
@@ -1972,10 +2140,10 @@ fontStyle = tkFont.Font(family="Lucida Grande", size=8, weight = "bold")
 
 headerFont = tkFont.Font(family = "Helvetica",size = 14, weight = "bold")
 promptFont = tkFont.Font(family = "Lucida Grande", size = 12, weight = "bold")
-infoFont = tkFont.Font(family = "lucida Grande", size = 9, weight = "bold")
+infoFont = tkFont.Font(family = "Monaco", size = 12, weight = "bold")
 entryFont = tkFont.Font(family = "Verdana", size = 12, weight = "bold")
 buttonFont = tkFont.Font(family = "Helvetica", size = 12, weight = "normal")
-summaryFont = tkFont.Font(family = "Lucida Grande", size = 10, weight = "bold")
+summaryFont = tkFont.Font(family = "Lucida Grande", size = 8, weight = "bold")
 
 tiny = tkFont.Font(family="Lucida Grande", size=1, weight = "bold")
 small = tkFont.Font(family="Lucida Grande", size=6, weight = "bold")

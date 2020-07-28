@@ -14,5 +14,7 @@ class owlNode:
        self.ypos = None
        self.level = None
        
+       self.polarity = "neutral"
+       
 
 
