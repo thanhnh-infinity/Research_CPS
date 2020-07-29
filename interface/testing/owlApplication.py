@@ -39,6 +39,9 @@ class owlApplication:
         
         self.owlReadyOntology = get_ontology("file://./" + filename).load()
         self.owlName = str(filename)
+        self.numConditions = len(self.owlReadyOntology.search(type = self.owlReadyOntology.Condition))
+        self.numIRs = len(self.owlReadyOntology.search(type = self.owlReadyOntology.ImpactRule))
+        
         
     def initializeOwlNodes(self):
         
@@ -230,9 +233,30 @@ class owlApplication:
         print("called add property in owlapplication ")
         print("new name is " + new_name)
         print("concern is " + parent.name)
+        
+        
+        
+        
         new_property = self.owlReadyOntology.Property(new_name,ontology = self.owlReadyOntology)
         
-        new_property.addConcern.append(self.owlReadyOntology.Concern(parent.name,ontology = self.owlReadyOntology))
+        print(new_property)
+        
+        new_condition = self.owlReadyOntology.Condition(self.getCondName(), ontology = self.owlReadyOntology)
+        self.numConditions += 1
+        new_condition.conditionPolarity.append(self.owlReadyOntology.positive)
+        new_condition.conditionProperty.append(new_property)
+        
+        
+        new_IR = self.owlReadyOntology.ImpactRule(self.getIRName(), ontology = self.owlReadyOntology)
+        self.numIRs += 1
+        new_IR.addressesConcern.append(parent.owlreadyObj)
+        new_IR.addressesPolarity.append(self.owlReadyOntology.positive)
+        new_IR.hasCondition.append(new_condition)
+        
+        
+        
+        
+        
                 
     def editPropertyName(self,node,new_name):
         
@@ -280,6 +304,54 @@ class owlApplication:
          
         
         
+    def addNewDependency(self,LHSNodes,RHSNode):
+        
+        conditions = []
+        
+        #create new condition for each LHS property
+        for lhsnode in LHSNodes:
+            
+            new_cond_name = self.getCondName()
+            
+            new_condition = self.owlReadyOntology.Condition(new_cond_name, ontology = self.owlReadyOntology)
+            conditions.append(new_condition)
+            
+            self.numConditions += 1
+            
+            if(lhsnode.negated == True):
+                new_condition.conditionPolarity.append(self.owlReadyOntology.negative)
+            else:
+                new_condition.conditionPolarity.append(self.owlReadyOntology.positive)
+                
+            new_condition.conditionProperty.append(lhsnode.owlNode.owlreadyObj)
+            
+            
+
+        #create new IR for dependency
+        new_IR_name = self.getIRName()
+        RHSNode = RHSNode[0]
+        
+        new_IR = self.owlReadyOntology.ImpactRule(new_IR_name)
+        
+        self.numIRs += 1
+        
+        new_IR.addressesConcern.append(RHSNode.owlNode.owlreadyObj)
+        
+        if(RHSNode.negated == True):
+            
+            new_IR.addressesPolarity.append(self.owlReadyOntology.negative)
+        else:
+            new_IR.addressesPolarity.append(self.owlReadyOntology.positive)
+            
+        for condition in conditions:
+            print("adding ", condition)
+            new_IR.hasCondition.append(condition)
+            
+            
+            
+            
+               
+            
         
 
     def addNewRelatedToRelation(self,parent,child):
@@ -326,7 +398,7 @@ class owlApplication:
                 
                 return node
         
-        #print("couldnt find from app " + name)
+        print("couldnt find from app " + name)
         return 0
     
     
@@ -356,7 +428,33 @@ class owlApplication:
             self.numProperties = 0
         self.numNodes = self.numComponents + self.numProperties
         
-        
+     #returns the suitable ir name given how many already exist
+    def getIRName(self):
+
+        new_ir_num = self.numIRs + 1
+
+        if(new_ir_num >= 1000):
+            return "ir" + str(new_ir_num)
+        if(new_ir_num >= 100):
+            return "ir0" + str(new_ir_num)
+        if(new_ir_num >= 10):
+            return "ir00" + str(new_ir_num)
+        if(new_ir_num >= 1):
+            return "ir000" + str(new_ir_num)
+
+    #returns the suitable condition name given how many already exist
+    def getCondName(self):
+
+        new_cond_num = self.numConditions + 1
+
+        if(new_cond_num >= 1000):
+            return "c" + str(new_cond_num) + "_01"
+        if(new_cond_num >= 100):
+            return "c0" + str(new_cond_num) + "_01"
+        if(new_cond_num >= 10):
+            return "c00" + str(new_cond_num) + "_01"
+        if(new_cond_num >= 1):
+            return "c000" + str(new_cond_num) + "_01"
     
         
 #testBase = owlBase("cpsframework-v3-base-dependencies.owl")

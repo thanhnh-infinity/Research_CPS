@@ -111,9 +111,9 @@ class owlGraph:
                     self.propertyArray = np.append(self.propertyArray,node)
                 
                 elif(str(node.type) == "Condition" and self.graphProperties == True):
-                    self.netXGraph.add_node(node.name)
-                    self.componentArray = np.append(self.conditionArray,node)
-                    
+                    #self.netXGraph.add_node(node.name)
+                    #self.componentArray = np.append(self.conditionArray,node)
+                    continue
                     
                 elif(str(node.type) == "ImpactRule" and self.graphComponents == True):
                     self.netXGraph.add_node(node.name)

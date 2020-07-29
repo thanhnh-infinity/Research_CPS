@@ -152,7 +152,7 @@ class OntologyGUI:
 
         self.outputEntry = Entry(self.leftControlFrame, width = 30,borderwidth = 5,highlightbackground="white", fg = "#18453b",font = entryFont)
         self.outputEntry.pack()
-        self.outputEntry.insert(2, "cpsframework-v3-base-development.owl")
+        self.outputEntry.insert(2, "cpsframework-v3-base-development-xd.owl")
 
         #sets up button to call function which handles saving ontology
         self.saveOntologyB = tk.Button(self.leftControlFrame, text = "Output Ontology",padx = 10, pady = 5, bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5,font = buttonFont, command = self.saveOntology)
@@ -597,8 +597,11 @@ class OntologyGUI:
 
          #print("sorting ",node.name)
 
-         nodepos = self.owlTree.graphPositions[node.name]
+         try:
+             nodepos = self.owlTree.graphPositions[node.name]
 
+         except:
+             return np.inf    
          nodeposx = nodepos[0]
          nodeposy = nodepos[1]*1.0
 
@@ -728,11 +731,19 @@ class OntologyGUI:
 
             if(self.relationWindowOpen == True):
                 self.handleRelationLeftClick(event)
+            
+            elif(self.dependencyWindowOpen == True):
+                self.handleDependencyClick(event)
             else:
                 self.onLeftClick(event)
 
-        if(event.button == 3):
-            self.onRightClick(event)
+        elif(event.button == 3):
+            
+            if(self.dependencyWindowOpen == True):
+                
+                self.handleDependencyClick(event)
+            else:
+                self.onRightClick(event)
 
     #takes care of right clicks, opens up window where you can add a new aspect
     def onRightClick(self,event):
@@ -805,6 +816,7 @@ class OntologyGUI:
         
         self.dependencyWindowOpen = True 
         self.readyForDependency = False
+        self.inserting = "left"
         
         
         self.dependencyWindowHeaderFrame = tk.Frame(self.dependencyWindow,bg = spartangreen)
@@ -821,24 +833,59 @@ class OntologyGUI:
         
         self.dependencyEntryFrame = tk.Frame(self.dependencyWindowButtonFrame,bg = spartangreen)
         self.dependencyEntryFrame.place(relwidth = .9, relheight = .50, relx = .05, rely = .05)
-        
-        
-  
-        
+    
      
         
-        self.DCE = dependencyCalculatorEntry(self.dependencyEntryFrame, self.owlBase, self.owlApplication)
+        self.DCE = dependencyCalculatorEntry(self.dependencyEntryFrame, self.owlBase, self.owlApplication,self)
         
         
        
-        
-      
-        
         
         
         self.dependencyWindow.protocol("WM_DELETE_WINDOW",self.dependencyWindowClose)
         
         print (4)
+        
+    
+    def handleDependencyClick(self,event):
+        nearest = self.getNearest(event)
+        
+        if event.button == 3:
+            mynot = "not "
+        else:
+            mynot = ""
+        
+        if(nearest == None):
+            return
+        #print("clicked with dependency window open")
+        #print(nearest.name)
+        
+        
+        
+        currentText = self.DCE.editing.get(1.0,END)
+        
+        
+        currentText.replace("\n","")
+        #print(currentLHS)
+        currentText = currentText.split(" ")
+        currentText = list(filter((" ").__ne__, currentText))
+        currentText = list(filter(("").__ne__, currentText))
+        currentText = list(filter(("\n").__ne__, currentText))
+    
+        
+        #print(cleanedLHS)
+
+
+        if(len(currentText) == 0):
+           self.DCE.editing.insert(tk.END,mynot + nearest.name)
+            
+        elif(currentText[-1] == "and" or currentText[-1] == "and\n"):
+        
+            self.DCE.editing.insert(tk.END," " + mynot + nearest.name)
+        else:
+            self.DCE.editing.insert(tk.END," and " + mynot + nearest.name)
+            
+            
 
     def printText(self):
         
@@ -1993,12 +2040,12 @@ class OntologyGUI:
         self.owlBase.owlReadyOntology.save(file = "./" + output_file, format = "rdfxml")
         #self.owlBase.owlReadyOntology.save(file = output_file, format = "rdfxml")
 
-        self.processFile(output_file)
+        #self.processFile(output_file)
 
 
         if(self.owlApplication != None):
             self.owlApplication.owlReadyOntology.save(file = "app_" + output_file, format = "rdfxml")
-            self.processFile("app_" + output_file)
+            #self.processFile("app_" + output_file)
 
         summary = "Outputted ontology to file: " + output_file
         self.summaryText.set(summary)
