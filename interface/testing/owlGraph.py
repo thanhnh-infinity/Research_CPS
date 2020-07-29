@@ -389,8 +389,8 @@ class owlGraph:
 
 
         nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.concernEdgeLabels,font_size = fs)
-        nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.concernIREdgeLabels,font_size = fs)
-        nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.IRPropertyEdgeLabels,font_size = fs)
+        nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.concernIREdgeLabels,font_size = fs*.85)
+        nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.IRPropertyEdgeLabels,font_size = fs*.85)
         #nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.componentEdgeLabels,font_size = fs)
 
 
