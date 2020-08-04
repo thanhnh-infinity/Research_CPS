@@ -1,12 +1,49 @@
-% ======Observation for Initial State
+%==================INITIAL OBSERVATION===========================
 obs(data_encrypted,true).
-obs(data_filtering,true).
-obs(software_licensed,true).
-obs(two_factors_auth,false). % Change here to test
+obs(conn_encrypted,true).
+obs(protocol_encrypted,true).
+obs(algo_AES,true).
+obs(algo_RSA,true).
+obs(algo_DES,true).
+obs(firewall_setup,false).
+obs(ip_filtering,true).
 obs(secure_boot,true).
-obs(record_video_50fps,true).
+obs(trusted_auth_device,true).
+obs(trusted_environment,false).
+obs(finger_printing,true).
+obs(two_factors,true).
+obs(iris_scan,true).
+obs(oauth,true).
+obs(opt_code,true).
+obs(email_verify,true).
+obs(ip_check,true).
 obs(advanced_mode,true).
-obs(firewall_setup,false). % Change here to test
-obs(devices_access_permission,true).
-obs(data_access_permission,true).
-obs(availablePatch(two_factors_auth),true).
+obs(basic_mode,true).
+obs(saving_mode,true).
+obs(powerful_mode,true).
+obs(normal_mode,true).
+obs(mac_check,true).
+
+%========== Current Active Between Components and Properties ==========
+active(sam,data_encrypted).
+active(sam,algo_RSA).
+active(sam,firewall_setup).
+active(sam,secure_boot).
+active(sam,trusted_environment).
+
+active(cam,ip_filtering).
+active(cam,data_encrypted).
+active(cam,conn_encrypted).
+active(cam,secure_boot).
+active(cam,trusted_auth_device).
+
+
+% Change to see the different of LoS values
+active(sam,finger_printing).
+active(sam,advanced_mode).
+active(cam,advanced_mode).
+
+active(battery,saving_mode).
+active(battery,trusted_environment).
+
+h(in_mode(C,P),0) :- property(P), component(C), active(C,P).
