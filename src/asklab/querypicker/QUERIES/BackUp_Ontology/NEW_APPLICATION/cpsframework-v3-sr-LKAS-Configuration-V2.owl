@@ -270,9 +270,9 @@
     
 
 
-    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Conj_0 -->
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Integrity-Condition -->
 
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Conj_0">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Integrity-Condition">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Conjunction"/>
         <formulasAddConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity"/>
         <includesMember rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Secure_Boot"/>
@@ -282,9 +282,9 @@
     
 
 
-    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Conj_1 -->
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Authorization-Condition -->
 
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Conj_1">
+    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Authorization-Condition">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Conjunction"/>
         <formulasAddConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization"/>
         <includesMember rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Trusted_Auth_Device"/>
@@ -511,7 +511,7 @@
     <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Secure_Boot">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formula"/>
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Conj_0"/>
+        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity-Condition"/>
         <propertyAddConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity"/>
     </owl:NamedIndividual>
     
@@ -522,7 +522,7 @@
     <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Trusted_Auth_Device">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formula"/>
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Conj_1"/>
+        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization-Condition"/>
         <propertyAddConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization"/>
     </owl:NamedIndividual>
     
@@ -533,7 +533,7 @@
     <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Trusted_Environment">
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formula"/>
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Conj_1"/>
+        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization-Condition"/>
         <propertyAddConcern rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization"/>
     </owl:NamedIndividual>
     
@@ -565,7 +565,7 @@
         <includesMember rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Normal_Mode"/>
         <includesMember rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Powerful_Mode"/>
         <includesMember rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Saving_Mode"/>
-        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Conj_0"/>
+        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity-Condition"/>
     </owl:NamedIndividual>
     
 
@@ -577,7 +577,7 @@
         <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Disjunction"/>
         <includesMember rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Advanced_Mode"/>
         <includesMember rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Basic_Mode"/>
-        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Conj_0"/>
+        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Integrity-Condition"/>
     </owl:NamedIndividual>
     
 
@@ -856,7 +856,7 @@
         <includesMember rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Finger_Printing"/>
         <includesMember rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#IRIS_Scan"/>
         <includesMember rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Two_Factors"/>
-        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Conj_1"/>
+        <memberOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Authorization-Condition"/>
     </owl:NamedIndividual>
 </rdf:RDF>
 
