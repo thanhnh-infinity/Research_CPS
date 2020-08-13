@@ -172,6 +172,10 @@ class owlBase:
         subconcern_of_owlreadyNode = subconcern_of_owlNode.owlreadyObj
 
         subconcern_of_owlreadyNode.includesConcern.append(new_concern)
+        
+    def addNewRLConcern(self,new_name):
+        
+        new_concern = self.owlReadyOntology.Concern(new_name,ontology = self.owlReadyOntology)
 
     def addNewSubConcernRelation(self,parent,child):
 

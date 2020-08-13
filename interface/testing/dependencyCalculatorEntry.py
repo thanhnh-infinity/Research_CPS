@@ -4,6 +4,9 @@ import numpy as np
 import tkinter.font as tkFont
 from parse import *
 from DCENode import DCENode
+from parsetest import parseAndCreateRules 
+from owlFormula import owlFormula
+
 
 spartangreen = "#18453b"
 class dependencyCalculatorEntry:
@@ -45,6 +48,7 @@ class dependencyCalculatorEntry:
         
         self.LHSEntry = Text(self.LHSFrame,width = 50, height = 3)
         self.LHSEntry.pack()
+        self.LHSEntry.insert(tk.END,"(")
         
         self.RHSEntry = Text(self.RHSFrame, width = 50, height = 3)
         self.RHSEntry.pack()
@@ -72,116 +76,43 @@ class dependencyCalculatorEntry:
         
     def parseLHS(self):
         
-        self.LHSNodes = []
+        print("trying to parse LHS")
         
         
         LHS_text = self.LHSEntry.get(1.0,END)
         
-        LHS_text = LHS_text.replace("\n","")
         
-        cleaned_LHS = LHS_text.split(" ")
+        forms = parseAndCreateRules(LHS_text,self.RHSNode.name)
         
-        
-        
-        cleaned_LHS = list(filter(("and").__ne__, cleaned_LHS))
-        cleaned_LHS = list(filter(("").__ne__, cleaned_LHS))
-        cleaned_LHS = list(filter((" ").__ne__, cleaned_LHS))
-        cleaned_LHS = list(filter(("\n").__ne__, cleaned_LHS))
-        
-        negated_LHS = []
-        
-        i = 0
-        
-        while(i < len(cleaned_LHS)):
+        for form in forms:
+    
+            print(form.name)
             
-            negated = False
-            
-            while(cleaned_LHS[i] == "not"):
+            for member in form.members:
+                print(member)
                 
-                if(cleaned_LHS[i] == "not"):
-                
-                    i = i + 1
-                    negated = not negated
-                
-            new_LHS_node_name = cleaned_LHS[i]
-            
-            new_node = DCENode()
-            
-            new_node.name = new_LHS_node_name
-            
-            new_node.negated = negated
-            
-            new_node.owlNode = self.findNode(new_node.name)
-            
-            self.LHSNodes.append(new_node)
-            
-            i = i + 1
-        
-            
-        
-        print("printing")
-        
-        for node in self.LHSNodes:
-            
-            print(node.name)
-            print(node.negated)
+            print(form.operator)
             print()
+        self.LHSNodes = forms
       
+        
+     
+        
+        
+        
+        
     def parseRHS(self):
          
-         self.RHSNodes = []
          
-         RHS_text = self.RHSEntry.get(1.0,END)
+         
+         self.RHS_text = self.RHSEntry.get(1.0,END)
         
-         RHS_text = RHS_text.replace("\n","")
-        
-         cleaned_RHS = RHS_text.split(" ")
-        
+         self.RHS_text = self.RHS_text.replace("\n","")
+         self.RHS_text = self.RHS_text.replace(" ","")
         
         
-         cleaned_RHS = list(filter(("and").__ne__, cleaned_RHS))
-         cleaned_RHS = list(filter(("").__ne__, cleaned_RHS))
-         cleaned_RHS = list(filter((" ").__ne__, cleaned_RHS))
-         cleaned_RHS = list(filter(("\n").__ne__, cleaned_RHS))
-        
-         negated_RHS = []
-        
-         i = 0
-        
-         while(i < len(cleaned_RHS)):
-            
-             negated = False
-            
-             while(cleaned_RHS[i] == "not"):
-                
-                 if(cleaned_RHS[i] == "not"):
-                
-                     i = i + 1
-                     negated = not negated
-                
-             new_RHS_node_name = cleaned_RHS[i]
-            
-             new_node = DCENode()
-             
-             new_node.name = new_RHS_node_name
-            
-             new_node.negated = negated
-             
-             new_node.owlNode = self.findNode(new_node.name)
-            
-             self.RHSNodes.append(new_node)
-            
-             i = i + 1
-        
-            
-        
-         print("printing")
-        
-         for node in self.RHSNodes:
-            
-             print(node.name)
-             print(node.negated)
-             print()
+         self.RHSNode = self.findNode(self.RHS_text)
+         
              
         
     
@@ -206,24 +137,16 @@ class dependencyCalculatorEntry:
     
     def onCreateDependencyB(self):
         
-        self.parseLHS()
+        
         
         self.parseRHS()
         
-        print("LHSNODES")
-        for node in self.LHSNodes:
-            print(node.name)
-            print(node.owlNode.type)
-            print()
+        self.parseLHS()
         
-        print("RHSNODES")
-        for node in self.RHSNodes:
-            print(node.name)
-            print(node.owlNode.type)
-            print()
-            
+    
+    
         
-        self.owlApplication.addNewDependency(self.LHSNodes,self.RHSNodes)
+        self.owlApplication.addNewDependency(self.LHSNodes,self.RHSNode)
         
         self.GUI.updateTree()
         

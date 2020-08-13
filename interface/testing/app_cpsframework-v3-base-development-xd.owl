@@ -1,0 +1,344 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://www.asklab.tk/ontologies/CPS-Framework"
+         xmlns="http://www.asklab.tk/ontologies/CPS-Framework#">
+
+<owl:Ontology rdf:about="http://www.asklab.tk/ontologies/CPS-Framework"/>
+
+<owl:ObjectProperty rdf:about="#addressesConcern">
+  <rdfs:domain rdf:resource="#ImpactRule"/>
+  <rdfs:range rdf:resource="#Concern"/>
+  <rdfs:comment>CPS-specific</rdfs:comment>
+  <rdfs:comment>pg 15</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#addressesAtFunc">
+  <rdfs:domain rdf:resource="#ImpactRule"/>
+  <rdfs:range rdf:resource="#Function"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#addressesPolarity">
+  <rdfs:domain rdf:resource="#ImpactRule"/>
+  <rdfs:range rdf:resource="#ImpactPolarity"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#conditionPolarity">
+  <rdfs:domain rdf:resource="#Condition"/>
+  <rdfs:range rdf:resource="#ImpactPolarity"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#conditionProperty">
+  <rdfs:domain rdf:resource="#Condition"/>
+  <rdfs:range rdf:resource="#Property"/>
+  <rdfs:comment>CPS-specific</rdfs:comment>
+  <rdfs:comment>pg 15</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasCondition">
+  <rdfs:domain rdf:resource="#ImpactRule"/>
+  <rdfs:range rdf:resource="#Condition"/>
+  <rdfs:comment>CPS-specific</rdfs:comment>
+  <rdfs:comment>pg 15</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#addConcern">
+  <rdfs:domain rdf:resource="#Property"/>
+  <rdfs:range rdf:resource="#Concern"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#memberOf">
+  <rdfs:domain rdf:resource="#Property"/>
+  <rdfs:range rdf:resource="#Formulas"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#addressToFunc">
+  <rdfs:domain rdf:resource="#Formulas"/>
+  <rdfs:range rdf:resource="#DecompositionFunction"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#confComponent">
+  <rdfs:domain rdf:resource="#Component_Property"/>
+  <rdfs:range rdf:resource="#Component"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#confProperty">
+  <rdfs:domain rdf:resource="#Component_Property"/>
+  <rdfs:range rdf:resource="#Property"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#positiveImpactTo">
+  <rdfs:domain rdf:resource="#Component_Property"/>
+  <rdfs:range rdf:resource="#Concern"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#relateToProperty">
+  <rdfs:domain rdf:resource="#Component"/>
+  <rdfs:range rdf:resource="#Component"/>
+</owl:ObjectProperty>
+
+<owl:Class rdf:about="#Concern"/>
+
+<owl:Class rdf:about="#ImpactPolarity">
+  <rdfs:subClassOf rdf:resource="#ImpactRuleConcepts"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Component"/>
+
+<owl:Class rdf:about="#ImpactRule">
+  <rdfs:subClassOf rdf:resource="#ImpactRuleConcepts"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Condition">
+  <rdfs:subClassOf rdf:resource="#ImpactRuleConcepts"/>
+</owl:Class>
+
+<owl:Class rdf:about="#ImpactRuleConcepts">
+  <rdfs:subClassOf rdf:resource="#CPSFrameworkConcept"/>
+</owl:Class>
+
+<ImpactPolarity rdf:about="#negative">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</ImpactPolarity>
+
+<ImpactPolarity rdf:about="#positive">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</ImpactPolarity>
+
+<Condition rdf:about="#c0001_01">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <conditionPolarity rdf:resource="#positive"/>
+  <conditionProperty rdf:resource="#SAMSecBoot"/>
+</Condition>
+
+<Property rdf:about="#SAMSecBoot">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasType rdf:resource="#PropertyType_Assertion"/>
+  <rdfs:comment>SAM uses secure boot</rdfs:comment>
+  <atomicStatement>sec_boot_sam</atomicStatement>
+</Property>
+
+<Condition rdf:about="#c0002_01">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <conditionPolarity rdf:resource="#positive"/>
+  <conditionProperty rdf:resource="#Input1SecBoot"/>
+</Condition>
+
+<Property rdf:about="#Input1SecBoot">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasType rdf:resource="#PropertyType_Assertion"/>
+  <atomicStatement>sec_boot_input1</atomicStatement>
+</Property>
+
+<Condition rdf:about="#c0003_01">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <conditionPolarity rdf:resource="#positive"/>
+  <conditionProperty rdf:resource="#Input1ConsistentReadingFreq"/>
+</Condition>
+
+<Property rdf:about="#Input1ConsistentReadingFreq">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasType rdf:resource="#PropertyType_Assertion"/>
+  <atomicStatement>consist_reading_freq_input1</atomicStatement>
+</Property>
+
+<Condition rdf:about="#c0004_01">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <conditionPolarity rdf:resource="#positive"/>
+  <conditionProperty rdf:resource="#Input1Modes"/>
+</Condition>
+
+<Property rdf:about="#Input1Modes">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasType rdf:resource="#PropertyType_Capability"/>
+  <atomicStatement>slow_mode_input1</atomicStatement>
+</Property>
+
+<Condition rdf:about="#c0005_01">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <conditionPolarity rdf:resource="#positive"/>
+  <conditionProperty rdf:resource="#SAMEncryptedMem"/>
+</Condition>
+
+<Property rdf:about="#SAMEncryptedMem">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasType rdf:resource="#PropertyType_Assertion"/>
+  <rdfs:comment>SAM uses encrypted memory</rdfs:comment>
+  <atomicStatement>encrypted_mem_sam</atomicStatement>
+</Property>
+
+<Condition rdf:about="#c0006_01">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <conditionPolarity rdf:resource="#positive"/>
+  <conditionProperty rdf:resource="#Input1EncryptedMem"/>
+</Condition>
+
+<Property rdf:about="#Input1EncryptedMem">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasType rdf:resource="#PropertyType_Assertion"/>
+  <atomicStatement>encrypted_mem_input1</atomicStatement>
+</Property>
+
+<Condition rdf:about="#c0007_01">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <conditionPolarity rdf:resource="#negative"/>
+  <conditionProperty rdf:resource="#Input1EncryptedMem"/>
+</Condition>
+
+<Condition rdf:about="#c0008_01">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <conditionPolarity rdf:resource="#positive"/>
+  <conditionProperty rdf:resource="#SAMEncryptedMem"/>
+</Condition>
+
+<ImpactRule rdf:about="#ir0001">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <addressesConcern rdf:resource="#Integrity"/>
+  <addressesAtFunc rdf:resource="#bc1"/>
+  <addressesPolarity rdf:resource="#positive"/>
+  <hasCondition rdf:resource="#c0001_01"/>
+  <rdfs:comment>cpsf:Integrity is addressed by property cpsf:SAMSecBoot</rdfs:comment>
+</ImpactRule>
+
+<ImpactRule rdf:about="#ir0002">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <addressesConcern rdf:resource="#Integrity"/>
+  <addressesAtFunc rdf:resource="#bc1"/>
+  <addressesPolarity rdf:resource="#positive"/>
+  <hasCondition rdf:resource="#c0002_01"/>
+  <rdfs:comment>cpsf:Integrity is addressed by property cpsf:Input1SecBoot</rdfs:comment>
+</ImpactRule>
+
+<ImpactRule rdf:about="#ir0003">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <addressesConcern rdf:resource="#Functionality"/>
+  <addressesAtFunc rdf:resource="#bc1"/>
+  <addressesPolarity rdf:resource="#positive"/>
+  <hasCondition rdf:resource="#c0003_01"/>
+  <rdfs:comment>cpsf:Functionality is addressed by property cpsf:Input1ConsistentReadingFreq</rdfs:comment>
+</ImpactRule>
+
+<ImpactRule rdf:about="#ir0004">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <addressesConcern rdf:resource="#TimeIntervalAndLatencyControl"/>
+  <addressesAtFunc rdf:resource="#bc1"/>
+  <addressesPolarity rdf:resource="#positive"/>
+  <hasCondition rdf:resource="#c0004_01"/>
+  <rdfs:comment>cpsf:TimeIntervalAndLatencyControl is addressed by property cpsf:Input1Modes</rdfs:comment>
+</ImpactRule>
+
+<ImpactRule rdf:about="#ir0005">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <addressesConcern rdf:resource="#Confidentiality"/>
+  <addressesAtFunc rdf:resource="#bc1"/>
+  <addressesPolarity rdf:resource="#positive"/>
+  <hasCondition rdf:resource="#c0005_01"/>
+  <rdfs:comment>cpsf:Confidentiality is addressed by property cpsf:SAMEncryptedMem</rdfs:comment>
+</ImpactRule>
+
+<ImpactRule rdf:about="#ir0006">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <addressesConcern rdf:resource="#Confidentiality"/>
+  <addressesAtFunc rdf:resource="#bc1"/>
+  <addressesPolarity rdf:resource="#positive"/>
+  <hasCondition rdf:resource="#c0006_01"/>
+  <rdfs:comment>cpsf:Confidentiality is addressed by property cpsf:Input1EncryptedMem</rdfs:comment>
+</ImpactRule>
+
+<ImpactRule rdf:about="#ir0007">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <addressesConcern rdf:resource="#Confidentiality"/>
+  <addressesAtFunc rdf:resource="#bc1"/>
+  <addressesPolarity rdf:resource="#negative"/>
+  <hasCondition rdf:resource="#c0006_01"/>
+  <hasCondition rdf:resource="#c0007_01"/>
+  <hasCondition rdf:resource="#c0008_01"/>
+  <rdfs:comment>cpsf:Confidentiality is addressed by property cpsf:Input1EncryptedMem</rdfs:comment>
+</ImpactRule>
+
+<Formulas rdf:about="#g1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <addressToFunc rdf:resource="#Sign_In_Func"/>
+</Formulas>
+
+<Component rdf:about="#CP">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <relateToProperty rdf:resource="#Maintenance_Regularly"/>
+  <relateToProperty rdf:resource="#Communicate_With_Other_Component"/>
+  <relateToProperty rdf:resource="#Send_Actions"/>
+</Component>
+
+<Component rdf:about="#ER">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <relateToProperty rdf:resource="#Control_Speed"/>
+  <relateToProperty rdf:resource="#Send_Actions"/>
+  <relateToProperty rdf:resource="#Communicate_With_Other_Component"/>
+  <relateToProperty rdf:resource="#Maintenance_Regularly"/>
+  <relateToProperty rdf:resource="#Detect_Up_11"/>
+</Component>
+
+<Component rdf:about="#PF">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <relateToProperty rdf:resource="#Maintenance_Regularly"/>
+  <relateToProperty rdf:resource="#Control_Speed"/>
+  <relateToProperty rdf:resource="#Control_Pulley"/>
+  <relateToProperty rdf:resource="#Pulley_Release"/>
+  <relateToProperty rdf:resource="#Pulley_Clench"/>
+  <relateToProperty rdf:resource="#Communicate_With_Other_Component"/>
+  <relateToProperty rdf:resource="#Send_Actions"/>
+</Component>
+
+<Component rdf:about="#EC">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <relateToProperty rdf:resource="#Maintenance_Regularly"/>
+  <relateToProperty rdf:resource="#Control_Speed"/>
+  <relateToProperty rdf:resource="#Halting"/>
+  <relateToProperty rdf:resource="#Moving_Up"/>
+  <relateToProperty rdf:resource="#Moving_Down"/>
+  <relateToProperty rdf:resource="#Communicate_With_Other_Component"/>
+  <relateToProperty rdf:resource="#Control_Moving"/>
+  <relateToProperty rdf:resource="#Send_Actions"/>
+</Component>
+
+<Component rdf:about="#ESCam">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <relateToProperty rdf:resource="#Flash_Warning"/>
+  <relateToProperty rdf:resource="#Send_Actions"/>
+  <relateToProperty rdf:resource="#Communicate_With_Other_Component"/>
+  <relateToProperty rdf:resource="#Detect_Up_11"/>
+</Component>
+
+<Property rdf:about="#NewNode">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Property>
+
+<Condition rdf:about="#c0009_01">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <conditionPolarity rdf:resource="#positive"/>
+  <conditionProperty rdf:resource="#NewNode"/>
+</Condition>
+
+<ImpactRule rdf:about="#ir0008">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <addressesConcern rdf:resource="#Behavioral"/>
+  <addressesPolarity rdf:resource="#positive"/>
+  <hasCondition rdf:resource="#c0009_01"/>
+</ImpactRule>
+
+<Condition rdf:about="#c0010_01">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <conditionPolarity rdf:resource="#positive"/>
+  <conditionProperty rdf:resource="#NewNode"/>
+</Condition>
+
+<ImpactRule rdf:about="#ir0009">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <addressesConcern rdf:resource="#Networkability"/>
+  <addressesPolarity rdf:resource="#positive"/>
+  <hasCondition rdf:resource="#c0010_01"/>
+</ImpactRule>
+
+
+</rdf:RDF>

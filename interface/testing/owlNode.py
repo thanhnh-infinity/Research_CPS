@@ -10,6 +10,8 @@ class owlNode:
        self.children = None
        self.relevantProperties = None
        
+       self.subtype = "None"
+       
        self.xpos = None
        self.ypos = None
        self.level = None
