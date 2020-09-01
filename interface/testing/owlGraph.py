@@ -242,7 +242,16 @@ class owlGraph:
                     else:
                         self.formulaPropertyConjEdges.append((node.name,child.name))
                         self.formulaPropertyConjEdgeLabels[(node.name,child.name)] = "memberOf" 
+                 
+                elif(child.type == "Component" and self.graphComponents == True):
+                    
+                        self.netXGraph.add_edge(node.name,child.name,length = 1)
                         
+                        self.componentEdges.append((node.name,child.name))
+                        self.componentEdgeLabels[(node.name,child.name)] = "relatedTo" 
+                        
+                        
+                    
                 #elif(child.type == "Formula" and self.graphProperties == True):
                     
                     
@@ -378,7 +387,8 @@ class owlGraph:
        
         property_color = "#595858"
         formula_color = "#3000ab"
-        decompfunc_color = "#0eb0a8"
+        decompfunc_color ="#3000ab"
+        #decompfunc_color = "#0eb0a8"
         component_color = "pink"
         edge_color = "black"
         edge_width = 2
@@ -406,7 +416,7 @@ class owlGraph:
         
         
         
-        #nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.componentEdges, arrows=False,style = "dotted",width = edge_width,edge_color = edge_color, alpha = edge_alpha)
+        nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.componentEdges, arrows=False,style = "dotted",width = edge_width,edge_color = edge_color, alpha = edge_alpha)
 
 
         nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.concernEdgeLabels,font_size = fs)
@@ -423,7 +433,7 @@ class owlGraph:
         
         
         
-        #nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.componentEdgeLabels,font_size = fs)
+        nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.componentEdgeLabels,font_size = fs)
 
 
         nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.aspectNodeLabels,font_size=fs,bbox=dict(facecolor=aspect_color, boxstyle='square,pad=.3'),font_color = "white")
@@ -433,7 +443,7 @@ class owlGraph:
             nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.propertyNodeLabels,font_size=fs*.85,bbox=dict(facecolor=property_color, boxstyle='round4,pad=.3'),font_color = "white")
             nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.formulaNodeLabels,font_size=fs,bbox=dict(facecolor=formula_color, boxstyle='round4,pad=.3'),font_color = "white")
             nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.decompFuncNodeLabels,font_size=fs,bbox=dict(facecolor=decompfunc_color, boxstyle='round4,pad=.3'),font_color = "white")
-        #nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.componentNodeLabels,font_size=fs,bbox=dict(facecolor=component_color, boxstyle='round,pad=.3'),font_color = "white")
+            nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.componentNodeLabels,font_size=fs,bbox=dict(facecolor=component_color, boxstyle='round,pad=.3'),font_color = "white")
 
 
     def findNode(self,name):

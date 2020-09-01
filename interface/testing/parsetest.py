@@ -100,7 +100,7 @@ def parseAndCreateRules(text,RHS_name):
     
     formlist = []
 
-    rulenum = 10
+    rulenum = 1
     
     forms = list(parenthetic_contents(text))
     

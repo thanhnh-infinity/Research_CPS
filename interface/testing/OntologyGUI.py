@@ -196,7 +196,7 @@ class OntologyGUI:
 
         self.owlInfoFrame.update()
         
-        print(self.owlInfoFrame.winfo_width())
+       
 
         self.indInfoHeaderFrame = Frame(self.infoFrame, bg = "#747780",bd = 5)
         self.indInfoHeaderFrame.place(relwidth = .9, relheight = .07, relx  = .05, rely = .525)
@@ -751,6 +751,20 @@ class OntologyGUI:
             text = "Base-" + str(self.owlBase.owlName)
             
             basefs = self.getCorrFS(text)
+            
+            
+                
+            if(basefs <= 8):
+                    
+                textlen = int(len(text)/2)
+                
+                text = text[ : textlen] + "\n" + text[textlen : ]
+                    
+                    
+                    
+                basefs = 10
+        
+            
     
             self.owlBaseNameInfo.configure(font = "Monaco " + str(basefs) + " bold")
             self.owlBaseNameText.set(text)
@@ -763,6 +777,16 @@ class OntologyGUI:
                 textapp = "App-" + str(self.owlApplication.owlName)
                 
                 appfs = self.getCorrFS(textapp)
+                
+                if(appfs <= 8):
+                    
+                    textlen = int(len(textapp)/2)
+                    
+                    textapp = textapp[ : textlen] + "\n" + textapp[textlen : ]
+                    
+                    
+                    
+                    appfs = 10
                 
                 self.owlAppNameInfo.configure(font = "Monaco " + str(appfs) + " bold")
                 
@@ -867,7 +891,7 @@ class OntologyGUI:
         
     def addRLProperty(self):
         
-        print("adding new RL Property")
+       
         
         self.owlApplication.addRLProperty(self.RLIEntry.get())
         
@@ -1031,7 +1055,7 @@ class OntologyGUI:
 
         #reset the error message because we just did a successful operation
         self.handleErrorMessageDeletion("lc")
-        print("added concern")
+       
         
     #function to add parent to clicked node
     def addParent(self):
@@ -1109,7 +1133,7 @@ class OntologyGUI:
         #if deletion would create removeChildren, ask if they want to delete all of the removeChildren
         else:
 
-            self.removeChildrenWindow = tk.Toplevel(height = 200, width = 600, bg = spartangreen)
+            self.removeChildrenWindow = tk.Toplevel(height = 250, width = 600, bg = spartangreen)
             #self.removeChildrenWindow.transient(master = self.lcWindow)
             self.lcWindow.withdraw()
 
@@ -1200,7 +1224,7 @@ class OntologyGUI:
         self.addSpace(self.lcButtonFrame,"white","tiny")
 
         switchToDecompFuncB = tk.Button(self.lcButtonFrame, text = "Switch to Functional Decomp",padx = 5, bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.switchToDecompFunc)
-        switchToDecompFuncB.pack()
+        #switchToDecompFuncB.pack()
 
         self.addSpace(self.lcButtonFrame,"white","tiny")
 
@@ -1266,7 +1290,7 @@ class OntologyGUI:
         self.addSpace(self.lcButtonFrame,"white","tiny")
 
         switchToFormulaB = tk.Button(self.lcButtonFrame, text = "Switch to Formula",padx = 5, bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5, height = 1, width = 15, font = buttonFont, command = self.switchToFormula)
-        switchToFormulaB.pack()
+        #switchToFormulaB.pack()
 
         self.addSpace(self.lcButtonFrame,"white","tiny")
 
@@ -1345,7 +1369,7 @@ class OntologyGUI:
         if (self.handleErrorMessage(new_parent_name,"lc") == 0):
             return
 
-        self.owlApplication.addPropertyAsParent(new_parent_name,self.leftClicked)
+        self.owlApplication.addPropertyAsParentofComponent(new_parent_name,self.leftClicked)
 
         summary = "Added " + new_parent_name + " as Parent of " + self.leftClicked.name
         self.summaryText.set(summary)
@@ -1908,7 +1932,7 @@ class OntologyGUI:
         
         
         self.dependencyEntryFrame = tk.Frame(self.dependencyWindowButtonFrame,bg = spartangreen)
-        self.dependencyEntryFrame.place(relwidth = .9, relheight = .50, relx = .05, rely = .05)
+        self.dependencyEntryFrame.place(relwidth = .9, relheight = .80, relx = .05, rely = .05)
      
         self.DCE = dependencyCalculatorEntry(self.dependencyEntryFrame, self.owlBase, self.owlApplication,self)
         self.dependencyWindow.protocol("WM_DELETE_WINDOW",self.dependencyWindowClose)
@@ -1927,9 +1951,17 @@ class OntologyGUI:
     
         currentText = self.DCE.editing.get(1.0,END)
         
-        print("before cleaning")
-        print(currentText)
-        print()
+       # print("before cleaning")
+       # print(currentText)
+      #  print(len(currentText))
+        
+        if(currentText[len(currentText) - 2] == " " or currentText[len(currentText) - 2] == "("):
+            
+            space = ""
+            
+        else:
+            
+            space = " "
         
         currentText = currentText.replace("(","")
         currentText = currentText.replace(")","")
@@ -1943,28 +1975,28 @@ class OntologyGUI:
             string = string.rstrip("\n")
             
             goodtext.append(string)
-            print(string)
+            #print(string)
             
         
         #goodtext = list(filter((" ").__ne__, goodtext))
         goodtext = list(filter(("").__ne__, goodtext))
         goodtext = list(filter(("\n").__ne__, goodtext))
     
-        print("after cleaning")
-        print(goodtext)
+      #  print("after cleaning")
+      #  print(goodtext)
      
         if(len(goodtext) == 0):
             
             self.DCE.editing.insert(END, nearest.name)
             return
         
-        if(goodtext[-1] == "and" or goodtext[-1] == "or"):
+        if(goodtext[-1] == "and" or goodtext[-1] == "or" or goodtext[-1] == ")"):
             
-            self.DCE.editing.insert(END, " " + nearest.name)
+            self.DCE.editing.insert(END, space + nearest.name)
         
         else:
         
-            self.DCE.editing.insert(END, " " + andor + " " + nearest.name)
+            self.DCE.editing.insert(END, space + andor + " " + nearest.name)
             
         
 

@@ -35,22 +35,35 @@ class dependencyCalculatorEntry:
         
         
         self.ifFrame = tk.Frame(self.boundTo,bg = spartangreen)
-        self.ifFrame.place(relwidth = .05,relheight = .33, relx = .02,rely = .05)
+        self.ifFrame.place(relwidth = .05,relheight = .20, relx = .02,rely = .09)
         
         self.LHSFrame = tk.Frame(self.boundTo, bg = spartangreen)
-        self.LHSFrame.place(relwidth = .45, relheight = .90, relx = .08, rely = .05)
+        self.LHSFrame.place(relwidth = .45, relheight = .30, relx = .08, rely = .05)
         
         self.thenFrame = tk.Frame(self.boundTo, bg = spartangreen)
-        self.thenFrame.place(relwidth = .15, relheight = .33, relx = .58, rely = .05)
+        self.thenFrame.place(relwidth = .15, relheight = .20, relx = .58, rely = .09)
         
         self.RHSFrame = tk.Frame(self.boundTo, bg = spartangreen)
-        self.RHSFrame.place(relwidth = .20, relheight = .90, relx = .75, rely = .05)
+        self.RHSFrame.place(relwidth = .20, relheight = .30, relx = .75, rely = .05)
         
-        self.LHSEntry = Text(self.LHSFrame,width = 50, height = 3)
+        self.leftPFrame = tk.Frame(self.boundTo, bg = "yellow")
+        self.leftPFrame.place(relwidth = .05, relheight = .18, relx = .10, rely = .35)
+
+        self.rightPFrame = tk.Frame(self.boundTo, bg = "black")  
+        self.rightPFrame.place(relwidth = .05, relheight = .18, relx = .18, rely = .35)
+        
+        self.andFrame = tk.Frame(self.boundTo, bg = "black")
+        self.andFrame.place(relwidth = .10, relheight = .18, relx = .28, rely = .35)
+        
+        self.orFrame = tk.Frame(self.boundTo, bg = "black")
+        self.orFrame.place(relwidth = .10, relheight = .18, relx = .40, rely = .35)
+        
+        
+        self.LHSEntry = Text(self.LHSFrame,width = 50, height = 4)
         self.LHSEntry.pack()
         self.LHSEntry.insert(tk.END,"(")
         
-        self.RHSEntry = Text(self.RHSFrame, width = 50, height = 3)
+        self.RHSEntry = Text(self.RHSFrame, width = 50, height = 4)
         self.RHSEntry.pack()
         
         self.ifButton = Button(self.ifFrame, text = "IF", bg = spartangreen, font = self.labelFont, fg = "white",padx = 20, command = self.onIfClick)
@@ -58,6 +71,19 @@ class dependencyCalculatorEntry:
         
         self.thenButton = Button(self.thenFrame, text = "THEN", bg = spartangreen, font = self.labelFont, fg = "white", padx = 20, command = self.onThenClick)
         self.thenButton.pack()
+        
+        self.leftPButton = Button(self.leftPFrame, text = "(", bg = spartangreen, font = self.labelFont, fg = "white", padx = 20, command = self.onLeftPClick)
+        self.leftPButton.pack()
+        
+        self.rightPButton = Button(self.rightPFrame, text = ")", bg = spartangreen, font = self.labelFont, fg = "white", padx = 20, command = self.onRightPClick)
+        self.rightPButton.pack()
+        
+        
+        self.andButton = Button(self.andFrame, text = "and", bg = spartangreen, font = self.labelFont, fg = "white", padx = 20, command = self.onAndClick)
+        self.andButton.pack()
+        
+        self.orButton = Button(self.orFrame, text = "or", bg = spartangreen, font = self.labelFont, fg = "white", padx = 20, command = self.onOrClick)
+        self.orButton.pack()
         
         
         self.buttonFrame = tk.Frame(self.boundTo,bg = "grey")
@@ -84,15 +110,15 @@ class dependencyCalculatorEntry:
         
         forms = parseAndCreateRules(LHS_text,self.RHSNode.name)
         
-        for form in forms:
+        #for form in forms:
     
-            print(form.name)
+           # print(form.name)
             
-            for member in form.members:
-                print(member)
+            #for member in form.members:
+                #print(member)
                 
-            print(form.operator)
-            print()
+            #print(form.operator)
+            #print()
         self.LHSNodes = forms
       
         
@@ -113,8 +139,41 @@ class dependencyCalculatorEntry:
         
          self.RHSNode = self.findNode(self.RHS_text)
          
-             
+    def onAndClick(self):
         
+        lhstext = self.LHSEntry.get(1.0,END)
+        
+        if(lhstext[len(lhstext) - 2] == " "):
+            
+            self.LHSEntry.insert(INSERT," and")
+            
+        else:
+            
+            self.LHSEntry.insert(INSERT," and ")
+        
+    def onOrClick(self):
+        
+        lhstext = self.LHSEntry.get(1.0,END)
+        
+        if(lhstext[len(lhstext) - 2] == " "):
+            
+            self.LHSEntry.insert(INSERT," or")
+            
+        else:
+            
+            self.LHSEntry.insert(INSERT," or ")
+        
+             
+    def onLeftPClick(self):
+        
+        
+        self.LHSEntry.insert(INSERT,"(")
+        #print("(")
+        
+    def onRightPClick(self):
+        
+        self.LHSEntry.insert(INSERT,")")
+        #print(")")
     
     def findNode(self,name):
 
@@ -155,6 +214,8 @@ class dependencyCalculatorEntry:
         
     def onThenClick(self):
         self.editing = self.RHSEntry
+        
+    
         
         
          

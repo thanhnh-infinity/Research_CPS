@@ -62,7 +62,7 @@ class owlApplication:
             
         if(self.handleComponents == True):
             
-            return
+           
             
             self.handleRelateToProperty()
             
@@ -220,6 +220,9 @@ class owlApplication:
         
         for comp in self.allComponents_owlNode:
             
+         
+            
+            
             all_rel_props = comp.owlreadyObj.relateToProperty
             
             #prop is owlready node
@@ -241,7 +244,16 @@ class owlApplication:
         new_property.is_a.append(self.owlreadyOntology.Formula)
         
         new_property.propertyAddConcern.append(parentConcern.owlreadyObj)
+     
         
+    def addPropertyAsParentofComponent(self,new_name,parent):
+        
+        #parent is component
+        
+        new_property =  self.owlreadyOntology.Property(new_name, ontology = self.owlreadyOntology)
+        new_property.is_a.append(self.owlreadyOntology.Formula)
+        
+        parent.owlreadyObj.relateToProperty.append(new_property)
         
     def addRLProperty(self,new_name):
         
