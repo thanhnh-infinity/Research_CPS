@@ -8,6 +8,7 @@ class owlNode:
        self.owlreadyObject = None
        self.parent = None
        self.children = None
+       self.negChildren = None
        self.relevantProperties = None
        
        self.subtype = "None"

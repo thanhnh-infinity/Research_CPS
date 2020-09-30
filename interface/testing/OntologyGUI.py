@@ -136,7 +136,7 @@ class OntologyGUI:
 
         self.inputAppEntry = Entry(self.leftControlFrame, width = 30,borderwidth = 5,highlightbackground="white", fg = "#18453b",font = entryFont)
         self.inputAppEntry.pack()
-        self.inputAppEntry.insert(0,"application_ontologies/cpsframework-v3-sr-LKAS-Configuration-V2.owl")
+        self.inputAppEntry.insert(0,"application_ontologies/cpsframework-v3-sr-LKAS-Configuration-V2-neg.owl")
 
         #button to load ontology, calls function which handles loading
         self.loadAppOntologyB = tk.Button(self.leftControlFrame, text = "Load Application Ontology",padx = 10, pady = 1, width = self.buttonWidth,bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5,font = buttonFont,command = self.loadAppOntology)
@@ -1770,12 +1770,58 @@ class OntologyGUI:
     
         elif((parent_type == "Formula" or parent_type == "DecompositionFunction") and (child_type == "Formula" or child_type == "DecompositionFunction")):
 
-            self.addFormulaFormulaRelations()
+            if(self.relationChild in self.relationParent.negChildren):
+                
+              
+                
+                self.owlApplication.switchToRegMemberOf(self.relationChild,self.relationParent)
+                
+                self.relationWindowClose()
+                
+                self.onRelationButton()
+                
+            
+            elif(self.relationChild in self.relationParent.children):
+                
+                self.owlApplication.switchToNegMemberOf(self.relationChild,self.relationParent)
+               
+                
+                self.relationWindowClose()
+                
+                self.onRelationButton()
+                
+            else:
+            
+            
+                self.addFormulaFormulaRelations()
         
         elif((parent_type == "Formula" or parent_type == "DecompositionFunction") and (child_type == "Property")):
             
             
-            self.addFormulaPropertyRelations()
+            if(self.relationChild in self.relationParent.negChildren):
+                
+              
+                
+                self.owlApplication.switchToRegMemberOf(self.relationChild,self.relationParent)
+                
+                self.relationWindowClose()
+                
+                self.onRelationButton()
+                
+            
+            elif(self.relationChild in self.relationParent.children):
+                
+                self.owlApplication.switchToNegMemberOf(self.relationChild,self.relationParent)
+               
+                
+                self.relationWindowClose()
+                
+                self.onRelationButton()
+                
+            else:
+                
+                
+                self.addFormulaPropertyRelations()
 
         elif(parent_type == "Property" and child_type == "Component"):
 
@@ -1990,7 +2036,7 @@ class OntologyGUI:
             self.DCE.editing.insert(END, nearest.name)
             return
         
-        if(goodtext[-1] == "and" or goodtext[-1] == "or" or goodtext[-1] == ")"):
+        if(goodtext[-1] == "and" or goodtext[-1] == "or" or goodtext[-1] == "not" or goodtext[-1] == ")"):
             
             self.DCE.editing.insert(END, space + nearest.name)
         

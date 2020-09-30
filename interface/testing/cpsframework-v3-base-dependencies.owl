@@ -20,20 +20,6 @@
      -->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- http://www.asklab.tk/ontologies/CPS-Framework#hasBC -->
 
     <owl:ObjectProperty rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#hasBC">
@@ -1191,19 +1177,7 @@
 
 
 
-    <!-- http://www.asklab.tk/ontologies/CPS-Framework#negative -->
 
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#negative">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ImpactPolarity"/>
-    </owl:NamedIndividual>
-
-
-
-    <!-- http://www.asklab.tk/ontologies/CPS-Framework#positive -->
-
-    <owl:NamedIndividual rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#positive">
-        <rdf:type rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#ImpactPolarity"/>
-    </owl:NamedIndividual>
 
 
 

@@ -69,6 +69,7 @@ class owlApplication:
         if(self.handleProperties == True):
             
             self.handleMemberOf()
+            self.handleNegMemberOf()
             self.handleFormulaAddConcern()
             self.handlePropertyAddConcern()
          
@@ -89,6 +90,7 @@ class owlApplication:
             newOwlNode.name = remove_namespace(prop)
             newOwlNode.type = "Property"
             newOwlNode.children = []
+            newOwlNode.negChildren = []
             newOwlNode.parents = []
             
             newOwlNode.owlreadyObj = prop
@@ -116,6 +118,7 @@ class owlApplication:
             newOwlNode.type = "Formula"
             newOwlNode.subtype = self.getSubType(formula)
             newOwlNode.children = []
+            newOwlNode.negChildren = []
             newOwlNode.parents = []
             newOwlNode.owlreadyObj = formula
             
@@ -136,6 +139,7 @@ class owlApplication:
             newOwlNode.type = "DecompositionFunction"
             newOwlNode.subtype = self.getSubType(decomp)
             newOwlNode.children = []
+            newOwlNode.negChildren = []
             newOwlNode.parents = []
             newOwlNode.owlreadyObj = decomp
           
@@ -174,6 +178,7 @@ class owlApplication:
             child_owlr = child.owlreadyObj
             
             member_of = child_owlr.memberOf
+        
             
             for memberof in member_of:
                 
@@ -181,7 +186,27 @@ class owlApplication:
                 
                 child.parents.append(parent)
                 parent.children.append(child)
+                
+         
+                
+    def handleNegMemberOf(self):
+        
+        
+        for child in self.nodeArray:
+            
+            child_owlr = child.owlreadyObj
+        
+            
+            neg_member_of = child_owlr.negMemberOf
      
+            for negmemberof in neg_member_of:
+                
+        
+                parent = self.getOwlNode(remove_namespace(negmemberof))
+                
+                child.parents.append(parent)
+            
+                parent.negChildren.append(child)
         
     def handleFormulaAddConcern(self):
         
@@ -342,6 +367,8 @@ class owlApplication:
             
             if(lhsnode.operator == "and"):
                 
+                print(lhsnode.name)
+                
                 new_formula = self.owlreadyOntology.Conjunction(lhsnode.name,ontology = self.owlreadyOntology)
             
             else:
@@ -356,14 +383,32 @@ class owlApplication:
                     continue
                 
                 
+                
+                
                 member_owlready = self.getOWLObject(member)
                 if(self.isProperty(member_owlready) == True):
                     
                    
                     member_owlready.propertyAddConcern.append(RHSNode.owlreadyObj)
                
-                new_formula.includesMember.append(member_owlready)
-                member_owlready.memberOf.append(new_formula)
+                
+                
+                #make formulas have children, negated children 
+                
+                if(member[0] == "-"):
+                    
+                
+                    print(member, " is negated")
+                    
+                    
+                    new_formula.includesMember.append(member_owlready)
+                    member_owlready.negMemberOf.append(new_formula)
+               
+                else:
+                    
+                    new_formula.includesMember.append(member_owlready)
+                    member_owlready.memberOf.append(new_formula)
+                    
                 
         
         if last_formula != None:
@@ -384,6 +429,24 @@ class owlApplication:
         
         node.owlreadyObj.name = new_name
         
+    def switchToRegMemberOf(self,relationChild,relationParent):
+        
+        print("x")
+        relationChild.owlreadyObj.memberOf.append(relationParent.owlreadyObj)
+        relationChild.owlreadyObj.negMemberOf.remove(relationParent.owlreadyObj)
+        
+        
+        print("y")
+        
+    def switchToNegMemberOf(self,relationChild,relationParent):
+        
+        print("z")
+        
+        relationChild.owlreadyObj.negMemberOf.append(relationParent.owlreadyObj)
+        relationChild.owlreadyObj.memberOf.remove(relationParent.owlreadyObj)
+        
+        
+        print("zz")
 
     def removePropertyAddressesConcernRelation(self,parent,child):
         
@@ -449,6 +512,10 @@ class owlApplication:
     
     def getOWLObject(self,name):
 
+        if name[0] == "-":
+            
+            name = name[1:]
+        
         obj_list = self.owlreadyOntology.search(iri = "*" + name)
         
         if(len(obj_list) == 0):
@@ -468,7 +535,7 @@ class owlApplication:
             i = i + 1
 
 
-        print("found ", obj)
+        #print("found ", obj)
         return obj
     
     

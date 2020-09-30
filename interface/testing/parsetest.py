@@ -59,7 +59,7 @@ def get_nonnested_members(in_line):
     splitline = in_line.split(" ")
     members = []
     
-    
+    negated = False
     for element in splitline:
         
       
@@ -67,10 +67,30 @@ def get_nonnested_members(in_line):
             
             continue
         
+        elif (element == "not"):
+            
+        
+            print("in not")
+            negated = True
+            
+            
+        
+    
+            
         else:
             
-            members.append(element)
+            if(negated == True):
             
+                members.append("-" + element)
+                
+                negated = False
+            else:
+                
+                members.append(element)
+            
+        
+    print("members")
+    print(members)
     return members, op, searcher
             
         
@@ -141,20 +161,22 @@ def parseAndCreateRules(text,RHS_name):
             
     return formlist
 
-#LHS_text = "(pam or (jim and sam and steve and (willy or tommy) and pickles))"
+#LHS_text = "(p1 and not p2 and not (p3 or not p4))"
 
-#orms = parseAndCreateRules(LHS_text)
+#forms = parseAndCreateRules(LHS_text,"c1")
     
-    
+ 
+#print("PRINTING FORMULAS\n")
+   
 #for form in forms:
     
-   # print(form.name)
-    
+  #  print(form.name)
+   # print(form.operator)
    # for member in form.members:
    #     print(member)
         
- #   print(form.operator)
-  #  print()
+ #   
+#    print()
 
 
 

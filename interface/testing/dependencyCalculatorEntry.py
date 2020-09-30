@@ -47,16 +47,20 @@ class dependencyCalculatorEntry:
         self.RHSFrame.place(relwidth = .20, relheight = .30, relx = .75, rely = .05)
         
         self.leftPFrame = tk.Frame(self.boundTo, bg = "yellow")
-        self.leftPFrame.place(relwidth = .05, relheight = .18, relx = .10, rely = .35)
+        self.leftPFrame.place(relwidth = .05, relheight = .18, relx = 0.05, rely = .35)
 
         self.rightPFrame = tk.Frame(self.boundTo, bg = "black")  
-        self.rightPFrame.place(relwidth = .05, relheight = .18, relx = .18, rely = .35)
+        self.rightPFrame.place(relwidth = .05, relheight = .18, relx = 0.12, rely = .35)
         
         self.andFrame = tk.Frame(self.boundTo, bg = "black")
-        self.andFrame.place(relwidth = .10, relheight = .18, relx = .28, rely = .35)
+        self.andFrame.place(relwidth = .10, relheight = .18, relx = .22, rely = .35)
         
         self.orFrame = tk.Frame(self.boundTo, bg = "black")
-        self.orFrame.place(relwidth = .10, relheight = .18, relx = .40, rely = .35)
+        self.orFrame.place(relwidth = .10, relheight = .18, relx = .34, rely = .35)
+        
+
+        self.notFrame = tk.Frame(self.boundTo, bg = "black")
+        self.notFrame.place(relwidth = .10, relheight = .18, relx = .46, rely = .35)
         
         
         self.LHSEntry = Text(self.LHSFrame,width = 50, height = 4)
@@ -85,6 +89,8 @@ class dependencyCalculatorEntry:
         self.orButton = Button(self.orFrame, text = "or", bg = spartangreen, font = self.labelFont, fg = "white", padx = 20, command = self.onOrClick)
         self.orButton.pack()
         
+        self.notButton = Button(self.notFrame, text = "not", bg = spartangreen, font = self.labelFont, fg = "white", padx = 20, command = self.onNotClick)
+        self.notButton.pack()
         
         self.buttonFrame = tk.Frame(self.boundTo,bg = "grey")
         self.buttonFrame.place(relwidth = .90, relheight = .40, relx = .05, rely = .55)
@@ -142,10 +148,11 @@ class dependencyCalculatorEntry:
     def onAndClick(self):
         
         lhstext = self.LHSEntry.get(1.0,END)
+    
         
         if(lhstext[len(lhstext) - 2] == " "):
             
-            self.LHSEntry.insert(INSERT," and")
+            self.LHSEntry.insert(INSERT,"and")
             
         else:
             
@@ -157,11 +164,26 @@ class dependencyCalculatorEntry:
         
         if(lhstext[len(lhstext) - 2] == " "):
             
-            self.LHSEntry.insert(INSERT," or")
+            self.LHSEntry.insert(INSERT,"or")
             
         else:
             
             self.LHSEntry.insert(INSERT," or ")
+            
+    def onNotClick(self):
+        
+        
+        lhstext = self.LHSEntry.get(1.0,END)
+        
+        if(lhstext[len(lhstext) - 2] == " "):
+            
+            self.LHSEntry.insert(INSERT,"not")
+            
+        else:
+            
+            self.LHSEntry.insert(INSERT," not ")
+        
+        
         
              
     def onLeftPClick(self):
