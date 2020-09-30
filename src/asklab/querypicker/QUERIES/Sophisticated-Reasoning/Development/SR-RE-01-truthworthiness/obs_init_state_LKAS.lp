@@ -5,11 +5,11 @@ obs(protocol_encrypted,true).
 obs(algo_AES,true).
 obs(algo_RSA,true).
 obs(algo_DES,true).
-obs(firewall_setup,false).
+obs(firewall_setup,true).
 obs(ip_filtering,true).
 obs(secure_boot,true).
 obs(trusted_auth_device,true).
-obs(trusted_environment,false).
+obs(trusted_environment,true).
 obs(finger_printing,true).
 obs(two_factors,true).
 obs(iris_scan,true).

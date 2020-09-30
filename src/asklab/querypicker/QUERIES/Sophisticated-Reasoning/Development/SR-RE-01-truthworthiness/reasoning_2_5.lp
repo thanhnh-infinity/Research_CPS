@@ -26,7 +26,7 @@ h(sat(C,F),T)  :- not -h(sat(C,F),T), step(T), func_dec(F,C).
 h(sat(C),T) :- not -h(sat(C),T), concern(C), step(T).
 % ---------------------------------------------
 
-ref(X,P,C,T) :- h(in_mode(X,P),T), addressedBy(C,P), 
+ref(X,P,C,T) :- h(in_mode(X,P),T), addressedBy(C,P), h(P,T),
                 component(X), property(P), concern(C), step(T).
 pos(X,P,C,T) :- ref(X,P,C,T), possible_impacts_pos(X,P,C), h(sat(C),T).
 neg(X,P,C,T) :- ref(X,P,C,T), not possible_impacts_pos(X,P,C).
@@ -35,7 +35,7 @@ pos(X,P,C,T) :- pos(X,P,C1,T), subconcern(C,C1), step(T).
 neg(X,P,C,T) :- neg(X,P,C1,T), subconcern(C,C1), step(T).
 twcp(X,TW,T) :- TW = #count{C,P:pos(X,P,C,T), property(P), concern(C)}, component(X), step(T).
 twcn(X,TW,T) :- TW = #count{C,P:neg(X,P,C,T), property(P), concern(C)}, component(X), step(T).
-d(X,D,T)     :- component(X), step(T), twcp(X,TWp,T), twcn(X,TWn,T), D=TWp-TWn.
+d(X,D,T)     :- component(X), step(T), twcp(X,TWp,T), twcn(X,TWn,T), D=(TWp - TWn).
 most(X,T)    :- component(X), step(T), d(X,M,T), M == #max{N:d(_,N,T)}.
 least(X,T)   :- component(X), step(T), d(X,M,T), M == #min{N:d(_,N,T)}.
 
@@ -45,5 +45,5 @@ least(X,T)   :- component(X), step(T), d(X,M,T), M == #min{N:d(_,N,T)}.
 %#show neg/4.
 #show twcp/3.
 #show twcn/3.
-#show most/2.
-#show least/2.
+%#show most/2.
+%#show least/2.
