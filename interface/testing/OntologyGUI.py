@@ -824,6 +824,10 @@ class OntologyGUI:
     def handleEmptyLeftClick(self):
         
         if(self.RLIWindowOpen == True or self.owlBaseLoaded == False):
+            
+            print(self.RLIWindowOpen)
+            print(self.owlBaseLoaded)
+            print("returning")
             return
         
         self.errorDisplayed = False
@@ -834,7 +838,7 @@ class OntologyGUI:
         self.RLIWindowOpen = True
         self.RLIWindow.title("Add Individual")
         
-        self.RLIWindow.protocol("WM_DLETE_WINDOW",self.RLIWindowClose)
+        self.RLIWindow.protocol("WM_DELETE_WINDOW",self.RLIWindowClose)
         
         self.RLIWindowHeaderFrame = tk.Frame(self.RLIWindow,bg = spartangreen)
         self.RLIWindowHeaderFrame.place(relwidth = .7, relheight = .12, relx = .15, rely = .01)
@@ -909,13 +913,17 @@ class OntologyGUI:
         
     def addRLComponent(self):
         
-        x = 2
+        self.owlApplication.addNewComponent(self.RLIEntry.get())
+        
+        self.updateTree()
         
        
         
     def RLIWindowClose(self):
         
     
+        print("called close")
+        
         self.RLIWindow.destroy()    
         self.RLIWindowOpen = False
 
@@ -923,7 +931,11 @@ class OntologyGUI:
     #handles opening left click window, where you can edit clicked concerns
     def onLeftClick(self,event):
 
+        print("got left click")
+        
         if(self.lcWindowOpen == True or self.owlBaseLoaded == False):
+            
+            print("not doing anything")
             return
 
         self.errorDisplayed = False
@@ -933,7 +945,7 @@ class OntologyGUI:
 
         if(closestnode == None):
             
-           
+            print("in if ")
             self.handleEmptyLeftClick()
             return
 

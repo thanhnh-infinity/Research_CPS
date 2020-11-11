@@ -4,7 +4,7 @@ import numpy as np
 import tkinter.font as tkFont
 from parse import *
 from DCENode import DCENode
-from parsetest import parseAndCreateRules 
+from parseDependency import parseAndCreateRules 
 from owlFormula import owlFormula
 
 

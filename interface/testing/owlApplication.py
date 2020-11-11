@@ -11,7 +11,7 @@ class owlApplication:
         
         
         self.handleProperties = True
-        self.handleComponents = False
+        self.handleComponents = True
         
         self.owlreadyOntology = None
         self.owlBase = base 
@@ -161,6 +161,7 @@ class owlApplication:
             newOwlNode.name = remove_namespace(component)
             newOwlNode.type = remove_namespace(component.is_a[0])
             newOwlNode.children = []
+            newOwlNode.negChildren = []
             newOwlNode.parents = []
             newOwlNode.owlreadyObj = component
             

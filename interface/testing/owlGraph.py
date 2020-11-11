@@ -15,7 +15,7 @@ class owlGraph:
     def __init__(self,baseOWL,appOWL = None):
 
         self.graphProperties = True
-        self.graphComponents = False
+        self.graphComponents = True
        
         
         
@@ -519,7 +519,7 @@ class owlGraph:
 
 
         nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.aspectNodeLabels,font_size=fs,bbox=dict(facecolor=aspect_color, boxstyle='square,pad=.3'),font_color = "white")
-        nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.concernNodeLabels,font_size=fs,bbox=dict(facecolor=concern_color, boxstyle='square,pad=.3'),font_color = "white")
+        nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.concernNodeLabels,font_size= fs,bbox=dict(facecolor=concern_color, boxstyle='square,pad=.3'),font_color = "white")
 
         if(self.owlApplication != None):
             nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.propertyNodeLabels,font_size=fs*.85,bbox=dict(facecolor=property_color, boxstyle='round4,pad=.3'),font_color = "white")
