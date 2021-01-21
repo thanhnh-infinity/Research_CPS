@@ -1,0 +1,17 @@
+Additional competency question:
+  What have you done across the system for the sake of confidentiality?
+
+
+HOW TO ANSWER:
+
+Roughly speaking, the answers to the question
+are all properties "attached" to confidentiality and
+all properties "attached" to (possibly transitive) sub-concerns
+of confidentiality.
+
+Solution:
+1. Find every impact rule r such that <r cpsf:addressesConcern c>
+and <r cpsf:addressesPolarity positive>
+and c is confidentiality of one of its (possibly transitive) sub-concerns
+and <r cpsf:addressesAtFunc f>.
+2. Return every condition+polarity of r and the function f.

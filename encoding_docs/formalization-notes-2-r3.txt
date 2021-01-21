@@ -1,0 +1,291 @@
+HOW TO MODEL REQUIREMENTS
+=========================
+It appears that the needs for the specification of requirements
+vary depending on the type of analysis performed. In certain cases,
+e.g. F.3-F.6 from the CPS Framework document (page 253 and following),
+each concern is associated with a list of requirements, all of which
+need to be satisfied for the concern to be satisfied.
+
+In order instances, e.g. in the case studies from our recent papers [1,2],
+a concern may be satisfied by different combinations of requirements,
+whose representation appears, in the general case, to require the full 
+extent of Boolean or 3-valued logical formulas over expressions stating
+whether a certain requirement is satisfied/enforced.
+
+Additionally, the same sources indicate the need for ways to explicitly
+model how certain combinations of requirements may have the side-effect
+of inhibiting the satisfaction of concerns.
+
+It should be noted that the case studies from our recent papers [1,2]
+also point out the need to reason about how a CPS may evolve over time
+during its interaction with the domain, in terms of the effects of this
+interaction on the attributes distilled by the CPS Model.
+
+For these reasons, we choose to represent the links between requirements
+and concerns by means of state constraints for language AL [3] (essentially,
+causal laws describing the influence of the truth value of a Boolean
+conjunction of possibly negated attributes on the truth value of another 
+attribute), augmented by default statements (saying that an attribute
+should be considered true/false unless otherwise concluded) and assumptions
+(saying that an attribute should be assumed true/false in the initial
+state of the domain). More specifically, and using the terminology of AL, 
+the fact that a requirement r is satisfied is represented by a fluent 
+sat(r). Similarly, for a concern c we introduce fluent sat(c,f), where
+f is the function (in the sense of functional decomposition, e.g.
+use case u1) where c is satisfied. A link between a certain combination of 
+requirements to the satisfaction of a concern will thus be encoded by a 
+state constraint whose body is a list of possibly negated fluents of the 
+form sat(r) and whose head is of the form sat(c,f). We expect that, in 
+complex situations, requirements may influence each other, i.e. be mutually 
+exclusive. Our representation can easily capture these cases by means of
+state constraints with a suitable body and with a head of the form -sat(r), 
+where "-" denotes negation and r is the requirement whose satisfaction is 
+prevented by the requirements listed in the body. If needed for modeling 
+purposes, assumptions that requirements are satisfied or unsatisfied unless 
+contrary evidence is available can be represented by means of default 
+statements of AL.
+
+If needed, these statements can be encoded in an OWL ontology. Additionally,
+the definition of their semantics makes it possible to integrate them
+seamlessly with statements about the effects of actions or events on
+the domain of the CPS or on the CPS itself, thus allowing to incorporate
+them into a model of the evolution of the CPS over time.
+
+Simpler specifications, where each concern is associated with a list of 
+requirements, all of which need to be satisfied for the concern to be satisfied, will be translated to state constraints either manually or
+through some automated procedure.
+
+
+HOW TO MODEL CONCERNS
+=====================
+As we stated above, the fact that a concern is satisfied is modeled by
+a fluent of the form sat(c,f). It has been observed that concerns that are 
+not addressed by any requirement should be considered not satisfied. This 
+can be modeled by means of defaults of AL stating that, for every such 
+concern c and function f, -sat(c,f) should hold by default.
+
+Additionally, concerns are related to levels of functional decomposition.
+For details on this and on their representation, please refer to a
+separate document.
+
+Summarizing the satisfaction of a concern w.r.t. on its sub-concerns
+is modeled according to the following principle:
+
+A concern (in a given function f, e.g. use case u1) is satisfied 
+if-and-only-if:
+1. it has at least one relevant sub-concern or requirement
+2. every relevant sub-concern is satisfied
+3. there is no evidence that the concern is otherwise unsatisfied
+
+
+REVISION 1
+==========
+Let us assume that a state constraint says that, if requirement r1
+is satisfied/implemented, then the security concern in use case u1 is
+satisfied. According to the formalization proposed above, the state
+constraint is:
+	sat(security,u1) if sat(r1).
+Let us suppose, however, that some requirement r2 has the side-effect
+of impacting security negatively in u1. The corresponding state constraint
+is:
+	-sat(security,u1) if sat(r2).
+If both requirements are satisfied, this causes inconsistency of the
+specification. On the other hand, intuitively one would likely conclude
+that security is not satisfied or, in more advanced instances, that it
+is unknown whether it is satisfied, or yet again that security is less
+likely to be satisfied.
+
+
+REVISED FORMALIZATION V1
+========================
+In the state constraints formalizing the links between requirements and
+concerns, the head of the state constraint is a fluent
+	impacted(C,F,M)
+where C is a concern, F is a function, and M is a mode, namely pos or neg.
+
+CASE 1: this is the simplest case, where concerns default to unsatisfied
+
+A concern (in a given function f, e.g. use case u1) is satisfied if:
+  1. it is impacted by no combination of requirements and
+  2. every relevant sub-concern is satisfied
+OR
+  1. it is impacted positively by at least one requirement combination and
+  2. it is not impacted negatively by any combination of requirements and
+  3. every relevant sub-concern is satisfied
+
+A concern is unsatisfied in all other cases.
+
+
+
+CASE 2: this is a more advanced case, where the satisfaction status of a
+        concern may remain unknown/undecided/uncertain
+
+A concern (in a given function f, e.g. use case u1) is satisfied if:
+  1. it is impacted by no combination of requirements and
+  2. every relevant sub-concern is satisfied
+OR
+  1. it is impacted positively by at least one requirement combination and
+  2. it is not impacted negatively by any combination of requirements and
+  3. every relevant sub-concern is satisfied
+
+A concern is unsatisfied if:
+  1. it is impacted negatively by at least one requirement combination and
+  2. it is not impacted positively by any combination of requirements
+OR
+  1. it has no relevant sub-concern, and
+  2. it is not impacted positively by any combination of requirements
+OR
+  1. it has a relevant sub-concern that is unsatisfied
+
+The satisfaction status of a concern is unknown in all other cases.
+
+
+
+REVISED FORMALIZATION V2
+========================
+Revised formalization v1 does not work well for concerns that
+have no requirements and no relevant sub-concerns. Intuition
+tells us that the concern is not satisfied. However, revised
+formalization v1 concludes that the concern is satisfied.
+
+Revised formalization v2 solves this problem. See item #2
+in the first group of conditions for both case 1 and case 2.
+
+In the state constraints formalizing the links between requirements and
+concerns, the head of the state constraint is a fluent
+	impacted(C,F,M)
+where C is a concern, F is a function, and M is a mode, namely pos or neg.
+
+CASE 1: this is the simplest case, where concerns default to unsatisfied
+
+A concern (in a given function f, e.g. use case u1) is satisfied if:
+  1. it is impacted by no combination of requirements and
+  2. it has at least one relevant sub-concern and
+  3. every relevant sub-concern is satisfied
+OR
+  1. it is impacted positively by at least one requirement combination and
+  2. it is not impacted negatively by any combination of requirements and
+  3. every relevant sub-concern is satisfied
+
+A concern is unsatisfied in all other cases.
+
+
+
+CASE 2: this is a more advanced case, where the satisfaction status of a
+        concern may remain unknown/undecided/uncertain
+
+A concern (in a given function f, e.g. use case u1) is satisfied if:
+  1. it is impacted by no combination of requirements and
+  2. it has at least one relevant sub-concern and
+  3. every relevant sub-concern is satisfied
+OR
+  1. it is impacted positively by at least one requirement combination and
+  2. it is not impacted negatively by any combination of requirements and
+  3. every relevant sub-concern is satisfied
+
+A concern is unsatisfied if:
+  1. it is impacted negatively by at least one requirement combination and
+  2. it is not impacted positively by any combination of requirements
+OR
+  1. it has no relevant sub-concern, and
+  2. it is not impacted positively by any combination of requirements
+OR
+  1. it has a relevant sub-concern that is unsatisfied
+
+The satisfaction status of a concern is unknown in all other cases.
+
+
+
+REVISED FORMALIZATION V3
+========================
+Revised formalization v2 does not fully detect the uncertainty
+about the satisfaction of concerns in case 2. Consider group 
+of conditions:
+
+  A concern is unsatisfied if:
+
+    1. it has a relevant sub-concern that is unsatisfied
+
+Suppose a concern has a relevant sub-concern that is unsatisfied,
+but also a requirement that is satisfied. Revised formalization
+v2 will conclude that the concern is unsatisfied. However,
+intuitively, we would like to conclude that the satisfaction
+status of the concern is unknown.
+
+Revised formalization v3 solves this problem by introducing the
+notion of positive and negative influence. We also rename
+the types of inference for clarity and add optimistic inference.
+
+BACKGROUND NOTIONS
+In the state constraints formalizing the links between requirements and
+concerns, the head of the state constraint is a fluent
+	impacted(C,F,M)
+where C is a concern, F is a function, and M is a mode, namely pos or neg.
+
+A concern is positively influenced if:
+1. a combination of requirements impacts it positively OR
+2. a relevant sub-concern is satisfied
+
+A concern is negatively influenced if:
+1. a combination of requirements impacts it negatively OR
+2. a relevant sub-concern is unsatisfied
+
+A concern is affected by uncertain influence (from its sub-concerns) if:
+1. a relevant sub-concern has unknown satisfaction
+
+PESSIMISTIC INFERENCE ON CONCERN SATISFACTION
+This is the simplest case, where concerns default to unsatisfied.
+
+A concern (in a given function f, e.g. use case u1) is satisfied if:
+  1. it is positively influenced AND
+  2. it is not negatively influenced
+
+A concern is unsatisfied in all other cases.
+
+
+SKEPTICAL INFERENCE ON CONCERN SATISFACTION
+This is a more advanced case, where the satisfaction status of a
+concern may remain unknown/undecided/uncertain.
+
+A concern (in a given function f, e.g. use case u1) is satisfied if:
+  1. it is positively influenced AND
+  2. it is not negatively influenced AND
+  3. is not affected by uncertain influence
+
+A concern is unsatisfied if:
+  1. it is negatively influenced AND
+  2. it is not positively influenced AND
+  3. is not affected by uncertain influence
+OR
+  1. it has no relevant sub-concerns AND
+  2. it is not positively influenced AND
+  3. it is not negatively influenced
+
+The satisfaction status of a concern is unknown in all other cases.
+
+Intuition of "unknown satisfaction status": if we were to measure
+satisfaction and unsatisfaction quantitatively and were to combine
+influences from different sources, the result might be positive,
+although it might be negative as well.
+
+
+OPTIMISTIC INFERENCE ON CONCERN SATISFACTION
+This is another simple case, where concerns default to unsatisfied,
+but concerns that have no requirements nor sub-concerns are vacuously
+satisfied.
+
+A concern (in a given function f, e.g. use case u1) is satisfied if:
+  1. it is positively influenced AND
+  2. it is not negatively influenced
+OR
+  1. it has no relevant sub-concerns AND
+  2. it is not positively influenced AND
+  3. it is not negatively influenced
+
+A concern is unsatisfied in all other cases.
+
+
+
+[1] Marcello Balduccini, Edward Griffor, Michael Huth, Claire Vishik, Martin Burns, and David Wollman. Ontology-Based Reasoning about the Trustworthiness of Cyber-Physical Systems. In Living in the Internet of Things: Cybersecurity of the IoT, 2018. 
+[2] Marcello Balduccini, Edward Griffor, Michael Huth, Claire Vishik, Martin Burns, and David Wollman. Reasoning about Smart City. In 4th IEEE International Workshop on Sensors and Smart Cities, 2018. 
+[3] Michael Gelfond and Vladimir Lifschitz, “Action Languages,” Electronic Transactions on AI, vol. 3, no. 16, 1998.

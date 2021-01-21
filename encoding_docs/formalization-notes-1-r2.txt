@@ -1,0 +1,162 @@
+Representing concerns as subclasses of class Concern
+====================================================
+This presupposes that we will have objects belonging to each concern
+subclass. That object will represent a concern at a particular level
+of functional decomposition.
+
+I would like for people to be able to provide me with an input ontology
+rather than the UML-generated ontology. So, I could indeed do things with 
+cardinality constraints, as in UML, but how am I getting things from the 
+input ontology? It may be inconvenient.
+
+Cardinality constraints may also be redundant to write, e.g.:
+(using meta-gringo language to stay away from dialects)
+
+:- 0 { C2 | includesConcern(C1,C2), is(C1,trustworthiness), is(C2,privacy) } 1.
+:- 0 { C2 | includesConcern(C1,C2), is(C1,trustworthiness), is(C2,reliability) } 1.
+:- 0 { C2 | includesConcern(C1,C2), is(C1,trustworthiness), is(C2,resilience) } 1.
+[...]
+
+It is also a compound representation, in that it combines the link between
+two concerns (e.g., trustworthiness and privacy), which is immutable, and 
+the fact that privacy may or may not be relevant to a particular
+level of functional decomposition of a particular application.
+
+Representing concerns as objects of class Concern
+=================================================
+This seems to be a cleaner approach. It allows us to separate
+the immutable links between concerns (e.g., trustworthiness and privacy)
+from whether or not a concern is relevant to a particular level of
+functional decomposition of a particular application.
+
+In this representation, each concern is an object of class Concern.
+A relation includesConcern(C1,C2) states that concern C1 includes C2
+as its sub-concern. A relation relevant relevantToFDL(C,L) says that
+concern C is relevant to level of functional decomposition L.
+
+No cardinality constraints are needed, since there is only one
+object for every concern. The links between concerns are very explicit,
+and so is the relevance of a concern to a level of functional
+decomposition.
+
+However, this representation appears to have limitations when it comes
+to extensibility. Suppose we want to integrate CPS designed for different 
+applications. Each design will have its own relation relevantToFDL(C,L). 
+However, when the information about the two is combined, there is no way 
+to distinguish the provenance of the various pieces of information 
+encoded by relevantToFDL(C,L).
+
+A workaround is to introduce an additional parameter in relevantToFDL(C,L),
+say CX, which describes the context of the statement. In this example,
+the context will be the specific application, e.g. app1 or app2.
+
+However, the problem persists when we link properties/requirements with
+the concerns they address. Say that we use a relation addressedBy(C,Q),
+where C is a concern and Q is a requirement. In order to support the
+combination of multiple CPS, we need to introduce an additional argument
+here as well, i.e. addressedBy(C,Q,CX). The same may hold for other
+relations as well, especially the auxiliary ones. This is unpleasant.
+
+Another workaround is to introduce a different object to represent
+a level of functional decomposition from different applications 
+considered. One would retain relation relevantToFDL(C,L), but would have 
+L range over objects that represent the level of functional decomposition 
+in a specific application. Then, one would add a relation atLevel(L,V), 
+where L is as in relevantToFDL(C,L) and V is a level of decomposition. 
+Example: 
+
+relevantToFDL(privacy,l123), atLevel(l123,usecase).
+
+Properties of an object that represents a level of functional 
+decomposition in a specific application could be described by relations 
+such as hasFDL(APP,L), where APP is an application and L is as above.
+
+The drawbacks of this approach are: (1) it is unclear why we use
+different objects to represent the same level of functional decomposition
+in different applications, while we use a unique object for every concern
+across multiple applications; (2) an atom hasFDL(app1,l123) does not have 
+a counterpart in the typical English statements about a CPS. 
+One does not typically say that "app1 has a level of functional
+decomposition called l123, l123 is of type use-case, and 
+the privacy concern is relevant to l123." Rather, one is more likely 
+to say "the privacy concern is relevant to the use-case level of 
+functional decomposition of app1."
+
+On the other hand, I came away from discussions with experts with
+the impression that, while there is a single business case for
+every application, there may be multiple use cases. In that case, 
+it would seem to make sense to talk about, e.g., use cases u1, u2, u3. 
+All of these are objects of type use-case. Each of them is a refinement of 
+business case b1, which is *the* business case of app1. Although, strictly 
+speaking, there is no need to introduce object b1, since it is unique for 
+app1, it seems to make sense to do so for uniformity. A relation 
+hasBC(APP,BC) can be introduced to specify the business case (BC) for an 
+application. A relation refinedInto(F1,F2) says that function F1
+is refined into F2. In the example above, this will yield refinedInto(b1,u1), etc. This representation is especially convenient given that a 
+certain use case will be refined into a specific set of scenarios, which is
+different from the set of scenarios in which a different use case for the 
+same application is refined. Strictly speaking, there is no need to specify 
+that u1 is a use case, except to support queries from users that are focused 
+on use cases. The assignment can be done automatically through axioms such 
+as:
+
+	nextFC(business_case,use_case).
+	nextFC(business_case,scenario).
+	% inference of a function's class, in case it is not
+	% specified manually
+	functionClass(BC,business_case) :- hasBC(APP,BC).
+	functionClass(F2,FC2) :- 
+		functionClass(F1,FC1), refinedInto(F1,F2), nextFC(FC1,FC2).
+
+Given a function F, we can encode a statement "concern C is relevant to F"
+by means of relation relevantToFunc(C,F). It would appear that, when 
+speaking about properties/requirements, one may say that
+"property/requirement Q addresses concern C w.r.t. a certain use case."
+Thus, it seems appropriate to encode this statement by means of a relation
+addresses(Q,C,F), where Q is a requirement, C is a concern, and F a 
+function. For instance, one might write addresses(q1,privacy,u1).
+This seems to be a convenient representation. First of all, it can be
+easily recast to a binary encoding, e.g. addresses_privacy(q1,u1), which
+is suitable for use in an ontology. Second, it is more explicit than
+the alternative encoding 
+
+  addresses(q1,c1) + concernOf(c1,u1) + concernType(c1,privacy)
+
+In particular, note the lack of an equivalent of concernOf(c1,u1) in the
+English statements discussed above. Also, contrast this with the above
+discussion regarding the introduction of objects u1, u2, u3, where there
+is a clear indication of a specific use case in the English statements.
+All of this appears to justify the choice of having different objects
+for the levels of functional decomposition of different application, but 
+using a single object for a given concern across all applications and 
+levels of functional decomposition.
+
+SUMMARY OF THE ENCODING
+=======================
+hasBC(APP,BC)
+functionClass(F,FC)   ** defined by axioms above or individuals of function
+nextFC(FC1,FC2)
+refinedInto(F1,F2)
+includesConcern(C1,C2)
+relevantToFunc(C,F)
+addresses(Q,C,F)
+
+OWL ENCODING
+============
+CLASSES
+  Function
+    PROPERTIES:
+     . nextFC -> Function (VIA PUNNING)
+     . refinedInto -> Function
+    SUBCLASSES:
+     + business_case
+     + use_case
+     + scenario
+     + ...
+  Application
+    PROPERTIES:
+     . hasBC -> BusinessCase
+Property
+  PROPERTIES:
+   . addresses -> Concern	 <<<<<<< DROPPED, see formalization-notes-4-addresses
+   . addressesAtFunc -> Function <<<<<<< DROPPED, see formalization-notes-4-addresses

@@ -1,0 +1,15 @@
+HOW TO MODEL RELATEDNESS OF REQUIREMENTS ACROSS FUNCTIONS
+=========================================================
+Definition. A requirement Q addresses a concern C in
+function F if there exists an impact rule in which
+C is the concern being affected (polarity is irrelevant)
+and Q is the requirement of one of the conditions of the
+rule.
+
+Definition. Requirement q1 is refined into requirement q2
+if they address the same concern in two functions F1 and F2
+and F1 is refined into F2.
+
+Definition. Requirement q1 is related to requirement q2
+if there is a sequence r_1,...,r_k of requirements such that 
+q1 =r_1, q2=r_k, and every r_i is refined into r_i+1.

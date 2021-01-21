@@ -1,9 +1,13 @@
 CPS_Aspect,CPS_Concern1,CPS_Concern2,CPS_Concern3,CPS_Concern4,CPS_Concern5,CPS_Concern6,CPS_Concern7,CPS_Concern8,CPS_Concern9,Level,Pad,To Pad,Sum,Satisfied,Aspect Tree
-Boundaries,,,,,,,,,,1,1,1,3,Satisfied,Boundaries
-Boundaries,Behavioral,,,,,,,,,2,1,1,1,Satisfied,Boundaries
-Boundaries,,,,,,,,,,1,1,1,3,Satisfied,Boundaries
+Boundaries,,,,,,,,,,1,1,1,4,Satisfied,Boundaries
+Boundaries,Behavioral,,,,,,,,,2,1,1,2,Satisfied,Boundaries
+Boundaries,Behavioral,ComputerBehavior,,,,,,,,3,1,1,1,Satisfied,Boundaries
+Boundaries,,,,,,,,,,1,1,1,4,Satisfied,Boundaries
+Boundaries,Behavioral,,,,,,,,,2,1,1,2,Satisfied,Boundaries
+Boundaries,Behavioral,HumanBehavior,,,,,,,,3,1,1,1,Satisfied,Boundaries
+Boundaries,,,,,,,,,,1,1,1,4,Satisfied,Boundaries
 Boundaries,Responsibility,,,,,,,,,2,1,1,1,Satisfied,Boundaries
-Boundaries,,,,,,,,,,1,1,1,3,Satisfied,Boundaries
+Boundaries,,,,,,,,,,1,1,1,4,Satisfied,Boundaries
 Boundaries,Networkability,,,,,,,,,2,1,1,1,Satisfied,Boundaries
 Business,,,,,,,,,,1,1,1,9,Satisfied,Business
 Business,Cost,,,,,,,,,2,1,1,1,Satisfied,Business
@@ -233,8 +237,12 @@ Trustworthiness,,,,,,,,,,1,1,1,15,Unsatisfied,Trustworthiness
 Trustworthiness,Security,,,,,,,,,2,1,1,6,Unsatisfied,Trustworthiness
 Trustworthiness,Security,Cybersecurity,,,,,,,,3,1,1,4,Unsatisfied,Trustworthiness
 Trustworthiness,Security,Cybersecurity,Availability,,,,,,,4,1,1,1,Satisfied,Trustworthiness
-Boundaries,,,,,,,,,,1,203,203,3,Satisfied,Boundaries
-Boundaries,Behavioral,,,,,,,,,2,203,203,1,Satisfied,Boundaries
+Boundaries,,,,,,,,,,1,203,203,4,Satisfied,Boundaries
+Boundaries,Behavioral,,,,,,,,,2,203,203,2,Satisfied,Boundaries
+Boundaries,Behavioral,ComputerBehavior,,,,,,,,3,203,203,1,Satisfied,Boundaries
+Boundaries,,,,,,,,,,1,203,203,4,Satisfied,Boundaries
+Boundaries,Behavioral,,,,,,,,,2,203,203,2,Satisfied,Boundaries
+Boundaries,Behavioral,HumanBehavior,,,,,,,,3,203,203,1,Satisfied,Boundaries
 Boundaries,,,,,,,,,,1,203,203,3,Satisfied,Boundaries
 Boundaries,Responsibility,,,,,,,,,2,203,203,1,Satisfied,Boundaries
 Boundaries,,,,,,,,,,1,203,203,3,Satisfied,Boundaries

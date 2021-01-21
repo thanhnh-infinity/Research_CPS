@@ -1,0 +1,29 @@
+FORMALIZATION OF LINKS BETWEEN REQUIREMENTS AND CONCERNS
+========================================================
+The satisfaction/dissatisfaction of a concern can be 
+affected by an arbitrary conjunction of requirement 
+literals (pos/neg requirements) by means of
+"impact rules".
+Multiple impact rules for the same concern are allowed.
+Conflicting conclusions are handled according to the
+inference mode.
+The encoding is as follows:
+
+Impact rule
+-----------
+<rule,"cpsf:addressesConcern",concern>
+<rule,"cpsf:addressesPolarity",ImpactPolarity> <<<< will be mapped to pos/neg
+<rule,"cpsf:addressesAtFunc",function e.g. "cpsf:bc1">
+
+Condition
+---------
+<rule,"cpsf:hasCondition",cond>
+<cond,"cpsf:conditionProperty",property e.g. "cpsf:SAMSecBoot">
+<cond,"cpsf:conditionPolarity",ImpactPolarity> <<<< will be mapped to pos/neg
+
+OWL ENCODING
+============
+CLASSES
+  ImpactRuleConcepts
+    ImpactRule
+    Condition
