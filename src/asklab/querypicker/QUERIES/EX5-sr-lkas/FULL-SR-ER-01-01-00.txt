@@ -159,7 +159,7 @@ lowest_TW_comp(C,S)  :- component(C), step(S), distance(C,M,S),
 
 % ------ Output Interface ------
 
-output_headings("Query response","Component","Positive TW val","Negative TW val","Distance","step").
+output_headings("Query response","Component","Positive TW val","Negative TW val","Distance","Step").
 
 % Support : Identify the last step in the input
 last_step(S) :- step(S), S2=S+1, not step(S2).

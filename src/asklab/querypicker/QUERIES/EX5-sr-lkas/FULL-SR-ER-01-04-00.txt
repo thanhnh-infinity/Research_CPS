@@ -189,7 +189,7 @@ check_p(P,T) :- h(prob_of_state(P),T).
 
 % ------ Output Interface ------
 
-output_headings("Action","Prob. Success of Action","Prob. of State","Step").
+output_headings("Action","Prob. Success of Action","Prob. of State","step").
 
 % Support : Identify the last step in the input
 last_step(S) :- step(S), S2=S+1, not step(S2).

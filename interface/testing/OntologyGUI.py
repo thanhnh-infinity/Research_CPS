@@ -136,7 +136,7 @@ class OntologyGUI:
 
         self.inputAppEntry = Entry(self.leftControlFrame, width = 30,borderwidth = 5,highlightbackground="white", fg = "#18453b",font = entryFont)
         self.inputAppEntry.pack()
-        self.inputAppEntry.insert(0,"application_ontologies/cpsframework-v3-sr-LKAS-Configuration-V2-neg.owl")
+        self.inputAppEntry.insert(0,"cpsframework-v3-sr-LKAS-Configuration-V2.owl")
 
         #button to load ontology, calls function which handles loading
         self.loadAppOntologyB = tk.Button(self.leftControlFrame, text = "Load Application Ontology",padx = 10, pady = 1, width = self.buttonWidth,bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5,font = buttonFont,command = self.loadAppOntology)
@@ -168,7 +168,7 @@ class OntologyGUI:
         
         self.outputAppEntry = Entry(self.leftControlFrame, width = 30, borderwidth = 5, highlightbackground = "white", fg = "#18453b", font = entryFont)
         self.outputAppEntry.pack()
-        self.outputAppEntry.insert(2, "cpsframework-v3-sr-Elevator-Configuration-dependency-xd.owl")
+        self.outputAppEntry.insert(2, "cpsframework-v3-sr-LKAS-Configuration-V2-xd.owl")
         
         self.saveAppOntologyB = tk.Button(self.leftControlFrame, text = "Output App Ontology",padx = 10, pady = 1, width = self.outputButtonWidth,bg = "#18453b", fg = self.buttonFontColor, borderwidth = 5, font = buttonFont, command  = self.saveAppOntology)
         self.saveAppOntologyB.pack()
@@ -351,7 +351,9 @@ class OntologyGUI:
     #loads the specified ontology file in
     def loadBaseOntology(self):
 
-        self.owlBase = owlBase(self.inputBaseEntry.get())
+        load_dir_name = "workshop_ontologies/"
+    
+        self.owlBase = owlBase(load_dir_name + self.inputBaseEntry.get())
 
         #self.owlApplication = owlApplication("cpsframework-v3-sr-Elevator-Configuration.owl",self.owlBase)
 
@@ -367,7 +369,9 @@ class OntologyGUI:
 
     def loadAppOntology(self):
 
-        self.owlApplication = owlApplication(self.inputAppEntry.get(),self.owlBase)
+        load_dir_name = "workshop_ontologies/"
+        
+        self.owlApplication = owlApplication(load_dir_name + self.inputAppEntry.get(),self.owlBase)
 
         summary = "Loaded application ontology " + "file://./application_ontologies" + self.inputAppEntry.get()
 
@@ -380,9 +384,10 @@ class OntologyGUI:
      #saves the ontology in rdf format
     def saveOntology(self):
 
+        save_dir_name = "workshop_ontologies/"
         output_file = self.outputEntry.get()
 
-        self.owlBase.owlReadyOntology.save(file = "./" + output_file, format = "rdfxml")
+        self.owlBase.owlReadyOntology.save(file = save_dir_name + "out" + output_file, format = "rdfxml")
         #self.owlBase.owlReadyOntology.save(file = output_file, format = "rdfxml")
 
         #self.processFile(output_file)
@@ -400,9 +405,11 @@ class OntologyGUI:
         if(self.owlApplication == None ):
             return
         
+        save_dir_name = "workshop_ontologies/"
+        
         output_file = self.outputAppEntry.get()
         
-        self.owlApplication.owlreadyOntology.save(file = "./" + output_file, format = "rdfxml")
+        self.owlApplication.owlreadyOntology.save(file =  save_dir_name + "out" + output_file, format = "rdfxml")
         
         summary = "Outputted Application ontology to file: " + output_file
         self.summaryText.set(summary)

@@ -113,7 +113,7 @@ h(sat(all),T)  :- not -h(sat(all),T), step(T).
 
 % ------ Output Interface ------
 
-output_headings("Unsatisfied concern/aspect/property","type","function","step").
+output_headings("Unsatisfied concern/aspect/property","type","function","Step").
 
 % Support : Identify the last step in the input
 last_step(S) :- step(S), S2=S+1, not step(S2).

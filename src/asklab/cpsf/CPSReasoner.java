@@ -7,7 +7,7 @@ import java.util.Random;
 import java.util.Vector;
 
 public class CPSReasoner {
-	static final String versionFile = "./version.txt";
+	static final String versionFile = "version.txt";
 
 	/* Available ASP solvers */
 	public static final int SLVR_CLINGO = 1;

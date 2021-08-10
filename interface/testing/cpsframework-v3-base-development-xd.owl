@@ -144,6 +144,7 @@
 
 <Concern rdf:about="#Behavioral">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <includesConcern rdf:resource="#NewNode"/>
 </Concern>
 
 <Aspect rdf:about="#Boundaries">
@@ -681,22 +682,7 @@
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
 </UseCase>
 
-<Aspect rdf:about="#NewAspect">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <includesConcern rdf:resource="#NewConcern1"/>
-  <includesConcern rdf:resource="#NewConcern2"/>
-</Aspect>
-
-<Concern rdf:about="#NewConcern1">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-</Concern>
-
-<Concern rdf:about="#NewConcern2">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <includesConcern rdf:resource="#NewConcern3"/>
-</Concern>
-
-<Concern rdf:about="#NewConcern3">
+<Concern rdf:about="#NewNode">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
 </Concern>
 
