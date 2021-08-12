@@ -76,12 +76,6 @@
         <rdfs:range rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formula"/>
     </owl:ObjectProperty>
 
-    <owl:ObjectProperty rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#negMemberOf">
-        <rdfs:domain rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formula"/>
-        <rdfs:domain rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
-        <rdfs:range rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formula"/>
-    </owl:ObjectProperty>
-
 
 
     <!-- http://www.asklab.tk/ontologies/CPS-Framework#positiveImpactTo -->
