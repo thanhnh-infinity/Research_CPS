@@ -33,6 +33,7 @@ class owlApplication:
         
         self.owlGraph = None
     
+    
         self.loadOwlFile(filename)
         
         
@@ -40,6 +41,7 @@ class owlApplication:
         
         self.owlreadyOntology = get_ontology("file://./" + filename).load()
         self.owlName = str(filename)
+        print(self.owlName)
         #self.numConditions = len(self.owlreadyOntology.search(type = self.owlreadyOntology.Condition))
         #self.numIRs = len(self.owlreadyOntology.search(type = self.owlreadyOntology.ImpactRule))
         
@@ -56,7 +58,11 @@ class owlApplication:
         if(self.handleProperties == True):
             
             self.addProperties()
+            #try:
             self.addFormulas()
+           # except:
+                #print("couldn't add formulas")
+                
             self.addFuncDecomps()
             
             
@@ -68,10 +74,25 @@ class owlApplication:
             
         if(self.handleProperties == True):
             
-            self.handleMemberOf()
-            self.handleNegMemberOf()
-            self.handleFormulaAddConcern()
-            self.handlePropertyAddConcern()
+            try:
+                self.handleMemberOf()
+                
+            except:
+                print("couldn't ao memberof")
+                
+            try:
+                self.handleNegMemberOf()
+                
+            except:
+                print("couldn't do negmemberof")
+                
+            try:
+                self.handleFormulasAddConcern()
+                
+            except:
+                print("couldn't do handleformulasaddconcern")
+                
+            self.handleaddConcern()
          
             
         
@@ -105,22 +126,29 @@ class owlApplication:
         self.allFormulas_owlNode = []
         
         props = np.asarray(self.owlreadyOntology.search(type =  self.owlreadyOntology.Property))
-        forms = np.asarray(self.owlreadyOntology.search(type =  self.owlreadyOntology.Formula))
+        forms = np.asarray(self.owlreadyOntology.search(type =  self.owlreadyOntology.Formulas))
         decomps = np.asarray(self.owlreadyOntology.search(type = self.owlreadyOntology.DecompositionFunction))
         
         
-        all_formulas = list(set(props) ^ set(forms) ^ set(decomps))
+        all_Formulas = list(set(props) ^ set(forms) ^ set(decomps))
         
-        for formula in all_formulas:
+        for Formulas in all_Formulas:
+            
+            if(remove_namespace(Formulas)[0] == "g"):
+                
+                print("found g in app")
+                
+                print(remove_namespace(Formulas))
+                continue
             
             newOwlNode = owlNode()
-            newOwlNode.name = remove_namespace(formula)
-            newOwlNode.type = "Formula"
-            newOwlNode.subtype = self.getSubType(formula)
+            newOwlNode.name = remove_namespace(Formulas)
+            newOwlNode.type = "Formulas"
+            newOwlNode.subtype = self.getSubType(Formulas)
             newOwlNode.children = []
             newOwlNode.negChildren = []
             newOwlNode.parents = []
-            newOwlNode.owlreadyObj = formula
+            newOwlNode.owlreadyObj = Formulas
             
             
             self.allFormulas_owlNode.append(newOwlNode)
@@ -209,14 +237,14 @@ class owlApplication:
             
                 parent.negChildren.append(child)
         
-    def handleFormulaAddConcern(self):
+    def handleFormulasAddConcern(self):
         
     
         for child in self.nodeArray:
             
             child_owlr = child.owlreadyObj
             
-            addresses = child_owlr.formulaAddConcern
+            addresses = child_owlr.formulasAddConcern
             
             for addressed in addresses:
                 
@@ -226,13 +254,13 @@ class owlApplication:
                 parent.children.append(child)
                 
                 
-    def handlePropertyAddConcern(self):
+    def handleaddConcern(self):
         
     
         for child in self.nodeArray:
             
             child_owlr = child.owlreadyObj
-            addresses = child_owlr.propertyAddConcern 
+            addresses = child_owlr.addConcern 
     
             for addressed in addresses:
                 
@@ -267,9 +295,9 @@ class owlApplication:
     def addPropertyAsChildofConcern(self,parentConcern,new_property_name):
         
         new_property = self.owlreadyOntology.Property(new_property_name, ontology = self.owlreadyOntology)
-        new_property.is_a.append(self.owlreadyOntology.Formula)
+        new_property.is_a.append(self.owlreadyOntology.Formulas)
         
-        new_property.propertyAddConcern.append(parentConcern.owlreadyObj)
+        new_property.addConcern.append(parentConcern.owlreadyObj)
      
         
     def addPropertyAsParentofComponent(self,new_name,parent):
@@ -277,14 +305,14 @@ class owlApplication:
         #parent is component
         
         new_property =  self.owlreadyOntology.Property(new_name, ontology = self.owlreadyOntology)
-        new_property.is_a.append(self.owlreadyOntology.Formula)
+        new_property.is_a.append(self.owlreadyOntology.Formulas)
         
         parent.owlreadyObj.relateToProperty.append(new_property)
         
     def addRLProperty(self,new_name):
         
         new_property = self.owlreadyOntology.Property(new_name,ontology = self.owlreadyOntology)
-        new_property.is_a.append(self.owlreadyOntology.Formula)
+        new_property.is_a.append(self.owlreadyOntology.Formulas)
 
     def addNewComponent(self,new_name):
         
@@ -297,21 +325,21 @@ class owlApplication:
         new_component.relateToProperty.append(parent.owlreadyObj)       
 
 
-    def addPropertyAddConcernRelation(self,parent,child):
+    def addaddConcernRelation(self,parent,child):
         
-        child.owlreadyObj.propertyAddConcern.append(parent.owlreadyObj)
+        child.owlreadyObj.addConcern.append(parent.owlreadyObj)
         
         
-    def addNewConcernFormulaRelation(self,parent,child):
+    def addNewConcernFormulasRelation(self,parent,child):
         
         #parent is concern
-        #child is formula
+        #child is Formulas
         
-        child.owlreadyObj.formulaAddConcern.append(parent.owlreadyObj)
+        child.owlreadyObj.formulasAddConcern.append(parent.owlreadyObj)
         
-    def addFormulaPropertyRelations(self,parent,child):
+    def addFormulasPropertyRelations(self,parent,child):
         
-        #parent is formula
+        #parent is Formulas
         #child is property
         
         child.owlreadyObj.memberOf.append(parent.owlreadyObj)
@@ -323,33 +351,33 @@ class owlApplication:
         for addconcern in self.addressed_concerns:
             
          
-            child.owlreadyObj.propertyAddConcern.append(addconcern)
+            child.owlreadyObj.addConcern.append(addconcern)
        
         
-    def addFormulaFormulaRelations(self,parent,child):
+    def addFormulasFormulasRelations(self,parent,child):
         
-        #parent is formula/functionaldecomp
-        #child is formula/functionaldecomp
+        #parent is Formulas/functionaldecomp
+        #child is Formulas/functionaldecomp
         
         child.owlreadyObj.memberOf.append(parent.owlreadyObj)
         parent.owlreadyObj.includesMember.append(child.owlreadyObj)
 
-    def addNewPropertyToFormula(self,parent,child_name):
+    def addNewPropertyToFormulas(self,parent,child_name):
     
         new_property = self.owlreadyOntology.Property(child_name, ontology = self.owlreadyOntology)
-        new_property.is_a.append(self.owlreadyOntology.Formula)
+        new_property.is_a.append(self.owlreadyOntology.Formulas)
         
-        formula_owlready = parent.owlreadyObj
+        Formulas_owlready = parent.owlreadyObj
         
-        new_property.memberOf.append(formula_owlready)
-        formula_owlready.includesMember.append(new_property)
+        new_property.memberOf.append(Formulas_owlready)
+        Formulas_owlready.includesMember.append(new_property)
         
-        self.findAddressedConcern(formula_owlready)
+        self.findAddressedConcern(Formulas_owlready)
         
         for addconcern in self.addressed_concerns:
             
          
-            new_property.propertyAddConcern.append(addconcern)
+            new_property.addConcern.append(addconcern)
 
     def addNewRelatedToRelation(self,parent,child):
         
@@ -358,7 +386,7 @@ class owlApplication:
   
     def addNewDependency(self,LHSNodes,RHSNode):
         
-        last_formula = None
+        last_Formulas = None
         
         formulas_number = 1
        
@@ -370,14 +398,14 @@ class owlApplication:
                 
                 print(lhsnode.name)
                 
-                new_formula = self.owlreadyOntology.Conjunction(lhsnode.name,ontology = self.owlreadyOntology)
+                new_Formulas = self.owlreadyOntology.Conjunction(lhsnode.name,ontology = self.owlreadyOntology)
             
             else:
                 
-                new_formula = self.owlreadyOntology.Disjunction(lhsnode.name,ontology = self.owlreadyOntology)
+                new_Formulas = self.owlreadyOntology.Disjunction(lhsnode.name,ontology = self.owlreadyOntology)
                 
             
-            last_formula = new_formula
+            last_Formulas = new_Formulas
             for member in lhsnode.members:
                 
                 if(member == ""):
@@ -390,11 +418,11 @@ class owlApplication:
                 if(self.isProperty(member_owlready) == True):
                     
                    
-                    member_owlready.propertyAddConcern.append(RHSNode.owlreadyObj)
+                    member_owlready.addConcern.append(RHSNode.owlreadyObj)
                
                 
                 
-                #make formulas have children, negated children 
+                #make Formulas have children, negated children 
                 
                 if(member[0] == "-"):
                     
@@ -402,19 +430,19 @@ class owlApplication:
                     print(member, " is negated")
                     
                     
-                    new_formula.includesMember.append(member_owlready)
-                    member_owlready.negMemberOf.append(new_formula)
+                    new_Formulas.includesMember.append(member_owlready)
+                    member_owlready.negMemberOf.append(new_Formulas)
                
                 else:
                     
-                    new_formula.includesMember.append(member_owlready)
-                    member_owlready.memberOf.append(new_formula)
+                    new_Formulas.includesMember.append(member_owlready)
+                    member_owlready.memberOf.append(new_Formulas)
                     
                 
         
-        if last_formula != None:
+        if last_Formulas != None:
            
-            last_formula.formulaAddConcern.append(RHSNode.owlreadyObj)
+            last_Formulas.formulasAddConcern.append(RHSNode.owlreadyObj)
         
                      
         
@@ -454,24 +482,24 @@ class owlApplication:
         #parent is Concern
         #child is property
         
-        child.owlreadyObj.propertyAddConcern.remove(parent.owlreadyObj)
+        child.owlreadyObj.addConcern.remove(parent.owlreadyObj)
 
-    def removeConcernFormulaRelation(self,parent,child):
+    def removeConcernFormulasRelation(self,parent,child):
         
-        child.owlreadyObj.formulaAddConcern.remove(parent.owlreadyObj)
+        child.owlreadyObj.formulasAddConcern.remove(parent.owlreadyObj)
         
         
-    def removeFormulaFormulaRelation(self,parent,child):
+    def removeFormulasFormulasRelation(self,parent,child):
         
-        #parent is formula
-        #child is formula
+        #parent is Formulas
+        #child is Formulas
         
         child.owlreadyObj.memberOf.remove(parent.owlreadyObj)
         parent.owlreadyObj.includesMember.remove(child.owlreadyObj)
         
-    def removeFormulaPropertyRelations(self,parent,child):
+    def removeFormulasPropertyRelations(self,parent,child):
         
-        #parent is formula
+        #parent is Formulas
         #child is property 
         
         child.owlreadyObj.memberOf.remove(parent.owlreadyObj)
@@ -485,7 +513,7 @@ class owlApplication:
    
     def findAddressedConcern(self,owlreadyobj):
         
-        addressed_concern = owlreadyobj.formulaAddConcern 
+        addressed_concern = owlreadyobj.formulasAddConcern 
         
         if (len(addressed_concern) > 0):
             

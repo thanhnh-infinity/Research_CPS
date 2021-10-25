@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.asklab.tk/ontologies/CPS-Framework#"
+     xml:base="http://www.asklab.tk/ontologies/CPS-Framework"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:CPS-Framework="http://www.asklab.tk/ontologies/CPS-Framework#">
+    <owl:Ontology rdf:about="http://www.asklab.tk/ontologies/CPS-Framework"/>
+
+
+
+    <!--
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#addressToFunc -->
+
+    <owl:ObjectProperty rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#addressToFunc">
+        <rdfs:domain rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formulas"/>
+        <rdfs:range rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#DecompositionFunction"/>
+    </owl:ObjectProperty>
+
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#confComponent -->
+
+    <owl:ObjectProperty rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#confComponent">
+        <rdfs:domain rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
+        <rdfs:range rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component"/>
+    </owl:ObjectProperty>
+
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#confProperty -->
+
+    <owl:ObjectProperty rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#confProperty">
+        <rdfs:domain rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
+        <rdfs:range rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
+    </owl:ObjectProperty>
+
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#formulasAddConcern -->
+
+    <owl:ObjectProperty rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#formulasAddConcern">
+        <rdfs:domain rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formulas"/>
+        <rdfs:range rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
+    </owl:ObjectProperty>
+
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#includesMember -->
+
+    <owl:ObjectProperty rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#includesMember">
+        <owl:inverseOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#includesMember"/>
+        <rdfs:domain rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formulas"/>
+        <rdfs:range rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formulas"/>
+    </owl:ObjectProperty>
+
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#memberOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#memberOf">
+        <rdfs:domain rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formulas"/>
+        <rdfs:domain rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
+        <rdfs:range rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formulas"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#negMemberOf">
+        <rdfs:domain rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formulas"/>
+        <rdfs:domain rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
+        <rdfs:range rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formulas"/>
+    </owl:ObjectProperty>
+
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#positiveImpactTo -->
+
+    <owl:ObjectProperty rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#positiveImpactTo">
+        <rdfs:domain rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
+        <rdfs:range rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
+    </owl:ObjectProperty>
+
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#addConcern -->
+
+    <owl:ObjectProperty rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#addConcern">
+        <rdfs:domain rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
+        <rdfs:range rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
+    </owl:ObjectProperty>
+
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#relateToProperty -->
+
+    <owl:ObjectProperty rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#relateToProperty">
+        <rdfs:domain rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Component"/>
+        <rdfs:range rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
+    </owl:ObjectProperty>
+
+
+
+    <!--
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Component -->
+
+    <owl:Class rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Component"/>
+
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Component_Property -->
+
+    <owl:Class rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Component_Property"/>
+
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Concern -->
+
+    <owl:Class rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Concern"/>
+
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Conjunction -->
+
+    <owl:Class rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Conjunction">
+        <rdfs:subClassOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formulas"/>
+    </owl:Class>
+
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#DecompositionFunction -->
+
+    <owl:Class rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#DecompositionFunction"/>
+
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Disjunction -->
+
+    <owl:Class rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Disjunction">
+        <rdfs:subClassOf rdf:resource="http://www.asklab.tk/ontologies/CPS-Framework#Formulas"/>
+    </owl:Class>
+
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Formulas -->
+
+    <owl:Class rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Formulas"/>
+
+
+
+    <!-- http://www.asklab.tk/ontologies/CPS-Framework#Property -->
+
+    <owl:Class rdf:about="http://www.asklab.tk/ontologies/CPS-Framework#Property"/>
+
+
+
+    <!--
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+
+
+    
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->

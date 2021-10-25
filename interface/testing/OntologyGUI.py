@@ -136,7 +136,7 @@ class OntologyGUI:
 
         self.inputAppEntry = Entry(self.leftControlFrame, width = 30,borderwidth = 5,highlightbackground="white", fg = "#18453b",font = entryFont)
         self.inputAppEntry.pack()
-        self.inputAppEntry.insert(0,"cpsframework-v3-sr-LKAS-Configuration-V2.owl")
+        self.inputAppEntry.insert(0,"cpsframework-v3-sr-LKAS-Configuration-V1.owl")
 
         #button to load ontology, calls function which handles loading
         self.loadAppOntologyB = tk.Button(self.leftControlFrame, text = "Load Application Ontology",padx = 10, pady = 1, width = self.buttonWidth,bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5,font = buttonFont,command = self.loadAppOntology)
@@ -153,7 +153,7 @@ class OntologyGUI:
 
         self.outputEntry = Entry(self.leftControlFrame, width = 30,borderwidth = 5,highlightbackground="white", fg = "#18453b",font = entryFont)
         self.outputEntry.pack()
-        self.outputEntry.insert(2, "cpsframework-v3-base-development-xd.owl")
+        self.outputEntry.insert(2, "cpsframework-v3-base-development.owl")
 
         #sets up button to call function which handles saving ontology
         self.saveOntologyB = tk.Button(self.leftControlFrame, text = "Output Base Ontology",padx = 10, pady = 1, width = self.outputButtonWidth, bg = "#18453b", fg = self.buttonFontColor,borderwidth = 5,font = buttonFont, command = self.saveOntology)
@@ -168,7 +168,7 @@ class OntologyGUI:
         
         self.outputAppEntry = Entry(self.leftControlFrame, width = 30, borderwidth = 5, highlightbackground = "white", fg = "#18453b", font = entryFont)
         self.outputAppEntry.pack()
-        self.outputAppEntry.insert(2, "cpsframework-v3-sr-LKAS-Configuration-V2-xd.owl")
+        self.outputAppEntry.insert(2, "cpsframework-v3-sr-LKAS-Configuration-V1.owl")
         
         self.saveAppOntologyB = tk.Button(self.leftControlFrame, text = "Output App Ontology",padx = 10, pady = 1, width = self.outputButtonWidth,bg = "#18453b", fg = self.buttonFontColor, borderwidth = 5, font = buttonFont, command  = self.saveAppOntology)
         self.saveAppOntologyB.pack()
@@ -405,11 +405,12 @@ class OntologyGUI:
         if(self.owlApplication == None ):
             return
         
-        save_dir_name = "workshop_ontologies/"
+        #save_dir_name = "workshop_ontologies/"
+        save_dir_name = "../../src/asklab/querypicker/QUERIES/EX5-sr-lkas/"
         
         output_file = self.outputAppEntry.get()
         
-        self.owlApplication.owlreadyOntology.save(file =  save_dir_name + "out" + output_file, format = "rdfxml")
+        self.owlApplication.owlreadyOntology.save(file =  save_dir_name + output_file, format = "rdfxml")
         
         summary = "Outputted Application ontology to file: " + output_file
         self.summaryText.set(summary)
@@ -1004,7 +1005,7 @@ class OntologyGUI:
 
             self.propertyLeftClick(event)
 
-        elif(self.leftClicked.type == "Formula"):
+        elif(self.leftClicked.type == "Formulas"):
             
             self.formulaLeftClick(event)
             
@@ -1783,11 +1784,11 @@ class OntologyGUI:
 
             self.addAddressesConcernRelation()
             
-        elif(parent_type == "Concern" and (child_type == "Formula" or child_type == "DecompositionFunction" )):
+        elif(parent_type == "Concern" and (child_type == "Formulas" or child_type == "DecompositionFunction" )):
 
             self.addConcernFormulaRelation()
     
-        elif((parent_type == "Formula" or parent_type == "DecompositionFunction") and (child_type == "Formula" or child_type == "DecompositionFunction")):
+        elif((parent_type == "Formulas" or parent_type == "DecompositionFunction") and (child_type == "Formulas" or child_type == "DecompositionFunction")):
 
             if(self.relationChild in self.relationParent.negChildren):
                 
@@ -1814,7 +1815,7 @@ class OntologyGUI:
             
                 self.addFormulaFormulaRelations()
         
-        elif((parent_type == "Formula" or parent_type == "DecompositionFunction") and (child_type == "Property")):
+        elif((parent_type == "Formulas" or parent_type == "DecompositionFunction") and (child_type == "Property")):
             
             
             if(self.relationChild in self.relationParent.negChildren):
@@ -1850,6 +1851,8 @@ class OntologyGUI:
         else:
 
             print("Parent and child don't make sense")
+            print(parent_type)
+            print(child_type)
             
             return
         
@@ -1867,7 +1870,7 @@ class OntologyGUI:
 
     def addAddressesConcernRelation(self):
 
-        self.owlApplication.addPropertyAddConcernRelation(self.relationParent,self.relationChild)
+        self.owlApplication.addaddConcernRelation(self.relationParent,self.relationChild)
        
     def addConcernFormulaRelation(self):
         
@@ -1905,7 +1908,7 @@ class OntologyGUI:
 
             self.removePropertyAddressesConcernRelation()
             
-        elif(parent_type == "Concern" and (child_type == "Formula" or child_type == "DecompositionFunction" )):
+        elif(parent_type == "Concern" and (child_type == "Formulas" or child_type == "DecompositionFunction" )):
 
             self.removeConcernFormulaRelation()
     

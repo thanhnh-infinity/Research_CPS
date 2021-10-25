@@ -26,27 +26,27 @@ class owlGraph:
 
         self.aspectConcernArray = None
         self.aspectNameList = None
-        self.formulaArray = None
+        self.formulasArray = None
         self.decompFuncArray = None
         self.componentArray = None
         
         
         self.subconcernEdges = None
-        self.concernFormulaEdges = None
-        self.formulaDecompFuncEdges = None
-        self.formulaPropertyEdges = None
+        self.concernFormulasEdges = None
+        self.formulasDecompFuncEdges = None
+        self.formulasPropertyEdges = None
         self.componentEdges = None
 
         self.concernEdgeLabels = None
-        self.concernFormulaEdgeLabels = None
-        self.formulaDecompFuncEdgeLabels = None
-        self.formulaPropertyEdgeLabels = None
+        self.concernFormulasEdgeLabels = None
+        self.formulasDecompFuncEdgeLabels = None
+        self.formulasPropertyEdgeLabels = None
         self.componentEdgeLabels = None
 
         self.aspectNodeLabels = None
         self.concernNodeLabels = None
         self.propertyNodeLabels = None
-        self.formulaNodeLabels = None
+        self.formulasNodeLabels = None
         self.decompFuncNodeLabels = None
         self.componentNodeLabels = None
 
@@ -78,7 +78,7 @@ class owlGraph:
         self.aspectConcernArray = np.array(())
         self.aspectNameList = [[]]
         self.propertyArray = np.array(())
-        self.formulaArray = np.array(())
+        self.formulasArray = np.array(())
         self.decompFuncArray = np.array(())
         self.componentArray = np.array(())
 
@@ -104,6 +104,7 @@ class owlGraph:
             for node in self.owlApplication.nodeArray:
 
                
+               
 
                 if(str(node.type) == "Property" and self.graphProperties == True):
                     #print("found property")
@@ -111,9 +112,11 @@ class owlGraph:
                     self.netXGraph.add_node(node.name)
                     self.propertyArray = np.append(self.propertyArray,node)
                 
-                elif(str(node.type) == "Formula" and self.graphProperties == True):
+                elif(str(node.type) == "Formulas" and self.graphProperties == True):
+                    #print(node.name)
+                    #print("found formulas " + node.name)
                     self.netXGraph.add_node(node.name)
-                    self.formulaArray = np.append(self.formulaArray,node)
+                    self.formulasArray = np.append(self.formulasArray,node)
                     continue
                     
                 elif(str(node.type) == "DecompositionFunction" and self.graphProperties == True):
@@ -136,17 +139,17 @@ class owlGraph:
      
         
         self.subconcernEdges = []
-        self.concernFormulaEdges = []
+        self.concernFormulasEdges = []
         
         
-        self.formulaDecompFuncDisEdges = []
-        self.formulaDecompFuncConjEdges = []
+        self.formulasDecompFuncDisEdges = []
+        self.formulasDecompFuncConjEdges = []
         
-        self.formulaPropertyDisEdges = []
-        self.formulaPropertyConjEdges = []
+        self.formulasPropertyDisEdges = []
+        self.formulasPropertyConjEdges = []
         
-        self.negFormulaPropertyDisEdges = []
-        self.negFormulaPropertyConjEdges = []
+        self.negFormulasPropertyDisEdges = []
+        self.negFormulasPropertyConjEdges = []
         
         
         self.concernPropertyEdges = []
@@ -156,16 +159,16 @@ class owlGraph:
         
         
         self.concernEdgeLabels = {}
-        self.concernFormulaEdgeLabels = {}
+        self.concernFormulasEdgeLabels = {}
         
-        self.formulaDecompFuncDisEdgeLabels = {}
-        self.formulaDecompFuncConjEdgeLabels = {}
+        self.formulasDecompFuncDisEdgeLabels = {}
+        self.formulasDecompFuncConjEdgeLabels = {}
         
-        self.formulaPropertyDisEdgeLabels = {}
-        self.formulaPropertyConjEdgeLabels = {}
+        self.formulasPropertyDisEdgeLabels = {}
+        self.formulasPropertyConjEdgeLabels = {}
         
-        self.negFormulaPropertyDisEdgeLabels = {}
-        self.negFormulaPropertyConjEdgeLabels = {}
+        self.negFormulasPropertyDisEdgeLabels = {}
+        self.negFormulasPropertyConjEdgeLabels = {}
         
         
         
@@ -191,13 +194,13 @@ class owlGraph:
                     
                     self.concernEdgeLabels[(node.name,child.name)] = 'subconcern'
                     
-                elif(child.type == "Formula" or child.type == "DecompositionFunction"):
+                elif(child.type == "Formulas" or child.type == "DecompositionFunction"):
                     self.netXGraph.add_edge(node.name,child.name,length = 1)
-                    self.concernFormulaEdges.append((node.name,child.name))
+                    self.concernFormulasEdges.append((node.name,child.name))
                     
                    
                     
-                    self.concernFormulaEdgeLabels[(node.name,child.name)] = "addressesConcern" 
+                    self.concernFormulasEdgeLabels[(node.name,child.name)] = "addressesConcern" 
                     
                 elif(child.type == "Property" and len(child.parents) == 1):
                     
@@ -214,6 +217,8 @@ class owlGraph:
 
             if (len(node.children) + len(node.negChildren)) == 0:
                 continue
+            
+           
 
           
             for negChild in node.negChildren:
@@ -222,7 +227,7 @@ class owlGraph:
                 #print("in neg child loop in graph", negChild.name)
                 
                 #WILL NEED TO ADAPT THIS FOR NEGATION
-                if( (negChild.type == "DecompositionFunction" or negChild.type == "Formula") and self.graphProperties == True):
+                if( (negChild.type == "DecompositionFunction" or negChild.type == "Formulas") and self.graphProperties == True):
                     
                      self.netXGraph.add_edge(node.name,negChild.name,length = 1)
                     
@@ -231,16 +236,16 @@ class owlGraph:
                         
                       
                             
-                        self.negFormulaPropertyDisEdges.append((node.name,negChild.name))
-                        self.negFormulaPropertyDisEdgeLabels[(node.name,negChild.name)] = "negMemberOf" 
+                        self.negFormulasPropertyDisEdges.append((node.name,negChild.name))
+                        self.negFormulasPropertyDisEdgeLabels[(node.name,negChild.name)] = "negMemberOf" 
                             
                     
     
                      else:
             
                             
-                        self.negFormulaPropertyConjEdges.append((node.name,negChild.name))
-                        self.negFormulaPropertyConjEdgeLabels[(node.name,negChild.name)] = "negMemberOf"
+                        self.negFormulasPropertyConjEdges.append((node.name,negChild.name))
+                        self.negFormulasPropertyConjEdgeLabels[(node.name,negChild.name)] = "negMemberOf"
                     
                     
                     
@@ -259,16 +264,16 @@ class owlGraph:
                         
                       
                             
-                        self.negFormulaPropertyDisEdges.append((node.name,negChild.name))
-                        self.negFormulaPropertyDisEdgeLabels[(node.name,negChild.name)] = "negMemberOf" 
+                        self.negFormulasPropertyDisEdges.append((node.name,negChild.name))
+                        self.negFormulasPropertyDisEdgeLabels[(node.name,negChild.name)] = "negMemberOf" 
                             
                     
     
                     else:
             
                             
-                        self.negFormulaPropertyConjEdges.append((node.name,negChild.name))
-                        self.negFormulaPropertyConjEdgeLabels[(node.name,negChild.name)] = "negMemberOf"
+                        self.negFormulasPropertyConjEdges.append((node.name,negChild.name))
+                        self.negFormulasPropertyConjEdgeLabels[(node.name,negChild.name)] = "negMemberOf"
                             
                         
                     
@@ -282,18 +287,18 @@ class owlGraph:
 
                 
                 #WILL NEED TO ADAPT THIS FOR NEGATION
-                if( (child.type == "DecompositionFunction" or child.type == "Formula") and self.graphProperties == True):
+                if( (child.type == "DecompositionFunction" or child.type == "Formulas") and self.graphProperties == True):
                     self.netXGraph.add_edge(node.name,child.name,length = 1)
                    
                     if(node.subtype == "Disjunction"):
                     
-                        self.formulaDecompFuncDisEdges.append((node.name,child.name))
-                        self.formulaDecompFuncDisEdgeLabels[(node.name,child.name)] = "memberOf"
+                        self.formulasDecompFuncDisEdges.append((node.name,child.name))
+                        self.formulasDecompFuncDisEdgeLabels[(node.name,child.name)] = "memberOf"
                         
                     else:
                         
-                        self.formulaDecompFuncConjEdges.append((node.name,child.name))
-                        self.formulaDecompFuncConjEdgeLabels[(node.name,child.name)] = "memberOf"
+                        self.formulasDecompFuncConjEdges.append((node.name,child.name))
+                        self.formulasDecompFuncConjEdgeLabels[(node.name,child.name)] = "memberOf"
                         
                         
                         
@@ -310,14 +315,14 @@ class owlGraph:
                         
 
                        
-                        self.formulaPropertyDisEdges.append((node.name,child.name))
-                        self.formulaPropertyDisEdgeLabels[(node.name,child.name)] = "memberOf" 
+                        self.formulasPropertyDisEdges.append((node.name,child.name))
+                        self.formulasPropertyDisEdgeLabels[(node.name,child.name)] = "memberOf" 
                     
                     else:
                         
                       
-                        self.formulaPropertyConjEdges.append((node.name,child.name))
-                        self.formulaPropertyConjEdgeLabels[(node.name,child.name)] = "memberOf" 
+                        self.formulasPropertyConjEdges.append((node.name,child.name))
+                        self.formulasPropertyConjEdgeLabels[(node.name,child.name)] = "memberOf" 
                  
                 elif(child.type == "Component" and self.graphComponents == True):
                     
@@ -325,10 +330,13 @@ class owlGraph:
                         
                         self.componentEdges.append((node.name,child.name))
                         self.componentEdgeLabels[(node.name,child.name)] = "relatedTo" 
+                else:
+                    print("tom")
+                    print(node.name)
                         
                         
                     
-                #elif(child.type == "Formula" and self.graphProperties == True):
+                #elif(child.type == "Formulas" and self.graphProperties == True):
                     
                     
                     #self.netXGraph.add_edge(node.name,child.name,length = 1)
@@ -346,7 +354,7 @@ class owlGraph:
         self.aspectNodeLabels = {}
         self.concernNodeLabels = {}
         self.propertyNodeLabels = {}
-        self.formulaNodeLabels = {}
+        self.formulasNodeLabels = {}
         self.decompFuncNodeLabels = {}
         self.componentNodeLabels = {}
 
@@ -377,10 +385,10 @@ class owlGraph:
                     #print("Property adding, ", node.name)
                     self.propertyNodeLabels[node.name] = node.name
                     
-                elif(node.type == "Formula" and self.graphProperties == True):
+                elif(node.type == "Formulas" and self.graphProperties == True):
 
-                   # print("Formula adding, ", node.name)
-                    self.formulaNodeLabels[node.name] = node.name
+                   # print("Formulas adding, ", node.name)
+                    self.formulasNodeLabels[node.name] = node.name
                     
                 elif(node.type == "DecompositionFunction" and self.graphProperties == True):
 
@@ -462,7 +470,7 @@ class owlGraph:
         
        
         property_color = "#595858"
-        formula_color = "#3000ab"
+        formulas_color = "#3000ab"
         decompfunc_color ="#3000ab"
         #decompfunc_color = "#0eb0a8"
         component_color = "pink"
@@ -478,20 +486,20 @@ class owlGraph:
         nx.draw_networkx_nodes(self.netXGraph, pos = self.graphPositions, with_labels=False, arrows=False, ax = ax, node_size = .1,scale = 1)
 
         nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.subconcernEdges, arrows=False,style = "solid",width = edge_width,edge_color = edge_color,alpha = edge_alpha)
-        nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.concernFormulaEdges, arrows=False,style = "solid",width = edge_width,edge_color = edge_color, alpha = edge_alpha)
+        nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.concernFormulasEdges, arrows=False,style = "solid",width = edge_width,edge_color = edge_color, alpha = edge_alpha)
         nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.concernPropertyEdges, arrows=False,style = "solid",width = edge_width,edge_color = edge_color,alpha = edge_alpha)
 
         
-        nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.formulaDecompFuncDisEdges, arrows=False,style = "dotted",width = edge_width,edge_color = edge_color, alpha = edge_alpha)   
-        nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.formulaDecompFuncConjEdges, arrows=False,style = "solid",width = edge_width,edge_color = edge_color, alpha = edge_alpha)  
+        nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.formulasDecompFuncDisEdges, arrows=False,style = "dotted",width = edge_width,edge_color = edge_color, alpha = edge_alpha)   
+        nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.formulasDecompFuncConjEdges, arrows=False,style = "solid",width = edge_width,edge_color = edge_color, alpha = edge_alpha)  
         
         
-        nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.formulaPropertyDisEdges, arrows=False,style = "dotted",width = edge_width,edge_color = edge_color, alpha = edge_alpha)
-        nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.formulaPropertyConjEdges, arrows=False,style = "solid",width = edge_width,edge_color = edge_color, alpha = edge_alpha)
+        nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.formulasPropertyDisEdges, arrows=False,style = "dotted",width = edge_width,edge_color = edge_color, alpha = edge_alpha)
+        nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.formulasPropertyConjEdges, arrows=False,style = "solid",width = edge_width,edge_color = edge_color, alpha = edge_alpha)
         
         
-        nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.negFormulaPropertyDisEdges, arrows=False,style = "dotted",width = edge_width,edge_color = "red", alpha = edge_alpha)
-        nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.negFormulaPropertyConjEdges, arrows=False,style = "solid",width = edge_width,edge_color = "red", alpha = edge_alpha)
+        nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.negFormulasPropertyDisEdges, arrows=False,style = "dotted",width = edge_width,edge_color = "red", alpha = edge_alpha)
+        nx.draw_networkx_edges(self.netXGraph, pos = self.graphPositions, edgelist = self.negFormulasPropertyConjEdges, arrows=False,style = "solid",width = edge_width,edge_color = "red", alpha = edge_alpha)
         
         
         
@@ -499,19 +507,19 @@ class owlGraph:
 
 
         nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.concernEdgeLabels,font_size = fs)
-        nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.concernFormulaEdgeLabels,font_size = fs)
+        nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.concernFormulasEdgeLabels,font_size = fs)
         
         nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.concernPropertyEdgeLabels,font_size = fs)
 
-        nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.formulaDecompFuncDisEdgeLabels,font_size = fs)
-        nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.formulaDecompFuncConjEdgeLabels,font_size = fs)
+        nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.formulasDecompFuncDisEdgeLabels,font_size = fs)
+        nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.formulasDecompFuncConjEdgeLabels,font_size = fs)
         
         
-        nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.formulaPropertyDisEdgeLabels,font_size = fs)
-        nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.formulaPropertyConjEdgeLabels,font_size = fs)
+        nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.formulasPropertyDisEdgeLabels,font_size = fs)
+        nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.formulasPropertyConjEdgeLabels,font_size = fs)
         
-        nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.negFormulaPropertyDisEdgeLabels,font_size = fs)
-        nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.negFormulaPropertyConjEdgeLabels,font_size = fs)
+        nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.negFormulasPropertyDisEdgeLabels,font_size = fs)
+        nx.draw_networkx_edge_labels(self.netXGraph, pos = self.graphPositions, edge_labels=self.negFormulasPropertyConjEdgeLabels,font_size = fs)
         
         
         
@@ -522,8 +530,15 @@ class owlGraph:
         nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.concernNodeLabels,font_size= fs,bbox=dict(facecolor=concern_color, boxstyle='square,pad=.3'),font_color = "white")
 
         if(self.owlApplication != None):
-            nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.propertyNodeLabels,font_size=fs*.85,bbox=dict(facecolor=property_color, boxstyle='round4,pad=.3'),font_color = "white")
-            nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.formulaNodeLabels,font_size=fs,bbox=dict(facecolor=formula_color, boxstyle='round4,pad=.3'),font_color = "white")
+            nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.propertyNodeLabels,font_size=fs*.90,bbox=dict(facecolor=property_color, boxstyle='round4,pad=.3'),font_color = "white")
+            
+            list_names = ["workshop_ontologies/cpsframework-v3-sr-LKAS-Configuration-V1.owl","workshop_ontologies/cpsframework-v3-blank-app.owl"]
+            if(self.owlApplication.owlName in list_names):
+                print("special")
+                nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.formulasNodeLabels,font_size=fs*.90,bbox=dict(facecolor=property_color, boxstyle='round4,pad=.3'),font_color = "white")
+                
+            else:
+                nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.formulasNodeLabels,font_size=fs,bbox=dict(facecolor=formulas_color, boxstyle='round4,pad=.3'),font_color = "white")
             nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.decompFuncNodeLabels,font_size=fs,bbox=dict(facecolor=decompfunc_color, boxstyle='round4,pad=.3'),font_color = "white")
             nx.draw_networkx_labels(self.netXGraph,self.graphPositions,self.componentNodeLabels,font_size=fs,bbox=dict(facecolor=component_color, boxstyle='round,pad=.3'),font_color = "white")
 

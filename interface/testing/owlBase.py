@@ -110,6 +110,7 @@ class owlBase:
 
         for concern in all_concerns:
 
+        
             newOwlNode = owlNode()
             newOwlNode.name = remove_namespace(concern)
             newOwlNode.type = remove_namespace(concern.is_a[0])
