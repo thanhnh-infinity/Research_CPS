@@ -5,7 +5,7 @@ It is quite comprehensive, hopefully spelling out all of its current functions.
 
 Outside of that, some key information:
 
-- The packages are hard to get right. Use the .yml file in the interface/testing/ folder to create an anaconda environment. You might have to run "dot -c" in a command prompt afterwards.
+- The packages are hard to get right. Use the correct .yml file for your OS in the interface/testing/ folder to create an anaconda environment. You might have to run "dot -c" in a command prompt afterwards.
 
 - OntologyGUI.py is the main file to run
 
