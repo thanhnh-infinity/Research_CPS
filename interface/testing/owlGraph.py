@@ -479,7 +479,7 @@ class owlGraph:
         edge_alpha = .8
 
 
-        fs = fs*.69
+        fs = fs*.60
 
         plt.tight_layout()
 
