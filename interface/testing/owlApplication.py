@@ -136,9 +136,7 @@ class owlApplication:
             
             if(remove_namespace(Formulas)[0] == "g"):
                 
-                print("found g in app")
                 
-                print(remove_namespace(Formulas))
                 continue
             
             newOwlNode = owlNode()
