@@ -1,5 +1,6 @@
 name: ontology_GUI_env_mac
 channels:
+  - alubbock
   - potassco
   - defaults
 dependencies:
@@ -214,6 +215,7 @@ dependencies:
   - python-dateutil=2.8.0=py36_0
   - python-libarchive-c=2.8=py36_6
   - python.app=2=py36_9
+  - python-graphviz=0.16=pyhd3eb1b0_1
   - pytz=2019.1=py_0
   - pywavelets=1.0.3=py36h1d22016_1
   - pyyaml=5.1=py36h1de35cc_0
@@ -310,7 +312,7 @@ dependencies:
     - markdown==3.3.4
     - matplotlib==2.2.3
     - networkx==1.11
-    - numpy==1.19.5
+    - numpy==1.18.5
     - oauthlib==3.1.1
     - onto2nx==0.1.1
     - ontodocs==1.2.2
@@ -322,10 +324,9 @@ dependencies:
     - pyasn1==0.4.8
     - pyasn1-modules==0.2.8
     - pydot==1.4.1
+    - pygraphviz
     - pyfiglet==0.8.post1
     - pygments==2.1.3
-    - pygraphviz==1.5
-    - python-graphviz==0.14
     - rdflib==4.2.1
     - rdflib-jsonld==0.4.0
     - requests-file==1.4.3
