@@ -1,26 +1,16 @@
-At the moment, the three files that make up the interface are OntologyGUI.py, owlNode.py, and owlOntology.py.
-The rest of the files are outdated an no longer used. I am using a few packages whose versions required are
-specific to your python version, so it is difficult to say exactly which packages you will need to install to run the program.
-To run the program execute OntologyGUI.py
+Documentation for the system can be found here:
+https://docs.google.com/document/d/1iwgGlm5VAqLlze1NWXyoH6Jx0JOE9mOkijUl8n6SX2g/edit?usp=sharing
 
-The program however requires:
-  numpy
-  matplotlib
-  networkx
-  graphviz
-  pygraphviz
-  owlready2
-  pydotplus
+It is quite comprehensive, hopefully spelling out all of its current functions. 
 
-The difficulty is getting graphviz, pygraphviz and pydotplus all to be happy with eachother.
-I'd recommend using whichever methods you usually use to install packages to get these
-and note that if you are using anaconda, an easy way to install these packages is:
+Outside of that, some key information:
 
-  conda install -c alubbock graphviz pygraphviz
+- The packages are hard to get right. Use the .yml file in the interface/testing/ folder to create an anaconda environment. You might have to run "dot -c" in a command prompt afterwards.
 
-However, it doesn't seem perfect for everyone
+- OntologyGUI.py is the main file to run
 
-You also may get the error "dot not recognized", which can be fixed using "dot -c" in terminal
+- As is the interface will load ontologies from the folder "workshop_ontologies/". This can be changed on (currently) lines 354 and 372 in OntologyGUI.py. It will save base ontologies to workshop_ontologies/ and application ontologies to a folder used in the query picker. These can be changed on lines 387 and lines 409.
 
-I hope to either find a solution for installing these packages easily, or restructure the
-program so it doesn't require these packages at all.
+- The main ontologies are stored in "workshop_ontologies/". Others used throughout testing are in application_ontologies. 
+
+- V1 versions of the ontologies don't support formulas/dependencies. V2 versions do. The editor can handle both, the query picker can only handle V1. 
