@@ -15,7 +15,7 @@ if [[ "$_java" ]]; then
     echo version "$version"
     if [[ "$version" > "1.5" ]]; then
         if type -p git; then
-           git -v
+           git --version
            java -version
            javac -version
            javac -d bin/ -cp src src/asklab/querypicker/QueryPicker.java
